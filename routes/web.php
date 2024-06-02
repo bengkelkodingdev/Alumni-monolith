@@ -66,7 +66,7 @@ Route::get('/manageLogang', [LogangController::class,'manage'])->name('manageLog
 
 //route quiz
 
-//ini awalan kalau blm pernah isi dia ke quiz kalu udah ada isi dia ke hasil quiz
+// Rute yang memeriksa data dan mengarahkan ke halaman yang tepat
 Route::get('/tracerstudy', function () {
     // Mengambil jumlah data dari setiap model
     $academicCount = \App\Models\Academic::count();
@@ -80,15 +80,15 @@ Route::get('/tracerstudy', function () {
     // Periksa apakah setidaknya satu model memiliki data
     if ($academicCount > 0 || $jobCount > 0 || $internshipCount > 0 || $organizationCount > 0 || $awardCount > 0 || $courseCount > 0 || $skillCount > 0) {
         // Jika setidaknya satu model memiliki data, arahkan ke halaman tracerstudy.index
-        return redirect('/tracerstudy');
+        return redirect()->route('tracerstudy.index');
     } else {
         // Jika tidak ada data pada semua model, arahkan ke halaman tracerstudy.quiz
         return redirect('/tracerstudy/quiz');
     }
-});
+})->name('tracerstudy.check');
 
-//ini tampilan hasil quiz
-Route::get('/hasilquiz', function () {
+// Rute untuk hasil quiz
+Route::get('/tracerstudy/hasilquiz', function () {
     // Mengambil data dari semua model yang diperlukan
     $academics = \App\Models\Academic::paginate(5);
     $jobs = \App\Models\Job::paginate(5);
@@ -96,10 +96,11 @@ Route::get('/hasilquiz', function () {
     $organizations = \App\Models\Organization::paginate(5);
     $awards = \App\Models\Award::paginate(5);
     $courses = \App\Models\Course::paginate(5);
-    $skills = \App\Models\skill::paginate(5);
+    $skills = \App\Models\Skill::paginate(5);
+
     // Mengirim data ke view
     return view('tracerstudy.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
-});
+})->name('tracerstudy.index');
 
 //ini bagian quiz
 Route::get('/tracerstudy/quiz', 'App\Http\Controllers\QuizController@create')->name('tracerstudy.quiz');
