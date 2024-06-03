@@ -38,10 +38,6 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/admin/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
     Route::get('/admin/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni');
     Route::get('/logout', [SesiController::class, 'logout']);
-    
-
-
-});
 
 //route Loker
 Route::get('/loker',[LokerController::class, 'index'])->name('listings.index');
@@ -114,3 +110,4 @@ Route::resource('/organization', \App\Http\Controllers\OrganizationController::c
 Route::resource('/award', \App\Http\Controllers\AwardController::class);
 Route::resource('/course', \App\Http\Controllers\CourseController::class);
 Route::resource('/skill', \App\Http\Controllers\SkillController::class);
+});

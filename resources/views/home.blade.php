@@ -140,55 +140,11 @@
         @endunless
       </div>
     </div>
-    
-    <!-- Tabel Pengalaman Kerja -->
-    <div style="width: 35%;">
-      <form id="filterForm" method="GET" action="{{ route('listings.index') }}">
-          <!-- Pengalaman Kerja -->
-          <div class="bg-blue-500 text-white p-2 rounded-t-lg mr-10 mt-3">
-              Pengalaman Kerja
-          </div>
-          <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-              @foreach ([
-                  'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                  'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-              ] as $pengalaman)
-                  <label class="flex items-center mb-2">
-                      <input type="checkbox" class="mr-2" name="Pengalaman[]" value="{{ $pengalaman }}" 
-                             {{ in_array($pengalaman, $selectedPengalaman) ? 'checked' : '' }} /> {{ $pengalaman }}
-                  </label>
-              @endforeach
-          </div>
-  
-          <!-- Tipe Pekerjaan -->
-          <div class="bg-blue-500 text-white p-2 rounded-t-lg mr-10 mt-3">
-              Tipe Pekerjaan
-          </div>
-          <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-              @foreach ([
-                  'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-              ] as $tipeKerja)
-                  <label class="flex items-center mb-2">
-                      <input type="checkbox" class="mr-2" name="TipeKerja[]" value="{{ $tipeKerja }}" 
-                             {{ in_array($tipeKerja, $selectedTipeKerja) ? 'checked' : '' }} /> {{ $tipeKerja }}
-                  </label>
-              @endforeach
-          </div>
-      </form>
-  </div>
-  
-  <script>
-      document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeKerja[]"]').forEach(function(checkbox) {
-          checkbox.addEventListener('change', function() {
-              document.getElementById('filterForm').submit();
-          });
-      });
-  </script>
    
-  <div class="mt-6 p-4">
-    {{$listings->links()}}
+    <div class="mt-6 p-4">
+      {{$listings->links()}}
+    </div>
   </div>
-</div>
 <div>
   @include('partials._searchmagang')
   <div style="font-family: Arial; font-size: 2em; color: #114D91; font-weight: bold; margin-left: 2%;">
@@ -207,7 +163,7 @@
             @endunless
         </div>
     </div>
-    
+{{--     
     <!-- Tabel Pengalaman Magang -->
     <div style="width: 35%;">
       <form id="filterForm2" method="GET" action="{{ route('listingmagang.index') }}">
@@ -250,7 +206,7 @@
               document.getElementById('filterForm2').submit();
           });
       });
-  </script>
+  </script> --}}
   
 
   <div class="mt-6 p-4">
