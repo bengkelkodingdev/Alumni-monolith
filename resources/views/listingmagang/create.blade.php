@@ -63,11 +63,11 @@
 
       <div class="mb-6">
         <label for="logo" class="inline-block text-lg mb-2">Logo</label>
-        <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
+        <input type="file" class="border border-blue-700 rounded p-2 w-full" name="logo" />
       </div>
 
       <div class="mb-6">
-        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">Post</button>
+        <button class="bg-blue-700 text-white rounded py-2 px-4 hover:bg-blue-800">Post</button>
         <a href="/logang" class="text-black ml-4">Back</a>
       </div>
     </form>
