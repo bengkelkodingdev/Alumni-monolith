@@ -22,12 +22,12 @@
           <div class="text-lg space-y-6">
             {{$listingmagang->Deskripsi}}
 
-            <a href="mailto:{{$listingmagang->Email}}" class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80">
+            <a href="mailto:{{$listingmagang->Email}}" class="block bg-blue-700 text-white mt-6 py-2 rounded-xl hover:bg-blue-800">
               <i class="fa-solid fa-envelope"></i>
               Contact Employer
             </a>
 
-            <a href="{{$listingmagang->Website}}" target="_blank" class="block bg-black text-white py-2 rounded-xl hover:opacity-80">
+            <a href="{{$listingmagang->Website}}" target="_blank" class="block bg-blue-700 text-white py-2 rounded-xl hover:bg-blue-800">
               <i class="fa-solid fa-globe"></i>
               Visit Website
             </a>

@@ -60,12 +60,12 @@
     
       <div class="mb-6">
         <label for="logo" class="inline-block text-lg mb-2">Logo</label>
-        <input type="file" class="border border-gray-200 rounded p-2 w-full" name="Logo" />
+        <input type="file" class="border border-blue-700 rounded p-2 w-full" name="Logo" />
 
         <img class="w-48 mr-6 mb-6" src="{{$loker->Logo ? asset('/storage/imglogo'.$loker->Logo) : asset('/images/no-image.png')}}" alt="" />
       </div>
       <div class="mb-6">
-        <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">Update Post</button>
+        <button class="bg-blue-700 text-white rounded py-2 px-4 hover:bg-blue-800">Update Post</button>
         <a href="/loker" class="text-black ml-4"> Back </a>
       </div>
     </form>

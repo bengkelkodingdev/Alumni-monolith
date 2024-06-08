@@ -230,6 +230,24 @@
                 <div class="step-circle">3</div>
                 <div class="step-label">Step 3</div>
             </div>
+            <div class="step active">
+                <div class="step-circle">4</div>
+                <div class="step-label">Step 4</div>
+                <div class="step-line"></div>
+            </div>
+            <div class="step">
+                <div class="step-circle">5</div>
+                <div class="step-label">Step 5</div>
+                <div class="step-line"></div>
+            </div>
+            <div class="step">
+                <div class="step-circle">6</div>
+                <div class="step-label">Step 6</div>
+            </div>
+            <div class="step">
+                <div class="step-circle">7</div>
+                <div class="step-label">Step 7</div>
+            </div>
         </div>
         
         <div class="container mt-5 mb-5">
@@ -242,90 +260,104 @@
                                 <!-- academic -->
                                 <div class="form-step" id="form-step-1">
                                     <b><h1 class="text-left mb-4" style="color: #F68955;">Form Academic</h1></b>
-                                    <div class="form "> 
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                                <label for="nim" class="col-sm-3 col-form-label">NIM</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim') }}" placeholder="Masukkan NIM Mahasiswa" id="nim">
-                                                </div>
-                                            </div>                              
-                                            @error('nim')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                    <div class="form ">
+                                    <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="nim" class="col-sm-3 col-form-label">NIM</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim') }}" placeholder="Masukkan NIM Mahasiswa" id="nim">
                                         </div>
-
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                                <label for="nama_mhs" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control @error('nama_mhs') is-invalid @enderror" name="nama_mhs" value="{{ old('nama_mhs') }}" placeholder="Masukkan Nama Mahasiswa" id="nama_mhs">
-                                                </div>
-                                            </div>                                  
-                                            @error('nama_mhs')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                    </div>                              
+                                    @error('nim')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
                                         </div>
+                                    @enderror
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                                <label for="email" class="col-sm-3 col-form-label">Email Pribadi</label>
-                                                <div class="col-sm-9">
-                                                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Email Mahasiswa" id="email">
-                                                </div>
-                                            </div>   
-                                            @error('email')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="nama_mhs" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control @error('nama_mhs') is-invalid @enderror" name="nama_mhs" value="{{ old('nama_mhs') }}" placeholder="Masukkan Nama Mahasiswa" id="nama_mhs">
                                         </div>
-
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                                <label for="ipk" class="col-sm-3 col-form-label">IPK Mahasiswa</label>
-                                                    <div class="col-sm-9">
-                                                        <input type="text" class="form-control @error('ipk') is-invalid @enderror" name="ipk" value="{{ old('ipk') }}" placeholder="Masukkan IPK Mahasiswa" id="ipk" step="0.01">
-                                                    </div>
-                                            </div>   
-                                            @error('ipk')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                    </div>                                  
+                                    @error('nama_mhs')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
                                         </div>
+                                    @enderror
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                            <label for="judul_skripsi" class="col-sm-3 col-form-label">Judul Skripsi</label>
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="email" class="col-sm-3 col-form-label">Email Pribadi</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Email Mahasiswa" id="email">
+                                        </div>
+                                    </div>   
+                                    @error('email')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="ipk" class="col-sm-3 col-form-label">IPK Mahasiswa</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control @error('judul_skripsi') is-invalid @enderror" name="judul_skripsi" value="{{ old('judul_skripsi') }}" placeholder="Masukkan Judul Skripsi Mahasiswa" id="judul_skripsi">
-                                                </div>
-                                            </div>   
-                                            @error('judul_skripsi')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                                <input type="text" class="form-control @error('ipk') is-invalid @enderror" name="ipk" value="{{ old('ipk') }}" placeholder="Masukkan IPK Mahasiswa" id="ipk" step="0.01">
+                                            </div>
+                                    </div>   
+                                    @error('ipk')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
                                         </div>
+                                    @enderror
+                                </div>
 
-                                        <div class="form-group">
-                                            <div class="row mb-3">
-                                            <label for="dosen_wali" class="col-sm-3 col-form-label">Dosen Wali</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" class="form-control @error('dosen_wali') is-invalid @enderror" name="dosen_wali" value="{{ old('dosen_wali') }}" placeholder="Masukkan Nama Dosen Wali Mahasiswa" id="dosen_wali">
-                                                </div>
-                                            </div>   
-                                            @error('dosen_wali')
-                                                <div class="alert alert-danger mt-2">
-                                                    {{ $message }}
-                                                </div>
-                                            @enderror
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                    <label for="judul_skripsi" class="col-sm-3 col-form-label">Judul Skripsi</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('judul_skripsi') is-invalid @enderror" name="judul_skripsi" value="{{ old('judul_skripsi') }}" placeholder="Masukkan Judul Skripsi Mahasiswa" id="judul_skripsi">
                                         </div>
+                                    </div>   
+                                    @error('judul_skripsi')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                    <label for="dosen_wali" class="col-sm-3 col-form-label">Dosen Wali</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('dosen_wali') is-invalid @enderror" name="dosen_wali" value="{{ old('dosen_wali') }}" placeholder="Masukkan Nama Dosen Wali Mahasiswa" id="dosen_wali">
+                                        </div>
+                                    </div>   
+                                    @error('dosen_wali')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row mb-3">
+                                        <label for="tahun_lulus" class="col-sm-3 col-form-label">Tahun Lulus</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus') }}" placeholder="Masukkan Tahun Lulus Mahasiswa" id="tahun_lulus" min="1900" max="2024" step="1">
+                                            </div>
+                                    </div>   
+                                    @error('tahun_lulus')
+                                        <div class="alert alert-danger mt-2">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                                     </div>
                                 </div>
 
@@ -825,6 +857,152 @@
                                 <div class="form-step" id="form-step-7">
                                     <b><h1 class="text-left mb-4" style="color: #F68955;">Form Skill</h1></b>
                                     <div class="form">
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Kerjasama Tim</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="kerjasama_skill" value="{{ old('kerjasama_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk kerjasama_skill -->
+                                        @error('kerjasama_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>                               
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Keahlian di Bidang IT</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="ahli_skill" value="{{ old('ahli_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk ahli_skill -->
+                                        @error('ahli_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Kemampuan Berbahasa Inggris</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="inggris_skill" value="{{ old('inggris_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk inggris_skill -->
+                                        @error('inggris_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Kemampuan Berkomunikasi</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="komunikasi_skill" value="{{ old('komunikasi_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk komunikasi_skill -->
+                                        @error('komunikasi_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Pengembangan Diri</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="pengembangan_skill" value="{{ old('pengembangan_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk pengembangan_skill -->
+                                        @error('pengembangan_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Kepemimpinan</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="kepemimpinan_skill" value="{{ old('kepemimpinan_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk kepemimpinan_skill -->
+                                        @error('kepemimpinan_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Etos Kerja</label>
+                                            <div class="col-sm-9">
+                                                <select class="selectpicker form-control" data-live-search="true" name="etoskerja_skill" value="{{ old('etoskerja_skill') }}" >
+                                                    <option selected disabled>Pilih Tingkat Kemampuan</option>
+                                                    <option value="Sangat Baik">Sangat Baik</option>
+                                                    <option value="Baik">Baik</option>
+                                                    <option value="Cukup">Cukup</option>
+                                                    <option value="Kurang">Kurang</option>
+                                                </select>  
+                                            </div>  
+                                        </div>  
+                                        <!-- error message untuk etoskerja_skill -->
+                                        @error('etoskerja_skill')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
                                         
                                     </div>
                                 </div>
@@ -894,29 +1072,31 @@
             updateStep(currentStep);
         });
     </script>
+
+    <!-- footer -->
     <footer class="bg-blue-200 rounded-lg shadow mt-10 dark:bg-gray-800">
-            <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-                <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2021/11/logo-ti-01.png" class="h-20" alt="Flowbite Logo" />
-                    <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2022/08/Logo_udinus1.png" class="h-20" alt="Flowbite Logo" />
-                    <img src="https://kediri.dinus.ac.id/wp-content/uploads/2022/04/Logo-Unggul-01-1639x2048.png" class="h-20" alt="Flowbite Logo" />
-                    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
-                </a>
-                <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+        <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
+            <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2021/11/logo-ti-01.png" class="h-20" alt="Flowbite Logo" />
+                <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2022/08/Logo_udinus1.png" class="h-20" alt="Flowbite Logo" />
+                <img src="https://kediri.dinus.ac.id/wp-content/uploads/2022/04/Logo-Unggul-01-1639x2048.png" class="h-20" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+            </a>
+            <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

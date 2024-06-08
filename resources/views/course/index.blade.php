@@ -223,7 +223,7 @@
             }
         });
     </script>
-    <footer class="bg-blue-200 rounded-lg shadow mt-10 dark:bg-gray-800">
+        <!-- <footer class="bg-blue-200 rounded-lg shadow mt-10 dark:bg-gray-800">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2021/11/logo-ti-01.png" class="h-20" alt="Flowbite Logo" />
@@ -246,6 +246,6 @@
                     </li>
                 </ul>
             </div>
-        </footer>    
+        </footer>     -->
 </body>
 </html>
