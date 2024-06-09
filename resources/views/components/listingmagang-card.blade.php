@@ -6,7 +6,7 @@
     <img class="w-16 h-16 mr-4 object-cover rounded-full" src="{{$listingmagang->Logo ? asset('/storage/imglogo/'. $listingmagang->Logo) : asset('/images/no-image.png')}}" alt="Company Logo" /> 
     <div class="flex-grow"> 
       <h3 class="text-xl font-semibold mb-1"> 
-        <a href="/logang/{{$listingmagang->id}}">{{$listingmagang->Posisi}}</a> 
+        <a href="/logang/{{$listingmagang->id}}"style="color: inherit; text-decoration: none;">{{$listingmagang->Posisi}}</a> 
       </h3> 
       <div class="text-gray-600 mb-2">{{$listingmagang->NamaPerusahaan}}</div> 
       <x-listingmagang-tags :tagsCsv="$listingmagang->Tags" /> 

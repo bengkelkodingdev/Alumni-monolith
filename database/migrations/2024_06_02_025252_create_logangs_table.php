@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('Email');
             $table->string('Tags');
             $table->string('Logo')->nullable();
+            $table->string('Verify');
             $table->timestamps();
         });
     }

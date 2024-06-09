@@ -62,6 +62,12 @@
       </div>
 
       <div class="mb-6">
+        <div class="text-lg">Buat publik:</div>
+        <input type="checkbox" class="form-check-input" name="Verify" value="belum disetujui"/>
+        <label for="verify" class="form-check-label">Setuju</label>
+      </div>
+
+      <div class="mb-6">
         <label for="logo" class="inline-block text-lg mb-2">Logo</label>
         <input type="file" class="border border-blue-700 rounded p-2 w-full" name="logo" />
       </div>

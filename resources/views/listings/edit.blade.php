@@ -57,7 +57,13 @@
         <label for="tags" class="inline-block text-lg mb-2">Tags (Comma Separated)</label>
         <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Tags" placeholder="{{$loker->Tags}}"  />
       </div>
-    
+
+      <div class="mb-6">
+        <div class="text-lg">Buat publik:</div>
+        <input type="checkbox" class="form-check-input" name="Verify" value="belum disetujui"/>
+        <label for="verify" class="form-check-label">Setuju</label>
+      </div>
+      
       <div class="mb-6">
         <label for="logo" class="inline-block text-lg mb-2">Logo</label>
         <input type="file" class="border border-blue-700 rounded p-2 w-full" name="Logo" />
