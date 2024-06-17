@@ -81,6 +81,7 @@ class LogangController extends Controller
             'Website' => $request->Website,
             'Email' => $request->Email,
             'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
             'Logo' => $filename
 
         ]);
@@ -116,6 +117,7 @@ class LogangController extends Controller
             'Website' => $request->Website,
             'Email' => $request->Email,
             'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
             'Logo' => $filename
 
         ]);

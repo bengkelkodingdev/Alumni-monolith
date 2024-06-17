@@ -1,6 +1,6 @@
 <x-layout>
   <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white mb-6 ml-5">
-    <a href="/loker" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
+    <a href="/loker" class="hover:text-laravel" ><i class="fa-solid fa-arrow-left"></i> Back </a>
   </button>
   <div class="mx-4">
     <x-card class="p-10">
@@ -22,12 +22,12 @@
           <div class="text-lg space-y-6">
             {{$listing->Deskripsi}}
 
-            <a href="mailto:{{$listing->Email}}" class="block bg-blue-700 text-white mt-6 py-2 px-40 rounded-xl hover:bg-blue-800">
+            <a href="mailto:{{$listing->Email}}" style="color: inherit; text-decoration: none;" class="block bg-blue-700 text-white mt-6 py-2 px-40 rounded-xl hover:bg-blue-800">
               <i class="fa-solid fa-envelope"></i>
               Contact Employer
             </a>
 
-            <a href="{{$listing->Website}}" target="_blank" class="block bg-blue-700 text-white py-2 px-40 rounded-xl hover:bg-blue-800">
+            <a href="{{$listing->Website}}" target="_blank" style="color: inherit; text-decoration: none;" class="block bg-blue-700 text-white py-2 px-40 rounded-xl hover:bg-blue-800">
               <i class="fa-solid fa-globe"></i>
               Visit Website
             </a>

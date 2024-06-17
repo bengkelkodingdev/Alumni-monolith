@@ -38,12 +38,7 @@ class LokerController extends Controller
             ->pluck('TipeKerja')
             ->toArray();
     
-        // Determine which view to return
-        if (request()->has('alumni')) {
-            return view('alumni', compact('listings'));
-        } else {
-            return view('listings.index', compact('listings', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
-        }
+        return view('listings.index', compact('listings', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
     
     
@@ -80,6 +75,7 @@ class LokerController extends Controller
             'Website' => $request->Website,
             'Email' => $request->Email,
             'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
             'Logo' => $filename
 
         ]);
@@ -115,6 +111,7 @@ class LokerController extends Controller
             'Website' => $request->Website,
             'Email' => $request->Email,
             'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
             'Logo' => $filename
 
         ]);
