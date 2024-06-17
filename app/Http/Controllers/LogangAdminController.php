@@ -4,29 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Logang;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class LogangController extends Controller
+class LogangAdminController extends Controller
 {
-    
-    /**
-     * Display a listingmagang of the resource.
-     */
-    public function index(){
+    public function indexadmin(){
         // Get selected filters
         $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeMagang = request('TipeMagang', []);
-
+        $selectedTipeKerja = request('TipeKerja', []);
+    
         // Fetch listingmagang based on selected filters
-        $listingmagang = Logang::latest()
-            ->when($selectedPengalaman, function ($query, $selectedPengalaman) {
-                return $query->whereIn('Pengalaman', $selectedPengalaman);
-            })
-            ->when($selectedTipeMagang, function ($query, $selectedTipeMagang) {
-                return $query->whereIn('TipeMagang', $selectedTipeMagang);
-            })
-            ->paginate(6);
-
+        $listingmagangadmin = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+    
         // Determine the availability of each filter option
         $availablePengalaman = Logang::select('Pengalaman')
             ->distinct()
@@ -36,32 +24,41 @@ class LogangController extends Controller
             ])
             ->pluck('Pengalaman')
             ->toArray();
-
-        $availableTipeMagang = Logang::select('TipeMagang')
+    
+        $availableTipeKerja = Logang::select('TipeKerja')
             ->distinct()
-            ->whereIn('TipeMagang', [
+            ->whereIn('TipeKerja', [
                 'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
             ])
-            ->pluck('TipeMagang')
+            ->pluck('TipeKerja')
             ->toArray();
-
-        return view('alumni.logang.index', compact('listingmagang', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
+    
+        return view('logangAdmin.indexadmin', compact('listingmagangadmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
-
+    
+    
 
     // Show single listingmagang
     public function show(Logang $id) {
-        return view('alumni.logang.show', [
+        return view('logangadmin.showAdmin', [
             'listingmagang' => $id
         ]);
     }
 
     // Show Create Form
     public function create() {
-        return view('alumni.logang.create');
+        return view('listingmagang.create');
+    }
+    public function verify($id){
+        $listingmagangadmin = Logang::find($id);
+        if ($listingmagangadmin){
+            $listingmagangadmin->verify = 'verified';
+            $listingmagangadmin->save();
+        }
+        return redirect()->route('manageLogangAdmin.view')->with('success', 'Lowongan verified successfully');
     }
 
-    // Store Listingmagang Data
+    // Store listingmagang Data
     public function store(Request $request) {
 
         $image      =$request->file('logo');
@@ -76,7 +73,7 @@ class LogangController extends Controller
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
+            'TipeKerja' => $request->TipeKerja,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -86,12 +83,12 @@ class LogangController extends Controller
 
         ]);
 
-        return redirect('/logang')->with('message', 'Listingmagang created successfully!');
+        return redirect('/logang')->with('message', 'listingmagang created successfully!');
     }
 
     public function edit(Request $request,$id) {
-        $logang = Logang::find($id);
-        return view('alumni.logang.edit', compact('logang') );
+        $listingmagangadmin = Logang::find($id);
+        return view('logangAdmin.editAdmin', compact('listingmagangadmin') );
     }
     /**
      * Update the specified resource in storage.
@@ -112,7 +109,7 @@ class LogangController extends Controller
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
+            'TipeKerja' => $request->TipeKerja,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -122,23 +119,22 @@ class LogangController extends Controller
 
         ]);
 
-        return redirect()->route('manageLogang.view')->with('success', 'lowongan updated successfully');
+        return redirect()->route('manage.view')->with('success', 'lowongan updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $logang = Logang::find($id);
-        if ($logang){
-            $logang->delete();
+    public function destroy($id){
+        $listingmagangadmin = Logang::find($id);
+        if ($listingmagangadmin){
+            $listingmagangadmin->delete();
         }
-        return redirect()->route('manageLogang.view')->with('success', 'Lowongan deleted successfully');
+        return redirect()->route('manageLogangAdmin.view')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage Listingmagang
-    public function manage() {
-        return view('alumni.logang.manage', ['listingmagang' =>Logang::all()]);
+    // Manage listingmagang
+    public function manage(){
+        return view('logangAdmin.manageAdmin', ['listingmagangadmin' =>Logang::all()]);
     }
 }

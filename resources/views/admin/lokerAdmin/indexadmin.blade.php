@@ -2,13 +2,13 @@
   
   <div class="mb-6 ml-5">
     <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
-      <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
+      <a href="/admin" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
     </button>
-    <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
+    {{-- <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
       <a href="/postLoker" class="hover:text-laravel"><i class="fa-solid fa-upload"></i> Post Lowongan </a>
-    </button>
+    </button> --}}
     <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
-      <a href="/manageLoker" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Lowongan </a>
+      <a href="/manageLokerAdmin" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Lowongan </a>
     </button>
   </div>
   
@@ -20,9 +20,9 @@
     <!-- Tabel Lowongan -->
     <div style="width: 60%;">
       <div class="p-2.5">
-        @unless(count($listings) == 0)
+        @unless(count($listingadmin) == 0)
 
-        @foreach($listings as $listing)
+        @foreach($listingadmin as $listing)
             <x-listing-card :listing="$listing" />
         @endforeach
         @else
@@ -31,9 +31,9 @@
       </div>
     </div>
     
-    <!-- Tabel Pengalaman Kerja -->
+    {{-- <!-- Tabel Pengalaman Kerja -->
     <div style="width: 35%;">
-      <form id="filterForm" method="GET" action="{{ route('listings.index') }}">
+      <form id="filterForm" method="GET" action="{{ route('listingadmin.index') }}">
           <!-- Pengalaman Kerja -->
           <div class="bg-blue-500 text-white p-2 rounded-t-lg mr-10 mt-3">
               Pengalaman Kerja
@@ -64,7 +64,7 @@
                   </label>
               @endforeach
           </div>
-      </form>
+      </form> --}}
   </div>
   
   <script>
@@ -76,7 +76,7 @@
   </script>
    
   <div class="mt-6 p-4">
-    {{$listings->links()}}
+    {{$listingadmin->links()}}
   </div>
   
 </x-layout>

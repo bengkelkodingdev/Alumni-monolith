@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LogangAdminController;
 use App\Http\Controllers\LogangController;
+use App\Http\Controllers\LokerAdminController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
@@ -61,6 +63,15 @@ Route::get('/loker/{id}/edit', [LokerController::class,'edit']);
 Route::put('/loker/{id}/update', [LokerController::class,'update']);
 Route::delete('/loker/{id}/delete', [LokerController::class,'destroy']);
 Route::get('/manageLoker', [LokerController::class,'manage'])->name('manage.view');
+//route Loker Admin
+Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('listingadmin.index');
+Route::get('/adminLoker/{id}', [LokerAdminController::class,'show']);
+Route::get('/adminLoker/{id}/edit', [LokerAdminController::class, 'edit']);
+Route::put('/adminLoker/{id}/update', [LokerAdminController::class, 'update']);
+Route::delete('/adminLoker/{id}/delete', [LokerAdminController::class, 'destroy']);
+Route::post('/adminLoker/{id}/verify', [LokerAdminController::class, 'verify']);
+Route::get('/manageLokerAdmin', [LokerAdminController::class, 'manage'])->name('manageLokerAdmin.view');
+
 
 //route Logang
 Route::get('/logang', [LogangController::class, 'index'])->name('listingmagang.index');
@@ -71,6 +82,14 @@ Route::get('/logang/{id}/edit', [LogangController::class,'edit']);
 Route::put('/logang/{id}/update', [LogangController::class,'update']);
 Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
 Route::get('/manageLogang', [LogangController::class,'manage'])->name('manageLogang.view');
+//route Logang Admin
+Route::get('/logangadmin',[LogangAdminController::class, 'indexadmin'])->name('listingmagangadmin.index');
+Route::get('/adminLogang/{id}', [LogangAdminController::class,'show']);
+Route::get('/adminLogang/{id}/edit', [LogangAdminController::class, 'edit']);
+Route::put('/adminLogang/{id}/update', [LogangAdminController::class, 'update']);
+Route::delete('/adminLogang/{id}/delete', [LogangAdminController::class, 'destroy']);
+Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']);
+Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('manageLogangAdmin.view');
 
 
 //route quiz

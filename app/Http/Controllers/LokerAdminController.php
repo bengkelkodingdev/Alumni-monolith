@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Logang;
+use App\Models\Loker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use illuminate\Validation\Rule;
 
-class LogangController extends Controller
+class LokerAdminController extends Controller
 {
-    
     /**
-     * Display a listingmagang of the resource.
+     * Display a listing of the resource.
      */
-    public function index(){
+    public function indexadmin(){
         // Get selected filters
         $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeMagang = request('TipeMagang', []);
-
-        // Fetch listingmagang based on selected filters
-        $listingmagang = Logang::latest()
-            ->when($selectedPengalaman, function ($query, $selectedPengalaman) {
-                return $query->whereIn('Pengalaman', $selectedPengalaman);
-            })
-            ->when($selectedTipeMagang, function ($query, $selectedTipeMagang) {
-                return $query->whereIn('TipeMagang', $selectedTipeMagang);
-            })
-            ->paginate(6);
-
+        $selectedTipeKerja = request('TipeKerja', []);
+    
+        // Fetch listings based on selected filters
+        $listingadmin = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+    
         // Determine the availability of each filter option
-        $availablePengalaman = Logang::select('Pengalaman')
+        $availablePengalaman = Loker::select('Pengalaman')
             ->distinct()
             ->whereIn('Pengalaman', [
                 'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
@@ -36,32 +29,41 @@ class LogangController extends Controller
             ])
             ->pluck('Pengalaman')
             ->toArray();
-
-        $availableTipeMagang = Logang::select('TipeMagang')
+    
+        $availableTipeKerja = Loker::select('TipeKerja')
             ->distinct()
-            ->whereIn('TipeMagang', [
+            ->whereIn('TipeKerja', [
                 'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
             ])
-            ->pluck('TipeMagang')
+            ->pluck('TipeKerja')
             ->toArray();
-
-        return view('alumni.logang.index', compact('listingmagang', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
+    
+        return view('admin.lokerAdmin.indexadmin', compact('listingadmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
+    
+    
 
-
-    // Show single listingmagang
-    public function show(Logang $id) {
-        return view('alumni.logang.show', [
-            'listingmagang' => $id
+    // Show single listing
+    public function show(Loker $id) {
+        return view('admin.lokerAdmin.showAdmin', [
+            'listing' => $id
         ]);
     }
 
     // Show Create Form
     public function create() {
-        return view('alumni.logang.create');
+        return view('listings.create');
+    }
+    public function verify($id){
+        $listingadmin = Loker::find($id);
+        if ($listingadmin){
+            $listingadmin->verify = 'verified';
+            $listingadmin->save();
+        }
+        return redirect()->route('manageLokerAdmin.view')->with('success', 'Lowongan verified successfully');
     }
 
-    // Store Listingmagang Data
+    // Store Listing Data
     public function store(Request $request) {
 
         $image      =$request->file('logo');
@@ -70,13 +72,13 @@ class LogangController extends Controller
 
         Storage::disk('public')->put($path,file_get_contents($image));
                   
-        Logang::create([
+        Loker::create([
             'NamaPerusahaan' => $request->NamaPerusahaan,
             'Posisi' => $request->Posisi,
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
+            'TipeKerja' => $request->TipeKerja,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -86,12 +88,12 @@ class LogangController extends Controller
 
         ]);
 
-        return redirect('/logang')->with('message', 'Listingmagang created successfully!');
+        return redirect('/loker')->with('message', 'Listing created successfully!');
     }
 
     public function edit(Request $request,$id) {
-        $logang = Logang::find($id);
-        return view('alumni.logang.edit', compact('logang') );
+        $listingadmin = Loker::find($id);
+        return view('admin.lokerAdmin.editAdmin', compact('listingadmin') );
     }
     /**
      * Update the specified resource in storage.
@@ -106,13 +108,13 @@ class LogangController extends Controller
 
             Storage::disk('public')->put($path,file_get_contents($Logo));
         }
-        Logang::whereId($id)->update([
+        Loker::whereId($id)->update([
             'NamaPerusahaan' => $request->NamaPerusahaan,
             'Posisi' => $request->Posisi,
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
+            'TipeKerja' => $request->TipeKerja,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -122,23 +124,23 @@ class LogangController extends Controller
 
         ]);
 
-        return redirect()->route('manageLogang.view')->with('success', 'lowongan updated successfully');
+        return redirect()->route('manage.view')->with('success', 'lowongan updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $logang = Logang::find($id);
-        if ($logang){
-            $logang->delete();
+    public function destroy($id){
+        $listingadmin = Loker::find($id);
+        if ($listingadmin){
+            $listingadmin->delete();
         }
-        return redirect()->route('manageLogang.view')->with('success', 'Lowongan deleted successfully');
+        return redirect()->route('manageLokerAdmin.view')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage Listingmagang
-    public function manage() {
-        return view('alumni.logang.manage', ['listingmagang' =>Logang::all()]);
+    // Manage Listings
+    public function manage(){
+        return view('admin.lokerAdmin.manageAdmin', ['listingadmin' =>Loker::all()]);
     }
+    
 }

@@ -38,21 +38,20 @@ class LokerController extends Controller
             ->pluck('TipeKerja')
             ->toArray();
     
-        return view('listings.index', compact('listings', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
+        return view('alumni.loker.index', compact('listings', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
-    
-    
+       
 
     // Show single listing
     public function show(Loker $id) {
-        return view('listings.show', [
+        return view('alumni.loker.show', [
             'listing' => $id
         ]);
     }
 
     // Show Create Form
     public function create() {
-        return view('listings.create');
+        return view('alumni.loker.create');
     }
 
     // Store Listing Data
@@ -85,7 +84,7 @@ class LokerController extends Controller
 
     public function edit(Request $request,$id) {
         $loker = Loker::find($id);
-        return view('listings.edit', compact('loker') );
+        return view('alumni.loker.edit', compact('loker') );
     }
     /**
      * Update the specified resource in storage.
@@ -133,7 +132,7 @@ class LokerController extends Controller
 
     // Manage Listings
     public function manage() {
-        return view('listings.manage', ['listings' =>Loker::all()]);
+        return view('alumni.loker.manage', ['listings' =>Loker::all()]);
     }
     
 }
