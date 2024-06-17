@@ -29,7 +29,7 @@ class jobController extends Controller
         $jobs = job::latest()->paginate(5);
 
         //render view with posts
-        return view('job.index', compact('jobs'));
+        return view('alumni.quiz.job.index', compact('jobs'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class jobController extends Controller
 
     public function create(): View
     {
-        return view('job.create');
+        return view('alumni.quiz.job.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class jobController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -90,7 +90,7 @@ class jobController extends Controller
         $job = job::findOrFail($id);
 
         //render view with post
-        return view('job.edit', compact('job'));
+        return view('alumni.quiz.job.edit', compact('job'));
     }
     
     /**
@@ -129,7 +129,7 @@ class jobController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -146,6 +146,6 @@ class jobController extends Controller
         $job->delete();
 
         //redirect to index
-        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

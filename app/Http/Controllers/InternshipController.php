@@ -29,7 +29,7 @@ class InternshipController extends Controller
         $internships = internship::latest()->paginate(5);
 
         //render view with posts
-        return view('internship.index', compact('internships'));
+        return view('alumni.quiz.internship.index', compact('internships'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class InternshipController extends Controller
 
     public function create(): View
     {
-        return view('internship.create');
+        return view('alumni.quiz.internship.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class InternshipController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('internship.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('alumni.quiz.internship.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -90,7 +90,7 @@ class InternshipController extends Controller
         $internship = internship::findOrFail($id);
 
         //render view with post
-        return view('internship.edit', compact('internship'));
+        return view('alumni.quiz.internship.edit', compact('internship'));
     }
     
     /**
@@ -129,7 +129,7 @@ class InternshipController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('internship.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('alumni.quiz.internship.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -146,6 +146,6 @@ class InternshipController extends Controller
         $internship->delete();
 
         //redirect to index
-        return redirect()->route('internship.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('alumni.quiz.internship.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

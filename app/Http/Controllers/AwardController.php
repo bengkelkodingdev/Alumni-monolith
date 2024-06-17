@@ -29,7 +29,7 @@ class AwardController extends Controller
         $awards = award::latest()->paginate(5);
 
         //render view with posts
-        return view('award.index', compact('awards'));
+        return view('alumni.quiz.award.index', compact('awards'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class AwardController extends Controller
 
     public function create(): View
     {
-        return view('award.create');
+        return view('alumni.quiz.award.create');
     }
 
     /**
@@ -69,7 +69,7 @@ class AwardController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -84,7 +84,7 @@ class AwardController extends Controller
         $award = award::findOrFail($id);
 
         //render view with post
-        return view('award.edit', compact('award'));
+        return view('alumni.quiz.award.edit', compact('award'));
     }
     
     /**
@@ -117,7 +117,7 @@ class AwardController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -134,6 +134,6 @@ class AwardController extends Controller
         $award->delete();
 
         //redirect to index
-        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

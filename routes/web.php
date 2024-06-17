@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LogangController;
 use App\Http\Controllers\LokerController;
@@ -34,14 +35,18 @@ Route::get('/home', function(){
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
-    Route::get('/admin/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
-    Route::get('/admin/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni');
-    Route::get('/logout', [SesiController::class, 'logout']);
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
+    Route::get('/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
+    Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
     
 
 
 });
+//ADMIN
+Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+
+// ALUMNI
 
 //route Loker
 Route::get('/loker',[LokerController::class, 'index'])->name('listings.index');
@@ -80,15 +85,15 @@ Route::get('/tracerstudy', function () {
     // Periksa apakah setidaknya satu model memiliki data
     if ($academicCount > 0 || $jobCount > 0 || $internshipCount > 0 || $organizationCount > 0 || $awardCount > 0 || $courseCount > 0 || $skillCount > 0) {
         // Jika setidaknya satu model memiliki data, arahkan ke halaman tracerstudy.index
-        return redirect()->route('tracerstudy.index');
+        return redirect('/hasilquiz');
     } else {
         // Jika tidak ada data pada semua model, arahkan ke halaman tracerstudy.quiz
-        return redirect('/tracerstudy/quiz');
+        return redirect('/quiz');
     }
-})->name('tracerstudy.check');
+})->name('quizcheck');
 
 // Rute untuk hasil quiz
-Route::get('/tracerstudy/hasilquiz', function () {
+Route::get('/hasilquiz', function () {
     // Mengambil data dari semua model yang diperlukan
     $academics = \App\Models\Academic::paginate(5);
     $jobs = \App\Models\Job::paginate(5);
@@ -99,14 +104,14 @@ Route::get('/tracerstudy/hasilquiz', function () {
     $skills = \App\Models\Skill::paginate(5);
 
     // Mengirim data ke view
-    return view('tracerstudy.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
-})->name('tracerstudy.index');
+    return view('alumni.quiz.tracerstudy.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
+})->name('hasilquiz');
 
 //ini bagian quiz
 Route::get('/tracerstudy/quiz', 'App\Http\Controllers\QuizController@create')->name('tracerstudy.quiz');
 Route::post('/tracerstudy/quiz', 'App\Http\Controllers\QuizController@store')->name('tracerstudy.store');
 
-//ini tampilan buat edit perquiznya
+//route per masing masing quiz
 Route::resource('/academic', \App\Http\Controllers\academicController::class);
 Route::resource('/job', \App\Http\Controllers\jobController::class);
 Route::resource('/internship', \App\Http\Controllers\InternshipController::class);

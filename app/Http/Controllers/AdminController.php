@@ -9,22 +9,14 @@ class AdminController extends Controller
 {
     function index()
     {
-        return view('admin');
+        return view('admin.dashboard');
     }
-
-
     function admin()
     {
-        return view('admin');
-    }
-
-    function bukanadmin()
-    {
-        return view('admin');
-
+        return view('admin.dashboard');
     }
     function alumni()
     {
-        return view('alumni');
+        return view('alumni.dashboard');
     }
 }

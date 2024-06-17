@@ -29,7 +29,7 @@ class academicController extends Controller
         $academics = academic::latest()->paginate(5);
 
         //render view with posts
-        return view('academic.index', compact('academics'));
+        return view('alumni.quiz.academic.index', compact('academics'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class academicController extends Controller
 
     public function create(): View
     {
-        return view('academic.create');
+        return view('alumni.quiz.academic.create');
     }
 
     /**
@@ -73,7 +73,7 @@ class academicController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -88,7 +88,7 @@ class academicController extends Controller
         $academic = academic::findOrFail($id);
 
         //render view with post
-        return view('academic.edit', compact('academic'));
+        return view('alumni.quiz.academic.edit', compact('academic'));
     }
     
     /**
@@ -125,7 +125,7 @@ class academicController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -142,6 +142,6 @@ class academicController extends Controller
         $academic->delete();
 
         //redirect to index
-        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

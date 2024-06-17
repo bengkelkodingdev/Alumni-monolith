@@ -14,7 +14,7 @@ class QuizController extends Controller
 {
     public function create()
     {
-        return view('tracerstudy.quiz');
+        return view('alumni.quiz.tracerstudy.quiz');
     }
 
     public function store(Request $request)
@@ -73,6 +73,6 @@ class QuizController extends Controller
         Course::create($request->only(['nama_course', 'institusi_course', 'tingkat_course', 'tahun_course']));
 
         // Redirect to a thank you page or back to the form with a success message
-        return redirect()->route('tracerstudy.index')->with('success', 'Data Berhasil Disimpan!');
+        return redirect()->route('alumni.quiz.tracerstudy.index')->with('success', 'Data Berhasil Disimpan!');
     }
 }

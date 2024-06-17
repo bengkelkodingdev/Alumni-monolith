@@ -29,7 +29,7 @@ class CourseController extends Controller
         $courses = course::latest()->paginate(5);
 
         //render view with posts
-        return view('course.index', compact('courses'));
+        return view('alumni.quiz.course.index', compact('courses'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class CourseController extends Controller
 
     public function create(): View
     {
-        return view('course.create');
+        return view('alumni.quiz.course.create');
     }
 
     /**
@@ -67,7 +67,7 @@ class CourseController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -82,7 +82,7 @@ class CourseController extends Controller
         $course = course::findOrFail($id);
 
         //render view with post
-        return view('course.edit', compact('course'));
+        return view('alumni.quiz.course.edit', compact('course'));
     }
     
     /**
@@ -113,7 +113,7 @@ class CourseController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -130,6 +130,6 @@ class CourseController extends Controller
         $course->delete();
 
         //redirect to index
-        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
