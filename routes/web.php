@@ -37,8 +37,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
-    Route::get('/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin')->name('bukanadmin');
     Route::get('/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
