@@ -153,7 +153,7 @@
         <div class="p-2.5">
             @unless(count($listingmagang) == 0)
                 @foreach($listingmagang as $listing)
-                    <x-listingmaganghome-card :listingmagang="$listing" />
+                    <x-listingloganghome-card :listingmagang="$listing" />
                 @endforeach
             @else
                 <p>No Lowongan Found</p>
