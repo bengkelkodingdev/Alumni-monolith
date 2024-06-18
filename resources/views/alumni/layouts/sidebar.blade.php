@@ -5,18 +5,18 @@
                 <i class="lni lni-list"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="/alumni">Alumni</a>
+                <a href="{{ route('alumni') }}">Alumni</a>
             </div>
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="/alumni" class="sidebar-link">
+                <a href="{{ route('alumni') }}" class="sidebar-link">
                     <i class="lni lni-home"></i>
                     <span>Dashboard</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="quizcheck" class="sidebar-link">
+                <a href="{{ route('quizcheck') }}" class="sidebar-link">
                     <i class="lni lni-pencil-alt"></i>
                     <span>Tracerstudy</span>
                 </a>

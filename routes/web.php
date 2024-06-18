@@ -31,26 +31,22 @@ Route::get('/home', function(){
     return redirect('/admin');
 });
 
- Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
     Route::get('/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
     Route::get('/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
-    
-
-
 });
-//ADMIN
+
+
+// ADMIN //
 Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
 
-// ALUMNI
-Route::get('/admin/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin');
-Route::get('/admin/bukanadmin', [AdminController::class, 'bukanadmin'])->middleware('userAkses:bukanadmin');
-Route::get('/admin/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni');
-Route::get('/logout', [SesiController::class, 'logout']);
+
+// ALUMNI //
 
 //route Loker
 Route::get('/loker',[LokerController::class, 'index'])->name('listings.index');
