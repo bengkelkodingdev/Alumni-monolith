@@ -1,31 +1,8 @@
-@extends('alumni.layouts.main')
-@section('title', 'Pekerjaan Populer')
-@section('content')
-  <!-- Navbar -->
-  <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin" >
-        <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
-        <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
-        <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
-    </a>
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."
-                aria-describedby="btnNavbarSearch"/>
-            <button class="btn" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-        </li>
-    </ul>
-  </nav>
+<x-layout>
 <div class="container">
     <div class="mb-6 ml-5">
         <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
-            <a href="/admin/alumni" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
+            <a href="/alumni" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
         </button>
         <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
             <a href="/postLoker" class="hover:text-laravel"><i class="fa-solid fa-upload"></i> Post Lowongan </a>
@@ -104,4 +81,4 @@
         {{$listings->links()}}
     </div>
 </div>
-@endsection
+</x-layout>

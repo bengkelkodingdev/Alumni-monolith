@@ -5,7 +5,7 @@
                 <i class="lni lni-list"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="/admin">Alumni</a>
+                <a href="/admin">Admin</a>
             </div>
         </div>
         <ul class="sidebar-nav">
@@ -22,13 +22,13 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="/loker" class="sidebar-link">
                     <i class="lni lni-notepad"></i>
                     <span>Akses Lowongan Kerja</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="/logang" class="sidebar-link">
                     <i class="lni lni-calendar"></i>
                     <span>Akses Lowongan Magang</span>
                 </a>

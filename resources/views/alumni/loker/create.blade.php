@@ -79,7 +79,7 @@
     </form>
   </x-card>
 </x-layout>
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -383,4 +383,4 @@
             </div>
         </footer>
 </body>
-</html>
+</html> --}}

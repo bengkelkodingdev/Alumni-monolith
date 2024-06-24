@@ -1,7 +1,8 @@
 <x-layout> 
+<div class="container">
   <div class="mb-6 ml-5">
     <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
-      <a href="/login" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
+      <a href="/alumni" class="hover:text-laravel"><i class="fa-solid fa-arrow-left"></i> Back </a>
     </button>
     <button class="bg-laravel text-white rounded py-2 px-2 hover:bg-white">
       <a href="/postLogang" class="hover:text-laravel"><i class="fa-solid fa-upload"></i> Post Lowongan </a>
@@ -10,7 +11,8 @@
       <a href="/manageLogang" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Lowongan </a>
     </button>
   </div>
-  @include('partials._searchmagang')
+  @include('partials._search')
+
   <div style="font-family: Arial; font-size: 2em; color: #114D91; font-weight: bold; margin-left: 2%;">
     Magang Populer
   </div>

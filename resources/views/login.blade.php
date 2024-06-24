@@ -17,9 +17,9 @@
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2021/11/logo-ti-01.png" class="h-20" alt="Flowbite Logo" />
-            <img src="https://sti.dinus.ac.id/wp-content/uploads/sites/45/2022/08/Logo_udinus1.png" class="h-20" alt="Flowbite Logo" />
-            <img src="https://kediri.dinus.ac.id/wp-content/uploads/2022/04/Logo-Unggul-01-1639x2048.png" class="h-20" alt="Flowbite Logo" />
+            <img src="{{ asset('images/logo-sti.png') }}" class="h-20" alt="Logo STI" />
+            <img src="{{ asset('images/logo-udinus.png') }}" class="h-20" alt="Logo udinus" />
+            <img src="{{ asset('images/logo-unggul.png') }}" class="h-20" alt="Logo udinus" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
         </a>
         
@@ -120,7 +120,7 @@
                 <input type="password" name="password" class="form-control">
             </div>
             <div class="form-group">
-                <button name="submit" type="submit" class="btn btn-primary">Login</button>
+                <button name="submit" type="submit" class="btn btn-primary  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
                 <a href="/register" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Register
                 </a>
