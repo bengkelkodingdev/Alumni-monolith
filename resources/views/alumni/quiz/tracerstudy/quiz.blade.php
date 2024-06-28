@@ -24,16 +24,9 @@
     </nav>
     <main class="container-border">
         <div class="container-fluid px-4 mt-3 mb-5">
-            <h2><b>Dashboard Alumni</b></h2>
+            <h2><b>Quiz</b></h2>
+            <p>Wajib mengisi form berikut ini.</p>
         </div>
-         <div class="container-dashboard">
-            <h1>Welcome,</h1>
-            <div class="type">
-                {{-- mengambil nama dari controller --}}
-                  <h1>{{ Auth::user()->name }}</h1> 
-            </div>
-            <p>Siap untuk lulus cepat hari ini?</p>
-        </div> 
         <div class="row">
             <!-- ini isi kontennya disini -->
         </div>
