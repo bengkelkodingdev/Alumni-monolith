@@ -545,3 +545,41 @@ input.form-control:focus {
         margin-bottom: 20px;
     }
 }
+.btn-custom {
+    background-color: #F68955;
+    border: none;
+    color: #FFFFFF;
+}
+.btn-custom:hover {
+    background-color: #e67842;
+}
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+}
+.form{
+    border: 2px solid #FFDFD0;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.table th {
+    background-color: #0853A6;
+    color: #FFFFFF;
+    text-align: center;
+}
+.table-hover tbody tr:hover {
+    background-color: #e8f4fd;
+}
+.pagination .page-link {
+    color: #0853A6;
+}
+.pagination .page-item.active .page-link {
+    background-color: #0853A6;
+    border-color: #0853A6;
+}
+.table th, .table td {
+    vertical-align: middle;
+}

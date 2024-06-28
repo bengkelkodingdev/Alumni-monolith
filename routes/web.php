@@ -126,9 +126,8 @@ Route::get('/hasilquiz', function () {
     return view('alumni.quiz.tracerstudy.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
 })->name('hasilquiz');
 
-//ini bagian quiz
-Route::get('/tracerstudy/quiz', 'App\Http\Controllers\QuizController@create')->name('tracerstudy.quiz');
-Route::post('/tracerstudy/quiz', 'App\Http\Controllers\QuizController@store')->name('tracerstudy.store');
+//quiz
+Route::get('/quiz', [\App\Http\Controllers\QuizController::class, 'index'])->name('quiz');
 
 // Academic Controller
 Route::get('/academic', [\App\Http\Controllers\AcademicController::class, 'index'])->name('academic.index');
