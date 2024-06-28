@@ -118,7 +118,6 @@
 </div>
   
 <div>
-  @include('partials._search')
   <div style="font-family: Arial; font-size: 2em; color: #114D91; font-weight: bold; margin-left: 2%;">
     Pekerjaan Populer
   </div>
@@ -143,7 +142,6 @@
   
 </div>
 <div>
-  @include('partials._searchmagang')
   <div style="font-family: Arial; font-size: 2em; color: #114D91; font-weight: bold; margin-left: 2%;">
     Magang Populer
   </div>
