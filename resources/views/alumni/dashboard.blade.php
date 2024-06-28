@@ -36,7 +36,7 @@
         </div> 
         <div class="row">
             <div class="col-md-4 mb-5">
-                <a href="{{ route('academic.create') }}" class="menu-box">
+                <a href="{{ route('checkquiz') }}" class="menu-box">
                     <i class="fas fa-search menu-icon"></i>
                     <h2 class="menu-title">Tracerstudy</h2>
                     <p class="menu-description">Kelola data perkembangan karir alumni Anda.</p>
