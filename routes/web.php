@@ -52,13 +52,13 @@ Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profil
 
 //route Loker
 Route::get('/loker',[LokerController::class, 'index'])->name('listings.index');
-Route::get('/postLoker',[LokerController::class,'create']);
-Route::post('/storeloker',[LokerController::class, 'store']);
-Route::get('/loker/{id}', [LokerController::class,'show']);
-Route::get('/loker/{id}/edit', [LokerController::class,'edit']);
-Route::put('/loker/{id}/update', [LokerController::class,'update']);
+Route::get('/postLoker',[LokerController::class,'create'])->name('loker.create');
+Route::post('/storeloker',[LokerController::class, 'store'])->name('loker.store');
+Route::get('/loker/{id}', [LokerController::class,'show'])->name('loker.show');
+Route::get('/loker/{id}/edit', [LokerController::class,'edit'])->name('loker.edit');
+Route::put('/loker/{id}/update', [LokerController::class,'update'])->name('loker.update');
 Route::delete('/loker/{id}/delete', [LokerController::class,'destroy']);
-Route::get('/manageLoker', [LokerController::class,'manage'])->name('manage.view');
+Route::get('/manageLoker', [LokerController::class,'manage'])->name('loker.manage');
 //route Loker Admin
 Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('listingadmin.index');
 Route::get('/adminLoker/{id}', [LokerAdminController::class,'show']);
