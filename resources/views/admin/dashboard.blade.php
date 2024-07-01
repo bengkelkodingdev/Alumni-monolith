@@ -4,7 +4,7 @@
 
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/admin" >L
+        <a class="navbar-brand" href="/admin" >
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo STI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="60">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
