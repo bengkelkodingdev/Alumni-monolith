@@ -67,7 +67,7 @@ class CourseController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -84,6 +84,7 @@ class CourseController extends Controller
         //render view with post
         return view('alumni.quiz.course.edit', compact('course'));
     }
+   
     
     /**
      * update
@@ -113,7 +114,7 @@ class CourseController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -130,6 +131,6 @@ class CourseController extends Controller
         $course->delete();
 
         //redirect to index
-        return redirect()->route('alumni.quiz.course.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('course.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
