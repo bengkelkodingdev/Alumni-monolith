@@ -154,7 +154,7 @@
           <div class="form-group row mb-3">
               <label for="verify" class="col-sm-2 col-form-label">Buat publik:</label>
               <div class="col-sm-10">
-                  <input type="checkbox" class="form-check-input" name="Verify" value="setuju" {{ $logang->Verify == 'setuju' ? 'checked' : '' }} />
+                  <input type="checkbox" class="form-check-input" name="Verify" value="pending" {{ $logang->Verify == 'pending' ? 'checked' : '' }} />
                   <label for="verify" class="form-check-label">Setuju</label>
               </div>
           </div>

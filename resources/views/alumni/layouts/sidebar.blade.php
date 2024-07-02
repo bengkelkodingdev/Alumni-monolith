@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('listings.index') }}" class="sidebar-link">
+                <a href="{{ route('loker.index') }}" class="sidebar-link">
                     <i class="lni lni-notepad"></i>
                     <span>Lowongan Kerja</span>
                 </a>

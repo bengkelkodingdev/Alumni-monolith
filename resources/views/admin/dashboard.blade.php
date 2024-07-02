@@ -5,7 +5,7 @@
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
         <a class="navbar-brand" href="/admin" >
-            <img src="{{ asset('images/logo-sti.png') }}" alt="Logo STI" width="250">
+            <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="60">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
         </a>
@@ -29,21 +29,21 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <a href="" class="menu-box">
+                    <a href="#" class="menu-box">
                         <i class="fas fa-search menu-icon"></i>
                         <h2 class="menu-title">Data Alumni</h2>
                         <p class="menu-description">Kelola data perkembangan karir alumni Anda.</p>
                     </a>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <a href="{{ route('listings.index') }}" class="menu-box">
+                    <a href="{{ route('lokeradmin.index') }}" class="menu-box">
                         <i class="fas fa-chalkboard-teacher menu-icon"></i>
                         <h2 class="menu-title">Lowongan Kerja</h2>
                         <p class="menu-description">Temukan pekerjaan yang sesuai dengan keahlian Anda.</p>
                     </a>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <a href="{{ route('listingmagang.index') }}" class="menu-box">
+                    <a href="{{ route('logangadmin.index') }}" class="menu-box">
                         <i class="fas fa-briefcase menu-icon"></i>
                         <h2 class="menu-title">Lowongan Magang</h2>
                         <p class="menu-description">Temukan program magang untuk mengembangkan skill Anda.</p>

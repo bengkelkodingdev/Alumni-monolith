@@ -7,19 +7,13 @@
           src="{{ $listing->Logo ? asset('/storage/imglogo/' . $listing->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" /> 
        <div style="flex-grow: 1;"> 
          <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem;"> 
-           {{-- <a href="/loker/{{ $listing->id }}" style="color: inherit; text-decoration: none;">{{ $listing->Posisi }}</a> --}}
-           
-            {{-- <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
-                    class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dialogShowLoker" data-id="<?php $listing = $loker->id; ?>">
-                {{ $listing->Posisi }}
-            </button>
+            {{-- Modal Trigger --}}
             <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
-                    class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dialogShowLoker" data-id="{{ $listing->id }}">
-                {{ $listing->Posisi }}
-            </button> --}}
-
-
-          </h3> 
+                    class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dialogShowHomeLoker"
+                    data-id="{{ $listing->id }}" data-bs-remote="{{ route('loker.showHome', $listing->id) }}">
+              {{ $listing->NamaPerusahaan }}
+            </button>
+        </h3> 
          <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listing->NamaPerusahaan }}</div> 
          <x-listing-tags :tagsCsv="$listing->Tags" /> 
          <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;"> 
@@ -41,4 +35,28 @@
        </div> 
      </div> 
    </div>
- </div>
+</div>
+<!-- Modal for Show Loker -->
+<div class="modal fade" id="dialogShowHomeLoker" tabindex="-1" aria-labelledby="dialogShowHomeLokerLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <!-- Content will be loaded dynamically -->
+      </div>
+  </div>
+</div>
+
+<script>
+  // Add event listeners to dynamically load content into modals
+  document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+      button.addEventListener('click', event => {
+          const target = button.getAttribute('data-bs-target');
+          const url = button.getAttribute('data-bs-remote');
+          
+          fetch(url)
+              .then(response => response.text())
+              .then(html => {
+                  document.querySelector(target + ' .modal-content').innerHTML = html;
+              });
+      });
+  });
+</script>

@@ -46,17 +46,10 @@ class LogangController extends Controller{
         $logang = Logang::find($id);
         return view('alumni.logang.show', ['logang' => $id]);
     }
-
-    // public function show($id){
-    //     // Ambil data listing dari model, contoh Listing::find($id)
-    //     $listing = Logang::find($id);
-
-    //     // Inisialisasi $logang dari $listing
-    //     $logang = $listing; // Misalnya, jika $listing memiliki properti yang sama dengan $logang
-
-    //     // Kirim data $logang dan $listing ke view
-    //     return view('alumni.logang.show', compact('logang', 'listing'));
-    // }
+    public function showHome(Logang $id) {
+        $listingmagang = Logang::find($id);
+        return view('alumni.logang.showHome', ['listingmagang' => $id]);
+    }
 
     // Show Create Form
     public function create() {
@@ -136,43 +129,42 @@ class LogangController extends Controller{
     //     return redirect()->route('logang.manage')->with('success', 'lowongan updated successfully');
     // }
 
-    public function update(Request $request, $id)
-{
-    // Initialize the filename variable
-    $filename = null;
+    public function update(Request $request, $id){
+        // Initialize the filename variable
+        $filename = null;
 
-    // Check if a new logo file is uploaded
-    if ($request->hasFile('Logo')) {
-        $Logo = $request->file('Logo');
-        $filename = date('Y-m-d') . $Logo->getClientOriginalName();
-        $path = '/imglogo/' . $filename;
+        // Check if a new logo file is uploaded
+        if ($request->hasFile('Logo')) {
+            $Logo = $request->file('Logo');
+            $filename = date('Y-m-d') . $Logo->getClientOriginalName();
+            $path = '/imglogo/' . $filename;
 
-        // Store the new logo file
-        Storage::disk('public')->put($path, file_get_contents($Logo));
-    } else {
-        // Use the existing logo if no new file is uploaded
-        $filename = $request->input('existingLogo');
+            // Store the new logo file
+            Storage::disk('public')->put($path, file_get_contents($Logo));
+        } else {
+            // Use the existing logo if no new file is uploaded
+            $filename = $request->input('existingLogo');
+        }
+
+        // Update the record in the database
+        Logang::whereId($id)->update([
+            'NamaPerusahaan' => $request->NamaPerusahaan,
+            'Posisi' => $request->Posisi,
+            'Alamat' => $request->Alamat,
+            'Pengalaman' => $request->Pengalaman,
+            'Gaji' => $request->Gaji,
+            'TipeMagang' => $request->TipeMagang,
+            'Deskripsi' => $request->Deskripsi,
+            'Website' => $request->Website,
+            'Email' => $request->Email,
+            'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
+            'Logo' => $filename
+        ]);
+
+        // Redirect back with a success message
+        return redirect()->route('logang.manage')->with('success', 'Data updated successfully!');
     }
-
-    // Update the record in the database
-    Logang::whereId($id)->update([
-        'NamaPerusahaan' => $request->NamaPerusahaan,
-        'Posisi' => $request->Posisi,
-        'Alamat' => $request->Alamat,
-        'Pengalaman' => $request->Pengalaman,
-        'Gaji' => $request->Gaji,
-        'TipeMagang' => $request->TipeMagang,
-        'Deskripsi' => $request->Deskripsi,
-        'Website' => $request->Website,
-        'Email' => $request->Email,
-        'Tags' => $request->Tags,
-        'Verify' => $request->Verify,
-        'Logo' => $filename
-    ]);
-
-    // Redirect back with a success message
-    return redirect()->route('logang.manage')->with('success', 'Data updated successfully!');
-}
 
     /**
      * Remove the specified resource from storage.

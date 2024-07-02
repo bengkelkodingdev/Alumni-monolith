@@ -22,13 +22,13 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/loker" class="sidebar-link">
+                <a href="{{ route('lokeradmin.index') }}" class="sidebar-link">
                     <i class="lni lni-notepad"></i>
                     <span>Akses Lowongan Kerja</span>
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="/logang" class="sidebar-link">
+                <a href="{{ route('logangadmin.index') }}"class="sidebar-link">
                     <i class="lni lni-calendar"></i>
                     <span>Akses Lowongan Magang</span>
                 </a>

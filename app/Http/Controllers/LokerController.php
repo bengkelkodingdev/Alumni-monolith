@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use illuminate\Validation\Rule;
 
-class LokerController extends Controller
-{
+class LokerController extends Controller{
     /**
      * Display a listing of the resource.
      */
@@ -47,17 +46,10 @@ class LokerController extends Controller
         $loker = Loker::find($id);
         return view('alumni.loker.show', ['loker' => $id]);
     }
-
-    // public function show($id){
-    //     // Ambil data listing dari model, contoh Listing::find($id)
-    //     $listing = Loker::find($id);
-
-    //     // Inisialisasi $loker dari $listing
-    //     $loker = $listing; // Misalnya, jika $listing memiliki properti yang sama dengan $loker
-
-    //     // Kirim data $loker dan $listing ke view
-    //     return view('alumni.loker.show', compact('loker', 'listing'));
-    // }
+    public function showHome(Loker $id) {
+        $listing = Loker::find($id);
+        return view('alumni.loker.showHome', ['listing' => $id]);
+    }
 
     // Show Create Form
     public function create() {
@@ -66,13 +58,13 @@ class LokerController extends Controller
 
     // Store Listing Data
     public function store(Request $request) {
-
+      
         $image      =$request->file('logo');
         $filename   =date('Y-m-d').$image->getClientOriginalName();
         $path       ='/imglogo/'.$filename;
 
         Storage::disk('public')->put($path,file_get_contents($image));
-                  
+                
         Loker::create([
             'NamaPerusahaan' => $request->NamaPerusahaan,
             'Posisi' => $request->Posisi,
@@ -90,90 +82,97 @@ class LokerController extends Controller
         ]);
 
         return redirect('/loker')->with('message', 'Listing created successfully!');
-    }
+        // return redirect()->route('listings.index')->with('success', 'Lowongan berhasil ditambahkan!');
 
+    }
+    // public function store(Request $request){
+    //     // Validasi data
+    //     $validatedData = $request->validate([
+    //         'NamaPerusahaan' => 'required|string|max:255',
+    //         'Posisi' => 'required|string|max:255',
+    //         'Alamat' => 'required|string|max:255',
+    //         'Email' => 'required|email|max:255',
+    //         'Pengalaman' => 'required|integer',
+    //         'Gaji' => 'required|string|max:255',
+    //         'TipeKerja' => 'required|string|max:255',
+    //         'Deskripsi' => 'required|string',
+    //         'Website' => 'nullable|url|max:255',
+    //         'Tags' => 'nullable|string|max:255',
+    //         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    //     ]);
+
+    //     // Upload logo jika ada
+    //     if ($request->hasFile('logo')) {
+    //         $image = $request->file('logo');
+    //         $filename = date('Y-m-d').$image->getClientOriginalName();
+    //         $path = '/imglogo/'.$filename;
+
+    //         Storage::disk('public')->put($path, file_get_contents($image));
+    //     } else {
+    //         $filename = null;
+    //     }
+
+    //     // Buat data Loker
+    //     Loker::create([
+    //         'NamaPerusahaan' => $validatedData['NamaPerusahaan'],
+    //         'Posisi' => $validatedData['Posisi'],
+    //         'Alamat' => $validatedData['Alamat'],
+    //         'Pengalaman' => $validatedData['Pengalaman'],
+    //         'Gaji' => $validatedData['Gaji'],
+    //         'TipeKerja' => $validatedData['TipeKerja'],
+    //         'Deskripsi' => $validatedData['Deskripsi'],
+    //         'Website' => $validatedData['Website'],
+    //         'Email' => $validatedData['Email'],
+    //         'Tags' => $validatedData['Tags'],
+    //         'Verify' => $request->Verify, // Pastikan ini memiliki nilai yang diinginkan
+    //         'Logo' => $filename
+    //     ]);
+
+    //     return redirect('/loker')->with('message', 'Listing created successfully!');
+    // }
+
+    
     public function edit(Request $request,$id) {
         $loker = Loker::find($id);
         return view('alumni.loker.edit', compact('loker', 'id'));
     }
-    // public function show($id){
-    //     $loker = Loker::find($id);
-    //     return response()->json($loker);
-    // }
 
-    // public function edit($id){
-    //     $loker = Loker::find($id);
-    //     return response()->json($loker);
-    // }
-    
-    /**
-     * Update the specified resource in storage.
-     */
-    // public function update(Request $request, $id){
+    public function update(Request $request, $id){
+        // Initialize the filename variable
+        $filename = null;
 
-    //      if ($request->Logo) {
-    //         $Logo      =$request->file('Logo');
-    //         $filename   =date('Y-m-d').$Logo->getClientOriginalName();
-    //         $path       ='/imglogo/'.$filename;
+        // Check if a new logo file is uploaded
+        if ($request->hasFile('Logo')) {
+            $Logo = $request->file('Logo');
+            $filename = date('Y-m-d') . $Logo->getClientOriginalName();
+            $path = '/imglogo/' . $filename;
 
-    //         Storage::disk('public')->put($path,file_get_contents($Logo));
-    //     }
-    //     Loker::whereId($id)->update([
-    //         'NamaPerusahaan' => $request->NamaPerusahaan,
-    //         'Posisi' => $request->Posisi,
-    //         'Alamat' => $request->Alamat,
-    //         'Pengalaman' => $request->Pengalaman,
-    //         'Gaji' => $request->Gaji,
-    //         'TipeKerja' => $request->TipeKerja,
-    //         'Deskripsi' => $request->Deskripsi,
-    //         'Website' => $request->Website,
-    //         'Email' => $request->Email,
-    //         'Tags' => $request->Tags,
-    //         'Verify' => $request->Verify,
-    //         'Logo' => $filename
+            // Store the new logo file
+            Storage::disk('public')->put($path, file_get_contents($Logo));
+        } else {
+            // Use the existing logo if no new file is uploaded
+            $filename = $request->input('existingLogo');
+        }
 
-    //     ]);
+        // Update the record in the database
+        Loker::whereId($id)->update([
+            'NamaPerusahaan' => $request->NamaPerusahaan,
+            'Posisi' => $request->Posisi,
+            'Alamat' => $request->Alamat,
+            'Pengalaman' => $request->Pengalaman,
+            'Gaji' => $request->Gaji,
+            'TipeKerja' => $request->TipeKerja,
+            'Deskripsi' => $request->Deskripsi,
+            'Website' => $request->Website,
+            'Email' => $request->Email,
+            'Tags' => $request->Tags,
+            'Verify' => $request->Verify,
+            'Logo' => $filename
+        ]);
 
-    //     return redirect()->route('loker.manage')->with('success', 'lowongan updated successfully');
-    // }
-
-    public function update(Request $request, $id)
-{
-    // Initialize the filename variable
-    $filename = null;
-
-    // Check if a new logo file is uploaded
-    if ($request->hasFile('Logo')) {
-        $Logo = $request->file('Logo');
-        $filename = date('Y-m-d') . $Logo->getClientOriginalName();
-        $path = '/imglogo/' . $filename;
-
-        // Store the new logo file
-        Storage::disk('public')->put($path, file_get_contents($Logo));
-    } else {
-        // Use the existing logo if no new file is uploaded
-        $filename = $request->input('existingLogo');
+        // Redirect back with a success message
+        return redirect()->route('loker.manage')->with('success', 'Data updated successfully!');
     }
-
-    // Update the record in the database
-    Loker::whereId($id)->update([
-        'NamaPerusahaan' => $request->NamaPerusahaan,
-        'Posisi' => $request->Posisi,
-        'Alamat' => $request->Alamat,
-        'Pengalaman' => $request->Pengalaman,
-        'Gaji' => $request->Gaji,
-        'TipeKerja' => $request->TipeKerja,
-        'Deskripsi' => $request->Deskripsi,
-        'Website' => $request->Website,
-        'Email' => $request->Email,
-        'Tags' => $request->Tags,
-        'Verify' => $request->Verify,
-        'Logo' => $filename
-    ]);
-
-    // Redirect back with a success message
-    return redirect()->route('loker.manage')->with('success', 'Data updated successfully!');
-}
 
     /**
      * Remove the specified resource from storage.

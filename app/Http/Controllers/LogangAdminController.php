@@ -10,10 +10,10 @@ class LogangAdminController extends Controller
     public function indexadmin(){
         // Get selected filters
         $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeKerja = request('TipeKerja', []);
+        $selectedTipeMagang = request('TipeMagang', []);
     
         // Fetch listingmagang based on selected filters
-        $listingmagangadmin = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+        $logangAdmin = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeMagang']))->paginate(6);
     
         // Determine the availability of each filter option
         $availablePengalaman = Logang::select('Pengalaman')
@@ -25,15 +25,15 @@ class LogangAdminController extends Controller
             ->pluck('Pengalaman')
             ->toArray();
     
-        $availableTipeKerja = Logang::select('TipeKerja')
+        $availableTipeMagang = Logang::select('TipeMagang')
             ->distinct()
-            ->whereIn('TipeKerja', [
+            ->whereIn('TipeMagang', [
                 'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
             ])
-            ->pluck('TipeKerja')
+            ->pluck('TipeMagang')
             ->toArray();
     
-        return view('logangAdmin.indexadmin', compact('listingmagangadmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
+        return view('admin.logangAdmin.indexadmin', compact('logangAdmin', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
     }
     
     
@@ -49,14 +49,29 @@ class LogangAdminController extends Controller
     public function create() {
         return view('listingmagang.create');
     }
-    public function verify($id){
+    // public function verify($id){
+    //     $listingmagangadmin = Logang::find($id);
+    //     if ($listingmagangadmin){
+    //         $listingmagangadmin->verify = 'verified';
+    //         $listingmagangadmin->save();
+    //     }
+    //     return redirect()->route('logangadmin.manage')->with('success', 'Lowongan verified successfully');
+    // }
+    public function verify(Request $request, $id){
         $listingmagangadmin = Logang::find($id);
-        if ($listingmagangadmin){
-            $listingmagangadmin->verify = 'verified';
+
+        if ($listingmagangadmin) {
+            if ($request->input('action') == 'verify') {
+                $listingmagangadmin->verify = 'verified';
+            } elseif ($request->input('action') == 'not_verify') {
+                $listingmagangadmin->verify = 'pending';
+            }
             $listingmagangadmin->save();
         }
-        return redirect()->route('manageLogangAdmin.view')->with('success', 'Lowongan verified successfully');
+
+        return redirect()->route('logangadmin.manage')->with('success', 'Lowongan status updated successfully');
     }
+
 
     // Store listingmagang Data
     public function store(Request $request) {
@@ -73,7 +88,7 @@ class LogangAdminController extends Controller
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeKerja' => $request->TipeKerja,
+            'TipeMagang' => $request->TipeMagang,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -109,7 +124,7 @@ class LogangAdminController extends Controller
             'Alamat' => $request->Alamat,
             'Pengalaman' => $request->Pengalaman,
             'Gaji' => $request->Gaji,
-            'TipeKerja' => $request->TipeKerja,
+            'TipeMagang' => $request->TipeMagang,
             'Deskripsi' => $request->Deskripsi,
             'Website' => $request->Website,
             'Email' => $request->Email,
@@ -135,6 +150,6 @@ class LogangAdminController extends Controller
 
     // Manage listingmagang
     public function manage(){
-        return view('logangAdmin.manageAdmin', ['listingmagangadmin' =>Logang::all()]);
+        return view('admin.logangAdmin.manageAdmin', ['logangAdmin' =>Logang::all()]);
     }
 }

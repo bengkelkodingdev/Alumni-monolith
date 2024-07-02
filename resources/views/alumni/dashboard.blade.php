@@ -26,14 +26,6 @@
         <div class="container-fluid px-4 mt-3 mb-5">
             <h2><b>Dashboard Alumni</b></h2>
         </div>
-         <div class="container-dashboard">
-            <h1>Welcome,</h1>
-            <div class="type">
-                {{-- mengambil nama dari controller --}}
-                  <h1>{{ Auth::user()->name }}</h1> 
-            </div>
-            <p>Siap untuk lulus cepat hari ini?</p>
-        </div> 
         <div class="row">
             <div class="col-md-4 mb-5">
                 <a href="{{ route('quizcheck') }}" class="menu-box">
@@ -43,7 +35,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-5">
-                <a href="{{ route('listings.index') }}" class="menu-box">
+                <a href="{{ route('loker.index') }}" class="menu-box">
                     <i class="fas fa-chalkboard-teacher menu-icon"></i>
                     <h2 class="menu-title">Lowongan Kerja</h2>
                     <p class="menu-description">Temukan pekerjaan yang sesuai dengan keahlian Anda.</p>

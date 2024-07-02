@@ -33,7 +33,8 @@
             }
         @endphp
         <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker">
+            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker"
+             data-bs-remote="{{ route('loker.create') }}">
                 <i class="fas fa-plus"></i> Post Lowongan
             </button>
             
@@ -59,7 +60,7 @@
 
         <!-- Tabel Pengalaman Kerja -->
         <div style="width: 35%;">
-            <form id="filterForm" method="GET" action="{{ route('listings.index') }}">
+            <form id="filterForm" method="GET" action="{{ route('loker.index') }}">
                 
                 <h1><b>Pengalaman Kerja</b></h1>
                 
@@ -95,8 +96,17 @@
             </form>
         </div>
     </div>
-    <!--Dialog Tambah Logbook-->
-    @include('alumni.loker.create')
+    {{-- <!--Dialog Tambah Logbook-->
+    @include('alumni.loker.create') --}}
+    <!-- Modal for Show Loker -->
+    <div class="modal fade" id="dialogTambahLoker" tabindex="-1" aria-labelledby="dialogTambahLokerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+    
 
     <script>
         document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeKerja[]"]').forEach(function(checkbox) {
@@ -110,4 +120,5 @@
         {{$loker->links()}}
     </div>
 </div>
+
 @endsection

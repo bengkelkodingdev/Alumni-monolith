@@ -1,88 +1,7 @@
-{{-- <x-layout>
-  <x-card class="p-10 max-w-lg mx-auto mt-24">
-    <header class="text-center">
-      <h2 class="text-2xl font-bold uppercase mb-1">Create Lowongan</h2>
-      <p class="mb-4">Post Lowongan to find a developer</p>
-    </header>
-
-    <form method="POST" action="/storelogang" enctype="multipart/form-data">
-      @csrf
-      <div class="mb-6">
-        <label for="company" class="inline-block text-lg mb-2">Nama Perusahaan</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="NamaPerusahaan" value="{{old('company')}}" />
-
-        @error('company')
-        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-        @enderror
-      </div>
-
-      <div class="mb-6">
-        <label for="title" class="inline-block text-lg mb-2">Posisi</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Posisi" placeholder="Example: Senior Laravel Developer" />
-      </div>
-
-      <div class="mb-6">
-        <label for="location" class="inline-block text-lg mb-2">Alamat</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Alamat"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="email" class="inline-block text-lg mb-2">Email</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Email" />
-      </div>
-
-      <div class="mb-6">
-        <label for="pengalaman" class="inline-block text-lg mb-2">Pengalaman</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Pengalaman" placeholder="Year" />
-      </div>
-
-      <div class="mb-6">
-        <label for="gaji" class="inline-block text-lg mb-2">Gaji</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Gaji"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="tipeMagang" class="inline-block text-lg mb-2">Tipe Magang</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="TipeMagang" placeholder="Example: Remote, Part Time, etc"/>
-      </div>
-
-       <div class="mb-6">
-        <label for="description" class="inline-block text-lg mb-2">Deskripsi</label>
-        <textarea class="border border-gray-200 rounded p-2 w-full" name="Deskripsi" rows="10" placeholder="Include tasks, requirements, etc"></textarea>
-      </div>
-
-      <div class="mb-6">
-        <label for="website" class="inline-block text-lg mb-2">Website/Application URL</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Website"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="tags" class="inline-block text-lg mb-2">Tags (Comma Separated)</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Tags" placeholder="Example: Laravel, Backend, Postgres, etc" />
-      </div>
-
-      <div class="mb-6">
-        <div class="text-lg">Buat publik:</div>
-        <input type="checkbox" class="form-check-input" name="Verify" value="belum disetujui"/>
-        <label for="verify" class="form-check-label">Setuju</label>
-      </div>
-
-      <div class="mb-6">
-        <label for="logo" class="inline-block text-lg mb-2">Logo</label>
-        <input type="file" class="border border-blue-700 rounded p-2 w-full" name="logo" />
-      </div>
-
-      <div class="mb-6">
-        <button class="bg-blue-700 text-white rounded py-2 px-4 hover:bg-blue-800">Post</button>
-        <a href="/logang" class="text-black ml-4">Back</a>
-      </div>
-    </form>
-  </x-card>
-</x-layout> --}}
-<div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel"
+{{-- <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
+        <div class="modal-content"> --}}
             <div class="modal-header">
                 <h5 class="modal-title" id="dialogTambahLogangLabel">Tambah Lowongan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -91,7 +10,7 @@
                 <div class="container">
                 <form action="{{ route('logang.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group row mb-3">
+                    {{-- <div class="form-group row mb-3">
                         <label for="NamaPerusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="NamaPerusahaan" value="{{ old('company') }}">
@@ -166,6 +85,112 @@
                         <div class="col-sm-10">
                             <input type="file" class="form-control" name="logo">
                         </div>
+                    </div> --}}
+                    <div class="form-group row mb-3">
+                        <label for="NamaPerusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="NamaPerusahaan" value="{{ old('NamaPerusahaan') }}" required>
+                            @error('NamaPerusahaan')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Posisi" class="col-sm-2 col-form-label">Posisi</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Posisi" value="{{ old('Posisi') }}" placeholder="Example: Senior Laravel Developer" required>
+                            @error('Posisi')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Alamat" class="col-sm-2 col-form-label">Alamat</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Alamat" value="{{ old('Alamat') }}" required>
+                            @error('Alamat')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" name="Email" value="{{ old('Email') }}" required>
+                            @error('Email')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Pengalaman" value="{{ old('Pengalaman') }}" placeholder="Year" required>
+                            @error('Pengalaman')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Gaji" class="col-sm-2 col-form-label">Gaji</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Gaji" value="{{ old('Gaji') }}" required>
+                            @error('Gaji')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="TipeMagang" class="col-sm-2 col-form-label">Tipe Magang</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="TipeMagang" value="{{ old('TipeMagang') }}" placeholder="Example: Remote, Part Time, etc" required>
+                            @error('TipeMagang')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" name="Deskripsi" rows="10" placeholder="Include tasks, requirements, etc" required>{{ old('Deskripsi') }}</textarea>
+                            @error('Deskripsi')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Website" class="col-sm-2 col-form-label">Website /Application URL</label>
+                        <div class="col-sm-10">
+                            <input type="url" class="form-control" name="Website" value="{{ old('Website') }}">
+                            @error('Website')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Tags" class="col-sm-2 col-form-label">Tags (Comma Separated)</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="Tags" value="{{ old('Tags') }}" placeholder="Example: Laravel, Backend, Postgres, etc">
+                            @error('Tags')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="Verify" class="col-sm-2 col-form-label">Buat publik:</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" class="form-check-input" name="Verify" value="pending">
+                            <label for="Verify" class="form-check-label">Setuju</label>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <label for="logo" class="col-sm-2 col-form-label">Logo</label>
+                        <div class="col-sm-10">
+                            <input type="file" class="form-control" name="logo">
+                            @error('logo')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -174,6 +199,6 @@
                     </div>
                 </form>
             </div>
-        </div>
+        {{-- </div>
     </div>
-</div>
+</div> --}}

@@ -9,16 +9,13 @@ use illuminate\Validation\Rule;
 
 class LokerAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function indexadmin(){
         // Get selected filters
         $selectedPengalaman = request('Pengalaman', []);
         $selectedTipeKerja = request('TipeKerja', []);
     
-        // Fetch listings based on selected filters
-        $listingadmin = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+        // Fetch listingkerja based on selected filters
+        $lokerAdmin = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
     
         // Determine the availability of each filter option
         $availablePengalaman = Loker::select('Pengalaman')
@@ -38,32 +35,47 @@ class LokerAdminController extends Controller
             ->pluck('TipeKerja')
             ->toArray();
     
-        return view('admin.lokerAdmin.indexadmin', compact('listingadmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
+        return view('admin.lokerAdmin.indexadmin', compact('lokerAdmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
     }
     
     
 
-    // Show single listing
+    // Show single listingkerja
     public function show(Loker $id) {
-        return view('admin.lokerAdmin.showAdmin', [
-            'listing' => $id
+        return view('lokeradmin.showAdmin', [
+            'listingkerja' => $id
         ]);
     }
 
     // Show Create Form
     public function create() {
-        return view('listings.create');
+        return view('listingkerja.create');
     }
-    public function verify($id){
-        $listingadmin = Loker::find($id);
-        if ($listingadmin){
-            $listingadmin->verify = 'verified';
-            $listingadmin->save();
+    // public function verify($id){
+    //     $listingkerjaadmin = Loker::find($id);
+    //     if ($listingkerjaadmin){
+    //         $listingkerjaadmin->verify = 'verified';
+    //         $listingkerjaadmin->save();
+    //     }
+    //     return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan verified successfully');
+    // }
+    public function verify(Request $request, $id){
+        $listingkerjaadmin = Loker::find($id);
+
+        if ($listingkerjaadmin) {
+            if ($request->input('action') == 'verify') {
+                $listingkerjaadmin->verify = 'verified';
+            } elseif ($request->input('action') == 'not_verify') {
+                $listingkerjaadmin->verify = 'pending';
+            }
+            $listingkerjaadmin->save();
         }
-        return redirect()->route('manageLokerAdmin.view')->with('success', 'Lowongan verified successfully');
+
+        return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan status updated successfully');
     }
 
-    // Store Listing Data
+
+    // Store listingkerja Data
     public function store(Request $request) {
 
         $image      =$request->file('logo');
@@ -88,12 +100,12 @@ class LokerAdminController extends Controller
 
         ]);
 
-        return redirect('/loker')->with('message', 'Listing created successfully!');
+        return redirect('/loker')->with('message', 'listingkerja created successfully!');
     }
 
     public function edit(Request $request,$id) {
-        $listingadmin = Loker::find($id);
-        return view('admin.lokerAdmin.editAdmin', compact('listingadmin') );
+        $listingkerjaadmin = Loker::find($id);
+        return view('lokerAdmin.editAdmin', compact('listingkerjaadmin') );
     }
     /**
      * Update the specified resource in storage.
@@ -131,16 +143,15 @@ class LokerAdminController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id){
-        $listingadmin = Loker::find($id);
-        if ($listingadmin){
-            $listingadmin->delete();
+        $listingkerjaadmin = Loker::find($id);
+        if ($listingkerjaadmin){
+            $listingkerjaadmin->delete();
         }
         return redirect()->route('manageLokerAdmin.view')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage Listings
+    // Manage listingkerja
     public function manage(){
-        return view('admin.lokerAdmin.manageAdmin', ['listingadmin' =>Loker::all()]);
+        return view('admin.lokerAdmin.manageAdmin', ['lokerAdmin' =>Loker::all()]);
     }
-    
 }
