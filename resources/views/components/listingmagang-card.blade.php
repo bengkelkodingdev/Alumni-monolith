@@ -13,7 +13,7 @@
             {{ $listingmagang->NamaPerusahaan }}
           </button>
         </h3>
-         <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listingmagang->NamaPerusahaan }}</div>
+         <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listingmagang->Posisi }}</div>
          <x-listingmagang-tags :tagsCsv="$listingmagang->Tags" />
          <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">
            <i class="fa-solid fa-location-dot"></i> {{ $listingmagang->Alamat }}

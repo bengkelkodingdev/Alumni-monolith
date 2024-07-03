@@ -33,12 +33,12 @@
             }
         @endphp
         <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker"
+            <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker"
              data-bs-remote="{{ route('loker.create') }}">
                 <i class="fas fa-plus"></i> Post Lowongan
             </button>
             
-            <a href="{{ route('loker.manage') }}" class="btn btn-custom btn-primary">
+            <a href="{{ route('loker.manage') }}" class="btn btn-primary">
                 <i class="fas fa-cog"></i> Manage Lowongan
             </a>
         </div> 

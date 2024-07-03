@@ -17,7 +17,7 @@
 <body>
    
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900">
+{{-- <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
         <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('images/logo-sti.png') }}" class="h-20" alt="Logo STI" />
@@ -100,7 +100,7 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> --}}
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="row border rounded-5 p-3 bg-white shadow box-area">

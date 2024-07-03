@@ -46,7 +46,7 @@
     
     
     
-    <h2><b>Magang Populer</b></h2>
+    {{-- <h2><b>Magang Populer</b></h2> --}}
 
     <div style="display: flex; justify-content: space-between;">
         <!-- Tabel Lowongan -->
