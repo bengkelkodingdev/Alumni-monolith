@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="dialogTambahCourseLabel">Tambah Sertifikasi</h5>
+                <h5 class="modal-title" id="dialogTambahCourseLabel">Tambah Pelatihan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -11,9 +11,9 @@
                     @csrf
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Nama Course</label>
+                            <label class="col-sm-3 col-form-label">Nama Pelatihan</label>
                             <div class="col-sm-9">
-                                <input type="text" class="form-control @error('nama_course') is-invalid @enderror" name="nama_course" value="{{ old('nama_course') }}" placeholder="Masukkan Nama Course">
+                                <input type="text" class="form-control @error('nama_course') is-invalid @enderror" name="nama_course" value="{{ old('nama_course') }}" placeholder="Masukkan Nama Pelatihan">
                             </div>  
                         </div> 
                         <!-- error message untuk nama_course -->
@@ -28,7 +28,7 @@
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Nama Institusi</label>
                             <div class="col-sm-9">
-                            <input type="text" class="form-control @error('institusi_course') is-invalid @enderror" name="institusi_course" value="{{ old('institusi_course') }}" placeholder="Masukkan Nama Institusi Course">
+                            <input type="text" class="form-control @error('institusi_course') is-invalid @enderror" name="institusi_course" value="{{ old('institusi_course') }}" placeholder="Masukkan Nama Institusi Pelatihan">
                             </div>  
                         </div> 
                         <!-- error message untuk institusi_course -->
@@ -41,10 +41,10 @@
                     
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tingkat Course</label>
+                            <label class="col-sm-3 col-form-label">Tingkat Pelatihan</label>
                             <div class="col-sm-9">
                                 <select class="selectpicker form-control" data-live-search="true" name="tingkat_course" value="{{ old('tingkat_course') }}" >
-                                    <option selected disabled>Pilih Tingkat Course</option>
+                                    <option selected disabled>Pilih Tingkat Pelatihan</option>
                                     <option value="Lokal">Lokal</option>
                                     <option value="Nasional">Nasional</option>
                                     <option value="Internasional">Internasional</option>
@@ -61,9 +61,9 @@
 
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tahun Course (YYYY)</label>
+                            <label class="col-sm-3 col-form-label">Tahun Pelatihan (YYYY)</label>
                             <div class="col-sm-9">
-                            <input type="text" class="form-control @error('tahun_course') is-invalid @enderror" name="tahun_course" value="{{ old('tahun_course') }}" placeholder="Masukkan Tahun Course" pattern="[0-9]{4}">
+                            <input type="text" class="form-control @error('tahun_course') is-invalid @enderror" name="tahun_course" value="{{ old('tahun_course') }}" placeholder="Masukkan Tahun Pelatihan" pattern="[0-9]{4}">
                             </div>  
                         </div> 
                         <!-- error message untuk tahun_course -->

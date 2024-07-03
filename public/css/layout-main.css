@@ -583,3 +583,32 @@ input.form-control:focus {
 .table th, .table td {
     vertical-align: middle;
 }
+/* Custom pagination styles */
+.pagination {
+    margin-top: 10px;
+}
+
+.pagination .page-item .page-link {
+    color: #007bff;
+    border: 1px solid #dee2e6;
+    margin: 0 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    pointer-events: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}

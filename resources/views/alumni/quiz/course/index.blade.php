@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Quiz')
+@section('title', 'Pelatihan')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -24,7 +24,7 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Course</b></h2>
+            <h2><b>Pelatihan</b></h2>
             <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahCourse">
                 <i class="fas fa-plus"></i> Tambah
             </button>
@@ -34,10 +34,10 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Nama Course</th>
-                        <th scope="col">Nama Institusi Course</th>
-                        <th scope="col">Tingkat Course</th>
-                        <th scope="col">Tahun Course</th>
+                        <th scope="col">Nama Pelatihan</th>
+                        <th scope="col">Nama Institusi Pelatihan</th>
+                        <th scope="col">Tingkat Pelatihan</th>
+                        <th scope="col">Tahun Pelatihan</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -50,7 +50,7 @@
                             <td>{{ $course->tahun_course }}</td>
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogEditCourse" data-id="{{ $course->id }}">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditCourse{{ $course->id }}">
                                         <i class="far fa-edit"></i>
                                     </button>
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('course.destroy', $course->id) }}" method="POST">
@@ -71,20 +71,9 @@
                 </tbody>
             </table>
         </div>
-        {{ $courses->links() }}
-        {{-- <nav aria-label="pageNavigationLogbook">
-            <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav> --}}      
+        <div class="d-flex justify-content-end">
+            {{ $courses->links('pagination::bootstrap-4') }}
+        </div>
     </div>
     
     <!--Dialog Tambah Logbook-->

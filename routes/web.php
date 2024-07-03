@@ -181,6 +181,7 @@ Route::get('/course', [\App\Http\Controllers\CourseController::class, 'index'])-
 Route::get('/course/create', [\App\Http\Controllers\CourseController::class, 'create'])->name('course.create');
 Route::post('/course', [\App\Http\Controllers\CourseController::class, 'store'])->name('course.store');
 Route::get('/course/{course}', [\App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
+// Route::get('course/{id}/edit', [\App\Http\Controllers\CourseController::class, 'edit'])->name('course.edit');
 Route::get('/course/{course}/edit', [\App\Http\Controllers\CourseController::class, 'edit'])->name('course.edit');
 Route::put('/course/{course}', [\App\Http\Controllers\CourseController::class, 'update'])->name('course.update');
 Route::delete('/course/{course}', [\App\Http\Controllers\CourseController::class, 'destroy'])->name('course.destroy');

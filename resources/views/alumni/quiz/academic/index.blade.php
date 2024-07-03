@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Quiz')
+@section('title', 'Akademik')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -22,13 +22,16 @@
             </li>
         </ul>
     </nav>
-    <main class="container-border">
-        <div class="container-fluid px-4 mt-3 mb-5">
-            <h2><b>Dashboard Alumni</b></h2>
-            <a href="{{ route('academic.create') }}" class="btn btn-md btn-custom">TAMBAH POST</a>
+    <div class="container-border">
+        <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
+            <h2><b>Akademik</b></h2>
+            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahAcademic">
+                <i class="fas fa-plus"></i> Tambah
+            </button>
         </div>
-        <div class="form" style="overflow-x: auto">
-            <table class="table table-hover table-bordered">
+
+        <div class="table-container table-logbook">
+            <table class="table table-hover table-bordered text-center">
                 <thead>
                     <tr>
                         <th scope="col">NIM</th>
@@ -52,24 +55,41 @@
                             <td>{{ $academic->dosen_wali }}</td>
                             <td>{{ $academic->tahun_lulus }}</td>
                             <td class="text-center">
-                                <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('alumni.quiz.academic.destroy', $academic->id) }}" method="POST">
-                                    <a href="{{ route('alumni.quiz.academic.edit', $academic->id) }}" class="btn btn-sm btn-primary m-2">EDIT</a>
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                </form>
+                                <div class="d-inline-flex gap-2">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('academic.destroy', $academic->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="8" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                        </tr>
+                        <td colspan="8" class="text-center">
+                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
+                        </td>
                     @endforelse
                 </tbody>
             </table>
-            {{ $academics->links() }}   
-        </div>  
-    </main>
+        </div>
+        <div class="d-flex justify-content-end">
+            {{ $academics->links('pagination::bootstrap-4') }}
+        </div>     
+    </div>
+    
+    <!--Dialog Tambah Logbook-->
+    @include('alumni.quiz.academic.create')
+
+    <!--Dialog Edit Logbook-->
+    @include('alumni.quiz.academic.edit')
+
+    <!--Dialog Info Logbook-->
+
     <footer class="py-4 mt-auto">
         <div class="container-fluid px-4">
             <div class="d-flex align-items-center justify-content-between small">

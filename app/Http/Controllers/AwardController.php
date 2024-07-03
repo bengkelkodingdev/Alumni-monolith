@@ -69,7 +69,7 @@ class AwardController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -117,7 +117,7 @@ class AwardController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -134,6 +134,6 @@ class AwardController extends Controller
         $award->delete();
 
         //redirect to index
-        return redirect()->route('alumni.quiz.award.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

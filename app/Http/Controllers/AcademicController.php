@@ -73,7 +73,7 @@ class academicController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -125,7 +125,7 @@ class academicController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -142,6 +142,6 @@ class academicController extends Controller
         $academic->delete();
 
         //redirect to index
-        return redirect()->route('alumni.quiz.academic.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

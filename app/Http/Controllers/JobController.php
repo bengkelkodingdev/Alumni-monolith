@@ -75,7 +75,7 @@ class jobController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -129,7 +129,7 @@ class jobController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -146,6 +146,6 @@ class jobController extends Controller
         $job->delete();
 
         //redirect to index
-        return redirect()->route('alumni.quiz.job.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('job.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

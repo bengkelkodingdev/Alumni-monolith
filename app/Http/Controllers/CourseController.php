@@ -82,8 +82,13 @@ class CourseController extends Controller
         $course = course::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.course.edit', compact('course'));
+        return view('course.edit', compact('course'));
     }
+    // public function edit($id)
+    // {
+    //     $course = Course::findOrFail($id);
+    //     return response()->json($course);
+    // }
    
     
     /**
@@ -95,27 +100,29 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        //validate form
+        // Validate form
         $this->validate($request, [
-            'nama_course'=> 'required',
-            'institusi_course'=> 'required',
-            'tingkat_course'=> 'required',
-            'tahun_course'=> 'required'
+            'nama_course' => 'required',
+            'institusi_course' => 'required',
+            'tingkat_course' => 'required',
+            'tahun_course' => 'required'
         ]);
 
-        //get post by ID
-        $course = course::findOrFail($id);
-            //update post without image
-            $course->update([
-                'nama_course' => $request->nama_course,
-                'institusi_course' => $request->institusi_course,
-                'tingkat_course' => $request->tingkat_course,
-                'tahun_course' => $request->tahun_course
+        // Get post by ID
+        $course = Course::findOrFail($id);
+
+        // Update post
+        $course->update([
+            'nama_course' => $request->nama_course,
+            'institusi_course' => $request->institusi_course,
+            'tingkat_course' => $request->tingkat_course,
+            'tahun_course' => $request->tahun_course
         ]);
 
-        //redirect to index
+        // Redirect to index
         return redirect()->route('course.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
+
     /**
      * destroy
      *
