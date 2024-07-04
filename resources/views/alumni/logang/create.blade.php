@@ -1,7 +1,7 @@
-{{-- <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel"
+<div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content"> --}}
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dialogTambahLogangLabel">Tambah Lowongan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -179,14 +179,14 @@
                     <div class="form-group row mb-3">
                         <label for="Verify" class="col-sm-2 col-form-label">Buat publik:</label>
                         <div class="col-sm-10">
-                            <input type="checkbox" class="form-check-input" name="Verify" value="pending">
+                            <input type="checkbox" class="form-check-input" name="Verify" value="pending" required>
                             <label for="Verify" class="form-check-label">Setuju</label>
                         </div>
                     </div>
                     <div class="form-group row mb-3">
                         <label for="logo" class="col-sm-2 col-form-label">Logo</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" name="logo">
+                            <input type="file" class="form-control" name="logo" required>
                             @error('logo')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -199,6 +199,6 @@
                     </div>
                 </form>
             </div>
-        {{-- </div>
+        </div>
     </div>
-</div> --}}
+</div>

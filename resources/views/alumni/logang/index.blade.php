@@ -28,10 +28,28 @@
         if (count($logang) == 0) {
             echo '<div class="alert alert-warning" role="alert" style="text-align: left; width: 100%;">
                     No Lowongan Found. Silahkan isi lowongan.
+                  </div>
+                  <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
+                    <p>
+                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang">
+                            <i class="fas fa-plus"></i> Post Lowongan
+                        </button>
+                    </p>
                   </div>';
+        }else if (count($logang) >= 1)  {
+                echo 
+                '<div class="mb-2 d-flex justify-content-end" style="width: 100%;">
+                    <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang"
+                        data-bs-remote="//postLogang">
+                        <i class="fas fa-plus"></i> Post Lowongan
+                    </button>
+                    <a href="/manageLogang" class="btn btn-primary">
+                        <i class="fas fa-cog"></i> Manage Lowongan
+                    </a>
+                </div>';
         }
         @endphp
-        <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
+        {{-- <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
             <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang"
             data-bs-remote="{{ route('logang.create') }}">
             <i class="fas fa-plus"></i> Post Lowongan
@@ -40,7 +58,7 @@
             <a href="{{ route('logang.manage') }}" class="btn btn-primary">
                 <i class="fas fa-cog"></i> Manage Lowongan
             </a>
-        </div> 
+        </div>  --}}
     </div>
     
     
@@ -98,14 +116,14 @@
         </div>
     </div>
     <!--Dialog Tambah Lowongan-->
-    {{-- @include('alumni.logang.create') --}}
-    <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel" aria-hidden="true">
+    @include('alumni.logang.create')
+    {{-- <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <!-- Content will be loaded dynamically -->
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <script>
         document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeMagang[]"]').forEach(function(checkbox) {
