@@ -37,7 +37,7 @@
                 <i class="fas fa-plus"></i> Post Lowongan
             </button> --}}
             
-            <a href="{{ route('lokeradmin.manage') }}" class="btn btn-custom btn-primary">
+            <a href="{{ route('lokeradmin.manage') }}" class="btn btn-primary">
                 <i class="fas fa-cog"></i> Manage Lowongan
             </a>
         </div> 
@@ -46,7 +46,7 @@
     
     
     
-    {{-- <h2><b>kerja Populer</b></h2> --}}
+    <h2><b>Pekerjaan</b></h2>
 
     <div style="display: flex; justify-content: space-between;">
         <!-- Tabel Lowongan -->

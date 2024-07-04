@@ -186,7 +186,7 @@
             <a href="/logang/{{$lgng->id}}" style="color: inherit; text-decoration: none;">{{$lgng->Posisi}}</a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <button type="button" class="btn btn-custom btn-info me-2 text-white px-3 py-2 rounded-5"
+            <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
                 style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogang"
                 data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.show', $lgng->id) }}">
                 Detail
