@@ -10,82 +10,6 @@
                 <div class="container">
                 <form action="{{ route('logang.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    {{-- <div class="form-group row mb-3">
-                        <label for="NamaPerusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="NamaPerusahaan" value="{{ old('company') }}">
-                            @error('company')
-                                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Posisi" class="col-sm-2 col-form-label">Posisi</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Posisi" placeholder="Example: Senior Laravel Developer">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Alamat" class="col-sm-2 col-form-label">Alamat</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Alamat">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Email" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Pengalaman" placeholder="Year">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Gaji" class="col-sm-2 col-form-label">Gaji</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Gaji">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="TipeMagang" class="col-sm-2 col-form-label">Tipe Magang</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="TipeMagang" placeholder="Example: Remote, Part Time, etc">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" name="Deskripsi" rows="10" placeholder="Include tasks, requirements, etc"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Website" class="col-sm-2 col-form-label">Website /Application URL</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Website">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Tags" class="col-sm-2 col-form-label">Tags (Comma Separated)</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="Tags" placeholder="Example: Laravel, Backend, Postgres, etc">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="Verify" class="col-sm-2 col-form-label">Buat publik:</label>
-                        <div class="col-sm-10">
-                            <input type="checkbox" class="form-check-input" name="Verify" value="pending">
-                            <label for="verify" class="form-check-label">Setuju</label>
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="logo" class="col-sm-2 col-form-label">Logo</label>
-                        <div class="col-sm-10">
-                            <input type="file" class="form-control" name="logo">
-                        </div>
-                    </div> --}}
                     <div class="form-group row mb-3">
                         <label for="NamaPerusahaan" class="col-sm-2 col-form-label">Nama Perusahaan</label>
                         <div class="col-sm-10">
@@ -124,8 +48,22 @@
                     </div>
                     <div class="form-group row mb-3">
                         <label for="Pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-                        <div class="col-sm-10">
+                        {{-- <div class="col-sm-10">
                             <input type="text" class="form-control" name="Pengalaman" value="{{ old('Pengalaman') }}" placeholder="Year" required>
+                            @error('Pengalaman')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div> --}}
+                        <div class="col-sm-10">
+                            <select class="form-control" name="Pengalaman" required>
+                                <option value="" disabled selected>Pilih Pengalaman</option>
+                                <option value="Tanpa Pengalaman" {{ old('Pengalaman') == 'Tanpa Pengalaman' ? 'selected' : '' }}>Tanpa Pengalaman</option>
+                                <option value="Fresh Graduate" {{ old('Pengalaman') == 'Fresh Graduate' ? 'selected' : '' }}>Fresh Graduate</option>
+                                <option value="Minimal 1 Tahun" {{ old('Pengalaman') == 'Minimal 1 Tahun' ? 'selected' : '' }}>Minimal 1 Tahun</option>
+                                <option value="Minimal 2 Tahun" {{ old('Pengalaman') == 'Minimal 2 Tahun' ? 'selected' : '' }}>Minimal 2 Tahun</option>
+                                <option value="Minimal 3 Tahun" {{ old('Pengalaman') == 'Minimal 3 Tahun' ? 'selected' : '' }}>Minimal 3 Tahun</option>
+                                <option value="Lebih dari 3 Tahun" {{ old('Pengalaman') == 'Lebih dari 3 Tahun' ? 'selected' : '' }}>Lebih dari 3 Tahun</option>
+                            </select>
                             @error('Pengalaman')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -143,7 +81,14 @@
                     <div class="form-group row mb-3">
                         <label for="TipeMagang" class="col-sm-2 col-form-label">Tipe Magang</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="TipeMagang" value="{{ old('TipeMagang') }}" placeholder="Example: Remote, Part Time, etc" required>
+                            <select class="form-control" name="TipeMagang" required>
+                                <option value="" disabled selected>Pilih Tipe Magang</option>
+                                <option value="Freelance" {{ old('TipeMagang') == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                                <option value="Full Time" {{ old('TipeMagang') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
+                                <option value="Part Time" {{ old('TipeMagang') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+                                <option value="Kontrak" {{ old('TipeMagang') == 'Kontrak' ? 'selected' : '' }}>Kontrak</option>
+                                <option value="Sementara" {{ old('TipeMagang') == 'Sementara' ? 'selected' : '' }}>Sementara</option>
+                            </select>
                             @error('TipeMagang')
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror

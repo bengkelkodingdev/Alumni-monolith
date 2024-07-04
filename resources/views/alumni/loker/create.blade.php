@@ -48,8 +48,22 @@
                         </div>
                         <div class="form-group row mb-3">
                             <label for="Pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-                            <div class="col-sm-10">
+                            {{-- <div class="col-sm-10">
                                 <input type="text" class="form-control" name="Pengalaman" value="{{ old('Pengalaman') }}" placeholder="Year" required>
+                                @error('Pengalaman')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div> --}}
+                            <div class="col-sm-10">
+                                <select class="form-control" name="Pengalaman" required>
+                                    <option value="" disabled selected>Pilih Pengalaman</option>
+                                    <option value="Tanpa Pengalaman" {{ old('Pengalaman') == 'Tanpa Pengalaman' ? 'selected' : '' }}>Tanpa Pengalaman</option>
+                                    <option value="Fresh Graduate" {{ old('Pengalaman') == 'Fresh Graduate' ? 'selected' : '' }}>Fresh Graduate</option>
+                                    <option value="Minimal 1 Tahun" {{ old('Pengalaman') == 'Minimal 1 Tahun' ? 'selected' : '' }}>Minimal 1 Tahun</option>
+                                    <option value="Minimal 2 Tahun" {{ old('Pengalaman') == 'Minimal 2 Tahun' ? 'selected' : '' }}>Minimal 2 Tahun</option>
+                                    <option value="Minimal 3 Tahun" {{ old('Pengalaman') == 'Minimal 3 Tahun' ? 'selected' : '' }}>Minimal 3 Tahun</option>
+                                    <option value="Lebih dari 3 Tahun" {{ old('Pengalaman') == 'Lebih dari 3 Tahun' ? 'selected' : '' }}>Lebih dari 3 Tahun</option>
+                                </select>
                                 @error('Pengalaman')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
@@ -67,11 +81,19 @@
                         <div class="form-group row mb-3">
                             <label for="TipeKerja" class="col-sm-2 col-form-label">Tipe Kerja</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" name="TipeKerja" value="{{ old('TipeKerja') }}" placeholder="Example: Remote, Part Time, etc" required>
+                                <select class="form-control" name="TipeKerja" required>
+                                    <option value="" disabled selected>Pilih Tipe Kerja</option>
+                                    <option value="Freelance" {{ old('TipeKerja') == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                                    <option value="Full Time" {{ old('TipeKerja') == 'Full Time' ? 'selected' : '' }}>Full Time</option>
+                                    <option value="Part Time" {{ old('TipeKerja') == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+                                    <option value="Kontrak" {{ old('TipeKerja') == 'Kontrak' ? 'selected' : '' }}>Kontrak</option>
+                                    <option value="Sementara" {{ old('TipeKerja') == 'Sementara' ? 'selected' : '' }}>Sementara</option>
+                                </select>
                                 @error('TipeKerja')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            
                         </div>
                         <div class="form-group row mb-3">
                             <label for="Deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>

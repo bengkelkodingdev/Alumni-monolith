@@ -39,8 +39,7 @@
         }else if (count($logang) >= 1)  {
                 echo 
                 '<div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-                    <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang"
-                        data-bs-remote="//postLogang">
+                    <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang">
                         <i class="fas fa-plus"></i> Post Lowongan
                     </button>
                     <a href="/manageLogang" class="btn btn-primary">
@@ -49,19 +48,7 @@
                 </div>';
         }
         @endphp
-        {{-- <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-            <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang"
-            data-bs-remote="{{ route('logang.create') }}">
-            <i class="fas fa-plus"></i> Post Lowongan
-            </button>
-            
-            <a href="{{ route('logang.manage') }}" class="btn btn-primary">
-                <i class="fas fa-cog"></i> Manage Lowongan
-            </a>
-        </div>  --}}
     </div>
-    
-    
     
     
     <h2><b>Magang Populer</b></h2>

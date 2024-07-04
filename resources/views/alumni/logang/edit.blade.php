@@ -1,87 +1,7 @@
-{{-- <x-layout>
-  <x-card class="p-10 max-w-lg mx-auto mt-24">
-    <header class="text-center">
-      <h2 class="text-2xl font-bold uppercase mb-1">Edit Lowongan Magang</h2>
-      <p class="mb-4">Edit: {{$logang->Posisi}}</p>
-    </header>
-
-    <form method="POST" action="/logang/{{$logang->id}}/update" enctype="multipart/form-data">
-      @csrf
-      @method('PUT')
-      <div class="mb-6">
-        <label for="company" class="inline-block text-lg mb-2">Nama Perusahaan</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="NamaPerusahaan" placeholder="{{$logang->NamaPerusahaan}}" />
-      </div>
-      
-      <div class="mb-6">
-        <label for="title" class="inline-block text-lg mb-2">Posisi</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Posisi" placeholder="{{$logang->Posisi}}" />
-      </div>
-
-      <div class="mb-6">
-        <label for="location" class="inline-block text-lg mb-2">Alamat</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Alamat" placeholder="{{$logang->Alamat}}" />
-      </div>
-
-      <div class="mb-6">
-        <label for="email" class="inline-block text-lg mb-2">Email</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Email" placeholder="{{$logang->Email}}"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="pengalaman" class="inline-block text-lg mb-2">Pengalaman</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Pengalaman" placeholder="{{$logang->Pengalaman}}"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="gaji" class="inline-block text-lg mb-2">Gaji</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Gaji" placeholder="{{$logang->Gaji}}"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="tipeMagang" class="inline-block text-lg mb-2">Tipe Magang</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="TipeMagang" placeholder="{{$logang->TipeMagang}}"/>
-      </div>
-
-      <div class="mb-6">
-        <label for="description" class="inline-block text-lg mb-2">Deskripsi</label>
-        <textarea class="border border-gray-200 rounded p-2 w-full" name="Deskripsi" rows="10" placeholder="{{$logang->Deskripsi}}"></textarea>
-      </div>
-
-      <div class="mb-6">
-        <label for="website" class="inline-block text-lg mb-2">Website/Application URL</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Website" placeholder="{{$logang->Website}}" />        
-      </div>
-
-      <div class="mb-6">
-        <label for="tags" class="inline-block text-lg mb-2">Tags (Comma Separated)</label>
-        <input type="text" class="border border-gray-200 rounded p-2 w-full" name="Tags" placeholder="{{$logang->Tags}}"  />
-      </div>
-    
-      <div class="mb-6">
-        <div class="text-lg">Buat publik:</div>
-        <input type="checkbox" class="form-check-input" name="Verify" value="belum disetujui"/>
-        <label for="verify" class="form-check-label">Setuju</label>
-      </div>
-
-      <div class="mb-6">
-        <label for="logo" class="inline-block text-lg mb-2">Logo</label>
-        <input type="file" class="border border-blue-700 rounded p-2 w-full" name="Logo" />
-        <img class="w-48 mr-6 mb-6" src="{{$logang->Logo ? asset('/storage/imglogo'.$logang->Logo) : asset('/images/no-image.png')}}" alt="" />
-      </div>
-
-      <div class="mb-6">
-        <button class="bg-blue-700 text-white rounded py-2 px-4 hover:bg-blue-800">Update Post</button>
-        <a href="/logang" class="text-black ml-4"> Back </a>
-      </div>
-    </form>
-  </x-card>
-</x-layout> --}}
-
 <div class="modal-header">
   <div class="w-100">
-      <h1 class="modal-title" id="dialogEditLogangLabel">Edit Lowongan PeMagangan</h1>
-      <p style="margin-top: 8px; font-size: 1rem;">Edit: {{ $logang->Posisi }}</p>
+      <h1 class="modal-title" id="dialogEditLogangLabel">Edit Lowongan Magang</h1>
+      {{-- <p style="margin-top: 8px; font-size: 1rem;">Edit: {{ $logang->Posisi }}</p> --}}
   </div>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: auto;"></button>
 </div>
@@ -117,8 +37,19 @@
           </div>
           <div class="form-group row mb-3">
               <label for="pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-              <div class="col-sm-10">
+              {{-- <div class="col-sm-10">
                   <input type="text" class="form-control" name="Pengalaman" value="{{ $logang->Pengalaman }}" />
+              </div> --}}
+              <div class="col-sm-10">
+                  <select class="form-control" name="Pengalaman">
+                      <option value="" disabled selected>{{ $logang->Pengalaman }}</option>
+                      <option value="Tanpa Pengalaman" {{ $logang->Pengalaman == 'Tanpa Pengalaman' ? 'selected' : '' }}>Tanpa Pengalaman</option>
+                      <option value="Fresh Graduate" {{ $logang->Pengalaman == 'Fresh Graduate' ? 'selected' : '' }}>Fresh Graduate</option>
+                      <option value="Minimal 1 Tahun" {{ $logang->Pengalaman == 'Minimal 1 Tahun' ? 'selected' : '' }}>Minimal 1 Tahun</option>
+                      <option value="Minimal 2 Tahun" {{ $logang->Pengalaman == 'Minimal 2 Tahun' ? 'selected' : '' }}>Minimal 2 Tahun</option>
+                      <option value="Minimal 3 Tahun" {{ $logang->Pengalaman == 'Minimal 3 Tahun' ? 'selected' : '' }}>Minimal 3 Tahun</option>
+                      <option value="Lebih dari 3 Tahun" {{ $logang->Pengalaman == 'Lebih dari 3 Tahun' ? 'selected' : '' }}>Lebih dari 3 Tahun</option>
+                  </select>
               </div>
           </div>
           <div class="form-group row mb-3">
@@ -129,9 +60,20 @@
           </div>
           <div class="form-group row mb-3">
               <label for="tipemagang" class="col-sm-2 col-form-label">Tipe Magang</label>
+              {{-- <div class="col-sm-10">
+                  <input type="text" class="form-control" name="TipeMagang" value="{{ $logang->TipeMagang     }}" />
+              </div> --}}
               <div class="col-sm-10">
-                  <input type="text" class="form-control" name="TipeMagang" value="{{ $logang->TipeMagang }}" />
+                  <select class="form-control" name="TipeMagang">
+                      <option value="" disabled selected>{{ $logang->TipeMagang}}</option>
+                      <option value="Freelance" {{ $logang->TipeMagang   == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                      <option value="Full Time" {{ $logang->TipeMagang   == 'Full Time' ? 'selected' : '' }}>Full Time</option>
+                      <option value="Part Time" {{ $logang->TipeMagang   == 'Part Time' ? 'selected' : '' }}>Part Time</option>
+                      <option value="Kontrak" {{ $logang->TipeMagang     == 'Kontrak' ? 'selected' : '' }}>Kontrak</option>
+                      <option value="Sementara" {{ $logang->TipeMagang   == 'Sementara' ? 'selected' : '' }}>Sementara</option>
+                  </select>
               </div>
+              
           </div>
           <div class="form-group row mb-3">
               <label for="description" class="col-sm-2 col-form-label">Deskripsi</label>
@@ -154,7 +96,7 @@
           <div class="form-group row mb-3">
               <label for="verify" class="col-sm-2 col-form-label">Buat publik:</label>
               <div class="col-sm-10">
-                  <input type="checkbox" class="form-check-input" name="Verify" value="pending" {{ $logang->Verify == 'pending' ? 'checked' : '' }} />
+                  <input type="checkbox" class="form-check-input" name="Verify" value="pending" {{ $logang->Verify == 'pending' ? 'checked' : '' }} required/>
                   <label for="verify" class="form-check-label">Setuju</label>
               </div>
           </div>
