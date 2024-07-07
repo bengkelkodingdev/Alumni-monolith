@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Pelatihan')
+@section('title', 'Magang')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -24,8 +24,8 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Organisasi</b></h2>
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahOrganization">
+            <h2><b>Magang</b></h2>
+            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahInternship">
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
@@ -34,30 +34,32 @@
             <table class="table table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Nama Organisasi</th>
-                        <th scope="col">Periode Organisasi</th>                
-                        <th scope="col">Website Organisasi</th>
-                        <th scope="col">Tingkat Organisasi</th>
-                        <th scope="col">Jenis Organisasi</th>
-                        <th scope="col">Jabatan Organisasi</th>  
-                        <th scope="col">Aksi</th>  
+                        <th scope="col">Nama Instansi</th>
+                        <th scope="col">Periode</th>
+                        <th scope="col">Alamat Instansi</th>                               
+                        <th scope="col">Lingkup Pekerjaan</th>                        
+                        <th scope="col">Bidang Pekerjaan</th>
+                        <th scope="col">Jenis Pekerjaan</th>
+                        <th scope="col">Jabatan</th>           
+                        <th scope="col">Aksi</th>    
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($organizations as $organization)
+                    @forelse ($internships as $internship)
                         <tr class="text-center">
-                            <td>{{ $organization->nama_org }}</td>
-                            <td>{{ $organization->periode_org }}</td>
-                            <td>{{ $organization->link_org }}</td>
-                            <td>{{ $organization->tingkat_org }}</td>
-                            <td>{{ $organization->jns_org }}</td>
-                            <td>{{ $organization->jabatan_org }}</td>
+                            <td>{{ $internship->nama_intern }}</td>
+                            <td>{{ $internship->periode_masuk_intern }} / {{ $internship->periode_keluar_intern }}</td>
+                            <td>{{ $internship->alamat_intern }}</td>
+                            <td>{{ $internship->lingkup_intern }}</td>
+                            <td>{{ $internship->bidang_intern }}</td>
+                            <td>{{ $internship->jns_intern }}</td>
+                            <td>{{ $internship->jabatan_intern }}</td>
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditOrganization{{ $organization->id }}">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditInternship{{ $internship->id }}">
                                         <i class="far fa-edit"></i>
                                     </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('organization.destroy', $organization->id) }}" method="POST">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('internship.destroy', $internship->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -68,7 +70,7 @@
                             </td>
                         </tr>
                     @empty
-                        <td colspan="7" class="text-center">
+                        <td colspan="9" class="text-center">
                             <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
                         </td>
                     @endforelse
@@ -76,15 +78,15 @@
             </table>
         </div>
         <div class="d-flex justify-content-end">
-            {{ $organizations->links('pagination::bootstrap-4') }}
+            {{ $internships->links('pagination::bootstrap-4') }}
         </div>
     </div>
     
     <!--Dialog Tambah Logbook-->
-    @include('alumni.quiz.organization.create')
+    @include('alumni.tracerstudy.internship.create')
 
     <!--Dialog Edit Logbook-->
-    @include('alumni.quiz.organization.edit')
+    @include('alumni.tracerstudy.internship.edit')
 
     <!--Dialog Info Logbook-->
 

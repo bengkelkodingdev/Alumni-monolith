@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Magang')
+@section('title', 'Pekerjaan')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -24,8 +24,8 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Magang</b></h2>
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahInternship">
+            <h2><b>Pekerjaan</b></h2>
+            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahJob">
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
@@ -35,31 +35,33 @@
                 <thead>
                     <tr>
                         <th scope="col">Nama Instansi</th>
-                        <th scope="col">Periode</th>
-                        <th scope="col">Alamat Instansi</th>                               
-                        <th scope="col">Lingkup Pekerjaan</th>                        
+                        <th scope="col">Periode Masuk</th>
+                        <th scope="col">Periode Keluar</th>
+                        <th scope="col">Alamat Instansi</th>                             
+                        <th scope="col">Lingkup Pekerjaan</th>                          
                         <th scope="col">Bidang Pekerjaan</th>
                         <th scope="col">Jenis Pekerjaan</th>
-                        <th scope="col">Jabatan</th>           
-                        <th scope="col">Aksi</th>    
+                        <th scope="col">Jabatan</th>            
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($internships as $internship)
+                    @forelse ($jobs as $job)
                         <tr class="text-center">
-                            <td>{{ $internship->nama_intern }}</td>
-                            <td>{{ $internship->periode_masuk_intern }} / {{ $internship->periode_keluar_intern }}</td>
-                            <td>{{ $internship->alamat_intern }}</td>
-                            <td>{{ $internship->lingkup_intern }}</td>
-                            <td>{{ $internship->bidang_intern }}</td>
-                            <td>{{ $internship->jns_intern }}</td>
-                            <td>{{ $internship->jabatan_intern }}</td>
+                            <td>{{ $job->nama_job }}</td>
+                            <td>{{ $job->periode_masuk_job }}</td>
+                            <td>{{ $job->periode_keluar_job }}</td>
+                            <td>{{ $job->alamat_job }}</td>
+                            <td>{{ $job->lingkup_job }}</td>
+                            <td>{{ $job->bidang_job }}</td>
+                            <td>{{ $job->jns_job }}</td>
+                            <td>{{ $job->jabatan_job }}</td>
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditInternship{{ $internship->id }}">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditJob{{ $job->id }}">
                                         <i class="far fa-edit"></i>
                                     </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('internship.destroy', $internship->id) }}" method="POST">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('job.destroy', $job->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -78,15 +80,15 @@
             </table>
         </div>
         <div class="d-flex justify-content-end">
-            {{ $internships->links('pagination::bootstrap-4') }}
+            {{ $jobs->links('pagination::bootstrap-4') }}
         </div>
     </div>
     
     <!--Dialog Tambah Logbook-->
-    @include('alumni.quiz.internship.create')
+    @include('alumni.tracerstudy.job.create')
 
     <!--Dialog Edit Logbook-->
-    @include('alumni.quiz.internship.edit')
+    @include('alumni.tracerstudy.job.edit')
 
     <!--Dialog Info Logbook-->
 

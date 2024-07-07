@@ -29,7 +29,7 @@ class AwardController extends Controller
         $awards = award::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.award.index', compact('awards'));
+        return view('alumni.tracerstudy.award.index', compact('awards'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class AwardController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.award.create');
+        return view('alumni.tracerstudy.award.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class AwardController extends Controller
         $award = award::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.award.edit', compact('award'));
+        return view('alumni.tracerstudy.award.edit', compact('award'));
     }
     
     /**

@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Tracerstudy')
+@section('title', 'CV')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
