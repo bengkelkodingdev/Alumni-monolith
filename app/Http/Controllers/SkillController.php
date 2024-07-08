@@ -29,7 +29,7 @@ class SkillController extends Controller
         $skills = skill::latest()->paginate(5);
 
         //render view with posts
-        return view('skill.index', compact('skills'));
+        return view('alumni.tracerstudy.skill.index', compact('skills'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class SkillController extends Controller
 
     public function create(): View
     {
-        return view('skill.create');
+        return view('alumni.tracerstudy.skill.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class SkillController extends Controller
         $skill = skill::findOrFail($id);
 
         //render view with post
-        return view('skill.edit', compact('skill'));
+        return view('alumni.tracerstudy.skill.edit', compact('skill'));
     }
     
     /**

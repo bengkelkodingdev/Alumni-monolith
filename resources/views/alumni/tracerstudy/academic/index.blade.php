@@ -1,5 +1,5 @@
 @extends('alumni.layouts.main')
-@section('title', 'Pekerjaan')
+@section('title', 'Akademik')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -24,44 +24,42 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Pekerjaan</b></h2>
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahJob">
+            <h2><b>Akademik</b></h2>
+            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahAcademic">
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
 
         <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered">
+            <table class="table table-hover table-bordered text-center">
                 <thead>
                     <tr>
-                        <th scope="col">Nama Instansi</th>
-                        <th scope="col">Periode Masuk</th>
-                        <th scope="col">Periode Keluar</th>
-                        <th scope="col">Alamat Instansi</th>                             
-                        <th scope="col">Lingkup Pekerjaan</th>                          
-                        <th scope="col">Bidang Pekerjaan</th>
-                        <th scope="col">Jenis Pekerjaan</th>
-                        <th scope="col">Jabatan</th>            
+                        <th scope="col">NIM</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">IPK</th>
+                        <th scope="col">Judul Skripsi</th>
+                        <th scope="col">Dosen Wali</th>
+                        <th scope="col">Tahun Lulus</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($jobs as $job)
-                        <tr class="text-center">
-                            <td>{{ $job->nama_job }}</td>
-                            <td>{{ $job->periode_masuk_job }}</td>
-                            <td>{{ $job->periode_keluar_job }}</td>
-                            <td>{{ $job->alamat_job }}</td>
-                            <td>{{ $job->lingkup_job }}</td>
-                            <td>{{ $job->bidang_job }}</td>
-                            <td>{{ $job->jns_job }}</td>
-                            <td>{{ $job->jabatan_job }}</td>
+                    @forelse ($academics as $academic)
+                        <tr>
+                            <td>{{ $academic->nim }}</td>
+                            <td>{{ $academic->nama_mhs }}</td>
+                            <td>{{ $academic->email }}</td>
+                            <td>{{ $academic->ipk }}</td>
+                            <td>{{ $academic->judul_skripsi }}</td>
+                            <td>{{ $academic->dosen_wali }}</td>
+                            <td>{{ $academic->tahun_lulus }}</td>
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditJob{{ $job->id }}">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
                                         <i class="far fa-edit"></i>
                                     </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('job.destroy', $job->id) }}" method="POST">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('academic.destroy', $academic->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
@@ -72,7 +70,7 @@
                             </td>
                         </tr>
                     @empty
-                        <td colspan="9" class="text-center">
+                        <td colspan="8" class="text-center">
                             <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
                         </td>
                     @endforelse
@@ -80,15 +78,15 @@
             </table>
         </div>
         <div class="d-flex justify-content-end">
-            {{ $jobs->links('pagination::bootstrap-4') }}
-        </div>
+            {{ $academics->links('pagination::bootstrap-4') }}
+        </div>     
     </div>
     
     <!--Dialog Tambah Logbook-->
-    @include('alumni.quiz.job.create')
+    @include('alumni.tracerstudy.academic.create')
 
     <!--Dialog Edit Logbook-->
-    @include('alumni.quiz.job.edit')
+    @include('alumni.tracerstudy.academic.edit')
 
     <!--Dialog Info Logbook-->
 

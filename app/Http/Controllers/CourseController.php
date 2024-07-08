@@ -29,7 +29,7 @@ class CourseController extends Controller
         $courses = course::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.course.index', compact('courses'));
+        return view('alumni.tracerstudy.course.index', compact('courses'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class CourseController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.course.create');
+        return view('alumni.tracerstudy.course.create');
     }
 
     /**

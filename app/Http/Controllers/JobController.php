@@ -29,7 +29,7 @@ class jobController extends Controller
         $jobs = job::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.job.index', compact('jobs'));
+        return view('alumni.tracerstudy.job.index', compact('jobs'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class jobController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.job.create');
+        return view('alumni.tracerstudy.job.create');
     }
 
     /**
@@ -90,7 +90,7 @@ class jobController extends Controller
         $job = job::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.job.edit', compact('job'));
+        return view('alumni.tracerstudy.job.edit', compact('job'));
     }
     
     /**

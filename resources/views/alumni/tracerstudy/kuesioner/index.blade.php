@@ -83,12 +83,12 @@
 
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label for="tahun_lulus" class="col-sm-3 col-form-label">Tahun Masuk</label>
+                            <label for="tahun_masuk" class="col-sm-3 col-form-label">Tahun Masuk</label>
                                 <div class="col-sm-9">
-                                    <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus') }}" placeholder="Masukkan Tahun Masuk Perkuliahan" id="tahun_lulus" min="1900" max="2024" step="1">
+                                    <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" name="tahun_masuk" value="{{ old('tahun_masuk') }}" placeholder="Masukkan Tahun Masuk Perkuliahan" id="tahun_masuk" min="1900" max="2024" step="1">
                                 </div>
                         </div>   
-                        @error('tahun_lulus')
+                        @error('tahun_masuk')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>
@@ -113,10 +113,10 @@
                         <div class="row mb-3">
                             <label for="email" class="col-sm-3 col-form-label">Nomer Hp (WhatsApp)</label>
                             <div class="col-sm-9">
-                                <input type="number" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Masukkan Nomer Handphone yang terhubung WhatsApp" id="email">
+                                <input type="number" class="form-control @error('nomer_hp') is-invalid @enderror" name="nomer_hp" value="{{ old('nomer_hp') }}" placeholder="Masukkan Nomer Handphone yang terhubung WhatsApp" id="nomer_hp">
                             </div>
                         </div>   
-                        @error('email')
+                        @error('nomer_hp')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>

@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function(){
 
 // ADMIN //
 Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
 
 
 // ALUMNI //
@@ -90,10 +91,8 @@ Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']
 Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 
 
-//route quiz
-
 // Rute yang memeriksa data dan mengarahkan ke halaman yang tepat
-Route::get('/tracerstudy', function () {
+Route::get('/quizcheck', function () {
     // Mengambil jumlah data dari setiap model
     $academicCount = \App\Models\Academic::count();
     $jobCount = \App\Models\Job::count();
@@ -105,16 +104,16 @@ Route::get('/tracerstudy', function () {
 
     // Periksa apakah setidaknya satu model memiliki data
     if ($academicCount > 0 || $jobCount > 0 || $internshipCount > 0 || $organizationCount > 0 || $awardCount > 0 || $courseCount > 0 || $skillCount > 0) {
-        // Jika setidaknya satu model memiliki data, arahkan ke halaman tracerstudy.index
-        return redirect('/hasilquiz');
+        // Jika setidaknya satu model memiliki data, arahkan ke halaman cv.index
+        return redirect()->route('cv');
     } else {
-        // Jika tidak ada data pada semua model, arahkan ke halaman tracerstudy.quiz
-        return redirect('/quiz');
+        // Jika tidak ada data pada semua model, arahkan ke halaman cv.quiz
+        return redirect()->route('quiz');
     }
 })->name('quizcheck');
 
-// Rute untuk hasil quiz
-Route::get('/hasilquiz', function () {
+// Route untuk cv
+Route::get('/cv', function () {
     // Mengambil data dari semua model yang diperlukan
     $academics = \App\Models\Academic::paginate(5);
     $jobs = \App\Models\Job::paginate(5);
@@ -125,11 +124,12 @@ Route::get('/hasilquiz', function () {
     $skills = \App\Models\Skill::paginate(5);
 
     // Mengirim data ke view
-    return view('alumni.quiz.tracerstudy.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
-})->name('hasilquiz');
+    return view('alumni.tracerstudy.cv.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
+})->name('cv');
 
-//quiz
-Route::get('/quiz', [\App\Http\Controllers\QuizController::class, 'index'])->name('quiz');
+// Route untuk kuesioner
+Route::get('/kuesioner', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner');
+
 
 // Academic Controller
 Route::get('/academic', [\App\Http\Controllers\AcademicController::class, 'index'])->name('academic.index');

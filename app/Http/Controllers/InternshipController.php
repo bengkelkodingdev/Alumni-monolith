@@ -29,7 +29,7 @@ class InternshipController extends Controller
         $internships = internship::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.internship.index', compact('internships'));
+        return view('alumni.tracerstudy.internship.index', compact('internships'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class InternshipController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.internship.create');
+        return view('alumni.tracerstudy.internship.create');
     }
 
     /**
@@ -90,7 +90,7 @@ class InternshipController extends Controller
         $internship = internship::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.internship.edit', compact('internship'));
+        return view('alumni.tracerstudy.internship.edit', compact('internship'));
     }
     
     /**
