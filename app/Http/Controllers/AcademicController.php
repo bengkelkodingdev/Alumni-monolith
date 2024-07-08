@@ -29,7 +29,7 @@ class academicController extends Controller
         $academics = academic::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.academic.index', compact('academics'));
+        return view('alumni.tracerstudy.academic.index', compact('academics'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class academicController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.academic.create');
+        return view('alumni.tracerstudy.academic.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class academicController extends Controller
         $academic = academic::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.academic.edit', compact('academic'));
+        return view('alumni.tracerstudy.academic.edit', compact('academic'));
     }
     
     /**

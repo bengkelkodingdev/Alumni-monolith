@@ -29,7 +29,7 @@ class OrganizationController extends Controller
         $organizations = organization::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.quiz.organization.index', compact('organizations'));
+        return view('alumni.tracerstudy.organization.index', compact('organizations'));
     }
      /**
      * create
@@ -39,7 +39,7 @@ class OrganizationController extends Controller
 
     public function create(): View
     {
-        return view('alumni.quiz.organization.create');
+        return view('alumni.tracerstudy.organization.create');
     }
 
     /**
@@ -71,7 +71,7 @@ class OrganizationController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.organization.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('organization.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -86,7 +86,7 @@ class OrganizationController extends Controller
         $organization = organization::findOrFail($id);
 
         //render view with post
-        return view('alumni.quiz.organization.edit', compact('organization'));
+        return view('alumni.tracerstudy.organization.edit', compact('organization'));
     }
     
     /**
@@ -121,7 +121,7 @@ class OrganizationController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('alumni.quiz.organization.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('organization.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
     /**
      * destroy
@@ -138,6 +138,6 @@ class OrganizationController extends Controller
         $organization->delete();
 
         //redirect to index
-        return redirect()->route('alumni.quiz.organization.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('organization.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
