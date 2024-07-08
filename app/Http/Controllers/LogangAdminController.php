@@ -149,7 +149,17 @@ class LogangAdminController extends Controller
     }
 
     // Manage listingmagang
-    public function manage(){
-        return view('admin.logangAdmin.manageAdmin', ['logangAdmin' =>Logang::all()]);
+    // public function manage(){
+    //     return view('admin.logangAdmin.manageAdmin', ['logangAdmin' =>Logang::all()]);
+    // }
+    public function manage(Request $request){
+        $query = Logang::query();
+
+        if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+            $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+        }
+
+        $logangAdmin = $query->get();
+        return view('admin.logangAdmin.manageAdmin', compact('logangAdmin'));
     }
 }

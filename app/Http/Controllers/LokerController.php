@@ -187,8 +187,18 @@ class LokerController extends Controller{
     }
 
     // Manage loker
-    public function manage() {
-        return view('alumni.loker.manage', ['loker' =>Loker::all()]);
+    // public function manage() {
+    //     return view('alumni.loker.manage', ['loker' =>Loker::all()]);
+    // }
+    public function manage(Request $request){
+        $query = Loker::query();
+
+        if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+            $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+        }
+
+        $loker = $query->get();
+        return view('alumni.loker.manage', compact('loker'));
     }
     
 }

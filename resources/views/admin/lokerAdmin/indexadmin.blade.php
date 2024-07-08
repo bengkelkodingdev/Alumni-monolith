@@ -42,10 +42,7 @@
             </a>
         </div> 
     </div>
-    
-    
-    
-    
+
     <h2><b>Pekerjaan</b></h2>
 
     <div style="display: flex; justify-content: space-between;">

@@ -10,7 +10,7 @@
      </a>
      <form action="/manageLokerAdmin" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
          <div class="input-group">
-             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search" aria-describedby="btnNavbarSearch"/>
+             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="NamaPerusahaan" aria-describedby="btnNavbarSearch"/>
              <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
          </div>
      </form>
@@ -40,63 +40,67 @@
      <th class="align-middle" colspan="3">Aksi</th>
    </thead>
    <tbody>
-       @foreach($lokerAdmin as $lkr)
-       <tr class="border-gray-300 text-center">
-           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-               <a href="{{ route('loker.show', $lkr->id) }}" style="color: inherit; text-decoration: none;">{{$lkr->NamaPerusahaan}}</a>
-           </td>
-           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-             <a href="/loker/{{$lkr->id}}" style="color: inherit; text-decoration: none;">{{$lkr->Posisi}}</a>
-           </td>
-           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-             <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
-                 style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLoker"
-                 data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.show', $lkr->id) }}">
-                 Detail
-             </button>
-           </td>
-           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-               <form method="POST" action="/loker/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
-                   @csrf
-                   @method('DELETE')
-                   <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
-                     Delete
-                   </button>
-               </form>
-           </td>
-           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">          
-             <form method="POST" action="/adminLoker/{{$lkr->id}}/verify" id="verifyForm{{$lkr->id}}">
-                 @csrf
-                 @method('POST')
-                 <input type="hidden" name="action" id="action{{$lkr->id}}">
-             
-                 @if($lkr->Verify == 'pending')
-                     <button type="button" class="btn btn-success text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'verify')">
-                         Verify 
-                     </button>
-                 @elseif($lkr->Verify == 'verified')
-                     {{-- <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
-                         Tidak Verify
-                     </button> --}}
-                     <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 150px; text-align: center; font-size: 12px;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
-                         Tidak Verify
-                     </button>
-                     
-                 @endif
-             </form>
-             
-             <script>
-                 function confirmAction(id, action) {
-                     let message = action === 'verify' ? 'Verify?' : 'Tidak Verify?';
-                     if (confirm(message)) {
-                         document.getElementById('action' + id).value = action;
-                         document.getElementById('verifyForm' + id).submit();
-                     }
-                 }
-             </script>            
-         </td>
-       </tr>
-       @endforeach
+        @unless(count($lokerAdmin) == 0)
+            @foreach($lokerAdmin as $lkr)
+            <tr class="border-gray-300 text-center">
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                    <a href="{{ route('loker.show', $lkr->id) }}" style="color: inherit; text-decoration: none;">{{$lkr->NamaPerusahaan}}</a>
+                </td>
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                    <a href="/loker/{{$lkr->id}}" style="color: inherit; text-decoration: none;">{{$lkr->Posisi}}</a>
+                </td>
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                    <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
+                        style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLoker"
+                        data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.show', $lkr->id) }}">
+                        Detail
+                    </button>
+                </td>
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                    <form method="POST" action="/loker/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
+                        @csrf
+                        @method('DELETE')
+                        <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">          
+                    <form method="POST" action="/adminLoker/{{$lkr->id}}/verify" id="verifyForm{{$lkr->id}}">
+                        @csrf
+                        @method('POST')
+                        <input type="hidden" name="action" id="action{{$lkr->id}}">
+                    
+                        @if($lkr->Verify == 'pending')
+                            <button type="button" class="btn btn-success text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'verify')">
+                                Verify 
+                            </button>
+                        @elseif($lkr->Verify == 'verified')
+                            {{-- <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
+                                Tidak Verify
+                            </button> --}}
+                            <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 150px; text-align: center; font-size: 12px;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
+                                Tidak Verify
+                            </button>
+                            
+                        @endif
+                    </form>
+                    
+                    <script>
+                        function confirmAction(id, action) {
+                            let message = action === 'verify' ? 'Verify?' : 'Tidak Verify?';
+                            if (confirm(message)) {
+                                document.getElementById('action' + id).value = action;
+                                document.getElementById('verifyForm' + id).submit();
+                            }
+                        }
+                    </script>            
+                </td>
+            </tr>
+            @endforeach
+        @else
+            <p>No Lowongan Found. Silahkan isi lowongan.</p>
+        @endunless
    </tbody>
  </table>
  </div>

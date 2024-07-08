@@ -24,6 +24,12 @@
                         <div class="text-lg space-y-6">
                             {!! nl2br(e($listingmagang->Deskripsi)) !!}
                         </div>
+                        <div class="text-lg space-y-6">
+                            <strong>Tipe Kerja: </strong> {{ $listingmagang->TipeMagang }}
+                        </div>
+                        <div class="text-lg space-y-6">
+                            <strong>Gaji: </strong> {{ $listingmagang->Gaji }}
+                        </div>
                         <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
                             <a href="mailto:{{ $listingmagang->Email }}" style="width: 200px; text-align: center;" class="btn btn-primary text-white px-3 py-2 rounded-2">
                                 <i class="far fa-envelope"></i>

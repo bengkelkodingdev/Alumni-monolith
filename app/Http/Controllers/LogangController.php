@@ -179,8 +179,17 @@ class LogangController extends Controller{
     }
 
     // Manage logang
-    public function manage() {
-        return view('alumni.logang.manage', ['logang' =>Logang::all()]);
+    // public function manage() {
+    //     return view('alumni.logang.manage', ['logang' =>Logang::all()]);
+    // }
+    public function manage(Request $request){
+        $query = Logang::query();
+
+        if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+            $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+        }
+
+        $logang = $query->get();
+        return view('alumni.logang.manage', compact('logang'));
     }
-    
 }

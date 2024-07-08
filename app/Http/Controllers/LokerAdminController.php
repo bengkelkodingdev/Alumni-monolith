@@ -151,7 +151,14 @@ class LokerAdminController extends Controller
     }
 
     // Manage listingkerja
-    public function manage(){
-        return view('admin.lokerAdmin.manageAdmin', ['lokerAdmin' =>Loker::all()]);
+    public function manage(Request $request){
+        $query = Loker::query();
+
+        if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+            $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+        }
+
+        $lokerAdmin = $query->get();
+        return view('admin.lokerAdmin.manageAdmin', compact('lokerAdmin'));
     }
 }
