@@ -12,6 +12,6 @@ class AboutController extends Controller
     {
         $user = auth()->user();
         $academics = academic::where('email', $user->email)->first();
-        return view('admin.profile', compact('mahasiswa'));
+        return view('profile');
     }
 }

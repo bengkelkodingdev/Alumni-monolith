@@ -46,6 +46,7 @@ Route::middleware(['auth'])->group(function(){
 
 // ADMIN //
 Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
 
 
 // ALUMNI //
