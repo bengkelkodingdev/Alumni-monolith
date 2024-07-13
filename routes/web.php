@@ -72,7 +72,7 @@ Route::get('/manageLokerAdmin', [LokerAdminController::class, 'manage'])->name('
 
 
 //route Logang
-Route::get('/logang', [LogangController::class, 'index'])->name('listingmagang.index');
+Route::get('/logang', [LogangController::class, 'index'])->name('logang.index');
 Route::get('/postLogang',[LogangController::class,'create'])->name('logang.create');
 Route::post('/storelogang',[LogangController::class, 'store'])->name('logang.store');
 Route::get('/logang/{id}', [LogangController::class,'show'])->name('logang.show');

@@ -6,9 +6,8 @@
           src="{{ $listingmagang->Logo ? asset('/storage/imglogo/' . $listingmagang->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
        <div style="flex-grow: 1;">
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem;">
-          {{-- Modal Trigger --}}
           <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
-            class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dialogShowHomeLogang" data-id="{{ $listingmagang->id }}">
+            data-bs-toggle="modal" data-bs-target="#dialogShowLogang" data-id="{{ $listingmagang->id }}" data-bs-remote="{{ route('logang.show', $listingmagang->id) }}">
             {{ $listingmagang->NamaPerusahaan }}
           </button>
         </h3>
@@ -33,50 +32,26 @@
     </div>
   </div>
 </div>
-<!-- Dialog Info Show -->
-@include('alumni.logang.showHome')
-
+<!-- Modal for Show Logang -->
+<div class="modal fade" id="dialogShowLogang" tabindex="-1" aria-labelledby="dialogShowLogangLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <!-- Content will be loaded dynamically -->
+      </div>
+  </div>
+</div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var detailModal = document.querySelector('#dialogShowHomeLogang');
-
-    detailModal.addEventListener('show.bs.modal', function(event) {
-      var button = event.relatedTarget;
-      var logangId = button.getAttribute('data-id');
-      console.log(logangId);
-
-      fetch('/logbook/' + logangId)
-        .then(response => response.json())
-        .then(data => {
-          detailModal.querySelector('.text-2xl').textContent = data.Posisi;
-          detailModal.querySelector('.text-center p').textContent = data.NamaPerusahaan;
-          detailModal.querySelector('.fa-location-dot').nextSibling.textContent = " " + data.Alamat;
-          detailModal.querySelector('.space-y-6').innerHTML = nl2br(e(data.Deskripsi));
-          detailModal.querySelector('.btn-primary[href^="mailto:"]').setAttribute('href', 'mailto:' + data.Email);
-          detailModal.querySelector('.btn-primary[href^="http"]').setAttribute('href', data.Website);
-
-          var tagsContainer = detailModal.querySelector('.flex .tags');
-          tagsContainer.innerHTML = '';
-          data.Tags.split(',').forEach(tag => {
-            var tagElement = document.createElement('x-listing-tags');
-            tagElement.setAttribute('tagsCsv', tag.trim());
-            tagsContainer.appendChild(tagElement);
-          });
-
-          var logoImg = detailModal.querySelector('img');
-          logoImg.setAttribute('src', data.Logo ? '/storage/imglogo/' + data.Logo : '/images/no-image.png');
-        })
-        .catch(error => console.error('Error:', error));
-    });
+  // Add event listeners to dynamically load content into modals
+  document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+      button.addEventListener('click', event => {
+          const target = button.getAttribute('data-bs-target');
+          const url = button.getAttribute('data-bs-remote');
+          
+          fetch(url)
+              .then(response => response.text())
+              .then(html => {
+                  document.querySelector(target + ' .modal-content').innerHTML = html;
+              });
+      });
   });
-
-  function nl2br(str) {
-    return str.replace(/\n/g, '<br>');
-  }
-
-  function e(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
 </script>

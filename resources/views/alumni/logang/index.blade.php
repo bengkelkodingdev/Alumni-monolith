@@ -22,106 +22,98 @@
         </li>
     </ul>
   </nav>
-<div class="container-border">
-    <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
-        @php
-        if (count($logang) == 0) {
-            echo '<div class="alert alert-warning" role="alert" style="text-align: left; width: 100%;">
-                    No Lowongan Found. Silahkan isi lowongan.
-                  </div>
-                  <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-                    <p>
-                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang">
-                            <i class="fas fa-plus"></i> Post Lowongan
-                        </button>
-                    </p>
-                  </div>';
-        }else if (count($logang) >= 1)  {
-                echo 
-                '<div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-                    <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang">
-                        <i class="fas fa-plus"></i> Post Lowongan
-                    </button>
-                    <a href="/manageLogang" class="btn btn-primary">
-                        <i class="fas fa-cog"></i> Manage Lowongan
-                    </a>
-                </div>';
-        }
-        @endphp
-    </div>
-    
-    
-    <h2><b>Magang Populer</b></h2>
-
-    <div style="display: flex; justify-content: space-between;">
-        <!-- Tabel Lowongan -->
-        <div style="width: 60%;">
-            <div class="p-2.5">
-                @unless(count($logang) == 0)
-                    @foreach($logang as $listingmagang)
-                        <x-listingmagang-card :listingmagang="$listingmagang" />
-                    @endforeach
-                @else
-                    <p>No Lowongan Found. Silahkan isi lowongan.</p>
-                @endunless
+  <div class="container mt-4">
+    <div class="d-flex flex-column mb-6">
+        @if(count($logang) == 0)
+            <div class="alert alert-warning" role="alert">
+                No Lowongan Found. Silahkan isi lowongan.
             </div>
+        @endif
+        <div class="d-flex justify-content-end mb-3">
+            <button type="button" class="btn btn-primary me-2" onclick="openPopup()">
+                <i class="fas fa-plus"></i> Post Lowongan
+            </button>
+            @if(count($logang) >= 1)
+                <a href="/manageLogang" class="btn btn-primary">
+                    <i class="fas fa-cog"></i> Manage Lowongan
+                </a>
+            @endif
         </div>
+    </div>
 
+    <h4><b>Magang Populer</b></h4>
+
+    <div class="row">
+        <!-- Tabel Lowongan -->
+        <div class="col-md-7">
+            <div class="p-2">
+                @foreach($logang as $listingmagang)
+                    <x-listingmagang-card :listingmagang="$listingmagang" />
+                @endforeach
+            </div>
+        </div> 
         <!-- Tabel Pengalaman Magang -->
-        <div style="width: 35%;">
-            <form id="filterForm" method="GET" action="{{ route('listingmagang.index') }}">
-                <h1><b>Pengalaman Magang</b></h1>
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
+        <div class="col-md-5">
+            <form id="filterForm" method="GET" action="{{ route('logang.index') }}">
+                
+                <h5><b>Pengalaman Magang</b></h5>
+                
+                <div class="border border-primary bg-light p-3 rounded mb-4">
                     @foreach ([
                         'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
                         'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
                     ] as $pengalaman)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> {{-- Mengatur ukuran font kecil --}}
-                            <input type="checkbox" class="mr-2" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
-                                   {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }} /> {{ $pengalaman }}
-                        </label>
-                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
+                                {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }}>
+                            <label class="form-check-label" style="font-size: 14px;">
+                                {{ $pengalaman }}
+                            </label>
+                        </div>
                     @endforeach
                 </div>
 
+                <!-- Tipe Magang -->
+                <h5><b>Tipe Magang</b></h5>
                 
-
-                <!-- Tipe PeMagangan -->
-                <h1><b>Tipe Magang</b></h1>
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
+                <div class="border border-primary bg-light p-3 rounded mb-4">
                     @foreach ([
                         'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
                     ] as $tipeMagang)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> {{-- Mengatur ukuran font kecil --}}
-                            <input type="checkbox" class="mr-2" name="TipeMagang[]" value="{{ strtolower($tipeMagang) }}" 
-                                   {{ in_array(strtolower($tipeMagang), array_map('strtolower', $selectedTipeMagang)) ? 'checked' : '' }} /> {{ $tipeMagang }}
-                        </label>
-                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="TipeMagang[]" value="{{ strtolower($tipeMagang) }}" 
+                                {{ in_array(strtolower($tipeMagang), array_map('strtolower', $selectedTipeMagang)) ? 'checked' : '' }}>
+                            <label class="form-check-label" style="font-size: 14px;"> 
+                                {{ $tipeMagang }}
+                            </label>
+                        </div>
                     @endforeach
                 </div>
             </form>
         </div>
     </div>
-    <!--Dialog Tambah Lowongan-->
-    @include('alumni.logang.create')
-    {{-- <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <!-- Content will be loaded dynamically -->
-            </div>
-        </div>
-    </div> --}}
-
-    <script>
-        document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeMagang[]"]').forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                document.getElementById('filterForm').submit();
-            });
-        });
-    </script>
-
-    <div class="mt-6 p-4">
-        {{$logang->links()}}
-    </div>
 </div>
+
+<!-- Include the create.blade.php content -->
+@include('alumni.logang.create')
+
+<script>
+    document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeMagang[]"]').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            document.getElementById('filterForm').submit();
+        });
+    });
+
+    function openPopup() {
+        var popup = new bootstrap.Modal(document.getElementById('popup'), {
+            keyboard: false
+        });
+        popup.show();
+    }
+    
+    function closePopup() {
+        var popup = bootstrap.Modal.getInstance(document.getElementById('popup'));
+        popup.hide();
+    }
+</script>
 @endsection

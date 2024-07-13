@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('listingmagang.index') }}" class="sidebar-link">
+                <a href="{{ route('logang.index') }}" class="sidebar-link">
                     <i class="lni lni-calendar"></i>
                     <span>Lowongan Magang</span>
                 </a>

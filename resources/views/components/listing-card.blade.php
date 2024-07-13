@@ -6,77 +6,47 @@
         src="{{ $listing->Logo ? asset('/storage/imglogo/' . $listing->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
       <div style="flex-grow: 1;">
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem;">
+          {{-- <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;"  --}}
           <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
-            class="btn btn-link" data-bs-toggle="modal" data-bs-target="#dialogShowHomeLoker" data-id="{{ $listing->id }}">
+            data-bs-toggle="modal" data-bs-target="#dialogShowLoker" data-id="{{ $listing->id }}" data-bs-remote="{{ route('loker.show', $listing->id) }}">
             {{ $listing->NamaPerusahaan }}
           </button>
-        </h3>
         <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listing->Posisi }}</div>
         <x-listing-tags :tagsCsv="$listing->Tags" />
         <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">
           <i class="fa-solid fa-location-dot"></i> {{ $listing->Alamat }}
         </div>
-        <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"> Pengalaman: {{ $listing->Pengalaman }}
-        </div>
-        <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"> Gaji: {{ $listing->Gaji }}
-        </div>
+        <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"> Pengalaman: {{ $listing->Pengalaman }}</div>
+        <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"> Gaji: {{ $listing->Gaji }}</div>
       </div>
       <div style="display: flex; flex-direction: column; align-items: flex-end;">
-        <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600;
-                    margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;
-                    margin-bottom: 0.5rem;">{{ $listing->TipeKerja }}</span>
-        <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600;
-                    margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">
-                    {{ $listing->Pengalaman }}
-        </span>
+        <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center; margin-bottom: 0.5rem;">{{ $listing->TipeKerja }}</span>
+        <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">{{ $listing->Pengalaman }}</span>
       </div>
     </div>
   </div>
 </div>
-<!-- Dialog Info Show -->
-@include('alumni.loker.showHome')
-
+<!-- Modal for Show Loker -->
+<div class="modal fade" id="dialogShowLoker" tabindex="-1" aria-labelledby="dialogShowLokerLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+          <!-- Content will be loaded dynamically -->
+      </div>
+  </div>
+</div>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    var detailModal = document.querySelector('#dialogShowHomeLoker');
-
-    detailModal.addEventListener('show.bs.modal', function(event) {
-      var button = event.relatedTarget;
-      var lokerId = button.getAttribute('data-id');
-      console.log(lokerId);
-
-      fetch('/logbook/' + lokerId)
-        .then(response => response.json())
-        .then(data => {
-          detailModal.querySelector('.text-2xl').textContent = data.Posisi;
-          detailModal.querySelector('.text-center p').textContent = data.NamaPerusahaan;
-          detailModal.querySelector('.fa-location-dot').nextSibling.textContent = " " + data.Alamat;
-          detailModal.querySelector('.space-y-6').innerHTML = nl2br(e(data.Deskripsi));
-          detailModal.querySelector('.btn-primary[href^="mailto:"]').setAttribute('href', 'mailto:' + data.Email);
-          detailModal.querySelector('.btn-primary[href^="http"]').setAttribute('href', data.Website);
-
-          var tagsContainer = detailModal.querySelector('.flex .tags');
-          tagsContainer.innerHTML = '';
-          data.Tags.split(',').forEach(tag => {
-            var tagElement = document.createElement('x-listing-tags');
-            tagElement.setAttribute('tagsCsv', tag.trim());
-            tagsContainer.appendChild(tagElement);
-          });
-
-          var logoImg = detailModal.querySelector('img');
-          logoImg.setAttribute('src', data.Logo ? '/storage/imglogo/' + data.Logo : '/images/no-image.png');
-        })
-        .catch(error => console.error('Error:', error));
-    });
+  // Add event listeners to dynamically load content into modals
+  document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
+      button.addEventListener('click', event => {
+          const target = button.getAttribute('data-bs-target');
+          const url = button.getAttribute('data-bs-remote');
+          
+          fetch(url)
+              .then(response => response.text())
+              .then(html => {
+                  document.querySelector(target + ' .modal-content').innerHTML = html;
+              });
+      });
   });
-
-  function nl2br(str) {
-    return str.replace(/\n/g, '<br>');
-  }
-
-  function e(str) {
-    var div = document.createElement('div');
-    div.appendChild(document.createTextNode(str));
-    return div.innerHTML;
-  }
 </script>
+

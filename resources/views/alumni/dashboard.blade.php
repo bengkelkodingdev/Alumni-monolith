@@ -50,7 +50,7 @@
                 </a>
             </div>
             <div class="col-md-4 mb-5">
-                <a href="{{ route('listingmagang.index') }}" class="menu-box">
+                <a href="{{ route('logang.index') }}" class="menu-box">
                     <i class="fas fa-briefcase menu-icon"></i>
                     <h2 class="menu-title">Lowongan Magang</h2>
                     <p class="menu-description">Temukan program magang untuk mengembangkan skill Anda.</p>

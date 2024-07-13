@@ -1,121 +1,101 @@
 @extends('alumni.layouts.main')
 @section('title', 'Pekerjaan Populer')
 @section('content')
-  <!-- Navbar -->
-  <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin" >
-        <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
-        <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
-        <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
-    </a>
-    <form action="/loker" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search"
-                aria-describedby="btnNavbarSearch"/>
-            <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-        </li>
-    </ul>
-  </nav>
-<div class="container-border">
-    
-    <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
-        @php
-            if (count($loker) == 0) {
-                echo 
-                '<div class="alert alert-warning" role="alert" style="text-align: left; width: 100%;">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/admin">
+            <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
+            <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
+            <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
+        </a>
+        <form action="/loker" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search" aria-describedby="btnNavbarSearch"/>
+                <button class="btn btn-outline-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            </li>
+        </ul>
+    </nav> 
+
+    <div class="container mt-4">
+        <div class="d-flex flex-column mb-6">
+            @if(count($loker) == 0)
+                <div class="alert alert-warning" role="alert">
                     No Lowongan Found. Silahkan isi lowongan.
                 </div>
-                <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-                    <p>
-                        <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker">
-                            <i class="fas fa-plus"></i> Post Lowongan
-                        </button>
-                    </p>
-                </div>';
-        }else if (count($loker) >= 1)  {
-                echo 
-                '<div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-                    <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLoker">
-                        <i class="fas fa-plus"></i> Post Lowongan
-                    </button>
+            @endif
+            <div class="d-flex justify-content-end mb-3">
+                <button type="button" class="btn btn-primary me-2" onclick="openPopup()">
+                    <i class="fas fa-plus"></i> Post Lowongan
+                </button>
+                @if(count($loker) >= 1)
                     <a href="/manageLoker" class="btn btn-primary">
                         <i class="fas fa-cog"></i> Manage Lowongan
                     </a>
-                </div>';
-
-        }
-        @endphp
-    </div>
-    
-    
-   
-    <h2><b>Pekerjaan Populer</b></h2>
-
-    <div style="display: flex; justify-content: space-between;">
-        <!-- Tabel Lowongan -->
-        <div style="width: 60%;">
-            <div class="p-2.5">
-                @foreach($loker as $listing)
-                    <x-listing-card :listing="$listing" />
-                @endforeach
+                @endif
             </div>
         </div>
 
-        <!-- Tabel Pengalaman Kerja -->
-        <div style="width: 35%;">
-            <form id="filterForm" method="GET" action="{{ route('loker.index') }}">
-                
-                <h1><b>Pengalaman Kerja</b></h1>
-                
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-                    @foreach ([
-                        'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                        'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-                    ] as $pengalaman)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> {{-- Mengatur ukuran font kecil --}}
-                            <input type="checkbox" class="mr-2" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
-                                   {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }} /> {{ $pengalaman }}
-                        </label>
-                        <br>
+        <h4><b>Pekerjaan Populer</b></h4>
+
+        <div class="row">
+            <!-- Tabel Lowongan -->
+            <div class="col-md-7">
+                <div class="p-2">
+                    @foreach($loker as $listing)
+                        <x-listing-card :listing="$listing" />
                     @endforeach
                 </div>
+            </div> 
+            <!-- Tabel Pengalaman Kerja -->
+            <div class="col-md-5">
+                <form id="filterForm" method="GET" action="{{ route('loker.index') }}">
+                    
+                    <h5><b>Pengalaman Kerja</b></h5>
+                    
+                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                        @foreach ([
+                            'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
+                            'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
+                        ] as $pengalaman)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
+                                    {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }}>
+                                <label class="form-check-label" style="font-size: 14px;">
+                                    {{ $pengalaman }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
 
-                
-
-                <!-- Tipe Pekerjaan -->
-                <h1><b>Tipe Pekerjaan</b></h1>
-                
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-                    @foreach ([
-                        'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-                    ] as $tipeKerja)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> {{-- Mengatur ukuran font kecil --}}
-                            <input type="checkbox" class="mr-2" name="TipeKerja[]" value="{{ strtolower($tipeKerja) }}" 
-                                   {{ in_array(strtolower($tipeKerja), array_map('strtolower', $selectedTipeKerja)) ? 'checked' : '' }} /> {{ $tipeKerja }}
-                        </label>
-                        <br>
-                    @endforeach
-                </div>
-            </form>
+                    <!-- Tipe Pekerjaan -->
+                    <h5><b>Tipe Pekerjaan</b></h5>
+                    
+                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                        @foreach ([
+                            'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
+                        ] as $tipeKerja)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="TipeKerja[]" value="{{ strtolower($tipeKerja) }}" 
+                                    {{ in_array(strtolower($tipeKerja), array_map('strtolower', $selectedTipeKerja)) ? 'checked' : '' }}>
+                                <label class="form-check-label" style="font-size: 14px;"> 
+                                    {{ $tipeKerja }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-    <!--Dialog Tambah Logbook-->
+
+    <!-- Include the create.blade.php content -->
     @include('alumni.loker.create')
-    <!-- Modal for Show Loker -->
-    {{-- <div class="modal fade" id="dialogTambahLoker" tabindex="-1" aria-labelledby="dialogTambahLokerLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <!-- Content will be loaded dynamically -->
-            </div>
-        </div>
-    </div>
-     --}}
 
     <script>
         document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeKerja[]"]').forEach(function(checkbox) {
@@ -123,11 +103,18 @@
                 document.getElementById('filterForm').submit();
             });
         });
+
+        function openPopup() {
+            var popup = new bootstrap.Modal(document.getElementById('popup'), {
+                keyboard: false
+            });
+            popup.show();
+        }
+        
+        function closePopup() {
+            var popup = bootstrap.Modal.getInstance(document.getElementById('popup'));
+            popup.hide();
+        }
     </script>
-
-    <div class="mt-6 p-4">
-        {{$loker->links()}}
-    </div>
-</div>
-
 @endsection
+
