@@ -70,7 +70,7 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
     Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
 
-    Route::get('/quizcheck', function () {
+    Route::get('/tracerstudycheck', function () {
         $userId = Auth::id();
 
         // Mengambil jumlah data kuesioner untuk pengguna yang sedang login
