@@ -52,23 +52,17 @@ class academicController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nim'=> 'required',
-            'nama_mhs'=> 'required',
-            'email'=> 'required',
+            'nama_studi'=> 'required',
             'ipk'=> 'required',
-            'judul_skripsi'=> 'required',
-            'dosen_wali'=> 'required',
+            'tahun_masuk' => 'required',
             'tahun_lulus' => 'required'
         ]);
 
         //create post
         academic::create([
-            'nim' => $request->nim,
-            'nama_mhs' => $request->nama_mhs,
-            'email' => $request->email,
+            'nama_studi' => $request->nama_studi,
             'ipk' => $request->ipk,
-            'judul_skripsi' => $request->judul_skripsi,
-            'dosen_wali' => $request->dosen_wali,
+            'tahun_masuk' => $request->tahun_masuk,
             'tahun_lulus' => $request->tahun_lulus
         ]);
 
@@ -103,7 +97,7 @@ class academicController extends Controller
         //validate form
         $this->validate($request, [
             'nim'=> 'required',
-            'nama_mhs'=> 'required',
+            'nama_alumni'=> 'required',
             'email'=> 'required',
             'ipk'=> 'required',
             'judul_skripsi'=> 'required',
@@ -115,12 +109,9 @@ class academicController extends Controller
         $academic = academic::findOrFail($id);
             //update post without image
             $academic->update([
-            'nim' => $request->nim,
-            'nama_mhs' => $request->nama_mhs,
-            'email' => $request->email,
+            'nama_studi' => $request->nama_studi,
             'ipk' => $request->ipk,
-            'judul_skripsi' => $request->judul_skripsi,
-            'dosen_wali' => $request->dosen_wali,
+            'tahun_masuk' => $request->tahun_masuk,
             'tahun_lulus' => $request->tahun_lulus
         ]);
 

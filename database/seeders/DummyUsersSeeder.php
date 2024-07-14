@@ -15,22 +15,28 @@ class DummyUsersSeeder extends Seeder
     {
         $userData = [
             [
-                'name' => 'Mas Admin',
-                'email' => 'admin1@gmail.com',
+                'nama_alumni' => 'Dosen Koordinator Alumni S1-Teknik Informatika',
+                'email' => 'alumni@websti.id',
                 'role' => 'admin',
-                'password' =>'bcrypt'('123456')
+                'password' =>'bcrypt'('123')
             ],
             [
-                'name' => 'Mas Mahasiswa',
-                'email' => 'Mhs1@gmail.com',
-                'role' => 'bukanadmin',
-                'password' =>'bcrypt'('123456')
-            ],
-            [
-                'name' => 'Mas Alumni',
-                'email' => 'alumni1@gmail.com',
+                'nama_alumni' => 'Gata Anindhita Zalianingrum',
+                'email' => 'gata@gmail.com',
                 'role' => 'alumni',
-                'password' =>'bcrypt'('123456')
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Mahsa Rahima Yunus',
+                'email' => 'mahsa@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Fauzan Febryan Tyowarsa',
+                'email' => 'fauzan@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
             ]
         ];
 

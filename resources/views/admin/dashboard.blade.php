@@ -29,7 +29,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4 mb-5">
-                    <a href="#" class="menu-box">
+                    <a href="{{ route('kuesionerAdmin.index') }}" class="menu-box">
                         <i class="fas fa-search menu-icon"></i>
                         <h2 class="menu-title">Data Alumni</h2>
                         <p class="menu-description">Kelola data perkembangan karir alumni Anda.</p>

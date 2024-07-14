@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="dialogEditAcademicLabel{{ $academic->id }}">Edit Pelatihan</h5>
+        <h5 class="modal-title" id="dialogEditAcademicLabel{{ $academic->id }}">Edit Data Akademik</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">  
@@ -15,44 +15,13 @@
                 <!-- form fields here -->
                 <div class="form-group">
                     <div class="row mb-3">
-                        <label for="nim" class="col-sm-3 col-form-label">NIM</label>
+                        <label for="nama_studi" class="col-sm-3 col-form-label">Nama Universitas</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim', $academic->nim) }}" placeholder="Masukkan NIM Mahasiswa" id="nim">
+                            <input type="text" class="form-control @error('nama_studi') is-invalid @enderror" name="nama_studi" value="{{ old('nama_studi', $academic->nama_studi) }}" placeholder="Masukkan Nama Universitas" id="nama_studi">
                         </div>
                     </div>   
-                    
                     <!-- error message untuk nim -->                            
-                    @error('nim')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label for="nama_mhs" class="col-sm-3 col-form-label">Nama Mahasiswa</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control @error('nama_mhs') is-invalid @enderror" name="nama_mhs" value="{{ old('nama_mhs', $academic->nama_mhs) }}" placeholder="Masukkan Nama Mahasiswa" id="nama_mhs">
-                        </div>
-                    </div>   
-                    <!-- error message untuk nama_mhs -->                               
-                    @error('nama_mhs')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label for="email" class="col-sm-3 col-form-label">Email Mahasiswa</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $academic->email) }}" placeholder="Masukkan Email Mahasiswa">
-                        </div>
-                    </div>                                 
-                    <!-- error message untuk email -->
-                    @error('email')
+                    @error('nama_studi')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
                         </div>
@@ -77,28 +46,13 @@
 
                 <div class="form-group">
                     <div class="row mb-3">
-                        <label for="judul_skripsi" class="col-sm-3 col-form-label">Judul Skripsi</label>
+                        <label for="tahun_masuk" class="col-sm-3 col-form-label">Tahun Masuk</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control @error('judul_skripsi') is-invalid @enderror" name="judul_skripsi" value="{{ old('judul_skripsi', $academic->judul_skripsi) }}" placeholder="Masukkan Judul Skripsi Mahasiswa">
+                            <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" name="tahun_masuk" value="{{ old('tahun_masuk', $academic->tahun_masuk) }}" placeholder="Masukkan Tahun Masuk" id="tahun_masuk" min="1900" max="2024" step="1">
                         </div>
                     </div>  
-                    <!-- error message untuk nama_mhs -->
-                    @error('judul_skripsi')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label for="dosen_wali"class="col-sm-3 col-form-label">Dosen Wali</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control @error('dosen_wali') is-invalid @enderror" name="dosen_wali" value="{{ old('dosen_wali', $academic->dosen_wali) }}" placeholder="Masukkan Nama Dosen Wali Mahasiswa">
-                        </div>
-                    </div>  
-                    <!-- error message untuk nama_mhs -->
-                    @error('dosen_wali')
+                    <!-- error message untuk tahun_masuk -->
+                    @error('tahun_masuk')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
                         </div>
@@ -109,10 +63,9 @@
                     <div class="row mb-3">
                         <label for="tahun_lulus" class="col-sm-3 col-form-label">Tahun Lulus</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus', $academic->tahun_lulus) }}" placeholder="Masukkan Tahun Lulus Mahasiswa" id="tahun_lulus" min="1900" max="2024" step="1">
+                            <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus', $academic->tahun_lulus) }}" placeholder="Masukkan Tahun Lulus" id="tahun_lulus" min="1900" max="2024" step="1">
                         </div>
                     </div>  
-                
                     <!-- error message untuk tahun_lulus -->
                     @error('tahun_lulus')
                         <div class="alert alert-danger mt-2">

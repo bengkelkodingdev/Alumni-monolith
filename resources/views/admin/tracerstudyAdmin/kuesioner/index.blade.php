@@ -1,9 +1,9 @@
-@extends('alumni.layouts.main')
-@section('title', 'Akademik')
+@extends('admin.layouts.main')
+@section('title', 'Kuesioner Alumni')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/alumni" >
+        <a class="navbar-brand" href="/admin" >
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
@@ -22,13 +22,9 @@
             </li>
         </ul>
     </nav>
-    
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Akademik</b></h2>
-            <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahAcademic">
-                <i class="fas fa-plus"></i> Tambah
-            </button>
+            <h2><b>Data Kuesioner Alumni</b></h2>
         </div>
 
         <div class="table-container table-logbook">
@@ -43,12 +39,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($academics as $academic)
+                    @forelse ($kuesioners as $kuesioner)
                         <tr>
-                            <td>{{ $academic->nama_studi }}</td>
-                            <td>{{ $academic->ipk }}</td>
-                            <td>{{ $academic->tahun_masuk }}</td>
-                            <td>{{ $academic->tahun_lulus }}</td>
+                            <td>{{ $loop->iteration }}</td> <!-- For numbering -->
+                            <td>{{ $kuesioner->nama_alumni }}</td>
+                            <td>{{ $kuesioner->nim }}</td>
+                            <td>{{ $kuesioner->tahun_masuk }}</td>
+                            <td>{{ $kuesioner->tahun_lulus }}</td>
+                            <td>{{ $kuesioner->no_hp }}</td>
                             <td class="text-center">
                                 <div class="d-inline-flex gap-2">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
@@ -73,15 +71,9 @@
             </table>
         </div>
         <div class="d-flex justify-content-end">
-            {{ $academics->links('pagination::bootstrap-4') }}
+            {{ $kuesioners->links('pagination::bootstrap-4') }}
         </div>     
     </div>
-    
-    <!--Dialog Tambah Logbook-->
-    @include('alumni.tracerstudy.academic.create')
-
-    <!--Dialog Edit Logbook-->
-    @include('alumni.tracerstudy.academic.edit')
 
     <!--Dialog Info Logbook-->
 

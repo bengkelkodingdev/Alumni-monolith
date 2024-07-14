@@ -15,12 +15,9 @@ class academic extends Model
      * @var array
      */
     protected $fillable = [
-        'nim',
-        'nama_mhs',
-        'email',
+        'nama_studi',
         'ipk',
-        'judul_skripsi',
-        'dosen_wali',
+        'tahun_masuk',
         'tahun_lulus'
     ];
 }

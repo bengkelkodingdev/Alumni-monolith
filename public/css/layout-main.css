@@ -334,19 +334,11 @@ input.form-control:focus {
     max-width: 200px;
 }
 
-.card {
-    margin: 20px;
-	border-radius: 7px;
-
-}
-
-.card-header {
-    background-color: #114D91;
-    color: #fff;
-}
-
-.card-body {
+.form-container {
+    background-color: #ffffff;
+    border-radius: 10px;
     padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #btnNavbarSearch {
@@ -561,12 +553,7 @@ input.form-control:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #FFFFFF;
 }
-.form{
-    border: 2px solid #FFDFD0;
-    padding: 15px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
+
 .table th {
     background-color: #0853A6;
     color: #FFFFFF;
