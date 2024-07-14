@@ -26,15 +26,21 @@
 <div class="container-border">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Profil Alumni</h1>
-
+        <div class="text-center mb-4 profile-pic-container">
+        @if(isset($imagePath))
+        <img src="{{ asset($imagePath) }}" alt="Profile Picture" style="border-radius: 50%; width: 150px; height: 150px;">
+    @else
+        <p>Gambar tidak ditemukan.</p>
+    @endif
+        </div>
         <!-- Tampilkan foto profil di bagian atas jika ada -->
          
-            <div class="text-center mb-4 profile-pic-container">
+            {{-- <div class="text-center mb-4 profile-pic-container">
                 <img src=" alt="Foto Profil"
                      class="profile-pic"
                      id="profile-pic" onclick="openModal(this)">
                      
-            </div>
+            </div> --}}
         
 
         <div class="card">
@@ -49,7 +55,7 @@
                             <p class="card-text"><strong>Email:</strong> <span>{{ Auth::user()->email }}</span></p>
                         </div>
                         <div class="info-item">
-                            <p class="card-text"><strong>NIM:</strong> <span>{{ Auth::user()->role }}</span></p>
+                            <p class="card-text"><strong>NIM:</strong> <span></span></p>
                         </div>
                         <div class="info-item">
                             <p class="card-text"><strong>Jenis Kelamin:</strong> <span></span></p>
@@ -91,7 +97,7 @@
                             <label for="foto">Pilih Foto:</label>
                             <input type="file" class="form-control" id="foto" name="foto">
                         </div>
-                        <button type="submit" class="btn btn-primary mt-2">Unggah</button>
+                        <button form="upload-form" type="submit" class="btn btn-primary mt-2">Unggah</button>
                     </form>
                 </div>
             </div>
