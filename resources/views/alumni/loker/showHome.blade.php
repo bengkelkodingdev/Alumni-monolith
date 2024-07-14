@@ -25,7 +25,10 @@
                         {!! nl2br(e($listing->Deskripsi)) !!}
                     </div>
                     <div class="text-lg space-y-6">
-                        <strong>Tipe Kerja: </strong> {{ $listing->TipeKerja }}
+                        <strong>Tipe kerja: </strong> {{ $listing->TipeKerja }}
+                    </div>
+                    <div class="text-lg space-y-6">
+                        <strong>Pengalaman: </strong> {{ $listing->Pengalaman }}
                     </div>
                     <div class="text-lg space-y-6">
                         <strong>Gaji: </strong> {{ $listing->Gaji }}

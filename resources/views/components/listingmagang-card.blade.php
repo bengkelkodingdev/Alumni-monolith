@@ -8,24 +8,24 @@
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem;">
           <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
             data-bs-toggle="modal" data-bs-target="#dialogShowLogang" data-id="{{ $listingmagang->id }}" data-bs-remote="{{ route('logang.show', $listingmagang->id) }}">
-            {{ $listingmagang->NamaPerusahaan }}
+            <b>{{ $listingmagang->Posisi }}</b>
           </button>
         </h3>
-         <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listingmagang->Posisi }}</div>
+         <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listingmagang->NamaPerusahaan }}</div>
          <x-listingmagang-tags :tagsCsv="$listingmagang->Tags" />
          <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">
            <i class="fa-solid fa-location-dot"></i> {{ $listingmagang->Alamat }}
-         </div>
-         <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Pengalaman: {{ $listingmagang->Pengalaman }}
          </div>
          <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;">Gaji: {{ $listingmagang->Gaji }}
          </div>
        </div>
        <div style="display: flex; flex-direction: column; align-items: flex-end;">
-         <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center; margin-bottom: 0.5rem;">
+         <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600; 
+              padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center; margin-bottom: 0.5rem;">
            {{ $listingmagang->TipeMagang }}
          </span>
-         <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">
+         <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600; 
+              padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">
            {{ $listingmagang->Pengalaman }}
          </span>
        </div>

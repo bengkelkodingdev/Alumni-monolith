@@ -6,12 +6,12 @@
         src="{{ $listing->Logo ? asset('/storage/imglogo/' . $listing->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
       <div style="flex-grow: 1;">
         <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem;">
-          {{-- <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;"  --}}
           <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;"
             data-bs-toggle="modal" data-bs-target="#dialogShowLoker" data-id="{{ $listing->id }}" data-bs-remote="{{ route('loker.show', $listing->id) }}">
-            {{ $listing->NamaPerusahaan }}
+            <b>{{ $listing->Posisi }}</b>
           </button>
-        <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listing->Posisi }}</div>
+        </h3>
+        <div style="color: #4b5563; margin-bottom: 0.5rem;">{{ $listing->NamaPerusahaan }}</div>
         <x-listing-tags :tagsCsv="$listing->Tags" />
         <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem;">
           <i class="fa-solid fa-location-dot"></i> {{ $listing->Alamat }}
@@ -20,8 +20,14 @@
         <div style="font-size: 0.875rem; color: #6b7280; margin-top: 0.25rem;"> Gaji: {{ $listing->Gaji }}</div>
       </div>
       <div style="display: flex; flex-direction: column; align-items: flex-end;">
-        <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center; margin-bottom: 0.5rem;">{{ $listing->TipeKerja }}</span>
-        <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">{{ $listing->Pengalaman }}</span>
+        <span style="background-color: #d1fae5; color: #065f46; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; 
+              padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center; margin-bottom: 0.5rem;">
+              {{ $listing->TipeKerja }}
+        </span>
+        <span style="background-color: #fecaca; color: #991b1b; font-size: 0.75rem; font-weight: 600; margin-right: 0.25rem; 
+              padding: 0.25rem 1rem; border-radius: 0.5rem; width: 8rem; text-align: center;">
+              {{ $listing->Pengalaman }}
+        </span>
       </div>
     </div>
   </div>
