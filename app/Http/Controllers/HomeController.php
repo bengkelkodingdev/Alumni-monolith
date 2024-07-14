@@ -12,8 +12,8 @@ class HomeController extends Controller
         $selectedPengalaman = request('Pengalaman', []);
         $selectedTipeKerja = request('TipeKerja', []);
     
-        // Fetch listings based on selected filters
-        $listings = Loker::latest()
+        // Fetch loker based on selected filters
+        $lokers = Loker::latest()
                 ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
                 ->where('Verify', 'verified')
                 ->paginate(6);
@@ -40,8 +40,8 @@ class HomeController extends Controller
         $selectedPengalaman = request('Pengalaman', []);
         $selectedTipeMagang = request('TipeMagang', []);
 
-        // Fetch listingmagang based on selected filters
-        $listingmagang = Logang::latest()
+        // Fetch logang based on selected filters
+        $logangs = Logang::latest()
             ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
             ->where('Verify', 'verified')
             ->paginate(6);
@@ -64,20 +64,18 @@ class HomeController extends Controller
             ->pluck('TipeMagang')
             ->toArray();  
 
-        return view('home', compact('listings', 'listingmagang', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
+        return view('home', compact('lokers', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
                     'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));       
     } 
-   
-    // Show single listing
-    public function show(Loker $id) {
-        return view('alumni.loker.showHome', [
-            'listing' => $id
-        ]);
+    public function showLoker($id){
+        $loker = Loker::findOrFail($id); // Ganti Loker dengan model yang sesuai
+
+        return view('ShowLokerHome', compact('loker')); // Sesuaikan dengan nama file blade yang kamu gunakan
     }
-    // Show single listing
-    public function showMagang(Logang $id) {
-        return view('alumni.logang.showHome', [
-            'listingmagang' => $id
-        ]);
+    public function showLogang($id){
+        $logang = Logang::findOrFail($id); // Ganti Logang dengan model yang sesuai
+
+        return view('ShowLogangHome', compact('logang')); // Sesuaikan dengan nama file blade yang kamu gunakan
     }
+
 }

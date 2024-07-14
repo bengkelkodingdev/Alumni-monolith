@@ -46,7 +46,7 @@
     
     
     
-    <h2><b>Magang</b></h2>
+    <h4><b>Magang</b></h4>
 
     <div style="display: flex; justify-content: space-between;">
         <!-- Tabel Lowongan -->

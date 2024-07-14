@@ -416,92 +416,114 @@
     </section>
 
     
-  <div class="container">
-    <h1 class="my-5 text-center">Lowongan <span class="my-5 text-center">Pekerjaan</span></h1>
-    <p class="text-center">yuk cari lowongan pekerjaan yang sesuai dengan minatmu!</p>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">HOW TO SELL YOUR ITUNES GIFTCARD WITH US</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">01 FEB, 2019 | TECHNOLOGY</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">ETH TO NAIRA EXCHANGE RATE IS NOW #400 PER...</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">19 JUNE, 2019 | BUSINESS</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title text-primary">EXCHANGE 5 PRODUCTS & GET 1 FREE PRODUCT</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">12 DEC, 2019 | LIFESTYLE</small>
-                        <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+      <h1 class="my-5 text-center">Lowongan <span class="my-5 text-center">Pekerjaan</span></h1>
+      <p class="text-center">Yuk cari lowongan pekerjaan yang sesuai dengan minatmu!</p>
+      <div class="row">
+          @foreach($lokers as $loker)
+          <div class="col-md-4">
+              <div class="card mb-4 shadow-sm">
+                  <div class="card-body">
+                      <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                          <img style="width: 4rem; height: 4rem; margin-right: 1rem; object-fit: cover; border-radius: 9999px; max-width: 64px; max-height: 64px;"
+                              src="{{ $loker->Logo ? asset('/storage/imglogo/' . $loker->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
+                          <div>
+                            <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;" onclick="showLokerDetail('{{ $loker->id }}')">
+                              <b>{{ $loker->Posisi }}</b>
+                            </button>
+                            <p class="card-text">{{ $loker->NamaPerusahaan }}</p>
+                          </div>
+                      </div>
+                      <x-listinghome-tags :tagsCsv="$loker->Tags" />
+                      <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">{{ $loker->Gaji }} | {{ $loker->Pengalaman }}</small>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          @endforeach
+      </div>
     </div>
-</div>
-
-<div class="container">
-  <h1 class="my-5 text-center">Lowongan <span class="my-5 text-center">Magang</span></h1>
-  <p class="text-center">yuk cari lowongan magang yang sesuai dengan minatmu!</p>
-  <div class="row">
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <div class="card-body">
-                  <h5 class="card-title text-primary">HOW TO SELL YOUR ITUNES GIFTCARD WITH US</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-muted">01 FEB, 2019 | TECHNOLOGY</small>
-                      <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <div class="card-body">
-                  <h5 class="card-title text-primary">ETH TO NAIRA EXCHANGE RATE IS NOW #400 PER...</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-muted">19 JUNE, 2019 | BUSINESS</small>
-                      <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-              <div class="card-body">
-                  <h5 class="card-title text-primary">EXCHANGE 5 PRODUCTS & GET 1 FREE PRODUCT</h5>
-                  <p class="card-text">Lorem ipsum dolor sit amet, magna habemus ius ad, qui minimum voluptaria in...</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <small class="text-muted">12 DEC, 2019 | LIFESTYLE</small>
-                      <a href="#" class="btn btn-sm btn-outline-primary">READ MORE</a>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-</div>
+    
+    <!-- Script untuk menampilkan Pop-up atau Modul -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+      function showLokerDetail(lokerId) {
+          fetch(`/detail-loker/${lokerId}`)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                  }
+                  return response.text();
+              })
+              .then(data => {
+                Swal.fire({
+                    html: data,
+                    showCloseButton: true,
+                    showConfirmButton: false,
+                    width: '70%', // Atur lebar SweetAlert2 menjadi 80% dari lebar layar
+                });
+              })
+              .catch(error => {
+                  console.error('Error fetching loker detail:', error);
+              });
+      }
+    </script>
+    
+    
+    <div class="container">
+      <h1 class="my-5 text-center">Lowongan <span class="my-5 text-center">Magang</span></h1>
+      <p class="text-center">yuk cari lowongan magang yang sesuai dengan minatmu!</p>
+      <div class="row">
+        @foreach($logangs as $logang)
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <img style="width: 4rem; height: 4rem; margin-right: 1rem; object-fit: cover; border-radius: 9999px; max-width: 64px; max-height: 64px;"
+                            src="{{ $logang->Logo ? asset('/storage/imglogo/' . $logang->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
+                        <div>
+                          <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;" onclick="showLogangDetail('{{ $logang->id }}')">
+                            <b>{{ $logang->Posisi }}</b>
+                          </button>
+                          <p class="card-text">{{ $logang->NamaPerusahaan }}</p>
+                        </div>
+                    </div>
+                    <x-listinghome-tags :tagsCsv="$logang->Tags" />
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">{{ $logang->Gaji }} | {{ $logang->Pengalaman }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+    </div>
+    
+    <!-- Script untuk menampilkan Pop-up atau Modul -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+    function showLogangDetail(logangId) {
+        fetch(`/detail-logang/${logangId}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => {
+              Swal.fire({
+                  html: data,
+                  showCloseButton: true,
+                  showConfirmButton: false,
+                  width: '70%', // Atur lebar SweetAlert2 menjadi 80% dari lebar layar
+              });
+            })
+            .catch(error => {
+                console.error('Error fetching logang detail:', error);
+            });
+    }
+    </script>
      {{-- <section class="bg-gray-50 dark:bg-gray-800">
         <div class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
             <div class="mb-8 max-w-screen-md lg:mb-16">

@@ -43,7 +43,7 @@
         </div> 
     </div>
 
-    <h2><b>Pekerjaan</b></h2>
+    <h4><b>Pekerjaan</b></h4>
 
     <div style="display: flex; justify-content: space-between;">
         <!-- Tabel Lowongan -->
