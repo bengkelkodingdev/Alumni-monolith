@@ -34,6 +34,8 @@ Route::get('/home', function(){
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');
+Route::get('/detail-logang/{id}', [HomeController::class, 'showLogang'])->name('logang.detail');
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
