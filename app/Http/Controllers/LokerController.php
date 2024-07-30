@@ -11,36 +11,55 @@ class LokerController extends Controller{
     /**
      * Display a listing of the resource.
      */
-    public function index(){
-        // Get selected filters
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeKerja = request('TipeKerja', []);
+    // public function index(){
+    //     // Get selected filters
+    //     $selectedPengalaman = request('Pengalaman', []);
+    //     $selectedTipeKerja = request('TipeKerja', []);
     
-        // Fetch loker based on selected filters
-        $loker = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
+    //     // Fetch loker based on selected filters
+    //     $loker = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
     
-        // Determine the availability of each filter option
-        $availablePengalaman = Loker::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
+    //     // Determine the availability of each filter option
+    //     $availablePengalaman = Loker::select('Pengalaman')
+    //         ->distinct()
+    //         ->whereIn('Pengalaman', [
+    //             'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
+    //             'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
+    //         ])
+    //         ->pluck('Pengalaman')
+    //         ->toArray();
     
-        $availableTipeKerja = Loker::select('TipeKerja')
-            ->distinct()
-            ->whereIn('TipeKerja', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeKerja')
-            ->toArray();
+    //     $availableTipeKerja = Loker::select('TipeKerja')
+    //         ->distinct()
+    //         ->whereIn('TipeKerja', [
+    //             'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
+    //         ])
+    //         ->pluck('TipeKerja')
+    //         ->toArray();
     
-        return view('alumni.loker.index', compact('loker', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
-    }
+    //     return view('alumni.loker.index', compact('loker', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
+    // }
        
-
+    public function index(Request $request)
+    {
+        $selectedPengalaman = $request->input('Pengalaman', []);
+        $selectedTipeKerja = $request->input('TipeKerja', []);
+        
+        // Fetch filtered results based on selected checkboxes
+        $loker = Loker::query();
+    
+        if (!empty($selectedPengalaman)) {
+            $loker->whereIn('Pengalaman', $selectedPengalaman);
+        }
+    
+        if (!empty($selectedTipeKerja)) {
+            $loker->whereIn('TipeKerja', $selectedTipeKerja);
+        }
+    
+        $loker = $loker->get();
+    
+        return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja'));
+    }
     // Show single listing
     public function show(Loker $id) {
         $loker = Loker::find($id);

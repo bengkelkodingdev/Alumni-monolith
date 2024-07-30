@@ -11,35 +11,55 @@ class LogangController extends Controller{
     /**
      * Display a listing of the resource.
      */
-    public function index(){
-        // Get selected filters
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeMagang = request('TipeMagang', []);
+    // public function index(){
+    //     // Get selected filters
+    //     $selectedPengalaman = request('Pengalaman', []);
+    //     $selectedTipeMagang = request('TipeMagang', []);
     
-        // Fetch logang based on selected filters
-        $logang = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeMagang']))->paginate(6);
+    //     // Fetch logang based on selected filters
+    //     $logang = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeMagang']))->paginate(6);
     
-        // Determine the availability of each filter option
-        $availablePengalaman = Logang::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
+    //     // Determine the availability of each filter option
+    //     $availablePengalaman = Logang::select('Pengalaman')
+    //         ->distinct()
+    //         ->whereIn('Pengalaman', [
+    //             'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
+    //             'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
+    //         ])
+    //         ->pluck('Pengalaman')
+    //         ->toArray();
     
-        $availableTipeMagang = Logang::select('TipeMagang')
-            ->distinct()
-            ->whereIn('TipeMagang', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeMagang')
-            ->toArray();
+    //     $availableTipeMagang = Logang::select('TipeMagang')
+    //         ->distinct()
+    //         ->whereIn('TipeMagang', [
+    //             'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
+    //         ])
+    //         ->pluck('TipeMagang')
+    //         ->toArray();
     
-        return view('alumni.logang.index', compact('logang', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
+    //     return view('alumni.logang.index', compact('logang', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
+    // }
+    public function index(Request $request)
+    {
+        $selectedPengalaman = $request->input('Pengalaman', []);
+        $selectedTipeMagang = $request->input('TipeMagang', []);
+        
+        // Fetch filtered results based on selected checkboxes
+        $logang = Logang::query();
+    
+        if (!empty($selectedPengalaman)) {
+            $logang->whereIn('Pengalaman', $selectedPengalaman);
+        }
+    
+        if (!empty($selectedTipeMagang)) {
+            $logang->whereIn('TipeMagang', $selectedTipeMagang);
+        }
+    
+        $logang = $logang->get();
+    
+        return view('alumni.logang.index', compact('logang', 'selectedPengalaman', 'selectedTipeMagang'));
     }
-       
+    
 
     // Show single listing
     public function show(Logang $id) {
