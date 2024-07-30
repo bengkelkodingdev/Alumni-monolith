@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('quizcheck') }}" class="sidebar-link">
+                <a href="{{ route('tracerstudycheck') }}" class="sidebar-link">
                     <i class="lni lni-pencil-alt"></i>
                     <span>Tracerstudy</span>
                 </a>

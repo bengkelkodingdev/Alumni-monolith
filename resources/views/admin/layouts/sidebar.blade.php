@@ -16,9 +16,9 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="{{ route('kuesionerAdmin.index') }}" class="sidebar-link">
                     <i class="lni lni-pencil-alt"></i>
-                    <span>Data Alumni</span>
+                    <span>Data Kuesioner Alumni</span>
                 </a>
             </li>
             <li class="sidebar-item">

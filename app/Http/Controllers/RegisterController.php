@@ -16,14 +16,14 @@ class RegisterController extends Controller
 
     public function simpan(Request $request){
         $request->validate([
-            'nama'=>'required',
+            'nama_alumni'=>'required',
             'email'=>'required',
             'role'=>'required',
             'password'=>'required'
         ]);
 
         $data = [
-            'name'=> $request->nama,
+            'nama_alumni'=> $request->nama_alumni,
             'email'=> $request->email,
             'role'=> $request->role,
             'password'=> Hash::make($request->password)
