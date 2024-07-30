@@ -15,13 +15,7 @@ class alumni extends Model
      * @var array
      */
     protected $fillable = [
-        'foto',
-        'nama_alumni',
-        'jns_kelamin',
-        'nim',
-        'no_hp',
-        'email',
-        'status'
+        'nama_alumni', 'jns_kelamin', 'nim', 'no_hp', 'email', 'status', 'profile_picture',
     ];
     public function user()
     {

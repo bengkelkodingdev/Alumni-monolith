@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
-            $table->string('foto');
+            $table->string('profile_picture')->nullable(); 
             $table->string('nama_alumni');
             $table->string('jns_kelamin');   
             $table->string('nim');   

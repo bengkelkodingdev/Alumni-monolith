@@ -35,6 +35,8 @@ Route::middleware(['guest'])->group(function(){
 Route::get('/home', function(){
     return redirect('/admin');
 });
+Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+    Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');
@@ -215,6 +217,13 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
     Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
+
+    //  Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
+    //     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+    //     Route::post('/profile', [AboutController::class, 'store'])->name('alumni-store');
+    // });  
+
+
 
     //route Loker Admin
     Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('lokeradmin.index');

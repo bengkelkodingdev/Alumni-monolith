@@ -25,7 +25,7 @@
 
   <div class="container-border">
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Profil </h1>
+        <h1 class="text-center mb-4">Profil Alumni </h1>
         <div class="text-center mb-4 ">
             @if(Auth::user()->profile_picture)
                 <img src="{{ asset('storage/profile_pictures/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="border-radius: 50%; width: 150px; height: 150px;" onclick="openModal(this)">
@@ -45,7 +45,7 @@
                         <div class="info-item">
                             <p class="card-text"><strong>Email:</strong> <span>{{ Auth::user()->email }}</span></p>
                         </div>
-                        {{-- <div class="info-item">
+                        <div class="info-item">
                             <p class="card-text"><strong>NIM:</strong> <span></span></p>
                         </div>
                         <div class="info-item">
@@ -65,7 +65,7 @@
                         <div class="info-item">
                             <p class="card-text"><strong>Status:</strong> <span></span></p>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
 
                 <!-- Tombol untuk membuka modal upload foto -->
