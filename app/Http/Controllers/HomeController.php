@@ -13,7 +13,7 @@ class HomeController extends Controller
         $selectedTipeKerja = request('TipeKerja', []);
     
         // Fetch loker based on selected filters
-        $lokers = Loker::latest()
+        $loker = Loker::latest()
                 ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
                 ->where('Verify', 'verified')
                 ->paginate(6);
@@ -64,18 +64,18 @@ class HomeController extends Controller
             ->pluck('TipeMagang')
             ->toArray();  
 
-        return view('home', compact('lokers', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
+        return view('home', compact('loker', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
                     'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));       
     } 
     public function showLoker($id){
-        $loker = Loker::findOrFail($id); // Ganti Loker dengan model yang sesuai
+        $loker = Loker::findOrFail($id); 
 
-        return view('ShowLokerHome', compact('loker')); // Sesuaikan dengan nama file blade yang kamu gunakan
+        return view('ShowLokerHome', compact('loker')); 
     }
     public function showLogang($id){
-        $logang = Logang::findOrFail($id); // Ganti Logang dengan model yang sesuai
+        $logang = Logang::findOrFail($id); 
 
-        return view('ShowLogangHome', compact('logang')); // Sesuaikan dengan nama file blade yang kamu gunakan
+        return view('ShowLogangHome', compact('logang')); 
     }
 
 }
