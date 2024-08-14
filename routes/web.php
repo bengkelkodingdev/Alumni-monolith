@@ -76,7 +76,7 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
         $userId = Auth::id();
 
         // Mengambil jumlah data kuesioner untuk pengguna yang sedang login
-        $kuesionerCount = Kuesioner::where('id_alumni', $userId)->count();
+        $kuesionerCount = kuesioner::where('id_alumni', $userId)->count();
 
         // Periksa apakah ada data kuesioner
         if ($kuesionerCount > 0) {
