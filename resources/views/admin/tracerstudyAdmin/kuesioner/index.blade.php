@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('title', 'Kuesioner Alumni')
+@section('title', 'Tracerstudy Alumni')
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
@@ -24,18 +24,30 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Data Kuesioner Alumni</b></h2>
+            <h2><b>Tracerstudy Alumni</b></h2>
         </div>
 
         <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered text-center">
+            <table class="table table-hover table-bordered text-start">
                 <thead>
                     <tr>
-                        <th scope="col">Nama Perguruan Tinggi</th>
-                        <th scope="col">IPK</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Jenis Kelamin</th>
+                        <th scope="col">NIM</th>
                         <th scope="col">Tahun Masuk</th>
                         <th scope="col">Tahun Lulus</th>
-                        <th scope="col">Aksi</th>
+                        <th scope="col">No WhatsApp</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Jenis Pekerjaan</th>
+                        <th scope="col">Nama Pekerjaan</th>
+                        <th scope="col">Jabatan Pekerjaan</th>
+                        <th scope="col">Lingkup Pekerjaan</th>
+                        <th scope="col">Biaya Studi</th>
+                        <th scope="col">Nama Universitas</th>
+                        <th scope="col">Program Studi</th>
+                        <th scope="col">Tanggal Studi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,27 +55,23 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td> <!-- For numbering -->
                             <td>{{ $kuesioner->nama_alumni }}</td>
+                            <td>{{ $kuesioner->jns_kelamin }}</td>
                             <td>{{ $kuesioner->nim }}</td>
                             <td>{{ $kuesioner->tahun_masuk }}</td>
                             <td>{{ $kuesioner->tahun_lulus }}</td>
                             <td>{{ $kuesioner->no_hp }}</td>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('academic.destroy', $academic->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                            <td>{{ $kuesioner->email }}</td>
+                            <td>{{ $kuesioner->status }}</td>
+                            <td>{{ $kuesioner->jns_job }}</td>
+                            <td>{{ $kuesioner->jabatan_job }}</td>
+                            <td>{{ $kuesioner->lingkup_job }}</td>
+                            <td>{{ $kuesioner->biaya_studi }}</td>
+                            <td>{{ $kuesioner->nama_studi }}</td>
+                            <td>{{ $kuesioner->prodi }}</td>
+                            <td>{{ $kuesioner->tgl_studi }}</td>
                         </tr>
                     @empty
-                        <td colspan="8" class="text-center">
+                        <td colspan="19" class="text-center">
                             <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
                         </td>
                     @endforelse

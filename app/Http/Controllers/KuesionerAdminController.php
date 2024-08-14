@@ -28,13 +28,10 @@ class KuesionerAdminController extends Controller
      */
     public function index(): View
     {
-        // Mengambil data pengguna yang sedang login
-        $user = Auth::user();
+        // Mengambil data kuesioner dengan paginasi
+        $kuesioners = Kuesioner::paginate(5);
 
-        // Mengambil kuesioner terbaru dengan paginasi
-        $kuesioners = Kuesioner::where('id_alumni', $user->id)->latest()->paginate(5);
-
-        // Render view dengan kuesioner dan data pengguna
-        return view('admin.tracerstudyAdmin.kuesioner.index', compact('kuesioners', 'user'));
+        // Mengirim data ke view 'admin.tracerstudyAdmin.kuesioner.index'
+        return view('admin.tracerstudyAdmin.kuesioner.index', compact('kuesioners'));
     }
 }
