@@ -1,2 +1,4 @@
-*
-!.gitignore
+# Mengabaikan semua file kecuali gambar dengan ekstensi tertentu
+!*.jpg
+!*.png
+!*.jpeg
