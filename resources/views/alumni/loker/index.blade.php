@@ -23,7 +23,7 @@
     </nav> 
 
     <div class="container mt-4">
-        <div class="d-flex flex-column mb-6">
+        <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
             @if(count($loker) == 0)
                 <div class="alert alert-warning" role="alert">
                     No Lowongan Found. Silahkan isi lowongan.

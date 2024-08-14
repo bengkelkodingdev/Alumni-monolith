@@ -38,25 +38,11 @@ class LogangAdminController extends Controller
     
     
 
-    // Show single listingmagang
+    // Show single listing
     public function show(Logang $id) {
-        return view('logangadmin.showAdmin', [
-            'listingmagang' => $id
-        ]);
+        $logang = Logang::find($id);
+        return view('admin.logangAdmin.showAdmin', ['logang' => $id]);
     }
-
-    // Show Create Form
-    public function create() {
-        return view('listingmagang.create');
-    }
-    // public function verify($id){
-    //     $listingmagangadmin = Logang::find($id);
-    //     if ($listingmagangadmin){
-    //         $listingmagangadmin->verify = 'verified';
-    //         $listingmagangadmin->save();
-    //     }
-    //     return redirect()->route('logangadmin.manage')->with('success', 'Lowongan verified successfully');
-    // }
     public function verify(Request $request, $id){
         $listingmagangadmin = Logang::find($id);
 

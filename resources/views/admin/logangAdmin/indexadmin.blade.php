@@ -32,19 +32,12 @@
         }
         @endphp
         <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-            {{-- <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahLogang"
-                data-bs-remote="{{ route('logangadmin.create') }}">
-                <i class="fas fa-plus"></i> Post Lowongan
-            </button> --}}
-            
             <a href="{{ route('logangadmin.manage') }}" class="btn btn-primary">
                 <i class="fas fa-cog"></i> Manage Lowongan
             </a>
         </div> 
     </div>
-    
-    
-    
+        
     
     <h4><b>Magang</b></h4>
 
@@ -54,51 +47,14 @@
             <div class="p-2.5">
                 @unless(count($logangAdmin) == 0)
                     @foreach($logangAdmin as $listingmagang)
-                        <x-listingmagang-card :listingmagang="$listingmagang" />
+                        <x-listingadminmagang-card :listingmagang="$listingmagang" />
                     @endforeach
                 @else
                     <p>No Lowongan Found. Silahkan isi lowongan.</p>
                 @endunless
             </div>
         </div>
-
-        <!-- Tabel Pengalaman Magang -->
-        {{-- <div style="width: 35%;">
-            <form id="filterForm" method="GET" action="{{ route('listingmagang.index') }}">
-                <h1><b>Pengalaman Magang</b></h1>
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-                    @foreach ([
-                        'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                        'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-                    ] as $pengalaman)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> Mengatur ukuran font kecil
-                            <input type="checkbox" class="mr-2" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
-                                   {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }} /> {{ $pengalaman }}
-                        </label>
-                        <br>
-                    @endforeach
-                </div>
-
-                
-
-                <!-- Tipe PeMagangan -->
-                <h1><b>Tipe Magang</b></h1>
-                <div class="border border-blue-500 bg-blue-100 p-4 rounded-b-lg mr-10 mb-4">
-                    @foreach ([
-                        'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-                    ] as $tipeMagang)
-                        <label class="flex items-center mb-2" style="font-size: 14px;"> Mengatur ukuran font kecil
-                            <input type="checkbox" class="mr-2" name="TipeMagang[]" value="{{ strtolower($tipeMagang) }}" 
-                                   {{ in_array(strtolower($tipeMagang), array_map('strtolower', $selectedTipeMagang)) ? 'checked' : '' }} /> {{ $tipeMagang }}
-                        </label>
-                        <br>
-                    @endforeach
-                </div>
-            </form>
-        </div> --}}
     </div>
-    <!--Dialog Tambah Lowongan-->
-    {{-- @include('alumni.logang.create') --}}
     <div class="modal fade" id="dialogTambahLogang" tabindex="-1" aria-labelledby="dialogTambahLogangLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -106,15 +62,6 @@
             </div>
         </div>
     </div>
-
-    {{-- <script>
-        document.querySelectorAll('input[name="Pengalaman[]"], input[name="TipeMagang[]"]').forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                document.getElementById('filterForm').submit();
-            });
-        });
-    </script> --}}
-
     <div class="mt-6 p-4">
         {{$logangAdmin->links()}}
     </div>

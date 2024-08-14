@@ -62,7 +62,7 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::get('/manageLoker', [LokerController::class,'manage'])->name('loker.manage');
 
     //route Logang
-    Route::get('/logang', [LogangController::class, 'index'])->name('listingmagang.index');
+    Route::get('/logang', [LogangController::class, 'index'])->name('logang.index');
     Route::get('/postLogang',[LogangController::class,'create'])->name('logang.create');
     Route::post('/storelogang',[LogangController::class, 'store'])->name('logang.store');
     Route::get('/logang/{id}', [LogangController::class,'show'])->name('logang.show');
@@ -87,26 +87,6 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
             return redirect()->route('kuesioner.create');
         }
     })->name('tracerstudycheck');
-
-    //route Logang
-    Route::get('/logang', [LogangController::class, 'index'])->name('logang.index');
-    Route::get('/postLogang',[LogangController::class,'create'])->name('logang.create');
-    Route::post('/storelogang',[LogangController::class, 'store'])->name('logang.store');
-    Route::get('/logang/{id}', [LogangController::class,'show'])->name('logang.show');
-    Route::get('/loganghome/{id}', [LogangController::class,'showHome'])->name('logang.showHome');
-    Route::get('/logang/{id}/edit', [LogangController::class,'edit'])->name('logang.edit');
-    Route::put('/logang/{id}/update', [LogangController::class,'update'])->name('logang.update');
-    Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
-    Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
-    //route Logang Admin
-    Route::get('/logangadmin',[LogangAdminController::class, 'indexadmin'])->name('logangadmin.index');
-    Route::get('/adminLogang/{id}', [LogangAdminController::class,'show'])->name('logangadmin.show');
-    // Route::get('/adminLogang/{id}/edit', [LogangAdminController::class, 'edit']);
-    // Route::put('/adminLogang/{id}/update', [LogangAdminController::class, 'update']);
-    Route::delete('/adminLogang/{id}/delete', [LogangAdminController::class, 'destroy']);
-    Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']);
-    Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
-
 
     // Rute yang memeriksa data dan mengarahkan ke halaman yang tepat
     Route::get('/quizcheck', function () {
@@ -227,18 +207,14 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
 
     //route Loker Admin
     Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('lokeradmin.index');
-    Route::get('/adminLoker/{id}', [LokerAdminController::class,'show'])->name('lokeradmin.show');
-    // Route::get('/adminLoker/{id}/edit', [LokerAdminController::class, 'edit'])->name('lokeradmin.edit');
-    // Route::put('/adminLoker/{id}/update', [LokerAdminController::class, 'update'])->name('lokeradmin.update');
+    Route::get('/lokeradmin/{id}', [LokerAdminController::class,'show'])->name('lokeradmin.showAdmin');
     Route::delete('/adminLoker/{id}/delete', [LokerAdminController::class, 'destroy']);
     Route::post('/adminLoker/{id}/verify', [LokerAdminController::class, 'verify']);
     Route::get('/manageLokerAdmin', [LokerAdminController::class, 'manage'])->name('lokeradmin.manage');
 
     //route Logang Admin
     Route::get('/logangadmin',[LogangAdminController::class, 'indexadmin'])->name('logangadmin.index');
-    Route::get('/adminLogang/{id}', [LogangAdminController::class,'show'])->name('logangadmin.show');
-    // Route::get('/adminLogang/{id}/edit', [LogangAdminController::class, 'edit']);
-    // Route::put('/adminLogang/{id}/update', [LogangAdminController::class, 'update']);
+    Route::get('/logangadmin/{id}', [LogangAdminController::class,'show'])->name('logangadmin.showAdmin');
     Route::delete('/adminLogang/{id}/delete', [LogangAdminController::class, 'destroy']);
     Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']);
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');

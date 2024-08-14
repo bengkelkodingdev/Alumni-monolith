@@ -65,10 +65,10 @@ class LokerController extends Controller{
         $loker = Loker::find($id);
         return view('alumni.loker.show', ['loker' => $id]);
     }
-    public function showHome(Loker $id) {
-        $listing = Loker::find($id);
-        return view('alumni.loker.showHome', ['listing' => $id]);
-    }
+    // public function showHome(Loker $id) {
+    //     $listing = Loker::find($id);
+    //     return view('alumni.loker.showHome', ['listing' => $id]);
+    // }
 
     // Show Create Form
     public function create() {

@@ -40,25 +40,11 @@ class LokerAdminController extends Controller
     
     
 
-    // Show single listingkerja
+    // Show single listing
     public function show(Loker $id) {
-        return view('lokeradmin.showAdmin', [
-            'listingkerja' => $id
-        ]);
+        $loker = Loker::find($id);
+        return view('admin.lokerAdmin.showAdmin', ['loker' => $id]);
     }
-
-    // Show Create Form
-    public function create() {
-        return view('listingkerja.create');
-    }
-    // public function verify($id){
-    //     $listingkerjaadmin = Loker::find($id);
-    //     if ($listingkerjaadmin){
-    //         $listingkerjaadmin->verify = 'verified';
-    //         $listingkerjaadmin->save();
-    //     }
-    //     return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan verified successfully');
-    // }
     public function verify(Request $request, $id){
         $listingkerjaadmin = Loker::find($id);
 

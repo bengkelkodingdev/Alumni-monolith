@@ -13,7 +13,7 @@ class HomeController extends Controller
         $selectedTipeKerja = request('TipeKerja', []);
     
         // Fetch loker based on selected filters
-        $loker = Loker::latest()
+        $lokers = Loker::latest()
                 ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
                 ->where('Verify', 'verified')
                 ->paginate(6);
@@ -64,7 +64,7 @@ class HomeController extends Controller
             ->pluck('TipeMagang')
             ->toArray();  
 
-        return view('home', compact('loker', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
+        return view('home', compact('lokers', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
                     'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));       
     } 
     public function showLoker($id){
