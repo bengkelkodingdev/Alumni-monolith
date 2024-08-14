@@ -11,7 +11,7 @@ class AboutController extends Controller
     public function profile()
     {
         $user = Auth::user();
-        $alumni = Alumni::where('email', $user->email)->first();
+        $alumni = alumni::where('email', $user->email)->first();
         return view('profile', ['alumni' => $alumni]);
     }
 
