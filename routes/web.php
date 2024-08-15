@@ -74,13 +74,13 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     // Route untuk cv
     Route::get('/cv', function () {
         // Mengambil data dari semua model yang diperlukan
-        $academics = \App\Models\Academic::paginate(5);
-        $jobs = \App\Models\Job::paginate(5);
-        $internships = \App\Models\Internship::paginate(5);
-        $organizations = \App\Models\Organization::paginate(5);
-        $awards = \App\Models\Award::paginate(5);
-        $courses = \App\Models\Course::paginate(5);
-        $skills = \App\Models\Skill::paginate(5);
+        $academics = \App\Models\academic::paginate(5);
+        $jobs = \App\Models\job::paginate(5);
+        $internships = \App\Models\internship::paginate(5);
+        $organizations = \App\Models\organization::paginate(5);
+        $awards = \App\Models\award::paginate(5);   
+        $courses = \App\Models\course::paginate(5);
+        $skills = \App\Models\skill::paginate(5);
 
         // Mengirim data ke view
         return view('alumni.tracerstudy.cv.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
