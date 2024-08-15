@@ -78,7 +78,7 @@
                         <div class="row mb-3">
                             <label  class="col-sm-3 col-form-label">Deskripsi Award</label>
                             <div class="col-sm-9">
-                            <input type="text" class="form-control @error('deskripsi_award') is-invalid @enderror" name="deskripsi_award" value="{{ old('deskripsi_award') }}" placeholder="Masukkan Deskripsi Award">
+                                <textarea class="form-control @error('deskripsi_award') is-invalid @enderror" name="deskripsi_award" id="deskripsi_award" rows="5" placeholder="Masukkan Deskripsi Award">{{ old('deskripsi_award') }}</textarea>
                             </div>  
                         </div>  
                         <!-- error message untuk deskripsi_award -->

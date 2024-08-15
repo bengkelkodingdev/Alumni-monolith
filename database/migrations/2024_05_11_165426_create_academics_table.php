@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('academics', function (Blueprint $table) {
             $table->id();
             $table->string('nama_studi');
+            $table->string('prodi');
             $table->double('ipk');
             $table->integer('tahun_masuk');
             $table->integer('tahun_lulus');
+            $table->string('kota');
+            $table->string('negara');
+            $table->longText('catatan');
             $table->timestamps();
         });
     }

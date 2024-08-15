@@ -23,6 +23,7 @@ class kuesioner extends Model
         'no_hp',
         'email',
         'status',
+        'bidang_job',
         'jns_job',
         'nama_job',
         'jabatan_job',

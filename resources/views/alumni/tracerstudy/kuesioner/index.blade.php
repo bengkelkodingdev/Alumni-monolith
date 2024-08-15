@@ -98,6 +98,14 @@
                                 @if($kuesioner->status == "Bekerja Full Time" || $kuesioner->status == "Bekerja Part Time" || $kuesioner->status == "Wiraswasta")
                                 <div class="form-group">
                                     <div class="row mb-3">
+                                        <label for="email" class="col-sm-3 col-form-label">Bidang Pekerjaan</label>
+                                        <div class="col-sm-9">
+                                            <p><b>: &nbsp;&nbsp;</b>{{ $kuesioner->bidang_job }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row mb-3">
                                         <label for="email" class="col-sm-3 col-form-label">Kategori Pekerjaan</label>
                                         <div class="col-sm-9">
                                             <p><b>: &nbsp;&nbsp;</b>{{ $kuesioner->jns_job }}</p>

@@ -18,10 +18,9 @@ class job extends Model
         'nama_job',
         'periode_masuk_job',
         'periode_keluar_job',
-        'alamat_job',
-        'lingkup_job',
-        'bidang_job',
-        'jns_job',
-        'jabatan_job',
+        'jabatan_job',   
+        'kota',
+        'negara',
+        'catatan'
     ];
 }

@@ -30,47 +30,56 @@
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
-
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama Perguruan Tinggi</th>
-                        <th scope="col">IPK</th>
-                        <th scope="col">Tahun Masuk</th>
-                        <th scope="col">Tahun Lulus</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($academics as $academic)
+        <div class="card">
+            <div class="table-container table-logbook">
+                <table class="table table-hover table-bordered text-center">
+                    <thead>
                         <tr>
-                            <td>{{ $academic->nama_studi }}</td>
-                            <td>{{ $academic->ipk }}</td>
-                            <td>{{ $academic->tahun_masuk }}</td>
-                            <td>{{ $academic->tahun_lulus }}</td>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('academic.destroy', $academic->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+                            <th scope="col">Nama Perguruan Tinggi</th>
+                            <th scope="col">Progam Studi</th>
+                            <th scope="col">IPK</th>
+                            <th scope="col">Tahun Masuk</th>
+                            <th scope="col">Tahun Lulus</th>
+                            <th scope="col">Kota</th>
+                            <th scope="col">Negara</th>
+                            <th scope="col">Catatan</th>
+                            <th scope="col">Aksi</th>
                         </tr>
-                    @empty
-                        <td colspan="8" class="text-center">
-                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($academics as $academic)
+                            <tr>
+                                <td>{{ $academic->nama_studi }}</td>
+                                <td>{{ $academic->prodi }}</td>
+                                <td>{{ $academic->ipk }}</td>
+                                <td>{{ $academic->tahun_masuk }}</td>
+                                <td>{{ $academic->tahun_lulus }}</td>
+                                <td>{{ $academic->kota }}</td>
+                                <td>{{ $academic->negara }}</td>
+                                <td>{{ $academic->catatan }}</td>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-2">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditAcademic{{ $academic->id }}">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('academic.destroy', $academic->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <td colspan="9" class="text-center">
+                                <div class="alert alert-warning">Data belum Tersedia.</div>
+                            </td>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             {{ $academics->links('pagination::bootstrap-4') }}

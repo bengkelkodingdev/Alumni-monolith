@@ -27,6 +27,21 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="prodi" class="col-sm-3 col-form-label">Program Studi</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" value="{{ old('prodi', $academic->prodi) }}" placeholder="Masukkan Nama Universitas" id="prodi">
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('prodi')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 
                 <div class="form-group">
                     <div class="row mb-3">
@@ -73,6 +88,52 @@
                         </div>
                     @enderror
                 </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="kota" class="col-sm-3 col-form-label">Kota</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ old('kota', $academic->kota) }}" placeholder="Masukkan Nama Universitas" id="kota">
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('kota')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="negara" class="col-sm-3 col-form-label">Negara</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('negara') is-invalid @enderror" name="negara" value="{{ old('negara', $academic->negara) }}" placeholder="Masukkan Nama Universitas" id="negara">
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('negara')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="negara" class="col-sm-3 col-form-label">Catatan</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan" rows="5" placeholder="Masukkan Catatan Akademik">{{ old('catatan', $academic->catatan) }}</textarea>
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('negara')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="d-flex justify-content-end mt-5">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>  

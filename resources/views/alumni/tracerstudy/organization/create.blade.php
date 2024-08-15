@@ -26,78 +26,29 @@
 
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Periode (YYYY/YYYY)</label>
-                            <div class="col-sm-9">        
-                                <input type="text" class="form-control @error('periode_org') is-invalid @enderror" name="periode_org" value="{{ old('periode_org') }}" placeholder="Masukkan Tahun Periode Organisasi ">
+                            <label class="col-sm-3 col-form-label">Periode<br>(ex : Januari 2000)</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control @error('periode_masuk_org') is-invalid @enderror" name="periode_masuk_org" value="{{ old('periode_masuk_org') }}" placeholder="Periode Masuk"> 
                             </div>  
-                        </div>  
-                        <!-- error message untuk periode_org -->
-                        @error('periode_org')
+                            <label class="col-sm-2 col-form-label">Sampai</label>
+                            <div class="col-sm-3">
+                                <input type="text" class="form-control @error('periode_keluar_org') is-invalid @enderror" name="periode_keluar_org" value="{{ old('periode_keluar_org') }}" placeholder="Periode Keluar">
+                            </div>                                     
+                        </div>                       
+                        <!-- error message untuk periode_masuk_intern -->
+                        @error('periode_masuk_org')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <!-- error message untuk periode_keluar_intern -->
+                        @error('periode_keluar_org')
                             <div class="alert alert-danger mt-2">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
                     
-                    <div class="form-group">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tautan/Website</label>
-                            <div class="col-sm-9">        
-                            <input type="link" class="form-control @error('link_org') is-invalid @enderror" name="link_org" value="{{ old('link_org') }}" placeholder="Masukkan Tautan/Website Organisasi">
-                            </div>  
-                        </div>  
-                        <!-- error message untuk link_org -->
-                        @error('link_org')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Tingkat Organisasi</label>
-                            <div class="col-sm-9">  
-                                <select class="selectpicker form-control" data-live-search="true" name="tingkat_org" value="{{ old('tingkat_org') }}" >
-                                    <option selected disabled>Pilih Tingkat Organisasi</option>
-                                    <option value="Lokal">Lokal</option>
-                                    <option value="Nasional">Nasional</option>
-                                    <option value="Internasional">Internasional</option>
-                                </select>          
-                            </div>  
-                        </div>                                  
-                        <!-- error message untuk tingkat_org -->
-                        @error('tingkat_org')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Jenis Organisasi</label>
-                            <div class="col-sm-9">   
-                                <select class="selectpicker form-control" data-live-search="true" name="jns_org" value="{{ old('jns_org') }}" >
-                                    <option selected disabled>Pilih Jenis Organisasi</option>
-                                    <option value="Ormawa">Ormawa (Organisasi Mahasiswa)</option>
-                                    <option value="UKM">UKM (Unit Kegiatan Mahasiswa)</option>
-                                    <option value="LSM">LSM (Lembaga Swadaya Masyarakat)</option>
-                                    <option value="partai Politik">partai Politik</option>
-                                    <option value="Ormas">Ormas (Organisasi Masyarakat)</option>
-                                    <option value="Profesi">Profesi</option>
-                                    <option value="Lainnya">Lainnya</option>
-                                </select>        
-                            </div>  
-                        </div>  
-                        <!-- error message untuk jns_org -->
-                        @error('jns_org')
-                            <div class="alert alert-danger mt-2">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-
                     <div class="form-group">
                         <div class="row mb-3">
                             <label class="col-sm-3 col-form-label">Jabatan Organisasi</label>
@@ -112,6 +63,50 @@
                             </div>
                         @enderror
                     </div>
+
+                    
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <label for="kota" class="col-sm-3 col-form-label">Kota</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ old('kota') }}" placeholder="Masukkan Nama Kota Tempat Universitas Berada" id="kota">
+                                </div>
+                        </div>   
+                        @error('kota')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <label for="negara" class="col-sm-3 col-form-label">Negara</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control @error('negara') is-invalid @enderror" name="negara" value="{{ old('negara') }}" placeholder="Masukkan Nama Negara Tempat Universitas Berada" id="negara" >
+                                </div>
+                        </div>   
+                        @error('negara')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
+                                <div class="col-sm-9">
+                                    <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan" rows="5" placeholder="Masukkan Catatan Akademik">{{ old('catatan') }}</textarea>
+                                </div>
+                        </div>   
+                        @error('catatan')
+                            <div class="alert alert-danger mt-2">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    
                     <div class="modal-footer">
                         <button type="reset" class="btn btn btn-warning">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>

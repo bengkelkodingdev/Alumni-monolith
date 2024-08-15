@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
             $table->string('nama_org');
-            $table->string('periode_org');  
-            $table->string('link_org');
-            $table->string('tingkat_org');
-            $table->string('jns_org');            
+            $table->string('periode_masuk_org');            
+            $table->string('periode_keluar_org');    
             $table->string('jabatan_org');
+            $table->string('kota');
+            $table->string('negara');
+            $table->longText('catatan');
             $table->timestamps();
         });
     }

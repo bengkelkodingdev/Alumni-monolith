@@ -16,10 +16,11 @@ class organization extends Model
      */
     protected $fillable = [
         'nama_org',
-        'periode_org',
-        'link_org',
-        'tingkat_org',
-        'jns_org',
-        'jabatan_org'
+        'periode_masuk_org',
+        'periode_keluar_org',
+        'jabatan_org',
+        'kota',
+        'negara',
+        'catatan'
     ];
 }

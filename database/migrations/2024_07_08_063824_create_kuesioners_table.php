@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('no_hp');            
             $table->string('email');  
             $table->string('status');
+            $table->string('bidang_job')->nullable();
             $table->string('jns_job')->nullable();
             $table->string('nama_job')->nullable();
             $table->string('jabatan_job')->nullable();

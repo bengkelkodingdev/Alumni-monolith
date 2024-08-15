@@ -40,6 +40,7 @@
                         <th scope="col">No WhatsApp</th>
                         <th scope="col">Email</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Bidang Pekerjaan</th>
                         <th scope="col">Jenis Pekerjaan</th>
                         <th scope="col">Nama Pekerjaan</th>
                         <th scope="col">Jabatan Pekerjaan</th>
@@ -62,7 +63,9 @@
                             <td>{{ $kuesioner->no_hp }}</td>
                             <td>{{ $kuesioner->email }}</td>
                             <td>{{ $kuesioner->status }}</td>
+                            <td>{{ $kuesioner->bidang_job }}</td>
                             <td>{{ $kuesioner->jns_job }}</td>
+                            <td>{{ $kuesioner->nama_job }}</td>
                             <td>{{ $kuesioner->jabatan_job }}</td>
                             <td>{{ $kuesioner->lingkup_job }}</td>
                             <td>{{ $kuesioner->biaya_studi }}</td>
@@ -71,7 +74,7 @@
                             <td>{{ $kuesioner->tgl_studi }}</td>
                         </tr>
                     @empty
-                        <td colspan="19" class="text-center">
+                        <td colspan="22" class="text-center">
                             <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
                         </td>
                     @endforelse

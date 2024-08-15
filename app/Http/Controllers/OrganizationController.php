@@ -53,21 +53,23 @@ class OrganizationController extends Controller
         //validate form
         $this->validate($request, [
             'nama_org'=> 'required',
-            'periode_org'=> 'required',
-            'link_org'=> 'required',
-            'tingkat_org'=> 'required',
-            'jns_org'=> 'required',
-            'jabatan_org'=> 'required'
+            'periode_masuk_org'=> 'required',
+            'periode_keluar_org'=> 'required',
+            'jabatan_org'=> 'required',
+            'kota',
+            'negara',
+            'catatan'
         ]);
 
         //create post
         organization::create([
             'nama_org' => $request->nama_org,
-            'periode_org' => $request->periode_org,
-            'link_org' => $request->link_org,
-            'tingkat_org' => $request->tingkat_org,
-            'jns_org' => $request->jns_org,
-            'jabatan_org' => $request->jabatan_org
+            'periode_masuk_org' => $request->periode_masuk_org,
+            'periode_keluar_org' => $request->periode_keluar_org,
+            'jabatan_org' => $request->jabatan_org,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index
@@ -101,11 +103,12 @@ class OrganizationController extends Controller
         //validate form
         $this->validate($request, [
             'nama_org'=> 'required',
-            'periode_org'=> 'required',
-            'link_org'=> 'required',
-            'tingkat_org'=> 'required',
-            'jns_org'=> 'required',
-            'jabatan_org'=> 'required'
+            'periode_masuk_org'=> 'required',
+            'periode_keluar_org'=> 'required',
+            'jabatan_org'=> 'required',
+            'kota',
+            'negara',
+            'catatan'
         ]);
 
         //get post by ID
@@ -113,11 +116,12 @@ class OrganizationController extends Controller
             //update post without image
             $organization->update([
                 'nama_org' => $request->nama_org,
-                'periode_org' => $request->periode_org,
-                'link_org' => $request->link_org,
-                'tingkat_org' => $request->tingkat_org,
-                'jns_org' => $request->jns_org,
-                'jabatan_org' => $request->jabatan_org
+                'periode_masuk_org' => $request->periode_masuk_org,
+                'periode_keluar_org' => $request->periode_keluar_org,
+                'jabatan_org' => $request->jabatan_org,
+                'kota' => $request->kota,
+                'negara' => $request->negara,
+                'catatan' => $request->catatan
         ]);
 
         //redirect to index

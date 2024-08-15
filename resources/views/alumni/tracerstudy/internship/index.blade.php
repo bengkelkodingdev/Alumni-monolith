@@ -29,53 +29,52 @@
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
-
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama Instansi</th>
-                        <th scope="col">Periode</th>
-                        <th scope="col">Alamat Instansi</th>                               
-                        <th scope="col">Lingkup Pekerjaan</th>                        
-                        <th scope="col">Bidang Pekerjaan</th>
-                        <th scope="col">Jenis Pekerjaan</th>
-                        <th scope="col">Jabatan</th>           
-                        <th scope="col">Aksi</th>    
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($internships as $internship)
-                        <tr class="text-center">
-                            <td>{{ $internship->nama_intern }}</td>
-                            <td>{{ $internship->periode_masuk_intern }} / {{ $internship->periode_keluar_intern }}</td>
-                            <td>{{ $internship->alamat_intern }}</td>
-                            <td>{{ $internship->lingkup_intern }}</td>
-                            <td>{{ $internship->bidang_intern }}</td>
-                            <td>{{ $internship->jns_intern }}</td>
-                            <td>{{ $internship->jabatan_intern }}</td>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditInternship{{ $internship->id }}">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('internship.destroy', $internship->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+        <div class="card">
+            <div class="table-container table-logbook">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Instansi</th>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Jabatan</th>   
+                            <th scope="col">Kota</th>
+                            <th scope="col">Negara</th>
+                            <th scope="col">Catatan</th>        
+                            <th scope="col">Aksi</th>    
                         </tr>
-                    @empty
-                        <td colspan="9" class="text-center">
-                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($internships as $internship)
+                            <tr class="text-center">
+                                <td>{{ $internship->nama_intern }}</td>
+                                <td>{{ $internship->periode_masuk_intern }} - {{ $internship->periode_keluar_intern }}</td>                                
+                                <td>{{ $internship->jabatan_intern }}</td>
+                                <td>{{ $internship->kota }}</td>
+                                <td>{{ $internship->negara }}</td>
+                                <td>{{ $internship->catatan }}</td>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-2">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditInternship{{ $internship->id }}">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('internship.destroy', $internship->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <td colspan="8" class="text-center">
+                                <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
+                            </td>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             {{ $internships->links('pagination::bootstrap-4') }}

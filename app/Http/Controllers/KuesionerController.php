@@ -75,6 +75,7 @@ class KuesionerController extends Controller
             'no_hp' => 'required|numeric',
             'email' => 'required|email',
             'status' => 'required',
+            'bidang_job' => 'required_if:status,Bekerja Full Time,Bekerja Part Time,Wiraswasta',
             'jns_job' => 'required_if:status,Bekerja Full Time,Bekerja Part Time,Wiraswasta',
             'nama_job' => 'required_if:status,Bekerja Full Time,Bekerja Part Time,Wiraswasta',
             'jabatan_job' => 'required_if:status,Bekerja Full Time,Bekerja Part Time,Wiraswasta',
@@ -92,7 +93,7 @@ class KuesionerController extends Controller
             // Save job-related fields
             $data = $request->only([
                 'nama_alumni', 'jns_kelamin', 'nim', 'tahun_masuk', 'tahun_lulus', 'no_hp', 'email',
-                'status', 'jns_job', 'nama_job', 'jabatan_job', 'lingkup_job'
+                'status', 'bidang_job', 'jns_job', 'nama_job', 'jabatan_job', 'lingkup_job'
             ]);
         } elseif ($status === "Melanjutkan Pendidikan") {
             // Save education-related fields

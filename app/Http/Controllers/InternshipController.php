@@ -55,11 +55,10 @@ class InternshipController extends Controller
             'nama_intern'=> 'required',
             'periode_masuk_intern'=> 'required',
             'periode_keluar_intern'=> 'required',
-            'alamat_intern'=> 'required',
-            'lingkup_intern'=> 'required',
-            'bidang_intern'=> 'required',
-            'jns_intern'=> 'required',
-            'jabatan_intern'=> 'required'
+            'jabatan_intern'=> 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //create post
@@ -67,11 +66,10 @@ class InternshipController extends Controller
             'nama_intern' => $request->nama_intern,
             'periode_masuk_intern' => $request->periode_masuk_intern,
             'periode_keluar_intern' => $request->periode_keluar_intern,
-            'alamat_intern' => $request->alamat_intern,
-            'lingkup_intern' => $request->lingkup_intern,
-            'bidang_intern'=> $request->bidang_intern,
-            'jns_intern' => $request->jns_intern,
-            'jabatan_intern' => $request->jabatan_intern
+            'jabatan_intern' => $request->jabatan_intern,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index
@@ -107,25 +105,23 @@ class InternshipController extends Controller
             'nama_intern'=> 'required',
             'periode_masuk_intern'=> 'required',
             'periode_keluar_intern'=> 'required',
-            'alamat_intern'=> 'required',
-            'lingkup_intern'=> 'required',
-            'bidang_intern'=> 'required',
-            'jns_intern'=> 'required',
-            'jabatan_intern'=> 'required'
+            'jabatan_intern'=> 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //get post by ID
         $internship = internship::findOrFail($id);
             //update post without image
             $internship->update([
-                'nama_intern' => $request->nama_intern,
-                'periode_masuk_intern' => $request->periode_masuk_intern,
-                'periode_keluar_intern' => $request->periode_keluar_intern,
-                'alamat_intern' => $request->alamat_intern,
-                'lingkup_intern' => $request->lingkup_intern,
-                'bidang_intern'=> $request->bidang_intern,
-                'jns_intern' => $request->jns_intern,
-                'jabatan_intern' => $request->jabatan_intern
+            'nama_intern' => $request->nama_intern,
+            'periode_masuk_intern' => $request->periode_masuk_intern,
+            'periode_keluar_intern' => $request->periode_keluar_intern,
+            'jabatan_intern' => $request->jabatan_intern,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index

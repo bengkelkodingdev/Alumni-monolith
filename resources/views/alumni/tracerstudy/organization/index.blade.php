@@ -29,51 +29,52 @@
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
-
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama Organisasi</th>
-                        <th scope="col">Periode Organisasi</th>                
-                        <th scope="col">Website Organisasi</th>
-                        <th scope="col">Tingkat Organisasi</th>
-                        <th scope="col">Jenis Organisasi</th>
-                        <th scope="col">Jabatan Organisasi</th>  
-                        <th scope="col">Aksi</th>  
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($organizations as $organization)
-                        <tr class="text-center">
-                            <td>{{ $organization->nama_org }}</td>
-                            <td>{{ $organization->periode_org }}</td>
-                            <td>{{ $organization->link_org }}</td>
-                            <td>{{ $organization->tingkat_org }}</td>
-                            <td>{{ $organization->jns_org }}</td>
-                            <td>{{ $organization->jabatan_org }}</td>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditOrganization{{ $organization->id }}">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('organization.destroy', $organization->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+        <div class="card">
+            <div class="table-container table-logbook">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Organisasi</th>
+                            <th scope="col">Periode </th>           
+                            <th scope="col">Jabatan Organisasi</th>  
+                            <th scope="col">Kota</th>
+                            <th scope="col">Negara</th>
+                            <th scope="col">Catatan</th>
+                            <th scope="col">Aksi</th>  
                         </tr>
-                    @empty
-                        <td colspan="7" class="text-center">
-                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($organizations as $organization)
+                            <tr class="text-center">
+                                <td>{{ $organization->nama_org }}</td>
+                                <td>{{ $organization->periode_masuk_org }} - {{ $organization->periode_keluar_org }}</td>
+                                <td>{{ $organization->jabatan_org }}</td>
+                                <td>{{ $organization->kota }}</td>
+                                <td>{{ $organization->negara }}</td>
+                                <td>{{ $organization->catatan }}</td>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-2">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditOrganization{{ $organization->id }}">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('organization.destroy', $organization->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <td colspan="7" class="text-center">
+                                <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
+                            </td>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             {{ $organizations->links('pagination::bootstrap-4') }}

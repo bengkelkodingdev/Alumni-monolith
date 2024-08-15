@@ -16,8 +16,12 @@ class academic extends Model
      */
     protected $fillable = [
         'nama_studi',
+        'prodi',
         'ipk',
         'tahun_masuk',
-        'tahun_lulus'
+        'tahun_lulus',
+        'kota',
+        'negara',
+        'catatan'
     ];
 }

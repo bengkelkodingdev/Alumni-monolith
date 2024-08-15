@@ -53,17 +53,25 @@ class academicController extends Controller
         //validate form
         $this->validate($request, [
             'nama_studi'=> 'required',
+            'prodi'=> 'required',
             'ipk'=> 'required',
             'tahun_masuk' => 'required',
-            'tahun_lulus' => 'required'
+            'tahun_lulus' => 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //create post
         academic::create([
             'nama_studi' => $request->nama_studi,
+            'prodi' => $request->prodi,
             'ipk' => $request->ipk,
             'tahun_masuk' => $request->tahun_masuk,
-            'tahun_lulus' => $request->tahun_lulus
+            'tahun_lulus' => $request->tahun_lulus,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index
@@ -96,13 +104,14 @@ class academicController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'nim'=> 'required',
-            'nama_alumni'=> 'required',
-            'email'=> 'required',
+            'nama_studi'=> 'required',
+            'prodi'=> 'required',
             'ipk'=> 'required',
-            'judul_skripsi'=> 'required',
-            'dosen_wali'=> 'required',
-            'tahun_lulus' => 'required'
+            'tahun_masuk' => 'required',
+            'tahun_lulus' => 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //get post by ID
@@ -110,9 +119,13 @@ class academicController extends Controller
             //update post without image
             $academic->update([
             'nama_studi' => $request->nama_studi,
+            'prodi' => $request->prodi,
             'ipk' => $request->ipk,
             'tahun_masuk' => $request->tahun_masuk,
-            'tahun_lulus' => $request->tahun_lulus
+            'tahun_lulus' => $request->tahun_lulus,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index

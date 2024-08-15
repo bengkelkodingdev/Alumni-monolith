@@ -27,6 +27,20 @@
 
                         <div class="form-group">
                             <div class="row mb-3">
+                                <label for="ipk" class="col-sm-3 col-form-label">Program Studi</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" value="{{ old('prodi') }}" placeholder="Masukkan Program Studi Mahasiswa" id="prodi">
+                                    </div>
+                            </div>   
+                            @error('prodi')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row mb-3">
                                 <label for="ipk" class="col-sm-3 col-form-label">IPK Mahasiswa</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control @error('ipk') is-invalid @enderror" name="ipk" value="{{ old('ipk') }}" placeholder="Masukkan IPK Mahasiswa" id="ipk" step="0.01">
@@ -46,7 +60,7 @@
                                         <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" name="tahun_masuk" value="{{ old('tahun_masuk') }}" placeholder="Masukkan Tahun Masuk Mahasiswa" id="tahun_masuk" min="1900" max="2024" step="1">
                                     </div>
                             </div>   
-                            @error('tahun_lulus')
+                            @error('tahun_masuk')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>
@@ -61,6 +75,48 @@
                                     </div>
                             </div>   
                             @error('tahun_lulus')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="kota" class="col-sm-3 col-form-label">Kota</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ old('kota') }}" placeholder="Masukkan Nama Kota Tempat Universitas Berada" id="kota">
+                                    </div>
+                            </div>   
+                            @error('kota')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="negara" class="col-sm-3 col-form-label">Negara</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control @error('negara') is-invalid @enderror" name="negara" value="{{ old('negara') }}" placeholder="Masukkan Nama Negara Tempat Universitas Berada" id="negara" >
+                                    </div>
+                            </div>   
+                            @error('negara')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row mb-3">
+                                <label for="catatan" class="col-sm-3 col-form-label">Catatan</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan" rows="5" placeholder="Masukkan Catatan Akademik">{{ old('catatan') }}</textarea>
+                                    </div>
+                            </div>   
+                            @error('catatan')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
                                 </div>

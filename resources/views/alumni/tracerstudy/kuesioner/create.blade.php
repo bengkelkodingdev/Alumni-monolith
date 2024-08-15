@@ -161,9 +161,28 @@
                                     @enderror
                                 </div>
                                 
-                                <!-- Form 9-12, hanya ditampilkan jika status bekerja full time/part time/Wiraswasta -->
+                                <!-- Form 9-13, hanya ditampilkan jika status bekerja full time/part time/Wiraswasta -->
                                 <div id="job-fields" class="d-none">
                                     <!-- form 9 -->
+                                    <div class="form-group">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-3 col-form-label">Bidang Pekerjaan</label>
+                                            <div class="col-sm-9">
+                                            <select class="selectpicker form-control" data-live-search="true" name="bidang_job" value="{{ old('bidang_job') }}">
+                                                    <option selected disabled>Pilih Bidang Pekerjaan</option>
+                                                    <option value="Infokom">Infokom</option>
+                                                    <option value="Non Infokom">Non Infokom</option>
+                                            </select>    
+                                        </div>  
+                                        </div>  
+                                        <!-- error message untuk bidang_job -->
+                                        @error('bidang_job')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <!-- form 10 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Kategori Pekerjaan</label>
@@ -186,7 +205,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 10 -->
+                                    <!-- form 11 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Nama Instansi</label>
@@ -201,7 +220,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 11 -->
+                                    <!-- form 12 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Jabatan Pekerjaan</label>
@@ -222,7 +241,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 12 -->
+                                    <!-- form 13 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Tingkat Pekerjaan</label>
@@ -246,9 +265,9 @@
                                     </div>
                                 </div>
 
-                                <!-- Form 13-16, hanya ditampilkan jika melanjutkan studi -->
+                                <!-- Form 14-17, hanya ditampilkan jika melanjutkan studi -->
                                 <div id="education-fields" class="d-none">
-                                    <!-- form 13 -->
+                                    <!-- form 14 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Sumber Biaya Melanjutkan Studi</label>
@@ -267,7 +286,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 14 -->
+                                    <!-- form 15 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label for="nama_studi" class="col-sm-3 col-form-label">Nama Perguruan Tinggi Lanjutan Studi</label>
@@ -281,7 +300,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 15 -->
+                                    <!-- form 16 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label for="prodi" class="col-sm-3 col-form-label">Nama Program Studi yang Sedang Anda Tempuh</label>
@@ -295,7 +314,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <!-- form 16 -->
+                                    <!-- form 17 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label for="tgl_studi" class="col-sm-3 col-form-label">Tanggal Masuk/Mulai Studi Lanjutan</label>

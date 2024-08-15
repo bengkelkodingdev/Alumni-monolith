@@ -30,12 +30,12 @@
 
                 <div class="form-group">
                     <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label">Periode (MM/YYYY)</label>
+                        <label class="col-sm-3 col-form-label"><br>(ex : Januari 2000)</label>
                         <div class="col-sm-4">
                             <input type="text" class="form-control @error('periode_masuk_intern') is-invalid @enderror" name="periode_masuk_intern" value="{{ old('periode_masuk_intern',$internship->periode_masuk_intern) }}" placeholder="Masukkan Periode Masuk Mahasiswa"> 
                         </div>  
-                        <label class="col-sm-1 col-form-label">Sampai</label>
-                        <div class="col-sm-4">
+                        <label class="col-sm-2 col-form-label">Sampai</label>
+                        <div class="col-sm-3">
                             <input type="text" class="form-control @error('periode_keluar_intern') is-invalid @enderror" name="periode_keluar_intern" value="{{ old('periode_keluar_intern',$internship->periode_keluar_intern) }}" placeholder="Masukkan Periode Keluar Mahasiswa">
                         </div>                                     
                     </div>                       
@@ -47,81 +47,6 @@
                     @enderror
                     <!-- error message untuk periode_keluar_intern -->
                     @error('periode_keluar_intern')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label">Alamat Instansi</label>
-                        <div class="col-sm-9">
-                        <input type="text" class="form-control @error('alamat_intern') is-invalid @enderror" name="alamat_intern" value="{{ old('alamat_intern',$internship->alamat_intern) }}"  placeholder="Masukkan Alamat Instansi">
-                        </div>  
-                    </div>  
-                    <!-- error message untuk alamat_intern -->
-                    @error('alamat_intern')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label">Lingkup Pekerjaan</label>
-                        <div class="col-sm-9">
-                        <select class="selectpicker form-control" data-live-search="true" name="lingkup_intern" value="{{ old('lingkup_intern',$internship->lingkup_intern) }}">
-                                <option selected disabled>Pilih Lingkup Pekerjaan</option>
-                                <option value="Internasional" {{ $internship->lingkup_intern == 'Internasional' ? 'selected' : '' }}>Internasional</option>
-                                <option value="Nasional" {{ $internship->lingkup_intern == 'Nasional' ? 'selected' : '' }}>Nasional</option>
-                                <option value="Wirausaha" {{ $internship->lingkup_intern == 'Wirausaha' ? 'selected' : '' }}>Wirausaha</option>
-                            </select>
-                        </div>  
-                    </div>  
-                    <!-- error message untuk lingkup_intern -->
-                    @error('lingkup_intern')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label">Bidang Pekerjaan</label>
-                        <div class="col-sm-9">
-                        <select class="selectpicker form-control" data-live-search="true" name="bidang_intern" value="{{ old('bidang_intern',$internship->bidang_intern) }}">
-                                <option selected disabled>Pilih Bidang Pekerjaan</option>
-                                <option value="Infokom" {{ $internship->bidang_intern == 'Infokom' ? 'selected' : '' }}>Infokom</option>
-                                <option value="Non Infokom" {{ $internship->bidang_intern == 'Non Infokom' ? 'selected' : '' }}>Non Infokom</option>
-                            </select>
-                        </div>  
-                    </div>  
-                    <!-- error message untuk bidang_intern -->
-                    @error('bidang_intern')
-                        <div class="alert alert-danger mt-2">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <div class="row mb-3">
-                        <label class="col-sm-3 col-form-label">Jenis Instansi</label>
-                        <div class="col-sm-9">
-                            <select class="selectpicker form-control" data-live-search="true" name="jns_intern" value="{{ old('jns_intern',$internship->jns_intern) }}">
-                                <option selected disabled>Pilih Jenis Instansi</option>
-                                <option value="Swasta" {{ $internship->jns_intern == 'Swasta' ? 'selected' : '' }}>Swasta</option>
-                                <option value="Pemerintah" {{ $internship->jns_intern == 'Pemerintah' ? 'selected' : '' }}>Pemerintah</option>
-                                <option value="Publik" {{ $internship->jns_intern == 'Publik' ? 'selected' : '' }}>Publik</option>
-                                <option value="Non Profit" {{ $internship->jns_intern == 'Non Profit' ? 'selected' : '' }}>Non Profit</option>
-                            </select>
-                        </div>  
-                    </div>  
-                    <!-- error message untuk jns_intern -->
-                    @error('jns_intern')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
                         </div>
@@ -142,6 +67,52 @@
                         </div>
                     @enderror
                 </div>
+                
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="kota" class="col-sm-3 col-form-label">Kota</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('kota') is-invalid @enderror" name="kota" value="{{ old('kota', $internship->kota) }}" placeholder="Masukkan Nama Universitas" id="kota">
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('kota')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="negara" class="col-sm-3 col-form-label">Negara</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control @error('negara') is-invalid @enderror" name="negara" value="{{ old('negara', $internship->negara) }}" placeholder="Masukkan Nama Universitas" id="negara">
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('negara')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <div class="row mb-3">
+                        <label for="negara" class="col-sm-3 col-form-label">Catatan</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control @error('catatan') is-invalid @enderror" name="catatan" id="catatan" rows="5" >{{ old('catatan', $internship->catatan) }}</textarea>
+                        </div>
+                    </div>   
+                    <!-- error message untuk nim -->                            
+                    @error('catatan')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
                 <div class="d-flex justify-content-end mt-5">
                     <button type="submit" class="btn btn-primary">Update</button>
                 </div>  

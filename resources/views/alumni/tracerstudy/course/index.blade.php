@@ -24,52 +24,53 @@
     </nav>
     <div class="container-border">
         <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Pelatihan</b></h2>
+            <h2><b>Sertifikat dan Lisensi</b></h2>
             <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahCourse">
                 <i class="fas fa-plus"></i> Tambah
             </button>
         </div>
-
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Nama Pelatihan</th>
-                        <th scope="col">Nama Institusi Pelatihan</th>
-                        <th scope="col">Tingkat Pelatihan</th>
-                        <th scope="col">Tahun Pelatihan</th>
-                        <th scope="col">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($courses as $course)
-                        <tr class="text-center">
-                            <td>{{ $course->nama_course }}</td>
-                            <td>{{ $course->institusi_course }}</td>
-                            <td>{{ $course->tingkat_course }}</td>
-                            <td>{{ $course->tahun_course }}</td>
-                            <td class="text-center">
-                                <div class="d-inline-flex gap-2">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditCourse{{ $course->id }}">
-                                        <i class="far fa-edit"></i>
-                                    </button>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('course.destroy', $course->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+        <div class="card">
+            <div class="table-container table-logbook">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Pelatihan</th>
+                            <th scope="col">Nama Institusi Pelatihan</th>
+                            <th scope="col">Tingkat Pelatihan</th>
+                            <th scope="col">Tahun Pelatihan</th>
+                            <th scope="col">Aksi</th>
                         </tr>
-                    @empty
-                        <td colspan="9" class="text-center">
-                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($courses as $course)
+                            <tr class="text-center">
+                                <td>{{ $course->nama_course }}</td>
+                                <td>{{ $course->institusi_course }}</td>
+                                <td>{{ $course->tingkat_course }}</td>
+                                <td>{{ $course->tahun_course }}</td>
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-2">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#dialogEditCourse{{ $course->id }}">
+                                            <i class="far fa-edit"></i>
+                                        </button>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('course.destroy', $course->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <td colspan="9" class="text-center">
+                                <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
+                            </td>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="d-flex justify-content-end">
             {{ $courses->links('pagination::bootstrap-4') }}

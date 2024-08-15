@@ -7,11 +7,17 @@
             transform: scale(1.2);
             color: #2980b9;
         }
+        
         .card:hover {
-        transform: translateY(-10px) scale(1.05); /* Memindahkan ke atas dan memperbesar */
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Menambahkan efek bayangan */
-    }
+            transform: translateY(-3px) scale(1.0); /* Mengurangi jarak perpindahan dan pembesaran */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Mengurangi efek bayangan */
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Menambahkan transisi yang lebih halus */
+        }
+        .table-borderless {
+            border-collapse: collapse; /* Menghilangkan spasi antara sel */
+        }
     </style>
+
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
         <a class="navbar-brand" href="/admin" >
@@ -35,326 +41,201 @@
     </nav>
     <main class="container-border">
         <div class="row">    
-            <!-- academic -->
+            <!-- akademik -->
             <div class="container">
                 <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <!-- Teks dan Ikon Berdampingan -->
                             <h1 class="me-2 mb-0">Akademik</h1>
                             <a href="{{ route('academic.index') }}">
                                 <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
                             </a>
                         </div>
                         <hr class="my-3" style="border-width: 3px; border-color: #000;">
-                        <div class="form" style="overflow-x: auto">
-                            <table class="table table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">NIM</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">IPK</th>
-                                        <th scope="col">Judul Skripsi</th>
-                                        <th scope="col">Dosen Wali</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($academics as $academic)
-                                        <tr>
-                                            <td>{{ $academic->nim }}</td>
-                                            <td>{{ $academic->nama_mhs }}</td>
-                                            <td>{{ $academic->email }}</td>
-                                            <td>{{ $academic->ipk }}</td>
-                                            <td>{{ $academic->judul_skripsi }}</td>
-                                            <td>{{ $academic->dosen_wali }}</td>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="6" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $academics->links() }}   
-                        </div>             
+                        @forelse ($academics as $academic)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $academic->nama_studi }}</strong> - {{ $academic->kota }}, {{ $academic->negara }}</span>
+                                    <span>{{ $academic->tahun_masuk }} - {{ $academic->tahun_lulus }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $academic->prodi }}, {{ $academic->ipk }}/4.00</p>
+                                <p style="line-height: 1; text-align: justify;">{{ $academic->catatan }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $academics->links() }}          
                     </div>            
                 </div>
             </div>
-
-            <!-- job -->
+            <!-- pekerjaan -->
             <div class="container">
-                <div class="card">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <!-- Teks dan Ikon Berdampingan -->
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
+                            <h1 class="me-2">Pekerjaan</h1>
+                            <a href="{{ route('job.index') }}">
                                 <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
                             </a>
                         </div>
                         <hr class="my-3" style="border-width: 3px; border-color: #000;">
-                        <div class="form" style="overflow-x: auto">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Instansi</th>
-                                    <th scope="col">Periode Masuk</th>
-                                    <th scope="col">Periode Keluar</th>
-                                    <th scope="col">Alamat Instansi</th>                             
-                                    <th scope="col">Website</th>
-                                    <th scope="col">Jenis Pekerjaan</th>
-                                    <th scope="col">Jabatan</th>    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($jobs as $job)
-                                    <tr>
-                                        <td>{{ $job->nama_job }}</td>
-                                        <td>{{ $job->periode_masuk_job }}</td>
-                                        <td>{{ $job->periode_keluar_job }}</td>
-                                        <td>{{ $job->alamat_job }}</td>
-                                        <td>{{ $job->link_job }}</td>
-                                        <td>{{ $job->jns_job }}</td>
-                                        <td>{{ $job->jabatan_job }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $jobs->links() }} 
-                        </div>               
-                    </div>
-                    
+                        @forelse ($jobs as $job)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $job->nama_job }}</strong> - {{ $job->kota }}, {{ $job->negara }}</span>
+                                    <span>{{ $job->tahun_masuk }} - {{ $job->tahun_lulus }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $job->jabatan_job }}</em></p>
+                                <p style="line-height: 1; text-align: justify;">{{ $job->catatan }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $jobs->links() }}          
+                    </div>            
                 </div>
-            </div>
-
-            <!-- internship -->    
+            </div><!-- magang -->
             <div class="container">
-                <div class="card">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <!-- Teks dan Ikon Berdampingan -->
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
+                            <h1 class="me-2">Magang</h1>
+                            <a href="{{ route('internship.index') }}">
                                 <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
                             </a>
                         </div>
-                        <div class="form" style="overflow-x: auto">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Instansi</th>
-                                    <th scope="col">Periode</th>
-                                    <th scope="col">Alamat Instansi</th>                               
-                                    <th scope="col">Website</th>
-                                    <th scope="col">Jenis Pekerjaan</th>
-                                    <th scope="col">Jabatan</th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($internships as $internship)
-                                    <tr>
-                                        <td>{{ $internship->nama_intern }}</td>
-                                        <td>{{ $internship->periode_masuk_intern }} / {{ $internship->periode_keluar_intern }}</td>
-                                        <td>{{ $internship->alamat_intern }}</td>
-                                        <td>{{ $internship->link_intern }}</td>
-                                        <td>{{ $internship->jns_intern }}</td>
-                                        <td>{{ $internship->jabatan_intern }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $internships->links() }}     
-                        </div>           
-                    </div>
-                    
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
+                        @forelse ($internships as $internship)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $internship->nama_intern }}</strong> - {{ $internship->kota }}, {{ $internship->negara }}</span>
+                                    <span>{{ $internship->periode_masuk_intern }} - {{ $internship->periode_keluar_intern }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $internship->jabatan_intern }}</em></p>
+                                <p style="line-height: 1; text-align: justify;">{{ $internship->catatan }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $internships->links() }}          
+                    </div>            
                 </div>
             </div>
-
-            <!-- organization -->
+            <!-- organisasi -->
             <div class="container">
-                <div class="card">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
+                            <h1 class="me-2">Organisasi</h1>
+                            <a href="{{ route('organization.index') }}">
                                 <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
                             </a>
                         </div>
-                        <div class="form" style="overflow-x: auto">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Organisasi</th>
-                                    <th scope="col">Periode Organisasi</th>                
-                                    <th scope="col">Website Organisasi</th>
-                                    <th scope="col">Tingkat Organisasi</th>
-                                    <th scope="col">Jenis Organisasi</th>
-                                    <th scope="col">Jabatan Organisasi</th>  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($organizations as $organization)
-                                    <tr>
-                                        <td>{{ $organization->nama_org }}</td>
-                                        <td>{{ $organization->periode_org }}</td>
-                                        <td>{{ $organization->link_org }}</td>
-                                        <td>{{ $organization->tingkat_org }}</td>
-                                        <td>{{ $organization->jns_org }}</td>
-                                        <td>{{ $organization->jabatan_org }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="6" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $organizations->links() }}    
-                        </div>            
-                    </div>
-                    
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
+                        @forelse ($organizations as $organization)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $organization->nama_org }}</strong> - {{ $organization->kota }}, {{ $organization->negara }}</span>
+                                    <span>{{ $organization->periode_masuk_org }} - {{ $organization->periode_keluar_org }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $organization->jabatan_org }}</em></p>
+                                <p style="line-height: 1; text-align: justify;">{{ $organization->catatan }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $organizations->links() }}          
+                    </div>            
                 </div>
             </div>
+            <!-- penghargaan -->
+            <div class="container">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2">Penghargaan</h1>
+                            <a href="{{ route('award.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
+                        </div>
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
+                        @forelse ($awards as $award)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $award->nama_award }}</strong></span>
+                                    <span>{{ $award->tahun_award }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $award->institusi_award }}, {{ $award->tingkat_award }}</em></p>
+                                <p style="line-height: 1; text-align: justify;">{{ $award->deskripsi_award }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $awards->links() }}          
+                    </div>            
+                </div>
+            </div>
+            <!-- sertifikasi dan lisensi -->
+            <div class="container">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2">Sertifikat dan Lisensi</h1>
+                            <a href="{{ route('course.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
+                        </div>
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
+                        @forelse ($courses as $course)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <p style="display: flex; justify-content: space-between; line-height: 1;">
+                                    <span><strong>{{ $course->nama_course }}</strong></span>
+                                    <span>{{ $course->tahun_course }}</span>
+                                </p>
+                                <p style="line-height: 1;">{{ $course->institusi_course }}, {{ $course->tingkat_course }}</p>
+                            </div>
+                            @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
+                        {{ $courses->links() }}          
+                    </div>            
+                </div>
+            </div>
+            <!-- kemampuan diri -->
+            <div class="container">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2">Kemampuan Diri</h1>
+                            <a href="{{ route('skill.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
+                        </div>
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
+                        @forelse ($skills as $skill)
+                            <div style="padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span><strong>Kerjasama Tim:</strong> {{ $skill->kerjasama_skill }}</span>
+                                    <span><strong>Keahlian di Bidang IT:</strong> {{ $skill->ahli_skill }}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span><strong>Kemampuan Berbahasa Inggris:</strong> {{ $skill->inggris_skill }}</span>
+                                    <span><strong>Kemampuan Berkomunikasi:</strong> {{ $skill->komunikasi_skill }}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                    <span><strong>Pengembangan Diri:</strong> {{ $skill->pengembangan_skill }}</span>
+                                    <span><strong>Etos Kerja:</strong> {{ $skill->kepemimpinan_skill }}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span><strong>Kerjasama Tim:</strong> {{ $skill->etoskerja_skill }}</span>
+                                </div>
+                            </div>
+                        @empty
+                            <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Data belum tersedia.</p>
+                        @endforelse
 
-            <!-- award -->
-            <div class="container">
-                <div class="card">
-                    <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex align-items-center">
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
-                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
-                            </a>
-                        </div>
-                        <div class="form">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Award</th>
-                                    <th scope="col">Nama Institusi Award</th>
-                                    <th scope="col">Tingkat Award</th>
-                                    <th scope="col">Tahun Award</th>
-                                    <th scope="col">Deskripsi Award</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($awards as $award)
-                                <tr>
-                                    <td>{{ $award->nama_award }}</td>
-                                    <td>{{ $award->institusi_award }}</td>
-                                    <td>{{ $award->tingkat_award }}</td>
-                                    <td>{{ $award->tahun_award }}</td>
-                                    <td>{{ $award->deskripsi_award }}</td>
-                                </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $awards->links() }}      
-                        </div>          
-                    </div>
-                    
-                </div>
-            </div>
-            
-            <!-- course -->
-            <div class="container">
-                <div class="card">
-                <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex align-items-center">
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
-                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
-                            </a>
-                        </div>
-                        <div class="form" style="overflow-x: auto">
-                        <table class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Nama Course</th>
-                                    <th scope="col">Nama Institusi Course</th>
-                                    <th scope="col">Tingkat Course</th>
-                                    <th scope="col">Tahun Course</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($courses as $course)
-                                    <tr>
-                                        <td>{{ $course->nama_course }}</td>
-                                        <td>{{ $course->institusi_course }}</td>
-                                        <td>{{ $course->tingkat_course }}</td>
-                                        <td>{{ $course->tahun_course }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $courses->links() }}  
-                        </div>              
-                    </div>
-                </div>
-            </div>
-
-            <!-- skill -->
-            <div class="container">
-                <div class="card">
-                    <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex align-items-center">
-                            <h1 class="me-2 mb-0">Akademik</h1>
-                            <a href="{{ route('academic.index') }}">
-                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
-                            </a>
-                        </div>
-                        <div class="form" style="overflow-x: auto">
-                            <table class="table table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Kerjasama Tim</th>
-                                        <th scope="col">Keahlian di Bidang IT</th>
-                                        <th scope="col">Kemampuan Berbahasa Inggris</th>
-                                        <th scope="col">Kemampuan Berkomunikasi</th>
-                                        <th scope="col">Pengembangan Diri</th>
-                                        <th scope="col">Kepemimpinan</th>
-                                        <th scope="col">Etos Kerja</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($skills as $skill)
-                                    <tr>
-                                        <td>{{ $skill->kerjasama_skill }}</td>
-                                        <td>{{ $skill->ahli_skill }}</td>
-                                        <td>{{ $skill->inggris_skill }}</td>
-                                        <td>{{ $skill->komunikasi_skill }}</td>
-                                        <td>{{ $skill->pengembangan_skill }}</td>
-                                        <td>{{ $skill->kepemimpinan_skill }}</td>
-                                        <td>{{ $skill->etoskerja_skill }}</td>
-                                    </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center alert alert-warning">Data belum Tersedia.</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                        {{ $skills->links() }}                
-                    </div>
-                    
+                        {{ $skills->links() }}          
+                    </div>            
                 </div>
             </div>
         </div>

@@ -55,11 +55,10 @@ class jobController extends Controller
             'nama_job'=> 'required',
             'periode_masuk_job'=> 'required',
             'periode_keluar_job'=> 'required',
-            'alamat_job'=> 'required',
-            'lingkup_job'=> 'required',
-            'bidang_job'=> 'required',
-            'jns_job'=> 'required',
-            'jabatan_job'=> 'required'
+            'jabatan_job'=> 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //create post
@@ -67,11 +66,10 @@ class jobController extends Controller
             'nama_job' => $request->nama_job,
             'periode_masuk_job' => $request->periode_masuk_job,
             'periode_keluar_job' => $request->periode_keluar_job,
-            'alamat_job' => $request->alamat_job,
-            'lingkup_job' => $request->lingkup_job,
-            'bidang_job' => $request->bidang_job,
-            'jns_job' => $request->jns_job,
-            'jabatan_job' => $request->jabatan_job
+            'jabatan_job' => $request->jabatan_job,
+            'kota' => $request->kota,
+            'negara' => $request->negara,
+            'catatan' => $request->catatan
         ]);
 
         //redirect to index
@@ -107,11 +105,10 @@ class jobController extends Controller
             'nama_job'=> 'required',
             'periode_masuk_job'=> 'required',
             'periode_keluar_job'=> 'required',
-            'alamat_job'=> 'required',
-            'lingkup_job'=> 'required',
-            'bidang_job'=> 'required',
-            'jns_job'=> 'required',
-            'jabatan_job'=> 'required'
+            'jabatan_job'=> 'required',
+            'kota'=> 'required',
+            'negara'=> 'required',
+            'catatan'=> 'required'
         ]);
 
         //get post by ID
@@ -121,11 +118,10 @@ class jobController extends Controller
                 'nama_job' => $request->nama_job,
                 'periode_masuk_job' => $request->periode_masuk_job,
                 'periode_keluar_job' => $request->periode_keluar_job,
-                'alamat_job' => $request->alamat_job,
-                'lingkup_job' => $request->lingkup_job,
-                'bidang_job' => $request->bidang_job,
-                'jns_job' => $request->jns_job,
-                'jabatan_job' => $request->jabatan_job
+                'jabatan_job' => $request->jabatan_job,
+                'kota' => $request->kota,
+                'negara' => $request->negara,
+                'catatan' => $request->catatan
         ]);
 
         //redirect to index
