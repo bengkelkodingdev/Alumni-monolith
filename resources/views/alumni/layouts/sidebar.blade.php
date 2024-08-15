@@ -16,9 +16,15 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('tracerstudycheck') }}" class="sidebar-link">
-                    <i class="lni lni-pencil-alt"></i>
+                <a href="{{ route('kuesioner.index') }}" class="sidebar-link">
+                    <i class="lni lni-library"></i>
                     <span>Tracerstudy</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('cv') }}" class="sidebar-link">
+                    <i class="lni lni-remove-file"></i>
+                    <span>Data Alumni</span>
                 </a>
             </li>
             <li class="sidebar-item">

@@ -17,7 +17,7 @@
             </li>
             <li class="sidebar-item">
                 <a href="{{ route('kuesionerAdmin.index') }}" class="sidebar-link">
-                    <i class="lni lni-pencil-alt"></i>
+                    <i class="lni lni-library"></i>
                     <span>Tracerstudy Alumni</span>
                 </a>
             </li>

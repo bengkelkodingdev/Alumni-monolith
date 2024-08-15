@@ -11,7 +11,6 @@ use App\Http\Controllers\SesiController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Kuesioner;
 
 
 /*
@@ -72,43 +71,6 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
     Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
 
-    Route::get('/tracerstudycheck', function () {
-        $userId = Auth::id();
-
-        // Mengambil jumlah data kuesioner untuk pengguna yang sedang login
-        $kuesionerCount = kuesioner::where('id_alumni', $userId)->count();
-
-        // Periksa apakah ada data kuesioner
-        if ($kuesionerCount > 0) {
-            // Jika ada data kuesioner, arahkan ke halaman cv.index
-            return redirect()->route('cv');
-        } else {
-            // Jika tidak ada data kuesioner, arahkan ke halaman kuesioner.create
-            return redirect()->route('kuesioner.create');
-        }
-    })->name('tracerstudycheck');
-
-    // Rute yang memeriksa data dan mengarahkan ke halaman yang tepat
-    Route::get('/quizcheck', function () {
-        // Mengambil jumlah data dari setiap model
-        $academicCount = \App\Models\Academic::count();
-        $jobCount = \App\Models\Job::count();
-        $internshipCount = \App\Models\Internship::count();
-        $organizationCount = \App\Models\Organization::count();
-        $awardCount = \App\Models\Award::count();
-        $courseCount = \App\Models\Course::count();
-        $skillCount = \App\Models\Skill::count();
-
-        // Periksa apakah setidaknya satu model memiliki data
-        if ($academicCount > 0 || $jobCount > 0 || $internshipCount > 0 || $organizationCount > 0 || $awardCount > 0 || $courseCount > 0 || $skillCount > 0) {
-            // Jika setidaknya satu model memiliki data, arahkan ke halaman cv.index
-            return redirect()->route('cv');
-        } else {
-            // Jika tidak ada data pada semua model, arahkan ke halaman cv.quiz
-            return redirect()->route('quiz');
-        }
-    })->name('quizcheck');
-
     // Route untuk cv
     Route::get('/cv', function () {
         // Mengambil data dari semua model yang diperlukan
@@ -125,8 +87,12 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     })->name('cv');
 
     // Route untuk kuesioner
+
+    Route::get('/kuesioner/index', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner.index');
     Route::get('/kuesioner/create', [\App\Http\Controllers\KuesionerController::class, 'create'])->name('kuesioner.create');
-    Route::post('/kuesioner/web', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
+    Route::post('/kuesioner', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
+    Route::get('/kuesioner/{id}/edit', [\App\Http\Controllers\KuesionerController::class, 'edit'])->name('kuesioner.edit');
+    Route::put('/kuesioner/{id}', [\App\Http\Controllers\KuesionerController::class, 'update'])->name('kuesioner.update');
 
     // Academic Controller
     Route::get('/academic', [\App\Http\Controllers\AcademicController::class, 'index'])->name('academic.index');

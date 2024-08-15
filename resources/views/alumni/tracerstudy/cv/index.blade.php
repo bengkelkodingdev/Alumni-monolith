@@ -1,6 +1,17 @@
 @extends('alumni.layouts.main')
 @section('title', 'CV')
 @section('content')
+    <!-- Tambahkan CSS untuk efek hover -->
+    <style>
+        a:hover i {
+            transform: scale(1.2);
+            color: #2980b9;
+        }
+        .card:hover {
+        transform: translateY(-10px) scale(1.05); /* Memindahkan ke atas dan memperbesar */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Menambahkan efek bayangan */
+    }
+    </style>
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
         <a class="navbar-brand" href="/admin" >
@@ -26,12 +37,16 @@
         <div class="row">    
             <!-- academic -->
             <div class="container">
-                <div class="card">
+                <div class="card" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Academic</h1></b>
-                            <a href="{{ route('academic.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <!-- Teks dan Ikon Berdampingan -->
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
                         <div class="form" style="overflow-x: auto">
                             <table class="table table-hover table-bordered">
                                 <thead>
@@ -71,10 +86,14 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Job</h1></b>
-                            <a href="{{ route('job.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <!-- Teks dan Ikon Berdampingan -->
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
+                        <hr class="my-3" style="border-width: 3px; border-color: #000;">
                         <div class="form" style="overflow-x: auto">
                         <table class="table table-hover table-bordered">
                             <thead>
@@ -117,9 +136,12 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Internship</h1></b>
-                            <a href="{{ route('internship.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <!-- Teks dan Ikon Berdampingan -->
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
                         <div class="form" style="overflow-x: auto">
                         <table class="table table-hover table-bordered">
@@ -161,9 +183,11 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Organization</h1></b>
-                            <a href="{{ route('organization.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
                         <div class="form" style="overflow-x: auto">
                         <table class="table table-hover table-bordered">
@@ -205,9 +229,11 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Award</h1></b>
-                            <a href="{{ route('award.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
                         <div class="form">
                         <table class="table table-hover table-bordered">
@@ -247,9 +273,11 @@
             <div class="container">
                 <div class="card">
                 <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Course</h1></b>
-                            <a href="{{ route('course.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
                         <div class="form" style="overflow-x: auto">
                         <table class="table table-hover table-bordered">
@@ -286,9 +314,11 @@
             <div class="container">
                 <div class="card">
                     <div class="card-body" style="overflow-x: auto">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <b><h1>Skill</h1></b>
-                            <a href="{{ route('skill.index') }}" class="btn btn-md btn-custom">EDIT</a>
+                        <div class="d-flex align-items-center">
+                            <h1 class="me-2 mb-0">Akademik</h1>
+                            <a href="{{ route('academic.index') }}">
+                                <i class="lni lni-pencil-alt text-primary" style="font-size: 1.5rem;"></i> <!-- text-primary menggunakan warna primer Bootstrap -->
+                            </a>
                         </div>
                         <div class="form" style="overflow-x: auto">
                             <table class="table table-hover table-bordered">

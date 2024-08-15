@@ -24,23 +24,25 @@
     </nav>
     <main class="container-border">
         <div class="container-fluid px-4 mt-3">
-            <h2><b>Tracerstudy Alumni</b></h2>
-            <p>Wajib mengisi form berikut ini.</p><hr>
+            <h2><b>Edit Tracerstudy Alumni</b></h2>
+            <p>Edit isi form berikut ini.</p><hr>
             <div class="row justify-content">
                 <!-- ini isi kontennya disini -->
                 <div class="col-md-12">
                     <div class="card border-0 shadow-sm rounded">
                         <div class="card-body form-container">
-                            <form action="{{ route('kuesioner.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('kuesioner.update', $kuesioner->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
+                                                                
                                 <!-- form 1 -->
                                 <div class="form-group">
                                     <div class="row mb-3">
                                         <label for="nama_alumni" class="col-sm-3 col-form-label">Nama Alumni</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('nama_alumni') is-invalid @enderror" name="nama_alumni" value="{{ old('nama_alumni', $user->nama_alumni) }}" id="nama_alumni" readonly>
+                                            <input type="text" class="form-control @error('nama_alumni') is-invalid @enderror" name="nama_alumni" value="{{ old('nama_alumni', $kuesioner->nama_alumni) }}" id="nama_alumni" readonly>
                                         </div>
-                                    </div>                                  
+                                    </div>                                                         
                                     @error('nama_alumni')
                                         <div class="alert alert-danger mt-2">
                                             {{ $message }}
@@ -52,10 +54,10 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Jenis Kelamin</label>
                                         <div class="col-sm-9">  
-                                            <select class="selectpicker form-control" data-live-search="true" name="jns_kelamin" value="{{ old('jns_kelamin') }}">
+                                            <select class="selectpicker form-control" data-live-search="true" name="jns_kelamin" value="{{ old('jns_kelamin', $kuesioner->jns_kelamin) }}">
                                                 <option selected disabled>Pilih Jenis Kelamin</option>
-                                                <option value="Perempuan">Perempuan</option>
-                                                <option value="Laki-Laki">Laki-Laki</option>
+                                                <option value="Perempuan"{{ $kuesioner->jns_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                <option value="Laki-Laki"{{ $kuesioner->jns_kelamin == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
                                             </select>      
                                         </div>  
                                     </div> 
@@ -71,7 +73,7 @@
                                     <div class="row mb-3">
                                         <label for="nim" class="col-sm-3 col-form-label">NIM</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{ old('nim') }}" placeholder="Masukkan NIM Sewaktu Mahasiswa" id="nim">
+                                            <input type="text" class="form-control @error('nim') is-invalid @enderror" name="nim" value="{{old('nim', $kuesioner->nim) }}" placeholder="Masukkan NIM Sewaktu Mahasiswa" id="nim">
                                         </div>
                                     </div>                              
                                     @error('nim')
@@ -85,7 +87,7 @@
                                     <div class="row mb-3">
                                         <label for="tahun_masuk" class="col-sm-3 col-form-label">Tahun Masuk</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" name="tahun_masuk" value="{{ old('tahun_masuk') }}" placeholder="Masukkan Tahun Masuk Perkuliahan" id="tahun_masuk" min="1900" max="2024" step="1">
+                                                <input type="number" class="form-control @error('tahun_masuk') is-invalid @enderror" name="tahun_masuk" value="{{ old('tahun_masuk', $kuesioner->tahun_masuk)  }}" placeholder="Masukkan Tahun Masuk Perkuliahan" id="tahun_masuk" min="1900" max="2024" step="1">
                                             </div>
                                     </div>   
                                     @error('tahun_masuk')
@@ -99,7 +101,7 @@
                                     <div class="row mb-3">
                                         <label for="tahun_lulus" class="col-sm-3 col-form-label">Tahun Lulus</label>
                                             <div class="col-sm-9">
-                                                <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus') }}" placeholder="Masukkan Tahun Lulus Perkuliahan" id="tahun_lulus" min="1900" max="2024" step="1">
+                                                <input type="number" class="form-control @error('tahun_lulus') is-invalid @enderror" name="tahun_lulus" value="{{ old('tahun_lulus', $kuesioner->tahun_lulus)  }}" placeholder="Masukkan Tahun Lulus Perkuliahan" id="tahun_lulus" min="1900" max="2024" step="1">
                                             </div>
                                     </div>   
                                     @error('tahun_lulus')
@@ -113,7 +115,7 @@
                                     <div class="row mb-3">
                                         <label for="no_hp" class="col-sm-3 col-form-label">Nomer Hp (WhatsApp)</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp') }}" placeholder="Masukkan Nomer Handphone yang terhubung WhatsApp" id="no_hp">
+                                            <input type="number" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{old('no_hp', $kuesioner->no_hp)  }}" placeholder="Masukkan Nomer Handphone yang terhubung WhatsApp" id="no_hp">
                                         </div>
                                     </div>   
                                     @error('no_hp')
@@ -127,7 +129,7 @@
                                     <div class="row mb-3">
                                         <label for="email" class="col-sm-3 col-form-label">Alamat Email</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" id="email" readonly>
+                                            <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $kuesioner->email) }}" id="email" readonly>
                                         </div>
                                     </div>   
                                     @error('email')
@@ -141,15 +143,15 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Jelaskan Status Anda Saat Ini</label>
                                         <div class="col-sm-9">  
-                                            <select class="selectpicker form-control" data-live-search="true" name="status" id="status" value="{{ old('status') }}" onchange="handleStatusChange()">
+                                            <select class="selectpicker form-control" data-live-search="true" name="status" id="status" value="{{ old('status', $kuesioner->status)  }}" onchange="handleStatusChange()">
                                                 <option selected disabled>Pilih Status Anda Saat Ini</option>
-                                                <option value="Bekerja Full Time">Bekerja Full Time</option>
-                                                <option value="Bekerja Part Time">Bekerja Part Time</option>
-                                                <option value="Wiraswasta">Wiraswasta</option>
-                                                <option value="Melanjutkan Pendidikan">Melanjutkan Pendidikan</option>
-                                                <option value="Tidak Bekerja Tetapi Sedang Mencari Pekerjaan">Tidak Bekerja Tetapi Sedang Mencari Pekerjaan</option>
-                                                <option value="Belum Memungkinkan Bekerja">Belum Memungkinkan Bekerja</option>
-                                                <option value="Menikah/Mengurus Keluarga">Menikah/Mengurus Keluarga</option>
+                                                <option value="Bekerja Full Time"{{ $kuesioner->status == 'Bekerja Full Time' ? 'selected' : '' }}>Bekerja Full Time</option>
+                                                <option value="Bekerja Part Time"{{ $kuesioner->status == 'Bekerja Part Time' ? 'selected' : '' }}>Bekerja Part Time</option>
+                                                <option value="Wiraswasta"{{ $kuesioner->status == 'Wiraswasta' ? 'selected' : '' }}>Wiraswasta</option>
+                                                <option value="Melanjutkan Pendidikan"{{ $kuesioner->status == 'Melanjutkan Pendidikan' ? 'selected' : '' }}>Melanjutkan Pendidikan</option>
+                                                <option value="Tidak Bekerja Tetapi Sedang Mencari Pekerjaan"{{ $kuesioner->status == 'Tidak Bekerja Tetapi Sedang Mencari Pekerjaan' ? 'selected' : '' }}>Tidak Bekerja Tetapi Sedang Mencari Pekerjaan</option>
+                                                <option value="Belum Memungkinkan Bekerja"{{ $kuesioner->status == 'Belum Memungkinkan Bekerja' ? 'selected' : '' }}>Belum Memungkinkan Bekerja</option>
+                                                <option value="Menikah/Mengurus Keluarga"{{ $kuesioner->status == 'Menikah/Mengurus Keluarga' ? 'selected' : '' }}>Menikah/Mengurus Keluarga</option>
                                             </select>      
                                         </div>  
                                     </div> 
@@ -166,17 +168,16 @@
                                     <!-- form 9 -->
                                     <div class="form-group">
                                         <div class="row mb-3">
-                                            <label class="col-sm-3 col-form-label">Kategori Pekerjaan</label>
-                                            <div class="col-sm-9">  
-                                                <select class="selectpicker form-control" data-live-search="true" name="jns_job" value="{{ old('jns_job') }}">
+                                            <label class="col-sm-3 col-form-label">Kategori Perusahaan</label>
+                                            <div class="col-sm-9">    
+                                                <select class="selectpicker form-control" data-live-search="true" name="jns_job" value="{{ old('jns_job',$kuesioner->jns_job) }}">
                                                     <option selected disabled>Pilih Kategori Perusahaan Tempat Anda Bekerja</option>
-                                                    <option value="Perusahaan Swasta">Perusahaan Swasta</option>
-                                                    <option value="Perusahaan Nirlaba">Perusahaan Nirlaba</option>
-                                                    <option value="Institusi/Organisasi Multilateral">BUMN/BUMD</option>
-                                                    <option value="Lembaga Pemerintah">Lembaga Pemerintah</option>
-                                                    <option value="BUMN/BUMD">BUMN/BUMD</option>
-                                                    <option value="Wirausaha">Wirausaha</option>
-                                                </select>      
+                                                    <option value="Perusahaan Swasta" {{ $kuesioner->jns_job == 'Perusahaan Swasta' ? 'selected' : '' }}>Perusahaan Swasta</option>
+                                                    <option value="Perusahaan Nirlaba" {{ $kuesioner->jns_job == 'Perusahaan Nirlaba' ? 'selected' : '' }}>Perusahaan Nirlaba</option>
+                                                    <option value="Lembaga Pemerintah" {{ $kuesioner->jns_job == 'Lembaga Pemerintah' ? 'selected' : '' }}>Lembaga Pemerintah</option>
+                                                    <option value="BUMN/BUMD" {{ $kuesioner->jns_job == 'BUMN/BUMD' ? 'selected' : '' }}>BUMN/BUMD</option>
+                                                    <option value="Non Profit" {{ $kuesioner->jns_job == 'Non Profit' ? 'selected' : '' }}>Non Profit</option>
+                                                </select>  
                                             </div>  
                                         </div> 
                                         <!-- error message untuk jns_job -->
@@ -191,7 +192,7 @@
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Nama Instansi</label>
                                             <div class="col-sm-9">        
-                                                <input type="text" class="form-control @error('nama_job') is-invalid @enderror" name="nama_job" value="{{ old('nama_job') }}" placeholder="Masukkan Nama Instansi">
+                                                <input type="text" class="form-control @error('nama_job') is-invalid @enderror" name="nama_job" value="{{ old('nama_job', $kuesioner->nama_job) }}" placeholder="Masukkan Nama Instansi">
                                             </div>  
                                         </div> 
                                         <!-- error message untuk nim -->
@@ -205,16 +206,16 @@
                                     <div class="form-group">
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Jabatan Pekerjaan</label>
-                                            <div class="col-sm-9">  
-                                                <select class="selectpicker form-control" data-live-search="true" name="jabatan_job" value="{{ old('jabatan_job') }}">
-                                                    <option selected disabled>Pilih Jabatan Pekerjaan Anda</option>
-                                                    <option value="Founder">Founder</option>
-                                                    <option value="Co-Founder">Co-Founder</option>
-                                                    <option value="Staff">Staff</option>
-                                                    <option value="Freelance">Freelance</option>
-                                                </select>
+                                            <div class="col-sm-9">       
+                                                <select class="selectpicker form-control" data-live-search="true" name="jabatan_job" value="{{ old('jabatan_job',$kuesioner->jabatan_job) }}">
+                                                    <option selected disabled>Pilih Kategori Perusahaan Tempat Anda Bekerja</option>
+                                                    <option value="Founder" {{ $kuesioner->jabatan_job == 'Founder' ? 'selected' : '' }}>Founder</option>
+                                                    <option value="Co-Founder" {{ $kuesioner->jabatan_job == 'Co-Founder' ? 'selected' : '' }}>Co-Founder</option>
+                                                    <option value="Staff" {{ $kuesioner->jabatan_job == 'Staff' ? 'selected' : '' }}>Staff</option>
+                                                    <option value="Freelance" {{ $kuesioner->jabatan_job == 'Freelance' ? 'selected' : '' }}>Freelance</option>
+                                                </select>     
                                             </div>  
-                                        </div> 
+                                        </div>  
                                         <!-- error message untuk jabatan_job -->
                                         @error('jabatan_job')
                                             <div class="alert alert-danger mt-2">
@@ -227,14 +228,14 @@
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Tingkat Pekerjaan</label>
                                             <div class="col-sm-9">
-                                                <select class="selectpicker form-control" data-live-search="true" name="lingkup_job" value="{{ old('lingkup_job') }}">
+                                                <select class="selectpicker form-control" data-live-search="true" name="lingkup_job" value="{{ old('lingkup_job',$kuesioner->lingkup_job) }}">
                                                     <option selected disabled>Pilih Tingkat Pekerjaan</option>
-                                                    <option value="Lokal/Wilayah Tidak Berbadan Hukum">Lokal/Wilayah Tidak Berbadan Hukum</option>
-                                                    <option value="Lokal/Wilayah Berbadan Hukum">Lokal/Wilayah Berbadan Hukum</option>
-                                                    <option value="Nasional">Nasional</option>
-                                                    <option value="Multinasional">Multinasional</option>
-                                                    <option value="Internasional">Internasional</option>
-                                                </select>    
+                                                    <option value="Lokal/Wilayah Tidak Berbadan Hukum" {{ $kuesioner->lingkup_job == 'Lokal/Wilayah Tidak Berbadan Hukum' ? 'selected' : '' }}>Lokal/Wilayah Tidak Berbadan Hukum</option>
+                                                    <option value="Lokal/Wilayah Berbadan Hukum" {{ $kuesioner->lingkup_job == 'Lokal/Wilayah Berbadan Hukum' ? 'selected' : '' }}>Lokal/Wilayah Berbadan Hukum</option>
+                                                    <option value="Nasional" {{ $kuesioner->lingkup_job == 'Nasional' ? 'selected' : '' }}>Nasional</option>
+                                                    <option value="Multinasional" {{ $kuesioner->lingkup_job == 'Multinasional' ? 'selected' : '' }}>Multinasional</option>
+                                                    <option value="Internasional" {{ $kuesioner->lingkup_job == 'Internasional' ? 'selected' : '' }}>Internasional</option>
+                                                </select>
                                             </div>  
                                         </div>  
                                         <!-- error message untuk lingkup_job -->
@@ -253,10 +254,10 @@
                                         <div class="row mb-3">
                                             <label class="col-sm-3 col-form-label">Sumber Biaya Melanjutkan Studi</label>
                                             <div class="col-sm-9">
-                                                <select class="selectpicker form-control" data-live-search="true" name="biaya_studi" value="{{ old('biaya_studi') }}">
+                                                <select class="selectpicker form-control" data-live-search="true" name="biaya_studi" value="{{ old('biaya_studi', $kuesioner->biaya_studi) }}">
                                                     <option selected disabled>Pilih Sumber Biaya Melanjutkan Studi</option>
-                                                    <option value="Sendiri">Sendiri</option>
-                                                    <option value="Beasiswa">Beasiswa</option>
+                                                    <option value="Sendiri"{{ $kuesioner->biaya_studi == 'Sendiri' ? 'selected' : '' }}>Sendiri</option>
+                                                    <option value="Beasiswa" {{ $kuesioner->biaya_studi == 'Beasiswa' ? 'selected' : '' }}>Beasiswa</option>
                                                 </select>    
                                             </div>  
                                         </div>  
@@ -272,7 +273,7 @@
                                         <div class="row mb-3">
                                             <label for="nama_studi" class="col-sm-3 col-form-label">Nama Perguruan Tinggi Lanjutan Studi</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control @error('nama_studi') is-invalid @enderror" name="nama_studi" value="{{ old('nama_studi') }}" placeholder="Masukkan Nama Perguruan Tinggi Tempat Anda Melakukan Studi" id="nama_studi">
+                                                <input type="text" class="form-control @error('nama_studi') is-invalid @enderror" name="nama_studi" value="{{ old('nama_job', $kuesioner->nama_job) }}" placeholder="Masukkan Nama Perguruan Tinggi Tempat Anda Melakukan Studi" id="nama_studi">
                                             </div>
                                         </div>                              
                                         @error('nama_studi')
@@ -286,7 +287,7 @@
                                         <div class="row mb-3">
                                             <label for="prodi" class="col-sm-3 col-form-label">Nama Program Studi yang Sedang Anda Tempuh</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" value="{{ old('prodi') }}" placeholder="Masukkan Nama Program Studi yang Sedang Anda Tempuh" id="prodi">
+                                                <input type="text" class="form-control @error('prodi') is-invalid @enderror" name="prodi" value="{{ old('nama_job', $kuesioner->nama_job) }}" placeholder="Masukkan Nama Program Studi yang Sedang Anda Tempuh" id="prodi">
                                             </div>
                                         </div>                              
                                         @error('prodi')
@@ -300,7 +301,7 @@
                                         <div class="row mb-3">
                                             <label for="tgl_studi" class="col-sm-3 col-form-label">Tanggal Masuk/Mulai Studi Lanjutan</label>
                                             <div class="col-sm-9">
-                                                <input type="date" class="form-control @error('tgl_studi') is-invalid @enderror" name="tgl_studi" value="{{ old('tgl_studi') }}" placeholder="Masukkan Tanggal Masuk/Mulai Masuk Studi Lanjutan" id="tgl_studi">
+                                                <input type="date" class="form-control @error('tgl_studi') is-invalid @enderror" name="tgl_studi" value="{{ old('nama_job', $kuesioner->nama_job) }}" placeholder="Masukkan Tanggal Masuk/Mulai Masuk Studi Lanjutan" id="tgl_studi">
                                             </div>
                                         </div>                              
                                         @error('tgl_studi')
@@ -311,7 +312,6 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="reset" class="btn btn btn-warning me-2">Reset</button>
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                             </form>

@@ -26,16 +26,21 @@ class KuesionerController extends Controller
      *
      * @return View
      */
-    public function index(): View
+    public function index(): View|RedirectResponse
     {
-        // Mengambil data pengguna yang sedang login
         $user = Auth::user();
 
-        // Mengambil kuesioner terbaru dengan paginasi
-        $kuesioners = Kuesioner::where('id_alumni', $user->id)->latest()->paginate(5);
+        // Mengecek apakah pengguna sudah pernah membuat kuesioner
+        $kuesionerExists = Kuesioner::where('id_alumni', $user->id)->exists();
 
-        // Render view dengan kuesioner dan data pengguna
-        return view('alumni.tracerstudy.kuesioner.create', compact('kuesioners', 'user'));
+        if ($kuesionerExists) {
+            // Jika kuesioner sudah ada, tampilkan halaman index dengan paginasi
+            $kuesioners = Kuesioner::where('id_alumni', $user->id)->latest()->paginate(5);
+            return view('alumni.tracerstudy.kuesioner.index', compact('kuesioners', 'user'));
+        } else {
+            // Jika kuesioner belum ada, arahkan ke halaman create
+            return redirect()->route('kuesioner.create');
+        }
     }
      /**
      * create
@@ -107,6 +112,22 @@ class KuesionerController extends Controller
         Kuesioner::create($data);
 
         // Redirect to index with success message
-        return redirect()->route('alumni')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('kuesioner.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
+    // Menampilkan form untuk mengedit kuesioner
+    public function edit($id): View
+    {
+        $kuesioner = Kuesioner::findOrFail($id);
+        return view('alumni.tracerstudy.kuesioner.edit', compact('kuesioner'));
+    }
+
+    // Menyimpan perubahan setelah diedit
+    public function update(Request $request, $id): RedirectResponse
+    {
+        $kuesioner = Kuesioner::findOrFail($id);
+        $kuesioner->update($request->all());
+        return redirect()->route('kuesioner.index', $kuesioner->id)->with('success', 'Data berhasil diperbarui');
+    }
+
 }
