@@ -420,28 +420,28 @@
       <h1 class="my-5 text-center">Lowongan <span class="my-5 text-center">Pekerjaan</span></h1>
       <p class="text-center">Yuk cari lowongan pekerjaan yang sesuai dengan minatmu!</p>
       <div class="row">
-          @foreach($lokers as $loker)
-          <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                  <div class="card-body">
-                      <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                          <img style="width: 4rem; height: 4rem; margin-right: 1rem; object-fit: cover; border-radius: 9999px; max-width: 64px; max-height: 64px;"
-                              src="{{ $loker->Logo ? asset('/storage/imglogo/' . $loker->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
-                          <div>
-                            <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;" onclick="showLokerDetail('{{ $loker->id }}')">
-                              <b>{{ $loker->Posisi }}</b>
-                            </button>
-                            <p class="card-text">{{ $loker->NamaPerusahaan }}</p>
-                          </div>
-                      </div>
-                      <x-listinghome-tags :tagsCsv="$loker->Tags" />
-                      <div class="d-flex justify-content-between align-items-center">
-                          <small class="text-muted">{{ $loker->Gaji }} | {{ $loker->Pengalaman }}</small>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          @endforeach
+        @foreach($lokers as $loker)
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <img style="width: 4rem; height: 4rem; margin-right: 1rem; object-fit: cover; border-radius: 9999px; max-width: 64px; max-height: 64px;"
+                            src="{{ $loker->Logo ? asset('/storage/imglogo/' . $loker->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
+                        <div>
+                          <button type="button" style="background: none; border: none; color: inherit; text-decoration: none; padding: 0; cursor: pointer;" onclick="showLokerDetail('{{ $loker->id }}')">
+                            <b>{{ $loker->Posisi }}</b>
+                          </button>
+                          <p class="card-text">{{ $loker->NamaPerusahaan }}</p>
+                        </div>
+                    </div>
+                    <x-listinghome-tags :tagsCsv="$loker->Tags" />
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">{{ $loker->Gaji }} | {{ $loker->Pengalaman }}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
       </div>
     </div>
     
@@ -497,7 +497,7 @@
             </div>
         </div>
         @endforeach
-    </div>
+      </div>
     </div>
     
     <!-- Script untuk menampilkan Pop-up atau Modul -->

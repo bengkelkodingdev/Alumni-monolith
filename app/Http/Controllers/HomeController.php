@@ -8,64 +8,20 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index(){
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeKerja = request('TipeKerja', []);
-    
+    public function index(){    
         // Fetch loker based on selected filters
         $lokers = Loker::latest()
-                ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
+                ->filter(request(['Tags', 'search']))
                 ->where('Verify', 'verified')
                 ->paginate(6);
 
-    
-        // Determine the availability of each filter option
-        $availablePengalaman = Loker::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
-    
-        $availableTipeKerja = Loker::select('TipeKerja')
-            ->distinct()
-            ->whereIn('TipeKerja', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeKerja')
-            ->toArray();
-
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeMagang = request('TipeMagang', []);
-
         // Fetch logang based on selected filters
         $logangs = Logang::latest()
-            ->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))
+            ->filter(request(['Tags', 'search']))
             ->where('Verify', 'verified')
-            ->paginate(6);
+            ->paginate(6);  
 
-        // Determine the availability of each filter option
-        $availablePengalaman = Logang::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
-
-        $availableTipeMagang = Logang::select('TipeMagang')
-            ->distinct()
-            ->whereIn('TipeMagang', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeMagang')
-            ->toArray();  
-
-        return view('home', compact('lokers', 'logangs', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja' , 
-                    'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));       
+        return view('home', compact('lokers', 'logangs',));       
     } 
     public function showLoker($id){
         $loker = Loker::findOrFail($id); 

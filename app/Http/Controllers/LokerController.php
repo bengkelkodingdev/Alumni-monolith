@@ -8,38 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use illuminate\Validation\Rule;
 
 class LokerController extends Controller{
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index(){
-    //     // Get selected filters
-    //     $selectedPengalaman = request('Pengalaman', []);
-    //     $selectedTipeKerja = request('TipeKerja', []);
-    
-    //     // Fetch loker based on selected filters
-    //     $loker = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
-    
-    //     // Determine the availability of each filter option
-    //     $availablePengalaman = Loker::select('Pengalaman')
-    //         ->distinct()
-    //         ->whereIn('Pengalaman', [
-    //             'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-    //             'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-    //         ])
-    //         ->pluck('Pengalaman')
-    //         ->toArray();
-    
-    //     $availableTipeKerja = Loker::select('TipeKerja')
-    //         ->distinct()
-    //         ->whereIn('TipeKerja', [
-    //             'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-    //         ])
-    //         ->pluck('TipeKerja')
-    //         ->toArray();
-    
-    //     return view('alumni.loker.index', compact('loker', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
-    // }
-       
+   
     public function index(Request $request)
     {
         $selectedPengalaman = $request->input('Pengalaman', []);
@@ -104,52 +73,6 @@ class LokerController extends Controller{
         // return redirect()->route('listings.index')->with('success', 'Lowongan berhasil ditambahkan!');
 
     }
-    // public function store(Request $request){
-    //     // Validasi data
-    //     $validatedData = $request->validate([
-    //         'NamaPerusahaan' => 'required|string|max:255',
-    //         'Posisi' => 'required|string|max:255',
-    //         'Alamat' => 'required|string|max:255',
-    //         'Email' => 'required|email|max:255',
-    //         'Pengalaman' => 'required|integer',
-    //         'Gaji' => 'required|string|max:255',
-    //         'TipeKerja' => 'required|string|max:255',
-    //         'Deskripsi' => 'required|string',
-    //         'Website' => 'nullable|url|max:255',
-    //         'Tags' => 'nullable|string|max:255',
-    //         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    //     ]);
-
-    //     // Upload logo jika ada
-    //     if ($request->hasFile('logo')) {
-    //         $image = $request->file('logo');
-    //         $filename = date('Y-m-d').$image->getClientOriginalName();
-    //         $path = '/imglogo/'.$filename;
-
-    //         Storage::disk('public')->put($path, file_get_contents($image));
-    //     } else {
-    //         $filename = null;
-    //     }
-
-    //     // Buat data Loker
-    //     Loker::create([
-    //         'NamaPerusahaan' => $validatedData['NamaPerusahaan'],
-    //         'Posisi' => $validatedData['Posisi'],
-    //         'Alamat' => $validatedData['Alamat'],
-    //         'Pengalaman' => $validatedData['Pengalaman'],
-    //         'Gaji' => $validatedData['Gaji'],
-    //         'TipeKerja' => $validatedData['TipeKerja'],
-    //         'Deskripsi' => $validatedData['Deskripsi'],
-    //         'Website' => $validatedData['Website'],
-    //         'Email' => $validatedData['Email'],
-    //         'Tags' => $validatedData['Tags'],
-    //         'Verify' => $request->Verify, // Pastikan ini memiliki nilai yang diinginkan
-    //         'Logo' => $filename
-    //     ]);
-
-    //     return redirect('/loker')->with('message', 'Listing created successfully!');
-    // }
-
     
     public function edit(Request $request,$id) {
         $loker = Loker::find($id);
