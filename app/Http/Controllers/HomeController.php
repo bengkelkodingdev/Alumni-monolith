@@ -31,7 +31,7 @@ class HomeController extends Controller
     public function showLogang($id){
         $logang = Logang::findOrFail($id); 
 
-        return view('showLogangHome', compact('logang')); 
+        return view('ShowLogangHome', compact('logang')); 
     }
 
 }
