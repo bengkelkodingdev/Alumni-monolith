@@ -174,14 +174,14 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     //route Loker Admin
     Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('lokeradmin.index');
     Route::get('/lokeradmin/{id}', [LokerAdminController::class,'show'])->name('lokeradmin.showAdmin');
-    Route::delete('/adminLoker/{id}/delete', [LokerAdminController::class, 'destroy']);
+    Route::delete('/lokeradmin/{id}/delete', [LokerAdminController::class, 'destroy']);
     Route::post('/adminLoker/{id}/verify', [LokerAdminController::class, 'verify']);
     Route::get('/manageLokerAdmin', [LokerAdminController::class, 'manage'])->name('lokeradmin.manage');
 
     //route Logang Admin
     Route::get('/logangadmin',[LogangAdminController::class, 'indexadmin'])->name('logangadmin.index');
     Route::get('/logangadmin/{id}', [LogangAdminController::class,'show'])->name('logangadmin.showAdmin');
-    Route::delete('/adminLogang/{id}/delete', [LogangAdminController::class, 'destroy']);
+    Route::delete('/logangadmin/{id}/delete', [LogangAdminController::class, 'destroy']);
     Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']);
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 

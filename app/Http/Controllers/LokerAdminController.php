@@ -59,81 +59,13 @@ class LokerAdminController extends Controller
 
         return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan status updated successfully');
     }
-
-
-    // Store listingkerja Data
-    public function store(Request $request) {
-
-        $image      =$request->file('logo');
-        $filename   =date('Y-m-d').$image->getClientOriginalName();
-        $path       ='/imglogo/'.$filename;
-
-        Storage::disk('public')->put($path,file_get_contents($image));
-                  
-        Loker::create([
-            'NamaPerusahaan' => $request->NamaPerusahaan,
-            'Posisi' => $request->Posisi,
-            'Alamat' => $request->Alamat,
-            'Pengalaman' => $request->Pengalaman,
-            'Gaji' => $request->Gaji,
-            'TipeKerja' => $request->TipeKerja,
-            'Deskripsi' => $request->Deskripsi,
-            'Website' => $request->Website,
-            'Email' => $request->Email,
-            'Tags' => $request->Tags,
-            'Verify' => $request->Verify,
-            'Logo' => $filename
-
-        ]);
-
-        return redirect('/loker')->with('message', 'listingkerja created successfully!');
-    }
-
-    public function edit(Request $request,$id) {
-        $listingkerjaadmin = Loker::find($id);
-        return view('lokerAdmin.editAdmin', compact('listingkerjaadmin') );
-    }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
+    public function destroy($id)
     {
-
-         if ($request->Logo) {
-            $Logo      =$request->file('Logo');
-            $filename   =date('Y-m-d').$Logo->getClientOriginalName();
-            $path       ='/imglogo/'.$filename;
-
-            Storage::disk('public')->put($path,file_get_contents($Logo));
+        $lokerAdmin = Loker::find($id);
+        if ($lokerAdmin){
+            $lokerAdmin->delete();
         }
-        Loker::whereId($id)->update([
-            'NamaPerusahaan' => $request->NamaPerusahaan,
-            'Posisi' => $request->Posisi,
-            'Alamat' => $request->Alamat,
-            'Pengalaman' => $request->Pengalaman,
-            'Gaji' => $request->Gaji,
-            'TipeKerja' => $request->TipeKerja,
-            'Deskripsi' => $request->Deskripsi,
-            'Website' => $request->Website,
-            'Email' => $request->Email,
-            'Tags' => $request->Tags,
-            'Verify' => $request->Verify,
-            'Logo' => $filename
-
-        ]);
-
-        return redirect()->route('manage.view')->with('success', 'lowongan updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id){
-        $listingkerjaadmin = Loker::find($id);
-        if ($listingkerjaadmin){
-            $listingkerjaadmin->delete();
-        }
-        return redirect()->route('manageLokerAdmin.view')->with('success', 'Lowongan deleted successfully');
+        return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan deleted successfully');
     }
 
     // Manage listingkerja

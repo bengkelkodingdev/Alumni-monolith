@@ -12,7 +12,7 @@
             <h1 class="text-2xl mb-2">{{ $loker->Posisi }}</h1>
             <p>{{ $loker->NamaPerusahaan }}</p>
             <div style="display: flex; justify-content: center; align-items: center;">
-                <x-listing-tags :tagsCsv="$loker->Tags" />
+                <x-listingadmin-tags :tagsCsv="$loker->Tags" />
             </div>
             <div class="text-lg my-4">
                 <i class="fa-solid fa-location-dot"></i> {{ $loker->Alamat }}

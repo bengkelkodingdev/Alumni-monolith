@@ -58,86 +58,15 @@ class LogangAdminController extends Controller
         return redirect()->route('logangadmin.manage')->with('success', 'Lowongan status updated successfully');
     }
 
-
-    // Store listingmagang Data
-    public function store(Request $request) {
-
-        $image      =$request->file('logo');
-        $filename   =date('Y-m-d').$image->getClientOriginalName();
-        $path       ='/imglogo/'.$filename;
-
-        Storage::disk('public')->put($path,file_get_contents($image));
-                  
-        Logang::create([
-            'NamaPerusahaan' => $request->NamaPerusahaan,
-            'Posisi' => $request->Posisi,
-            'Alamat' => $request->Alamat,
-            'Pengalaman' => $request->Pengalaman,
-            'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
-            'Deskripsi' => $request->Deskripsi,
-            'Website' => $request->Website,
-            'Email' => $request->Email,
-            'Tags' => $request->Tags,
-            'Verify' => $request->Verify,
-            'Logo' => $filename
-
-        ]);
-
-        return redirect('/logang')->with('message', 'listingmagang created successfully!');
-    }
-
-    public function edit(Request $request,$id) {
-        $listingmagangadmin = Logang::find($id);
-        return view('logangAdmin.editAdmin', compact('listingmagangadmin') );
-    }
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-
-         if ($request->Logo) {
-            $Logo      =$request->file('Logo');
-            $filename   =date('Y-m-d').$Logo->getClientOriginalName();
-            $path       ='/imglogo/'.$filename;
-
-            Storage::disk('public')->put($path,file_get_contents($Logo));
-        }
-        Logang::whereId($id)->update([
-            'NamaPerusahaan' => $request->NamaPerusahaan,
-            'Posisi' => $request->Posisi,
-            'Alamat' => $request->Alamat,
-            'Pengalaman' => $request->Pengalaman,
-            'Gaji' => $request->Gaji,
-            'TipeMagang' => $request->TipeMagang,
-            'Deskripsi' => $request->Deskripsi,
-            'Website' => $request->Website,
-            'Email' => $request->Email,
-            'Tags' => $request->Tags,
-            'Verify' => $request->Verify,
-            'Logo' => $filename
-
-        ]);
-
-        return redirect()->route('manage.view')->with('success', 'lowongan updated successfully');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id){
-        $listingmagangadmin = Logang::find($id);
-        if ($listingmagangadmin){
-            $listingmagangadmin->delete();
+        $logangadmin = Logang::find($id);
+        if ($logangadmin){
+            $logangadmin->delete();
         }
-        return redirect()->route('manageLogangAdmin.view')->with('success', 'Lowongan deleted successfully');
+        return redirect()->route('logangadmin.manage')->with('success', 'Lowongan deleted successfully');
     }
 
     // Manage listingmagang
-    // public function manage(){
-    //     return view('admin.logangAdmin.manageAdmin', ['logangAdmin' =>Logang::all()]);
-    // }
     public function manage(Request $request){
         $query = Logang::query();
 

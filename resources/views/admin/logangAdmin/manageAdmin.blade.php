@@ -180,20 +180,20 @@
       @foreach($logangAdmin as $lgng)
       <tr class="border-gray-300 text-center">
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-              <a href="{{ route('logang.show', $lgng->id) }}" style="color: inherit; text-decoration: none;">{{$lgng->NamaPerusahaan}}</a>
+              <a href="{{ route('logangadmin.showAdmin', $lgng->id) }}" style="color: inherit; text-decoration: none;">{{$lgng->NamaPerusahaan}}</a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <a href="/logang/{{$lgng->id}}" style="color: inherit; text-decoration: none;">{{$lgng->Posisi}}</a>
+            <a href="/logangadmin/{{$lgng->id}}" style="color: inherit; text-decoration: none;">{{$lgng->Posisi}}</a>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
             <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
-                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogang"
-                data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.show', $lgng->id) }}">
+                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogangAdmin"
+                data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logangadmin.showAdmin', $lgng->id) }}">
                 Detail
             </button>
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-              <form method="POST" action="/logang/{{$lgng->id}}/delete" onsubmit="return confirm('Delete?')">
+              <form method="POST" action="/logangadmin/{{$lgng->id}}/delete" onsubmit="return confirm('Delete?')">
                   @csrf
                   @method('DELETE')
                   <button value="{{ $lgng->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
@@ -239,16 +239,7 @@
 </div>
 
 <!-- Modal for Show Logang -->
-<div class="modal fade" id="dialogShowLogang" tabindex="-1" aria-labelledby="dialogShowLogangLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-          <!-- Content will be loaded dynamically -->
-      </div>
-  </div>
-</div>
-
-<!-- Modal for Edit Logang -->
-<div class="modal fade" id="dialogEditLogang" tabindex="-1" aria-labelledby="dialogEditLogangLabel" aria-hidden="true">
+<div class="modal fade" id="dialogShowLogangAdmin" tabindex="-1" aria-labelledby="dialogShowLogangAdminLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
           <!-- Content will be loaded dynamically -->

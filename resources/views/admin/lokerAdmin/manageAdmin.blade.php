@@ -44,20 +44,20 @@
             @foreach($lokerAdmin as $lkr)
             <tr class="border-gray-300 text-center">
                 <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    <a href="{{ route('loker.show', $lkr->id) }}" style="color: inherit; text-decoration: none;">{{$lkr->NamaPerusahaan}}</a>
+                    <a href="{{ route('lokeradmin.showAdmin', $lkr->id) }}" style="color: inherit; text-decoration: none;">{{$lkr->NamaPerusahaan}}</a>
                 </td>
                 <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    <a href="/loker/{{$lkr->id}}" style="color: inherit; text-decoration: none;">{{$lkr->Posisi}}</a>
+                    <a href="/lokeradmin/{{$lkr->id}}" style="color: inherit; text-decoration: none;">{{$lkr->Posisi}}</a>
                 </td>
                 <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
                     <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
-                        style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLoker"
-                        data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.show', $lkr->id) }}">
+                        style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLokerAdmin"
+                        data-id="{{ $lkr->id }}" data-bs-remote="{{ route('lokeradmin.showAdmin', $lkr->id) }}">
                         Detail
                     </button>
                 </td>
                 <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    <form method="POST" action="/loker/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
+                    <form method="POST" action="/lokeradmin/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
                         @csrf
                         @method('DELETE')
                         <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
@@ -106,23 +106,14 @@
  </div>
  
  <!-- Modal for Show Loker -->
- <div class="modal fade" id="dialogShowLoker" tabindex="-1" aria-labelledby="dialogShowLokerLabel" aria-hidden="true">
+ <div class="modal fade" id="dialogShowLokerAdmin" tabindex="-1" aria-labelledby="dialogShowLokerAdminLabel" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered modal-lg">
        <div class="modal-content">
            <!-- Content will be loaded dynamically -->
        </div>
    </div>
  </div>
- 
- <!-- Modal for Edit Loker -->
- <div class="modal fade" id="dialogEditLoker" tabindex="-1" aria-labelledby="dialogEditLokerLabel" aria-hidden="true">
-   <div class="modal-dialog modal-dialog-centered modal-lg">
-       <div class="modal-content">
-           <!-- Content will be loaded dynamically -->
-       </div>
-   </div>
- </div>
- 
+  
  <script>
    // Add event listeners to dynamically load content into modals
    document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
