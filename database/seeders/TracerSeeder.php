@@ -61,7 +61,7 @@ class TracerSeeder extends Seeder
             'tahun_masuk' => '2020',
             'tahun_lulus' => '2024',
             'no_hp' => '0822',
-            'email' => 'fauxan@email',
+            'email' => 'fauzan@email',
             'status' => 'Belum Memungkinkan Bekerja',
             'jns_job' => '',
             'nama_job' => '',
