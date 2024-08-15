@@ -1,5 +1,5 @@
-@extends('alumni.layouts.main')
-@section('title', 'Profile Alumni')
+@extends('admin.layouts.main')
+@section('title', 'Profile Admin')
 @section('content')
   <!-- Navbar -->
   <nav class="sb-topnav navbar navbar-expand">
