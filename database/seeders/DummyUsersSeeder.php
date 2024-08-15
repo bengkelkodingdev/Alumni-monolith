@@ -37,6 +37,48 @@ class DummyUsersSeeder extends Seeder
                 'email' => 'fauzan@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Surinanda',
+                'email' => 'suri@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Elecia Budi Syabila',
+                'email' => 'elecia@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Hastaning Sekar Rani',
+                'email' => 'rani@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Qotrunnada Nabila',
+                'email' => 'nada@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Kirana Anggana Raras',
+                'email' => 'raras@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Rosa Paramitha',
+                'email' => 'rosa@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
+            ],
+            [
+                'nama_alumni' => 'Mutiara Syabilla',
+                'email' => 'rara@gmail.com',
+                'role' => 'alumni',
+                'password' =>'bcrypt'('123')
             ]
         ];
 
