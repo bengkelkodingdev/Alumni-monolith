@@ -1,4 +1,4 @@
-{{-- @extends('admin.layouts.main')
+ {{-- @extends('admin.layouts.main')
 @section('title', 'Manage Lowongan')
 @section('content')
 <!-- Navbar -->
