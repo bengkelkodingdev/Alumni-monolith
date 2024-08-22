@@ -23,6 +23,19 @@
     </ul>
   </nav>
 
+   <!-- Pesan sukses atau gagal -->
+   @if(session('success'))
+   <div class="alert alert-success">
+       {{ session('success') }}
+   </div>
+@endif
+
+@if(session('error'))
+   <div class="alert alert-danger">
+       {{ session('error') }}
+   </div>
+@endif
+
   <div class="container-border">
     <div class="container mt-5">
         <h1 class="text-center mb-4">Profil Alumni </h1>
@@ -33,7 +46,6 @@
                 <p>Gambar tidak ditemukan.</p>
             @endif
         </div>
-
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Informasi Pribadi:</h5>
@@ -46,37 +58,51 @@
                             <p class="card-text"><strong>Email:</strong> <span>{{ Auth::user()->email }}</span></p>
                         </div>
                         <div class="info-item">
-                            <p class="card-text"><strong>NIM:</strong> <span></span></p>
+                            <p class="card-text"><strong>Password:</strong> <span>********</span></p>
                         </div>
-                        <div class="info-item">
-                            <p class="card-text"><strong>Jenis Kelamin:</strong> <span></span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="info-item">
-                            <p class="card-text"><strong>Tahun Masuk:</strong> <span></span></p>
-                        </div>
-                        <div class="info-item">
-                            <p class="card-text"><strong>Tahun Lulus:</strong> <span></span></p>
-                        </div>
-                        <div class="info-item">
-                            <p class="card-text"><strong>No WhatsApp:</strong> <span></span></p>
-                        </div>
-                        <div class="info-item">
-                            <p class="card-text"><strong>Status:</strong> <span></span></p>
-                        </div>
-                    </div>
                 </div>
-
-                <!-- Tombol untuk membuka modal upload foto -->
-                <div class="form-group">
-                <button type="button" class="btn btn-primary mt-4  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" data-bs-toggle="modal" data-bs-target="#uploadModal">
-                    Unggah Foto Profil
-                </button>
+        
+                <div class="form-group d-flex justify-content-start mt-4">
+                    <button type="button" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded me-2" data-bs-toggle="modal" data-bs-target="#uploadModal">
+                        Unggah Foto Profil
+                    </button>
+                    
+                    <button type="button" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded me-2" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                        Ganti Password
+                    </button>
                 </div>
+                
+                
+    <!-- Modal ganti password -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordModalLabel">Ganti Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('alumni.change-password') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="current_password">Password Lama:</label>
+                        <input type="password" class="form-control" id="current_password" name="current_password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="new_password">Password Baru:</label>
+                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="new_password_confirmation">Konfirmasi Password Baru:</label>
+                        <input type="password" class="form-control" id="new_password_confirmation" name="new_password_confirmation" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Ganti Password</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Modal upload foto -->
     <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
@@ -99,6 +125,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Modal untuk memperbesar gambar -->
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">

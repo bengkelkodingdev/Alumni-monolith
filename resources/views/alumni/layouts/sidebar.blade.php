@@ -41,7 +41,7 @@
             </li>
         </ul>
         <div class="sidebar-footer">
-            <a href="/profile" class="sidebar-link">
+            <a href="/profilealumni" class="sidebar-link">
                 <i class="lni lni-user"></i>
                 <span>Profile</span>
             </a>

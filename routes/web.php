@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\alumniprofileController;
 use App\Http\Controllers\LogangAdminController;
 use App\Http\Controllers\LogangController;
 use App\Http\Controllers\LokerAdminController;
@@ -11,6 +12,9 @@ use App\Http\Controllers\SesiController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use App\Http\Controllers\GrafikStatistikController;
 
 
 /*
@@ -34,8 +38,15 @@ Route::middleware(['guest'])->group(function(){
 Route::get('/home', function(){
     return redirect('/admin');
 });
-Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
-    Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
+Route::get('/profile', [AboutController::class, 'profile'])->name('admin-profile');
+    Route::post('/profile',[AboutController::class, 'store'])->name('admin-store');
+    Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
+    Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
+    Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
+    Route::post('/change-password-admin', [AboutController::class, 'changePassword'])->name('admin.change-password');
+
+
+    
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');

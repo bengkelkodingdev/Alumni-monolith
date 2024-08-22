@@ -7,17 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AboutController extends Controller
+
+
+
+class alumniprofileController extends Controller
 {
-    public function profile()
+    public function profilealumni()
     {
         $user = Auth::user();
         $alumni = alumni::where('email', $user->email)->first();
-        return view('profile', ['alumni' => $alumni]);
+        return view('profilealumni',compact('user'));
     }
 
     public function store(Request $request)
-{
+    {
     $request->validate([
         'profile_picture' => 'required|image|mimes:jpeg,png,jpg|max:2048',
     ]);
@@ -34,7 +37,8 @@ class AboutController extends Controller
     }
 
     return redirect()->back()->with('success', 'Foto profil berhasil diunggah!');
-}
+    }
+
 public function changePassword(Request $request)
 {
     // Validasi input
@@ -56,6 +60,7 @@ public function changePassword(Request $request)
     return back()->with('success', 'Password berhasil diubah.');
     
 }
+
 
 
 
