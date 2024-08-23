@@ -25,9 +25,25 @@ class LokerController extends Controller{
             $loker->whereIn('TipeKerja', $selectedTipeKerja);
         }
 
+        $tipeKerjaCounts = [
+            'freelance' => Loker::where('TipeKerja', 'Freelance')->count(),
+            'full time' => Loker::where('TipeKerja', 'Full Time')->count(),
+            'part time' => Loker::where('TipeKerja', 'Part Time')->count(),
+            'kontrak' => Loker::where('TipeKerja', 'Kontrak')->count(),
+            'sementara' => Loker::where('TipeKerja', 'Sementara')->count(),
+        ];
+
+        $pengalamanCounts = [
+            'tanpa pengalaman' => Loker::where('Pengalaman', 'Tanpa Pengalaman')->count(),
+            'fresh graduate' => Loker::where('Pengalaman', 'Fresh Graduate')->count(),
+            'minimal 1 tahun' => Loker::where('Pengalaman', 'Minimal 1 Tahun')->count(),
+            'minimal 2 tahun' => Loker::where('Pengalaman', 'Minimal 2 Tahun')->count(),
+            'minimal 3 tahun' => Loker::where('Pengalaman', 'Minimal 3 Tahun')->count(),
+            'lebih dari 3 tahun' => Loker::where('Pengalaman', 'Lebih dari 3 Tahun')->count(),
+        ];
         $loker = $loker->get();
 
-        return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja'));
+        return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja', 'tipeKerjaCounts', 'pengalamanCounts'));
     }
 
     // Show single listing

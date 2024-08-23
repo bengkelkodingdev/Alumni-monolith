@@ -58,7 +58,7 @@
                     
                     <h5><b>Pengalaman Kerja</b></h5>
                     
-                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                    {{-- <div class="border border-primary bg-light p-3 rounded mb-4">
                         @foreach ([
                             'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
                             'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
@@ -71,12 +71,28 @@
                                 </label>
                             </div>
                         @endforeach
+                    </div> --}}
+
+                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                        @foreach ([
+                            'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
+                            'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
+                        ] as $pengalaman)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
+                                    {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }}>
+                                <label class="form-check-label" style="font-size: 14px;">
+                                    {{ $pengalaman }} ({{ $pengalamanCounts[strtolower($pengalaman)] ?? 0 }})
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
+                    
 
                     <!-- Tipe Pekerjaan -->
                     <h5><b>Tipe Pekerjaan</b></h5>
                     
-                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                    {{-- <div class="border border-primary bg-light p-3 rounded mb-4">
                         @foreach ([
                             'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
                         ] as $tipeKerja)
@@ -88,7 +104,21 @@
                                 </label>
                             </div>
                         @endforeach
+                    </div> --}}
+                    <div class="border border-primary bg-light p-3 rounded mb-4">
+                        @foreach ([
+                            'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
+                        ] as $tipeKerja)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="TipeKerja[]" value="{{ strtolower($tipeKerja) }}" 
+                                    {{ in_array(strtolower($tipeKerja), array_map('strtolower', $selectedTipeKerja)) ? 'checked' : '' }}>
+                                <label class="form-check-label" style="font-size: 14px;"> 
+                                    {{ $tipeKerja }} ({{ $tipeKerjaCounts[strtolower($tipeKerja)] ?? 0 }})
+                                </label>
+                            </div>
+                        @endforeach
                     </div>
+                    
                 </form>
             </div>
         </div>

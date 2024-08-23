@@ -22,10 +22,25 @@ class LogangController extends Controller{
         if (!empty($selectedTipeMagang)) {
             $logang->whereIn('TipeMagang', $selectedTipeMagang);
         }
-    
+        $tipeMagangCounts = [
+            'freelance' => Logang::where('TipeMagang', 'Freelance')->count(),
+            'full time' => Logang::where('TipeMagang', 'Full Time')->count(),
+            'part time' => Logang::where('TipeMagang', 'Part Time')->count(),
+            'kontrak' => Logang::where('TipeMagang', 'Kontrak')->count(),
+            'sementara' => Logang::where('TipeMagang', 'Sementara')->count(),
+        ];
+
+        $pengalamanCounts = [
+            'tanpa pengalaman' => Logang::where('Pengalaman', 'Tanpa Pengalaman')->count(),
+            'fresh graduate' => Logang::where('Pengalaman', 'Fresh Graduate')->count(),
+            'minimal 1 tahun' => Logang::where('Pengalaman', 'Minimal 1 Tahun')->count(),
+            'minimal 2 tahun' => Logang::where('Pengalaman', 'Minimal 2 Tahun')->count(),
+            'minimal 3 tahun' => Logang::where('Pengalaman', 'Minimal 3 Tahun')->count(),
+            'lebih dari 3 tahun' => Logang::where('Pengalaman', 'Lebih dari 3 Tahun')->count(),
+        ];
         $logang = $logang->get();
     
-        return view('alumni.logang.index', compact('logang', 'selectedPengalaman', 'selectedTipeMagang'));
+        return view('alumni.logang.index', compact('logang', 'selectedPengalaman', 'selectedTipeMagang', 'tipeMagangCounts', 'pengalamanCounts'));
     }
     
 
