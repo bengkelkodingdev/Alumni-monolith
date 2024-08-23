@@ -7,9 +7,11 @@ use App\Http\Controllers\LogangAdminController;
 use App\Http\Controllers\LogangController;
 use App\Http\Controllers\LokerAdminController;
 use App\Http\Controllers\LokerController;
+use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\HomeController;
+use App\Models\Pengumuman;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -180,7 +182,10 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     //     Route::post('/profile', [AboutController::class, 'store'])->name('alumni-store');
     // });  
 
-
+    Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman.index');
+    Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
+    Route::put('/pengumuman/{id}', [PengumumanController::class, 'update'])->name('pengumuman.update');
+    Route::delete('/pengumuman/{id}', [PengumumanController::class, 'destroy'])->name('pengumuman.destroy');
 
     //route Loker Admin
     Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('lokeradmin.index');
