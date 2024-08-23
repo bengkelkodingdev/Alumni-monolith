@@ -9,35 +9,32 @@ use illuminate\Validation\Rule;
 
 class LokerController extends Controller{
    
-    public function index(Request $request)
-    {
+    public function index(Request $request){
+    
         $selectedPengalaman = $request->input('Pengalaman', []);
         $selectedTipeKerja = $request->input('TipeKerja', []);
-        
-        // Fetch filtered results based on selected checkboxes
-        $loker = Loker::query();
-    
+
+        // Fetch filtered results based on selected checkboxes and additional filters
+        $loker = Loker::latest()->filter(request(['Tags', 'search']));
+
         if (!empty($selectedPengalaman)) {
             $loker->whereIn('Pengalaman', $selectedPengalaman);
         }
-    
+
         if (!empty($selectedTipeKerja)) {
             $loker->whereIn('TipeKerja', $selectedTipeKerja);
         }
-    
+
         $loker = $loker->get();
-    
+
         return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja'));
     }
+
     // Show single listing
     public function show(Loker $id) {
         $loker = Loker::find($id);
         return view('alumni.loker.show', ['loker' => $id]);
     }
-    // public function showHome(Loker $id) {
-    //     $listing = Loker::find($id);
-    //     return view('alumni.loker.showHome', ['listing' => $id]);
-    // }
 
     // Show Create Form
     public function create() {

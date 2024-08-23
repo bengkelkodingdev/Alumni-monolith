@@ -12,8 +12,8 @@ class LogangController extends Controller{
         $selectedPengalaman = $request->input('Pengalaman', []);
         $selectedTipeMagang = $request->input('TipeMagang', []);
         
-        // Fetch filtered results based on selected checkboxes
-        $logang = Logang::query();
+        // Fetch filtered results based on selected checkboxes and additional filters
+        $logang = Logang::latest()->filter(request(['Tags', 'search']));
     
         if (!empty($selectedPengalaman)) {
             $logang->whereIn('Pengalaman', $selectedPengalaman);
@@ -34,10 +34,6 @@ class LogangController extends Controller{
         $logang = Logang::find($id);
         return view('alumni.logang.show', ['logang' => $id]);
     }
-    // public function showHome(Logang $id) {
-    //     $listingmagang = Logang::find($id);
-    //     return view('alumni.logang.showHome', ['listingmagang' => $id]);
-    // }
 
     // Show Create Form
     public function create() {
