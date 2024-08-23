@@ -60,9 +60,6 @@
             </div>
             <div class="form-group row mb-3">
                 <label for="tipekerja" class="col-sm-2 col-form-label">Tipe Kerja</label>
-                {{-- <div class="col-sm-10">
-                    <input type="text" class="form-control" name="TipeKerja" value="{{ $loker->TipeKerja     }}" />
-                </div> --}}
                 <div class="col-sm-10">
                     <select class="form-control" name="TipeKerja">
                         <option value="" disabled selected>{{ $loker->TipeKerja}}</option>
@@ -100,23 +97,8 @@
                     <label for="verify" class="form-check-label">Setuju</label>
                 </div>
             </div>
-            {{-- <div class="form-group row mb-3">
-                <label for="logo" class="col-sm-2 col-form-label">Logo</label>
-                <div class="col-sm-10">
-                  <input type="file" class="form-control" name="Logo" />
-                  <img style="width: 100px; height: auto; margin-top: 10px;" class="w-48 mt-6 mr-6 mb-6" src="{{ $loker->Logo ? asset('/storage/imglogo/'.$loker->Logo) : asset('/images/no-image.png') }}" alt="Logo" />
-                </div>
-            </div> --}}
             <div class="form-group row mb-3">
                 <label for="logo" class="col-sm-2 col-form-label">Logo Perusahaan</label>
-                {{-- <div class="col-sm-10">
-                    <input type="file" class="form-control-file" name="Logo" />
-                    @if($loker->Logo)
-                        <div class="mt-2">
-                            <img src="{{ asset('/storage/imglogo/' . $loker->Logo) }}" style="width: 150px; height: auto;" />
-                        </div>
-                    @endif
-                </div> --}}
                 <div class="col-sm-10">
                     <input type="file" class="form-control-file" name="Logo" id="logoInput" />
                     @if($loker->Logo)

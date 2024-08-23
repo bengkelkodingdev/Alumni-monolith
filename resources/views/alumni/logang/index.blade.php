@@ -57,21 +57,6 @@
             <form id="filterForm" method="GET" action="{{ route('logang.index') }}">
                 
                 <h5><b>Pengalaman Magang</b></h5>
-                
-                {{-- <div class="border border-primary bg-light p-3 rounded mb-4">
-                    @foreach ([
-                        'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                        'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-                    ] as $pengalaman)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="Pengalaman[]" value="{{ strtolower($pengalaman) }}" 
-                                {{ in_array(strtolower($pengalaman), array_map('strtolower', $selectedPengalaman)) ? 'checked' : '' }}>
-                            <label class="form-check-label" style="font-size: 14px;">
-                                {{ $pengalaman }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
                 <div class="border border-primary bg-light p-3 rounded mb-4">
                     @foreach ([
                         'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
@@ -87,22 +72,7 @@
                     @endforeach
                 </div>
 
-                <!-- Tipe Magang -->
                 <h5><b>Tipe Magang</b></h5>
-                
-                {{-- <div class="border border-primary bg-light p-3 rounded mb-4">
-                    @foreach ([
-                        'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-                    ] as $tipeMagang)
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="TipeMagang[]" value="{{ strtolower($tipeMagang) }}" 
-                                {{ in_array(strtolower($tipeMagang), array_map('strtolower', $selectedTipeMagang)) ? 'checked' : '' }}>
-                            <label class="form-check-label" style="font-size: 14px;"> 
-                                {{ $tipeMagang }}
-                            </label>
-                        </div>
-                    @endforeach
-                </div> --}}
                 <div class="border border-primary bg-light p-3 rounded mb-4">
                     @foreach ([
                         'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'

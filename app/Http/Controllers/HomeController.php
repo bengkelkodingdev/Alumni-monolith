@@ -23,11 +23,15 @@ class HomeController extends Controller
 
         return view('home', compact('lokers', 'logangs',));       
     } 
+    
+    // Show Loker
     public function showLoker($id){
         $loker = Loker::findOrFail($id); 
 
         return view('showLokerHome', compact('loker')); 
     }
+
+    // Show Logang
     public function showLogang($id){
         $logang = Logang::findOrFail($id); 
 

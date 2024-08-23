@@ -55,13 +55,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="dialogTambahLoker" tabindex="-1" aria-labelledby="dialogTambahLokerLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <!-- Content will be loaded dynamically -->
-            </div>
-        </div>
-    </div>
     <div class="mt-6 p-4">
         {{$lokerAdmin->links()}}
     </div>

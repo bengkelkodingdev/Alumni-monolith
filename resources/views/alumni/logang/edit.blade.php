@@ -1,7 +1,6 @@
 <div class="modal-header">
   <div class="w-100">
       <h1 class="modal-title" id="dialogEditLogangLabel">Edit Lowongan Magang</h1>
-      {{-- <p style="margin-top: 8px; font-size: 1rem;">Edit: {{ $logang->Posisi }}</p> --}}
   </div>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: auto;"></button>
 </div>
@@ -37,9 +36,6 @@
           </div>
           <div class="form-group row mb-3">
               <label for="pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-              {{-- <div class="col-sm-10">
-                  <input type="text" class="form-control" name="Pengalaman" value="{{ $logang->Pengalaman }}" />
-              </div> --}}
               <div class="col-sm-10">
                   <select class="form-control" name="Pengalaman">
                       <option value="" disabled selected>{{ $logang->Pengalaman }}</option>
@@ -60,9 +56,6 @@
           </div>
           <div class="form-group row mb-3">
               <label for="tipemagang" class="col-sm-2 col-form-label">Tipe Magang</label>
-              {{-- <div class="col-sm-10">
-                  <input type="text" class="form-control" name="TipeMagang" value="{{ $logang->TipeMagang     }}" />
-              </div> --}}
               <div class="col-sm-10">
                   <select class="form-control" name="TipeMagang">
                       <option value="" disabled selected>{{ $logang->TipeMagang}}</option>
@@ -100,23 +93,8 @@
                   <label for="verify" class="form-check-label">Setuju</label>
               </div>
           </div>
-          {{-- <div class="form-group row mb-3">
-              <label for="logo" class="col-sm-2 col-form-label">Logo</label>
-              <div class="col-sm-10">
-                <input type="file" class="form-control" name="Logo" />
-                <img style="width: 100px; height: auto; margin-top: 10px;" class="w-48 mt-6 mr-6 mb-6" src="{{ $logang->Logo ? asset('/storage/imglogo/'.$logang->Logo) : asset('/images/no-image.png') }}" alt="Logo" />
-              </div>
-          </div> --}}
           <div class="form-group row mb-3">
               <label for="logo" class="col-sm-2 col-form-label">Logo Perusahaan</label>
-              {{-- <div class="col-sm-10">
-                  <input type="file" class="form-control-file" name="Logo" />
-                  @if($logang->Logo)
-                      <div class="mt-2">
-                          <img src="{{ asset('/storage/imglogo/' . $logang->Logo) }}" style="width: 150px; height: auto;" />
-                      </div>
-                  @endif
-              </div> --}}
               <div class="col-sm-10">
                   <input type="file" class="form-control-file" name="Logo" id="logoInput" />
                   @if($logang->Logo)

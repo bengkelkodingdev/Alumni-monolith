@@ -8,41 +8,18 @@ use Illuminate\Http\Request;
 class LogangAdminController extends Controller
 {
     public function indexadmin(){
-        // Get selected filters
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeMagang = request('TipeMagang', []);
-    
         // Fetch listingmagang based on selected filters
-        $logangAdmin = Logang::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeMagang']))->paginate(6);
-    
-        // Determine the availability of each filter option
-        $availablePengalaman = Logang::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
-    
-        $availableTipeMagang = Logang::select('TipeMagang')
-            ->distinct()
-            ->whereIn('TipeMagang', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeMagang')
-            ->toArray();
-    
-        return view('admin.logangAdmin.indexadmin', compact('logangAdmin', 'availablePengalaman', 'availableTipeMagang', 'selectedPengalaman', 'selectedTipeMagang'));
+        $logangAdmin = Logang::latest()->filter(request(['Tags', 'search']))->paginate(6);
+        return view('admin.logangAdmin.indexadmin', compact('logangAdmin'));
     }
     
-    
-
-    // Show single listing
+    // Show Logang Admin
     public function show(Logang $id) {
         $logang = Logang::find($id);
         return view('admin.logangAdmin.showAdmin', ['logang' => $id]);
     }
+
+    // Verify Logang Admin
     public function verify(Request $request, $id){
         $listingmagangadmin = Logang::find($id);
 
@@ -58,15 +35,16 @@ class LogangAdminController extends Controller
         return redirect()->route('logangadmin.manage')->with('success', 'Lowongan status updated successfully');
     }
 
+    // Delete Logang Admin
     public function destroy($id){
-        $logangadmin = Logang::find($id);
-        if ($logangadmin){
-            $logangadmin->delete();
+        $logangAdmin = Logang::find($id);
+        if ($logangAdmin){
+            $logangAdmin->delete();
         }
         return redirect()->route('logangadmin.manage')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage listingmagang
+    // Manage Logang Admin
     public function manage(Request $request){
         $query = Logang::query();
 

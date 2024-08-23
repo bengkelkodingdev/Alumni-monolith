@@ -44,7 +44,7 @@ class LogangController extends Controller{
     }
     
 
-    // Show single listing
+    // Show Logang
     public function show(Logang $id) {
         $logang = Logang::find($id);
         return view('alumni.logang.show', ['logang' => $id]);
@@ -55,7 +55,7 @@ class LogangController extends Controller{
         return view('alumni.logang.create');
     }
 
-    // Store Listing Data
+    // Store Logang
     public function store(Request $request) {
 
         $image      =$request->file('logo');
@@ -83,12 +83,13 @@ class LogangController extends Controller{
         return redirect('/logang')->with('message', 'Listing created successfully!');
     }
 
+    // Edit Logang
     public function edit(Request $request,$id) {
         $logang = Logang::find($id);
         return view('alumni.logang.edit', compact('logang', 'id'));
     }
     
-
+    // Update Logang
     public function update(Request $request, $id){
         // Initialize the filename variable
         $filename = null;
@@ -126,9 +127,7 @@ class LogangController extends Controller{
         return redirect()->route('logang.manage')->with('success', 'Data updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Delete Logang
     public function destroy($id)
     {
         $logang = Logang::find($id);
@@ -138,7 +137,7 @@ class LogangController extends Controller{
         return redirect()->route('logang.manage')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage logang
+    // Manage Logang
     public function manage(Request $request){
         $query = Logang::query();
 

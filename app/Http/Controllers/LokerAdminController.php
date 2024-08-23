@@ -9,42 +9,19 @@ use illuminate\Validation\Rule;
 
 class LokerAdminController extends Controller
 {
-    public function indexadmin(){
-        // Get selected filters
-        $selectedPengalaman = request('Pengalaman', []);
-        $selectedTipeKerja = request('TipeKerja', []);
-    
+    public function indexadmin(){    
         // Fetch listingkerja based on selected filters
-        $lokerAdmin = Loker::latest()->filter(request(['Tags', 'search', 'Pengalaman', 'TipeKerja']))->paginate(6);
-    
-        // Determine the availability of each filter option
-        $availablePengalaman = Loker::select('Pengalaman')
-            ->distinct()
-            ->whereIn('Pengalaman', [
-                'Tanpa Pengalaman', 'Fresh Graduate', 'Minimal 1 Tahun',
-                'Minimal 2 Tahun', 'Minimal 3 Tahun', 'Lebih dari 3 Tahun'
-            ])
-            ->pluck('Pengalaman')
-            ->toArray();
-    
-        $availableTipeKerja = Loker::select('TipeKerja')
-            ->distinct()
-            ->whereIn('TipeKerja', [
-                'Freelance', 'Full Time', 'Part Time', 'Kontrak', 'Sementara'
-            ])
-            ->pluck('TipeKerja')
-            ->toArray();
-    
-        return view('admin.lokerAdmin.indexadmin', compact('lokerAdmin', 'availablePengalaman', 'availableTipeKerja', 'selectedPengalaman', 'selectedTipeKerja'));
+        $lokerAdmin = Loker::latest()->filter(request(['Tags', 'search']))->paginate(6);
+        return view('admin.lokerAdmin.indexadmin', compact('lokerAdmin'));
     }
     
-    
-
-    // Show single listing
+    // Show Loker Admin
     public function show(Loker $id) {
         $loker = Loker::find($id);
         return view('admin.lokerAdmin.showAdmin', ['loker' => $id]);
     }
+
+    // Verify Loker Admin
     public function verify(Request $request, $id){
         $listingkerjaadmin = Loker::find($id);
 
@@ -59,6 +36,8 @@ class LokerAdminController extends Controller
 
         return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan status updated successfully');
     }
+
+    // Delete Loker Admin
     public function destroy($id)
     {
         $lokerAdmin = Loker::find($id);
@@ -68,7 +47,7 @@ class LokerAdminController extends Controller
         return redirect()->route('lokeradmin.manage')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage listingkerja
+    // Manage Loker Admin
     public function manage(Request $request){
         $query = Loker::query();
 

@@ -46,7 +46,7 @@ class LokerController extends Controller{
         return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja', 'tipeKerjaCounts', 'pengalamanCounts'));
     }
 
-    // Show single listing
+    // Show Loker
     public function show(Loker $id) {
         $loker = Loker::find($id);
         return view('alumni.loker.show', ['loker' => $id]);
@@ -57,7 +57,7 @@ class LokerController extends Controller{
         return view('alumni.loker.create');
     }
 
-    // Store Listing Data
+    // Store Loker
     public function store(Request $request) {
       
         $image      =$request->file('logo');
@@ -87,11 +87,13 @@ class LokerController extends Controller{
 
     }
     
+    // Edit Loker
     public function edit(Request $request,$id) {
         $loker = Loker::find($id);
         return view('alumni.loker.edit', compact('loker', 'id'));
     }
 
+    // Update Loker
     public function update(Request $request, $id){
         // Initialize the filename variable
         $filename = null;
@@ -129,9 +131,7 @@ class LokerController extends Controller{
         return redirect()->route('loker.manage')->with('success', 'Data updated successfully!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Delete Loker
     public function destroy($id)
     {
         $loker = Loker::find($id);
@@ -141,10 +141,7 @@ class LokerController extends Controller{
         return redirect()->route('loker.manage')->with('success', 'Lowongan deleted successfully');
     }
 
-    // Manage loker
-    // public function manage() {
-    //     return view('alumni.loker.manage', ['loker' =>Loker::all()]);
-    // }
+    // Manage Loker
     public function manage(Request $request){
         $query = Loker::query();
 

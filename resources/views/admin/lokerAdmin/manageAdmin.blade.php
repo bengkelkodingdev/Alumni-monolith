@@ -76,9 +76,6 @@
                                 Verify 
                             </button>
                         @elseif($lkr->Verify == 'verified')
-                            {{-- <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
-                                Tidak Verify
-                            </button> --}}
                             <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 150px; text-align: center; font-size: 12px;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
                                 Tidak Verify
                             </button>
