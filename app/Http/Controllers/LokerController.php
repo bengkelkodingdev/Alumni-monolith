@@ -82,8 +82,7 @@ class LokerController extends Controller{
 
         ]);
 
-        return redirect('/loker')->with('message', 'Listing created successfully!');
-        // return redirect()->route('listings.index')->with('success', 'Lowongan berhasil ditambahkan!');
+        return redirect('/loker')->with('success', 'Lowongan created successfully!');
 
     }
     

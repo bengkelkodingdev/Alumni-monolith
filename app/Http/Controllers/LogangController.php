@@ -80,7 +80,7 @@ class LogangController extends Controller{
 
         ]);
 
-        return redirect('/logang')->with('message', 'Listing created successfully!');
+        return redirect('/logang')->with('success', 'Lowongan created successfully!');
     }
 
     // Edit Logang
