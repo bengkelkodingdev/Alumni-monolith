@@ -82,7 +82,7 @@ class LokerController extends Controller{
 
         ]);
 
-        return redirect('/loker')->with('success', 'Lowongan created successfully!');
+        return redirect('/loker')->with('success', 'Lowongan created successfully');
 
     }
     
@@ -127,7 +127,7 @@ class LokerController extends Controller{
         ]);
 
         // Redirect back with a success message
-        return redirect()->route('loker.manage')->with('success', 'Data updated successfully!');
+        return redirect()->route('loker.manage')->with('success', 'Data updated successfully');
     }
 
     // Delete Loker
