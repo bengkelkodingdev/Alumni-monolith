@@ -12,6 +12,8 @@
     <!--table-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../css/layout-main.css">
+    <!-- Include toastr CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>@yield('title')</title>
 </head>
 
@@ -25,6 +27,25 @@
     <!--table-->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="../js/layout-main.js"></script>
+    
+    <!-- Include jQuery (diperlukan oleh toastr) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <script>
+        // Message with toastr
+        document.addEventListener('DOMContentLoaded', function() {
+            var successMessage = "{{ session('success') }}";
+            var errorMessage = "{{ session('error') }}";
+
+            if (successMessage) {
+                toastr.success(successMessage, 'BERHASIL!');
+            } else if (errorMessage) {
+                toastr.error(errorMessage, 'GAGAL!');
+            }
+        });
+    </script>
 
 </body>
 
