@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\PengumumanController;
+use App\Http\Controllers\API\PengumumanLogangController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/pengumuman', [PengumumanController::class, 'index']);
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'show']);
+Route::get('/pengumumanLogang', [PengumumanLogangController::class, 'index']);
+Route::get('/pengumumanLogang/{id}', [pengumumanLogangController::class, 'show']);

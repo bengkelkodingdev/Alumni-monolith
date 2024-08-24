@@ -3,31 +3,50 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Logang;
-use App\Models\Loker;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 
 class PengumumanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $logangs = Logang::latest()
-        ->filter(request(['Tags', 'search']))
-        ->where('Verify', 'verified')
-        ->get()
-        ->map(function ($logang) {
-            return [
-                'NamaPerusahaan' => $logang->NamaPerusahaan,
-                'Posisi' => $logang->Posisi,
-                'Deskripsi' => $logang->Deskripsi,
-                'created_at' => $logang->created_at,
-                'updated_at' => $logang->updated_at,
-            ];
-        });
+        $pengumumans = Pengumuman::whereNotNull('published_at')
+            ->orderBy('published_at', 'desc')
+            ->get();
 
-    return response()->json($logangs);
+        $response = [];
+
+        foreach ($pengumumans as $item) {
+            $response[] = $this->formattedJson($item);
+        }
+
+        return response()->json($response);
     }
+
+    public function show($id)
+    {
+        $pengumumans = Pengumuman::where('id', $id)
+            ->whereNotNull('published_at')
+            ->first();
+
+        if (!$pengumumans) {
+            return response()->json([
+                'message' => 'Pengumuman not found',
+            ], 404);
+        }
+
+        $response = $this->formattedJson($pengumumans);
+
+        return response()->json($response);
+    }
+    public function formattedJson($pengumumans)
+    {
+        return [
+            'id' => $pengumumans->id,
+            'judul' => $pengumumans->judul,
+            'penulis' => $pengumumans->user,
+            'konten' => $pengumumans->isi,
+            'published_at' => $pengumumans->published_at,
+        ];
+    }   
 }

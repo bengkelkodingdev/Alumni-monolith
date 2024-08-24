@@ -31,7 +31,7 @@ class PengumumanController extends Controller
         $pengumuman->published_at = now();
         $pengumuman->save();
 
-        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil ditambahkan.');
+        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman created successfully');
 
     }
     
@@ -54,7 +54,7 @@ class PengumumanController extends Controller
         $pengumuman->isi = $request->isi;
         $pengumuman->save();
 
-        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil diperbarui.');
+        return redirect()->route('pengumuman.index')->with('success', 'Data updated successfully');
 
     }
 
@@ -63,7 +63,7 @@ class PengumumanController extends Controller
         $pengumuman = Pengumuman::findOrFail($id);
         $pengumuman->delete();
 
-        return redirect()->route('pengumuman.index')->with('success', 'Pengumuman berhasil dihapus.');
+        return redirect()->route('pengumuman.index')->with('success', 'Data deleted successfully');
     }
 
 }
