@@ -43,10 +43,10 @@
       @foreach($logangAdmin as $lgng)
       <tr class="border-gray-300 text-center">
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-              <a href="{{ route('logangadmin.showAdmin', $lgng->id) }}" style="color: inherit; text-decoration: none;">{{$lgng->NamaPerusahaan}}</a>
+            {{$lgng->NamaPerusahaan}}
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <a href="/logangadmin/{{$lgng->id}}" style="color: inherit; text-decoration: none;">{{$lgng->Posisi}}</a>
+            {{$lgng->Posisi}}
           </td>
           <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
             <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
