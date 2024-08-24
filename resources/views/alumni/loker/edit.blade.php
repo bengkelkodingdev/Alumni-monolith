@@ -1,7 +1,6 @@
 <div class="modal-header">
     <div class="w-100">
         <h1 class="modal-title" id="dialogEditLokerLabel">Edit Lowongan Pekerjaan</h1>
-        {{-- <p style="margin-top: 8px; font-size: 1rem;">Edit: {{ $loker->Posisi }}</p> --}}
     </div>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-left: auto;"></button>
 </div>
@@ -37,9 +36,6 @@
             </div>
             <div class="form-group row mb-3">
                 <label for="pengalaman" class="col-sm-2 col-form-label">Pengalaman</label>
-                {{-- <div class="col-sm-10">
-                    <input type="text" class="form-control" name="Pengalaman" value="{{ $loker->Pengalaman }}" />
-                </div> --}}
                 <div class="col-sm-10">
                     <select class="form-control" name="Pengalaman">
                         <option value="" disabled selected>{{ $loker->Pengalaman }}</option>
