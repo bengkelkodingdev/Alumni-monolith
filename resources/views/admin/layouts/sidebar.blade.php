@@ -33,6 +33,12 @@
                     <span>Akses Lowongan Magang</span>
                 </a>
             </li>
+            <li class="sidebar-item">
+                <a href="{{ route('pengumuman.index') }}"class="sidebar-link">
+                    <i class="lni lni-alarm"></i>
+                    <span>Pengumuman</span>
+                </a>
+            </li>
         </ul>
         <div class="sidebar-footer">
             <a href="/profile" class="sidebar-link">

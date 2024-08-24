@@ -15,4 +15,12 @@ class Pengumuman extends Model
         'penulis',
         'konten',
         'published_at'
-    ];}
+    ];
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . $filters['search'] . '%')
+                  ->orWhere('content', 'like', '%' . $filters['search'] . '%');
+        }
+    }
+}
