@@ -53,7 +53,7 @@
                             <form action="{{ route('pengumuman.destroy', $p->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="return confirm('Apakah Anda yakin ingin menghapus pengumuman ini?')">Delete</button>
+                                <button type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="return confirm('Delete?')">Delete</button>
                             </form>
                         </td>
                     </tr>
