@@ -101,11 +101,11 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 
     // Route untuk kuesioner
 
-    Route::get('/kuesioner/index', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner.index');
-    Route::get('/kuesioner/create', [\App\Http\Controllers\KuesionerController::class, 'create'])->name('kuesioner.create');
-    Route::post('/kuesioner', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
-    Route::get('/kuesioner/{id}/edit', [\App\Http\Controllers\KuesionerController::class, 'edit'])->name('kuesioner.edit');
-    Route::put('/kuesioner/{id}', [\App\Http\Controllers\KuesionerController::class, 'update'])->name('kuesioner.update');
+    Route::get('/tracerstudy/index', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner.index');
+    Route::get('/tracerstudy/create', [\App\Http\Controllers\KuesionerController::class, 'create'])->name('kuesioner.create');
+    Route::post('/tracerstudy', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
+    Route::get('/tracerstudy/{id}/edit', [\App\Http\Controllers\KuesionerController::class, 'edit'])->name('kuesioner.edit');
+    Route::put('/tracerstudy/{id}', [\App\Http\Controllers\KuesionerController::class, 'update'])->name('kuesioner.update');
 
     // Academic Controller
     Route::get('/academic', [\App\Http\Controllers\AcademicController::class, 'index'])->name('academic.index');
@@ -204,6 +204,8 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 
     //kuesioner
-    Route::get('/kuesioner', [\App\Http\Controllers\KuesionerAdminController::class, 'index'])->name('kuesionerAdmin.index');
-    Route::get('/kuesioner/{kuesioner}', [\App\Http\Controllers\KuesionerAdminController::class, 'show'])->name('kuesionerAdmin.show');
+    Route::get('/tracerstudy/home', [\App\Http\Controllers\KuesionerAdminController::class, 'home'])->name('kuesionerAdmin.home');
+    Route::get('/tracerstudy', [\App\Http\Controllers\KuesionerAdminController::class, 'index'])->name('kuesionerAdmin.index');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

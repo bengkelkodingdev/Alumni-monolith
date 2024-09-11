@@ -23,67 +23,45 @@
         </ul>
     </nav>
     <div class="container-border">
-        <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
-            <h2><b>Tracerstudy Alumni</b></h2>
-        </div>
+        <h1>Data Untuk Status {{ $status }}</h1>        
+        <p>Berikut adalah informasi datanya.</p><hr>
+        @if($data->isEmpty())
+        <p style="text-align: center; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">Tidak ada data untuk status ini.</p>
+        @else
+            @switch($status)
+                @case('Bekerja Full Time') 
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status1', ['data' => $data])
+                    @break
 
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered text-start">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">NIM</th>
-                        <th scope="col">Tahun Masuk</th>
-                        <th scope="col">Tahun Lulus</th>
-                        <th scope="col">No WhatsApp</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Bidang Pekerjaan</th>
-                        <th scope="col">Jenis Pekerjaan</th>
-                        <th scope="col">Nama Pekerjaan</th>
-                        <th scope="col">Jabatan Pekerjaan</th>
-                        <th scope="col">Lingkup Pekerjaan</th>
-                        <th scope="col">Biaya Studi</th>
-                        <th scope="col">Nama Universitas</th>
-                        <th scope="col">Program Studi</th>
-                        <th scope="col">Tanggal Studi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($kuesioners as $kuesioner)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td> <!-- For numbering -->
-                            <td>{{ $kuesioner->nama_alumni }}</td>
-                            <td>{{ $kuesioner->jns_kelamin }}</td>
-                            <td>{{ $kuesioner->nim }}</td>
-                            <td>{{ $kuesioner->tahun_masuk }}</td>
-                            <td>{{ $kuesioner->tahun_lulus }}</td>
-                            <td>{{ $kuesioner->no_hp }}</td>
-                            <td>{{ $kuesioner->email }}</td>
-                            <td>{{ $kuesioner->status }}</td>
-                            <td>{{ $kuesioner->bidang_job }}</td>
-                            <td>{{ $kuesioner->jns_job }}</td>
-                            <td>{{ $kuesioner->nama_job }}</td>
-                            <td>{{ $kuesioner->jabatan_job }}</td>
-                            <td>{{ $kuesioner->lingkup_job }}</td>
-                            <td>{{ $kuesioner->biaya_studi }}</td>
-                            <td>{{ $kuesioner->nama_studi }}</td>
-                            <td>{{ $kuesioner->prodi }}</td>
-                            <td>{{ $kuesioner->tgl_studi }}</td>
-                        </tr>
-                    @empty
-                        <td colspan="22" class="text-center">
-                            <div class="alert alert-warning mb-0">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-        <div class="d-flex justify-content-end">
-            {{ $kuesioners->links('pagination::bootstrap-4') }}
-        </div>     
+                @case('Bekerja Part Time')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status2', ['data' => $data])
+                    @break
+
+                @case('Wiraswasta')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status3', ['data' => $data])
+                    @break
+
+                @case('Melanjutkan Pendidikan')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status4', ['data' => $data])
+                    @break
+                    
+                @case('Tidak Bekerja Tetapi Sedang Mencari Pekerjaan')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status5', ['data' => $data])
+                    @break
+
+                @case('Belum Memungkinkan Bekerja')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status6', ['data' => $data])
+                    @break
+                    
+                @case('Menikah/Mengurus Keluarga')
+                    @include('admin.tracerstudyAdmin.kuesioner.partials.status7', ['data' => $data])
+                    @break
+
+                <!-- Tambahkan case lainnya untuk status lainnya -->
+                @default
+                    <p>Status tidak ditemukan.</p>
+            @endswitch
+        @endif  
     </div>
 
     <!--Dialog Info Logbook-->
@@ -100,5 +78,4 @@
             </div>
         </div>
     </footer>
-
 @endsection

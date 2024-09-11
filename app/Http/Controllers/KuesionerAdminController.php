@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 //return type View
 use Illuminate\View\View;
 
+//return datatable
+use Yajra\DataTables\DataTables;
+
 //return type redirectResponse
 use Illuminate\Http\RedirectResponse;
 
@@ -26,12 +29,43 @@ class KuesionerAdminController extends Controller
      *
      * @return View
      */
-    public function index(): View
+
+    public function home(): View
     {
         // Mengambil data kuesioner dengan paginasi
-        $kuesioners = Kuesioner::paginate(5);
+        $data = Kuesioner::paginate(10); // Paginasi dengan 10 item per halaman
+    
+        // Query ke database untuk mendapatkan data mahasiswa
+        $totalAlumni = Kuesioner::count();
+        $statusCounts = [
+            'status1' => Kuesioner::where('status', 'Bekerja Full Time')->count(),
+            'status2' => Kuesioner::where('status', 'Bekerja Part Time')->count(),
+            'status3' => Kuesioner::where('status', 'Wirausaha')->count(),
+            'status4' => Kuesioner::where('status', 'Melanjutkan Pendidikan')->count(),
+            'status5' => Kuesioner::where('status', 'Tidak Bekerja Tetapi Sedang Mencari Pekerjaan')->count(),
+            'status6' => Kuesioner::where('status', 'Belum Memungkinkan Bekerja')->count(),
+            'status7' => Kuesioner::where('status', 'Menikah/Mengurus Keluarga')->count(),
+        ];
+    
+        // Mengirim data ke view 'admin.tracerstudyAdmin.kuesioner.home'
+        return view('admin.tracerstudyAdmin.kuesioner.home', compact('data', 'totalAlumni', 'statusCounts'));
+    }
+     
+    public function index(Request $request)
+    {
+        $status = $request->input('status', 'Bekerja Full Time'); // Default status jika tidak ada
 
-        // Mengirim data ke view 'admin.tracerstudyAdmin.kuesioner.index'
-        return view('admin.tracerstudyAdmin.kuesioner.index', compact('kuesioners'));
+        if ($request->ajax()) {
+            $data = Kuesioner::query();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+        
+        // Query data dari tabel kuesioners berdasarkan status
+        $data = Kuesioner::where('status', $status)->get();
+
+        // Kirimkan data dan status ke view index.blade.php
+        return view('admin.tracerstudyAdmin.kuesioner.index', compact('status', 'data'));
     }
 }
