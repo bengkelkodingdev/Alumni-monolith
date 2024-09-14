@@ -27,80 +27,82 @@
      </a>
  </div>
  
- <header>
-   <h1 class="text-3xl text-center font-bold my-6 uppercase">
-       Manage Lowongan
-   </h1>
- </header>
  <div class="container-border">
- <table class="table table-bordered">
-   <thead class="table-header">
-     <th class="align-middle">Nama Perusahaan</th>
-     <th class="align-middle">Posisi</th>
-     <th class="align-middle" colspan="3">Aksi</th>
-   </thead>
-   <tbody>
-        @unless(count($lokerAdmin) == 0)
-            @foreach($lokerAdmin as $lkr)
-            <tr class="border-gray-300 text-center">
-                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    {{$lkr->NamaPerusahaan}}
-                </td>
-                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    {{$lkr->Posisi}}
-                </td>
-                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
-                        style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLokerAdmin"
-                        data-id="{{ $lkr->id }}" data-bs-remote="{{ route('lokeradmin.showAdmin', $lkr->id) }}">
-                        Detail
-                    </button>
-                </td>
-                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                    <form method="POST" action="/lokeradmin/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
-                        @csrf
-                        @method('DELETE')
-                        <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
-                            Delete
-                        </button>
-                    </form>
-                </td>
-                <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">          
-                    <form method="POST" action="/adminLoker/{{$lkr->id}}/verify" id="verifyForm{{$lkr->id}}">
-                        @csrf
-                        @method('POST')
-                        <input type="hidden" name="action" id="action{{$lkr->id}}">
-                    
-                        @if($lkr->Verify == 'pending')
-                            <button type="button" class="btn btn-success text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'verify')">
-                                Verify 
+    <div class="container-fluid mt-3 mb-3 d-flex justify-content-center align-items-center">
+      <h1><b>Manage Lowongan</b></h1>
+    </div>
+    <div class="card">
+        <div class="table-container">
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Perusahaan</th>
+                        <th scope="col">Posisi</th>
+                        <th scope="col" colspan="3">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @unless(count($lokerAdmin) == 0)
+                    @foreach($lokerAdmin as $lkr)
+                    <tr>
+                        <td>{{ $lkr->NamaPerusahaan }}</td>
+                        <td>{{ $lkr->Posisi }}</td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                            <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
+                                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLokerAdmin"
+                                data-id="{{ $lkr->id }}" data-bs-remote="{{ route('lokeradmin.showAdmin', $lkr->id) }}">
+                                Detail
                             </button>
-                        @elseif($lkr->Verify == 'verified')
-                            <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 150px; text-align: center; font-size: 12px;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
-                                Tidak Verify
-                            </button>
+                        </td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                            <form method="POST" action="/lokeradmin/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
+                                @csrf
+                                @method('DELETE')
+                                <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                            <form method="POST" action="/adminLoker/{{$lkr->id}}/verify" id="verifyForm{{$lkr->id}}">
+                                @csrf
+                                @method('POST')
+                                <input type="hidden" name="action" id="action{{$lkr->id}}">
                             
-                        @endif
-                    </form>
-                    
-                    <script>
-                        function confirmAction(id, action) {
-                            let message = action === 'verify' ? 'Verify?' : 'Tidak Verify?';
-                            if (confirm(message)) {
-                                document.getElementById('action' + id).value = action;
-                                document.getElementById('verifyForm' + id).submit();
-                            }
-                        }
-                    </script>            
-                </td>
-            </tr>
-            @endforeach
-        @else
-            <p>No Lowongan Found. Silahkan isi lowongan.</p>
-        @endunless
-   </tbody>
- </table>
- </div>
+                                @if($lkr->Verify == 'pending')
+                                    <button type="button" class="btn btn-success text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="confirmAction({{$lkr->id}}, 'verify')">
+                                        Verify 
+                                    </button>
+                                @elseif($lkr->Verify == 'verified')
+                                    <button type="button" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 150px; text-align: center; font-size: 12px;" onclick="confirmAction({{$lkr->id}}, 'not_verify')">
+                                        Tidak Verify
+                                    </button>
+                                    
+                                @endif
+                            </form>
+                            <script>
+                                function confirmAction(id, action) {
+                                    let message = action === 'verify' ? 'Verify?' : 'Tidak Verify?';
+                                    if (confirm(message)) {
+                                        document.getElementById('action' + id).value = action;
+                                        document.getElementById('verifyForm' + id).submit();
+                                    }
+                                }
+                            </script>            
+                        </td>
+                    </tr>
+                    @endforeach
+                    @else
+                        <p>No Lowongan Found. Silahkan isi lowongan.</p>
+                    @endunless
+                </tbody>
+            </table>
+        </div>
+    </div>
+ <div class="d-flex justify-content-end">
+    {{ $lokerAdmin->links('pagination::bootstrap-4') }}
+</div>
+</div>
  
  <!-- Modal for Show Loker -->
  <div class="modal fade" id="dialogShowLokerAdmin" tabindex="-1" aria-labelledby="dialogShowLokerAdminLabel" aria-hidden="true">

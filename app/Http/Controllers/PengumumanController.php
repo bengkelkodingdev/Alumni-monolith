@@ -9,8 +9,7 @@ class PengumumanController extends Controller
 {
     public function index()
     {
-        // $pengumuman = Pengumuman::latest()->filter(request(['search']));
-        $pengumuman = Pengumuman::filter(request(['search']))->get();
+        $pengumuman = Pengumuman::filter(request(['search']))->paginate(5);
 
         return view('admin.pengumuman.pengumuman', compact('pengumuman'));
     }

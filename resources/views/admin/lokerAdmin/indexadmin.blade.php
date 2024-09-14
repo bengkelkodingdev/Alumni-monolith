@@ -22,6 +22,29 @@
         </li>
     </ul>
   </nav>
+  <style>
+    .listing-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .listing-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        /* Ensure all columns are the same height */
+        min-height: 200px; /* Set a fixed height or use a responsive value */
+    }
+
+    .listing-card {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        /* Ensure the card takes the available space */
+    }
+</style>
+
 <div class="container-border">
     <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
         @php
@@ -37,26 +60,48 @@
             </a>
         </div> 
     </div>
-        
-    
-    <h4><b>Pekerjaan</b></h4>
 
-    <div style="display: flex; justify-content: space-between;">
-        <!-- Tabel Lowongan -->
-        <div style="width: 60%;">
-            <div class="p-2.5">
-                @unless(count($lokerAdmin) == 0)
-                    @foreach($lokerAdmin as $listing)
-                        <x-listingadmin-card :listing="$listing" />
-                    @endforeach
-                @else
-                    <p>No Lowongan Found. Silahkan isi lowongan.</p>
-                @endunless
+    <h4><b>Kerja</b></h4>
+
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <!-- Loop through the listings in pairs -->
+        @for($i = 0; $i < count($lokerAdmin); $i += 2)
+        <div class="listing-row">
+            <!-- Left Column -->
+            <div class="listing-column">
+                <div class="listing-card">
+                    <x-listingadmin-card :listing="$lokerAdmin[$i]" />
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            @if(isset($lokerAdmin[$i + 1]))
+            <div class="listing-column">
+                <div class="listing-card">
+                    <x-listingadmin-card :listing="$lokerAdmin[$i + 1]" />
+                </div>
+            </div>
+            @else
+            <!-- Empty Column for consistent layout -->
+            <div class="listing-column">
+                <div class="listing-card">
+                    
+                </div>
+            </div>
+            @endif
+        </div>
+        @endfor
+    </div>
+
+    <div class="modal fade" id="dialogTambahLoker" tabindex="-1" aria-labelledby="dialogTambahLokerLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <!-- Content will be loaded dynamically -->
             </div>
         </div>
     </div>
-    <div class="mt-6 p-4">
-        {{$lokerAdmin->links()}}
+    <div class="d-flex justify-content-end">
+        {{ $lokerAdmin->links('pagination::bootstrap-4') }}
     </div>
 </div>
 @endsection

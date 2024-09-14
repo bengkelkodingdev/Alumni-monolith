@@ -52,7 +52,7 @@ class LogangAdminController extends Controller
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
         }
 
-        $logangAdmin = $query->get();
+        $logangAdmin = $query->paginate(5);
         return view('admin.logangAdmin.manageAdmin', compact('logangAdmin'));
     }
 }

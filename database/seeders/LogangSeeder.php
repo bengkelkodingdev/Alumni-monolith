@@ -21,7 +21,7 @@ class LogangSeeder extends Seeder
             'Gaji' => '3 Juta',
             'TipeMagang' => 'Full Time',
             'Deskripsi' => 'Menguasai pembuatan aplikasi mobile
-                            Mampu berkomunikasi dengan baik dan aktif dalama bahasa Indonesia maupun bahasa Inggris',
+Mampu berkomunikasi dengan baik dan aktif dalama bahasa Indonesia maupun bahasa Inggris',
             'Website' => 'https://recruitment.telkom.co.id/',
             'Email' => 'Telkomcare@gmail.com',
             'Tags' => 'Telkom Indonesia, Developer, Full Time',
@@ -37,8 +37,8 @@ class LogangSeeder extends Seeder
             'Gaji' => '3-5 Juta',
             'TipeMagang' => 'Kontrak',
             'Deskripsi' => 'Minimal IPK 3.5
-                            Minimal Semester 5
-                            Bersedia di tempatkan di Kudus',
+Minimal Semester 5
+Bersedia di tempatkan di Kudus',
             'Website' => 'https://career.djarum.com/home',
             'Email' => 'DjarumCare@gmail.com',
             'Tags' => 'Djarum, Kontrak, Tanpa Pengalaman',
@@ -54,9 +54,9 @@ class LogangSeeder extends Seeder
             'Gaji' => '2 Juta',
             'TipeMagang' => 'Kontrak',
             'Deskripsi' => 'Menguasai Bahasa Pemrograman Dart
-                            Dapat berkomunikasi menggunakan bahasa Inggris
-                            Dapat bekerja dibawah tekanan
-                            Mampu beradaptasi dengan baik',
+Dapat berkomunikasi menggunakan bahasa Inggris
+Dapat bekerja dibawah tekanan
+Mampu beradaptasi dengan baik',
             'Website' => 'https://www.ovo.id/',
             'Email' => 'Ovo@gmail.com',
             'Tags' => 'Ovo, Mobile, Tanpa Pengalaman',

@@ -26,55 +26,61 @@
       <i class="fas fa-arrow-left"></i> Back
     </a>
 </div>
-
-<header>
-  <h1 class="text-3xl text-center font-bold my-6 uppercase">
-      Manage Lowongan
-  </h1>
-</header>
 <div class="container-border">
-<table class="table table-bordered">
-  <thead class="table-header">
-    <th class="align-middle">Nama Perusahaan</th>
-    <th class="align-middle">Posisi</th>
-    <th class="align-middle" colspan="3">Aksi</th>
-  </thead>
-  <tbody>
-      @foreach($loker as $lkr)
-      <tr class="border-gray-300">
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            {{$lkr->NamaPerusahaan}}
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            {{$lkr->Posisi}}
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
-                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLoker"
-                data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.show', $lkr->id) }}">
-                Detail
-            </button>
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
-                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditLoker"
-                data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.edit', $lkr->id) }}">
-                Edit
-            </button>
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-              <form method="POST" action="/loker/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
-                  @csrf
-                  @method('DELETE')
-                  <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
-                    Delete
-                  </button>
-              </form>
-          </td>
-      </tr>
-      @endforeach
-  </tbody>
-</table>
+  <div class="container-fluid mt-3 mb-3 d-flex justify-content-center align-items-center">
+    <h1><b>Manage Lowongan</b></h1>
+  </div>
+  <div class="card">
+      <div class="table-container">
+          <table class="table table-hover table-bordered text-center">
+              <thead>
+                  <tr>
+                      <th scope="col">Nama Perusahaan</th>
+                      <th scope="col">Posisi</th>
+                      <th scope="col" colspan="3">Aksi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @forelse ($loker as $lkr)
+                      <tr>
+                        <td>{{ $lkr->NamaPerusahaan }}</td>
+                        <td>{{ $lkr->Posisi }}</td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                          <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
+                            style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLoker"
+                            data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.show', $lkr->id) }}">
+                            Detail
+                          </button>
+                        </td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                          <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
+                              style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditLoker"
+                              data-id="{{ $lkr->id }}" data-bs-remote="{{ route('loker.edit', $lkr->id) }}">
+                              Edit
+                          </button>
+                        </td>
+                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                            <form method="POST" action="/loker/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
+                                @csrf
+                                @method('DELETE')
+                                <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+                                  Delete
+                                </button>
+                            </form>
+                        </td>
+                      </tr>
+                  @empty
+                      <td colspan="9" class="text-center">
+                          <div class="alert alert-warning">Data belum Tersedia.</div>
+                      </td>
+                  @endforelse
+              </tbody>
+          </table>
+      </div>
+  </div>
+<div class="d-flex justify-content-end">
+    {{ $loker->links('pagination::bootstrap-4') }}
+</div>
 </div>
 
 <!-- Modal for Show Loker -->
@@ -110,7 +116,18 @@
       });
   });
 </script>
-
+<footer class="py-4 mt-auto">
+  <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Alumni</div>
+          <div>
+              <a href="#" class="text-secondary">Privacy Policy</a>
+              &middot;
+              <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+          </div>
+      </div>
+  </div>
+</footer>
 
 @endsection
 

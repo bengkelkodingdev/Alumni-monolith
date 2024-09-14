@@ -89,6 +89,9 @@
             </form>
         </div>
     </div>
+    <div class="d-flex justify-content-end">
+        {{ $logang->links('pagination::bootstrap-4') }}
+    </div>
 </div>
 
 <!-- Include the create.blade.php content -->
