@@ -32,7 +32,7 @@
     <h1><b>Manage Lowongan</b></h1>
   </div>
   <div class="card">
-    <div class="table-container">
+    <div class="table-container table-logbook">
         <table class="table table-hover table-bordered text-center">
             <thead>
                 <tr>
