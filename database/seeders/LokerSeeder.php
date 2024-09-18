@@ -21,8 +21,8 @@ class LokerSeeder extends Seeder
             'Gaji' => '5-7 Juta',
             'TipeKerja' => 'Full Time',
             'Deskripsi' => 'Dapat Menguasai Materi Tentang Ilmu Komputer
-                            Minimal S2
-                            Dapat Mengajar Menggunakan Bahasa Inggris',
+Minimal S2
+Dapat Mengajar Menggunakan Bahasa Inggris',
             'Website' => 'https://dinus.ac.id/',
             'Email' => 'dinus@mhs.dinus.ac.id',
             'Tags' => 'UDINUS, Dosen, Full Time',
@@ -38,7 +38,7 @@ class LokerSeeder extends Seeder
             'Gaji' => '5-6 Juta',
             'TipeKerja' => 'Sementara',
             'Deskripsi' => 'Memahami bahasa inggris
-                            Menguasai berbagai bahasa pemrograman',
+Menguasai berbagai bahasa pemrograman',
             'Website' => 'https://www.tokopedia.com/about/contact-us',
             'Email' => 'Tokopedia@gmail.com',
             'Tags' => 'Tokopedia, Marketing, Sementara',
@@ -54,7 +54,7 @@ class LokerSeeder extends Seeder
             'Gaji' => '4-5 Juta',
             'TipeKerja' => 'Freelance',
             'Deskripsi' => 'Menguasai UI/UX
-                            Dapat bekerja secara kelompok',
+Dapat bekerja secara kelompok',
             'Website' => 'https://careers.shopee.co.id/',
             'Email' => 'shopee@gmail.com',
             'Tags' => 'Shopee, Fresh Graduate, UI/UX',

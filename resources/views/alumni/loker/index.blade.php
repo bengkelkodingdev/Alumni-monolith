@@ -1,27 +1,27 @@
 @extends('alumni.layouts.main')
 @section('title', 'Pekerjaan Populer')
 @section('content')
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/admin">
+  <!-- Navbar -->
+    <nav class="sb-topnav navbar navbar-expand">
+        <a class="navbar-brand" href="{{ route('alumni') }}" >
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
         </a>
-        <form action="/loker" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <form action="{{ route('loker.index') }}"  class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search" aria-describedby="btnNavbarSearch"/>
-                <button class="btn btn-outline-primary" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
+                <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search"
+                    aria-describedby="btnNavbarSearch"/>
+                <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
             </div>
         </form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             </li>
         </ul>
     </nav> 
-
     <div class="container-border">
         <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
             @if(count($loker) == 0)
@@ -34,7 +34,7 @@
                     <i class="fas fa-plus"></i> Post Lowongan
                 </button>
                 @if(count($loker) >= 1)
-                    <a href="/manageLoker" class="btn btn-primary">
+                    <a href="{{ route('loker.manage') }}"  class="btn btn-primary">
                         <i class="fas fa-cog"></i> Manage Lowongan
                     </a>
                 @endif
@@ -71,7 +71,6 @@
                             </div>
                         @endforeach
                     </div>
-                    
 
                     <h5><b>Tipe Pekerjaan</b></h5>
                     <div class="border border-primary bg-light p-3 rounded mb-4">
@@ -87,9 +86,11 @@
                             </div>
                         @endforeach
                     </div>
-                    
                 </form>
             </div>
+        </div>
+        <div class="d-flex justify-content-end">
+            {{ $loker->links('pagination::bootstrap-4') }}
         </div>
     </div>
 
@@ -115,5 +116,17 @@
             popup.hide();
         }
     </script>
+    <footer class="py-4 mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Alumni</div>
+                <div>
+                    <a href="#" class="text-secondary">Privacy Policy</a>
+                    &middot;
+                    <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 @endsection
 

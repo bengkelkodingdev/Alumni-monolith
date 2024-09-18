@@ -107,6 +107,14 @@
             </div>
             @endforeach
         </div>
+<<<<<<< HEAD
+=======
+        @endforeach
+        <div class="d-flex justify-content-end">
+          {{ $lokers->links('pagination::bootstrap-4') }}
+        </div>
+      </div>
+>>>>>>> 3aebf173b894946a73d1fcfd3426d1c909779fc3
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -152,6 +160,14 @@
             </div>
             @endforeach
         </div>
+<<<<<<< HEAD
+=======
+        @endforeach
+        <div class="d-flex justify-content-end">
+          {{ $logangs->links('pagination::bootstrap-4') }}
+        </div>
+      </div>
+>>>>>>> 3aebf173b894946a73d1fcfd3426d1c909779fc3
     </div>
 
     <script>

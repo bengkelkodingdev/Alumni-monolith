@@ -41,7 +41,7 @@ class LokerController extends Controller{
             'minimal 3 tahun' => Loker::where('Pengalaman', 'Minimal 3 Tahun')->count(),
             'lebih dari 3 tahun' => Loker::where('Pengalaman', 'Lebih dari 3 Tahun')->count(),
         ];
-        $loker = $loker->get();
+        $loker = $loker->paginate(5);
 
         return view('alumni.loker.index', compact('loker', 'selectedPengalaman', 'selectedTipeKerja', 'tipeKerjaCounts', 'pengalamanCounts'));
     }
@@ -148,7 +148,7 @@ class LokerController extends Controller{
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
         }
 
-        $loker = $query->get();
+        $loker = $query->paginate(5);
         return view('alumni.loker.manage', compact('loker'));
     }
     

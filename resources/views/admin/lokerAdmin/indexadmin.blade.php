@@ -3,12 +3,12 @@
 @section('content')
   <!-- Navbar -->
   <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin" >
+    <a class="navbar-brand" href="{{ route('admin.index') }}" >
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
     </a>
-    <form action="/lokeradmin" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="{{ route('lokeradmin.index') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search"
                 aria-describedby="btnNavbarSearch"/>
@@ -23,40 +23,57 @@
     </ul>
   </nav>
 <div class="container-border">
-    <div class="d-flex flex-column mb-6 ml-5" style="width: 100%;">
-        @php
-        if (count($lokerAdmin) == 0) {
-            echo '<div class="alert alert-warning" role="alert" style="text-align: left; width: 100%;">
-                    No Lowongan Found. Silahkan isi lowongan.
-                  </div>';
-        }
-        @endphp
-        <div class="mb-2 d-flex justify-content-end" style="width: 100%;">
-            <a href="{{ route('lokeradmin.manage') }}" class="btn btn-primary">
-                <i class="fas fa-cog"></i> Manage Lowongan
-            </a>
-        </div> 
-    </div>
-        
-    
-    <h4><b>Pekerjaan</b></h4>
+    <div class="container-fluid">
+        <div class="d-flex flex-column mb-6 ml-5 w-100">
+            @php
+            if (count($lokerAdmin) == 0) {
+                echo '<div class="alert alert-warning" role="alert" style="text-align: left; width: 100%;">
+                        No Lowongan Found. Silahkan isi lowongan.
+                    </div>';
+            }
+            @endphp
+            <div class="mb-2 d-flex justify-content-end w-100">
+                <a href="{{ route('lokeradmin.manage') }}" class="btn btn-primary">
+                    <i class="fas fa-cog"></i> Manage Lowongan
+                </a>
+            </div>
+        </div>
 
-    <div style="display: flex; justify-content: space-between;">
-        <!-- Tabel Lowongan -->
-        <div style="width: 60%;">
-            <div class="p-2.5">
-                @unless(count($lokerAdmin) == 0)
-                    @foreach($lokerAdmin as $listing)
-                        <x-listingadmin-card :listing="$listing" />
-                    @endforeach
-                @else
-                    <p>No Lowongan Found. Silahkan isi lowongan.</p>
-                @endunless
+        <h1><b>Lowongan Kerja</b></h1>
+
+        <!-- Grid layout limited to 2 rows -->
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-auto-rows: 1fr; gap: 1rem; overflow-y: hidden;">
+            <!-- Loop through the listings -->
+            @for($i = 0; $i < count($lokerAdmin); $i++)
+            <div class="listing-card" style="display: flex; flex-direction: column; height: 100%; padding: 5px; border-radius: 5px;">
+                <x-listingadmin-card :listing="$lokerAdmin[$i]" />
+            </div>
+            @endfor
+        </div>
+
+        <div class="modal fade" id="dialogTambahLoker" tabindex="-1" aria-labelledby="dialogTambahLokerLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <!-- Content will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            {{ $lokerAdmin->links('pagination::bootstrap-4') }}
+        </div>
+    </div>
+</div>
+<footer class="py-4 mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Alumni</div>
+            <div>
+                <a href="#" class="text-secondary">Privacy Policy</a>
+                &middot;
+                <a href="#" class="text-secondary">Terms &amp; Conditions</a>
             </div>
         </div>
     </div>
-    <div class="mt-6 p-4">
-        {{$lokerAdmin->links()}}
-    </div>
-</div>
+</footer>
 @endsection

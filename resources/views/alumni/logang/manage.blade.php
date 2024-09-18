@@ -3,12 +3,12 @@
 @section('content')
 <!-- Navbar -->
 <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/alumni">
+    <a class="navbar-brand" href="{{ route('alumni') }}">
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
     </a>
-    <form action="/manageLogang" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="{{ route('logang.manage') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="NamaPerusahaan" aria-describedby="btnNavbarSearch"/>
             <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
@@ -22,59 +22,66 @@
 </nav>
 
 <div class="mb-6 ml-5">
-    <a href="/logang" class="btn btn-primary text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+    <a href="{{ route('logang.index') }}" class="btn btn-primary text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
       <i class="fas fa-arrow-left"></i> Back
     </a>
 </div>
 
-<header>
-  <h1 class="text-3xl text-center font-bold my-6 uppercase">
-      Manage Lowongan
-  </h1>
-</header>
 <div class="container-border">
-<table class="table table-bordered">
-  <thead class="table-header">
-    <th class="align-middle">Nama Perusahaan</th>
-    <th class="align-middle">Posisi</th>
-    <th class="align-middle" colspan="3">Aksi</th>
-  </thead>
-  <tbody>
-      @foreach($logang as $lgng)
-      <tr class="border-gray-300">
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            {{$lgng->NamaPerusahaan}}
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            {{$lgng->Posisi}}
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <button type="button" class="btn  btn-info me-2 text-white px-3 py-2 rounded-5" 
-                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogang"
-                data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.show', $lgng->id) }}">
-                Detail
-            </button>
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-            <button type="button" class="btn  btn-primary me-2 text-white px-3 py-2 rounded-5"
-                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditLogang"
-                data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.edit', $lgng->id) }}">
-                Edit
-            </button>
-          </td>
-          <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-              <form method="POST" action="/logang/{{$lgng->id}}/delete" onsubmit="return confirm('Delete?')">
-                  @csrf
-                  @method('DELETE')
-                  <button value="{{ $lgng->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
-                    Delete
-                  </button>
-              </form>
-          </td>
-      </tr>
-      @endforeach
-  </tbody>
-</table>
+  <div class="container-fluid mt-3 mb-3 d-flex justify-content-center align-items-center">
+    <h1><b>Manage Lowongan</b></h1>
+  </div>
+  <div class="card">
+    <div class="table-container table-logbook">
+        <table class="table table-hover table-bordered text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Nama Perusahaan</th>
+                    <th scope="col">Posisi</th>
+                    <th scope="col" colspan="3">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($logang as $lgng)
+                    <tr>
+                    <td>{{ $lgng->NamaPerusahaan }}</td>
+                    <td>{{ $lgng->Posisi }}</td>
+                    <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                        <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
+                        style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogang"
+                        data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.show', $lgng->id) }}">
+                        Detail
+                        </button>
+                    </td>
+                    <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                        <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
+                            style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditLogang"
+                            data-id="{{ $lgng->id }}" data-bs-remote="{{ route('logang.edit', $lgng->id) }}">
+                            Edit
+                        </button>
+                    </td>
+                    <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                        <form method="POST" action="{{ route('logang.delete', ['id' => $lgng->id]) }}" onsubmit="return confirm('Delete?')">
+                            @csrf
+                            @method('DELETE')
+                            <button value="{{ $lgng->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                    </tr>
+                @empty
+                    <td colspan="9" class="text-center">
+                        <div class="alert alert-warning">Data belum Tersedia.</div>
+                    </td>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+  </div>
+<div class="d-flex justify-content-end">
+    {{ $logang->links('pagination::bootstrap-4') }}
+</div>
 </div>
 
 <!-- Modal for Show Logang -->
@@ -110,7 +117,18 @@
       });
   });
 </script>
-
+<footer class="py-4 mt-auto">
+  <div class="container-fluid px-4">
+      <div class="d-flex align-items-center justify-content-between small">
+          <div class="text-muted">Copyright &copy; Alumni</div>
+          <div>
+              <a href="#" class="text-secondary">Privacy Policy</a>
+              &middot;
+              <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+          </div>
+      </div>
+  </div>
+</footer>
 
 @endsection
 

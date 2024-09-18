@@ -3,12 +3,12 @@
 @section('content')
 <!-- Navbar -->
 <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin">
+    <a class="navbar-brand" href="{{ route('admin.index') }}">
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
     </a>
-    <form action="/pengumuman" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="{{ route('pengumuman.index') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="NamaPerusahaan" aria-describedby="btnNavbarSearch"/>
             <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
@@ -22,45 +22,57 @@
 </nav>
 
 <div class="container-border">
-    <h1 class="mb-4">Kelola Pengumuman</h1>
-    <button type="button" class="btn btn-primary me-2" 
-        data-bs-toggle="modal" data-bs-target="#dialogTambahPengumuman"
+    <div class="container-fluid mt-3 mb-3 d-flex justify-content-between align-items-center">
+        <h1><b>Kelola Pengumuman</b></h1>
+        <button type="submit" class="btn btn-custom btn-primary me-2" data-bs-toggle="modal" data-bs-target="#dialogTambahPengumuman"
         data-bs-remote="{{ route('pengumuman.create') }}">
-        Tambah Pengumuman Baru
-    </button>
-    <div class="container-border">
-        <table class="table table-bordered">
-            <thead class="table-header">
-            <th class="align-middle">No</th>
-            <th class="align-middle">Judul</th>
-            <th class="align-middle">Isi Pengumuman</th>
-            <th class="align-middle" colspan="2">Aksi</th>
-            </thead>
-            <tbody>
-                @foreach ($pengumuman as $p)
-                    <tr class="border-gray-300">
-                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">{{ $loop->iteration }}</td>
-                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">{{ $p->judul }}</td>
-                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">{{ $p->isi }}</td>
-                        <td style="text-align: center; vertical-align: middle;">
-                            <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
-                                style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditPengumuman"
-                                data-id="{{ $p->id }}" data-bs-remote="{{ route('pengumuman.edit', $p->id) }}">
-                                Edit
-                            </button>
-                        </td>
-                        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                            <form action="{{ route('pengumuman.destroy', $p->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="return confirm('Delete?')">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <i class="fas fa-plus"></i> Tambah Pengumuman Baru
+        </button>
     </div>
+    <div class="card">
+        <div class="table-container table-logbook">
+            <table class="table table-hover table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Judul</th>
+                        <th scope="col">Isi Pengumuman</th>
+                        <th scope="col"colspan="2">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($pengumuman as $p)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $p->judul }}</td>
+                            <td>{{ $p->isi }}</td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
+                                    style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditPengumuman"
+                                    data-id="{{ $p->id }}" data-bs-remote="{{ route('pengumuman.edit', $p->id) }}">
+                                    Edit
+                                </button>
+                            </td>
+                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
+                                <form action="{{ route('pengumuman.destroy', $p->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="return confirm('Delete?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <td colspan="9" class="text-center">
+                            <div class="alert alert-warning">Data belum Tersedia.</div>
+                        </td>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        {{ $pengumuman->links('pagination::bootstrap-4') }}
+    </div>     
 </div>
 
 <!-- Modal for Create Pengumuman -->
@@ -100,4 +112,16 @@
     });
 
 </script>
+<footer class="py-4 mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Alumni</div>
+            <div>
+                <a href="#" class="text-secondary">Privacy Policy</a>
+                &middot;
+                <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
 @endsection

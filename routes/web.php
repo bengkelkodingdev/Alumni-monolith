@@ -51,7 +51,7 @@ Route::get('/detail-logang/{id}', [HomeController::class, 'showLogang'])->name('
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin.index');
     Route::get('/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
@@ -70,7 +70,7 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::get('/lokerhome/{id}', [LokerController::class,'showHome'])->name('loker.showHome');
     Route::get('/loker/{id}/edit', [LokerController::class,'edit'])->name('loker.edit');
     Route::put('/loker/{id}/update', [LokerController::class,'update'])->name('loker.update');
-    Route::delete('/loker/{id}/delete', [LokerController::class,'destroy']);
+    Route::delete('/loker/{id}/delete', [LokerController::class,'destroy'])->name('loker.delete');
     Route::get('/manageLoker', [LokerController::class,'manage'])->name('loker.manage');
 
     //route Logang
@@ -81,7 +81,7 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::get('/loganghome/{id}', [LogangController::class,'showHome'])->name('logang.showHome');
     Route::get('/logang/{id}/edit', [LogangController::class,'edit'])->name('logang.edit');
     Route::put('/logang/{id}/update', [LogangController::class,'update'])->name('logang.update');
-    Route::delete('/logang/{id}/delete', [LogangController::class,'destroy']);
+    Route::delete('/logang/{id}/delete', [LogangController::class,'destroy'])->name('logang.delete');
     Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
 
     // Route untuk cv
@@ -196,15 +196,15 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     //route Loker Admin
     Route::get('/lokeradmin',[LokerAdminController::class, 'indexadmin'])->name('lokeradmin.index');
     Route::get('/lokeradmin/{id}', [LokerAdminController::class,'show'])->name('lokeradmin.showAdmin');
-    Route::delete('/lokeradmin/{id}/delete', [LokerAdminController::class, 'destroy']);
-    Route::post('/adminLoker/{id}/verify', [LokerAdminController::class, 'verify']);
+    Route::delete('/lokeradmin/{id}/delete', [LokerAdminController::class, 'destroy'])->name('lokeradmin.delete');
+    Route::post('/adminLoker/{id}/verify', [LokerAdminController::class, 'verify'])->name('lokeradmin.verify');
     Route::get('/manageLokerAdmin', [LokerAdminController::class, 'manage'])->name('lokeradmin.manage');
 
     //route Logang Admin
     Route::get('/logangadmin',[LogangAdminController::class, 'indexadmin'])->name('logangadmin.index');
     Route::get('/logangadmin/{id}', [LogangAdminController::class,'show'])->name('logangadmin.showAdmin');
-    Route::delete('/logangadmin/{id}/delete', [LogangAdminController::class, 'destroy']);
-    Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify']);
+    Route::delete('/logangadmin/{id}/delete', [LogangAdminController::class, 'destroy'])->name('logangadmin.delete');
+    Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify'])->name('logangadmin.verify');
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 
     //kuesioner

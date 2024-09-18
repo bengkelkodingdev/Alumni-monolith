@@ -55,7 +55,7 @@ class LokerAdminController extends Controller
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
         }
 
-        $lokerAdmin = $query->get();
+        $lokerAdmin = $query->paginate(5);
         return view('admin.lokerAdmin.manageAdmin', compact('lokerAdmin'));
     }
 }

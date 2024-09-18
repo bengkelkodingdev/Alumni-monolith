@@ -38,7 +38,7 @@ class LogangController extends Controller{
             'minimal 3 tahun' => Logang::where('Pengalaman', 'Minimal 3 Tahun')->count(),
             'lebih dari 3 tahun' => Logang::where('Pengalaman', 'Lebih dari 3 Tahun')->count(),
         ];
-        $logang = $logang->get();
+        $logang = $logang->paginate(5);
     
         return view('alumni.logang.index', compact('logang', 'selectedPengalaman', 'selectedTipeMagang', 'tipeMagangCounts', 'pengalamanCounts'));
     }
@@ -145,7 +145,7 @@ class LogangController extends Controller{
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
         }
 
-        $logang = $query->get();
+        $logang = $query->paginate(5);
         return view('alumni.logang.manage', compact('logang'));
     }
 }
