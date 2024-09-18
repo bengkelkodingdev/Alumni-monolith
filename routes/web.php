@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\alumniprofileController;
 use App\Http\Controllers\LogangAdminController;
 use App\Http\Controllers\LogangController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EmailVerificationController;
 use App\Models\Pengumuman;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -35,20 +37,13 @@ Route::middleware(['guest'])->group(function(){
     Route::post('/login', [SesiController::class, 'login'])->name('login');
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/register', [RegisterController::class, 'simpan']);
+    Route::get('/verify-otp', [RegisterController::class, 'showOtpForm'])->name('otp.verify');
+    Route::post('/verify-otp', [RegisterController::class, 'verifyOtp'])->name('otp.verify.post');
 });
 
 Route::get('/home', function(){
     return redirect('/admin');
 });
-Route::get('/profile', [AboutController::class, 'profile'])->name('admin-profile');
-    Route::post('/profile',[AboutController::class, 'store'])->name('admin-store');
-    Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
-    Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
-    Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
-    Route::post('/change-password-admin', [AboutController::class, 'changePassword'])->name('admin.change-password');
-
-
-    
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');
@@ -62,6 +57,11 @@ Route::middleware(['auth'])->group(function(){
 });
 
 Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
+    //route profil alumni
+    Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
+    Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
+    Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
+    
     // route Loker
     Route::get('/loker', [LokerController::class, 'index'])->name('loker.index');
     Route::get('/postLoker',[LokerController::class,'create'])->name('loker.create');
@@ -174,9 +174,13 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
-    Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
-    Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
+    // Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
+    // Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
 
+    Route::get('/profile', [adminprofileController::class, 'profile'])->name('admin-profile');
+    Route::post('/profile',[adminprofileController::class, 'store'])->name('admin-store');
+    Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
+   
     //  Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     //     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
     //     Route::post('/profile', [AboutController::class, 'store'])->name('alumni-store');

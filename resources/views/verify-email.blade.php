@@ -11,12 +11,10 @@
     <!-- CSS only -->
     <link rel="stylesheet" href="../css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Verify OTP</title>
 </head>
 
 <body>
-   
-
 
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="row border rounded-5 p-3 bg-white shadow box-area">
@@ -35,36 +33,27 @@
                     @foreach($errors->all() as $item)
                         <li>{{$item}}</li>
                     @endforeach    
-        @endif
-        <form action="" method="POST">
-            @csrf
-            <div class="header-text mb-4">
-                <h2>Login</h2>
-            </div>
-            <div class="input-group mb-3">
-                <input id="email" type="email" class="form-control form-control-lg bg-light fs-6"
-                    placeholder="Masukkan Email" name="email" required autofocus>
-            </div>
-            <div class="input-group mb-1">
-                <input id="password" type="password" class="form-control form-control-lg bg-light fs-6"
-                    placeholder="Masukkan Password" name="password" required>
-            </div>
-            <div class="input-group mb-5 d-flex justify-content-between">
-            </div>
-            <div class="form-group">
-                <button name="submit" type="submit" class="btn btn-primary  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
-                <a href="/register" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Register
-                </a>
-            </div>
-        </form>
                 </ul>
             </div>
+        @endif
+        <form method="POST" action="{{ route('otp.verify.post') }}">
+            @csrf
+            <div class="header-text mb-4">
+                <h2>Verify OTP</h2>
+            </div>
+            <div class="input-group mb-3">
+                <input id="otp" type="text" class="form-control form-control-lg bg-light fs-6"
+                    placeholder="Enter OTP Code" name="otp" value="{{ old('otp') }}" required autofocus>
+            </div>
+
+            <div class="form-group mb-5 d-flex justify-content-between">
+                <button name="submit" type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Verify OTP</button>
+                
+            </div>
+        </form>
             </div>
         </div>
     </div>
 </div>
 </body>
 </html>
-
-            

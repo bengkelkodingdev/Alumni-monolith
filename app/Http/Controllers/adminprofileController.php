@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AboutController extends Controller
+class adminprofileController extends Controller
 {
     public function profile()
     {
