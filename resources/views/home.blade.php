@@ -107,15 +107,6 @@
             </div>
             @endforeach
         </div>
-<<<<<<< HEAD
-=======
-        
-        <div class="d-flex justify-content-end">
-          {{ $lokers->links('pagination::bootstrap-4') }}
-        </div>
-      </div>
->>>>>>> 3aebf173b894946a73d1fcfd3426d1c909779fc3
-    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
@@ -160,15 +151,6 @@
             </div>
             @endforeach
         </div>
-<<<<<<< HEAD
-=======
-        
-        <div class="d-flex justify-content-end">
-          {{ $logangs->links('pagination::bootstrap-4') }}
-        </div>
-      </div>
->>>>>>> 3aebf173b894946a73d1fcfd3426d1c909779fc3
-    </div>
 
     <script>
         function showLogangDetail(logangId) {
@@ -208,29 +190,34 @@
         </div>
     </section>
 
-    <footer class="bg-blue-200 rounded-lg shadow dark:bg-gray-800">
-        <div class="container d-flex flex-column flex-md-row justify-between align-items-center py-4">
+    <footer class="bg-blue-200 rounded-lg shadow dark:bg-gray-800 py-4">
+        <div class="container-fluid d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <!-- Logo Section -->
             <div class="d-flex align-items-center mb-3 mb-md-0">
-                <img src="{{ asset('images/logo-sti.png') }}" class="h-20" alt="Logo STI" />
-                <img src="{{ asset('images/logo-udinus.png') }}" class="h-20" alt="Logo Udinus" />
-                <img src="{{ asset('images/logo-unggul.png') }}" class="h-20" alt="Logo Unggul" />
+                <img src="{{ asset('images/logo-sti.png') }}" class="me-3" style="height: 60px;" alt="Logo STI" />
+                <img src="{{ asset('images/logo-udinus.png') }}" class="me-3" style="height: 60px;" alt="Logo Udinus" />
+                <img src="{{ asset('images/logo-unggul.png') }}" style="height: 60px;" alt="Logo Unggul" />
             </div>
-            <ul class="list-inline mb-0">
+    
+            <!-- Navigation Links Section -->
+            <ul class="list-inline text-center mb-0">
                 <li class="list-inline-item">
-                    <a href="#" class="text-gray-500 dark:text-gray-400">About</a>
+                    <a href="#" class="text-gray-500 dark:text-gray-400 mx-2">About</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#" class="text-gray-500 dark:text-gray-400">Privacy Policy</a>
+                    <a href="#" class="text-gray-500 dark:text-gray-400 mx-2">Privacy Policy</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#" class="text-gray-500 dark:text-gray-400">Licensing</a>
+                    <a href="#" class="text-gray-500 dark:text-gray-400 mx-2">Licensing</a>
                 </li>
                 <li class="list-inline-item">
-                    <a href="#" class="text-gray-500 dark:text-gray-400">Contact</a>
+                    <a href="#" class="text-gray-500 dark:text-gray-400 mx-2">Contact</a>
                 </li>
             </ul>
         </div>
     </footer>
+    
+    
 
     <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
