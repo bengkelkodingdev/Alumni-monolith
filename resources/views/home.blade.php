@@ -398,6 +398,9 @@
             </div>
         </div>
         @endforeach
+        <div class="d-flex justify-content-end">
+          {{ $lokers->links('pagination::bootstrap-4') }}
+        </div>
       </div>
     </div>
     
@@ -453,6 +456,9 @@
             </div>
         </div>
         @endforeach
+        <div class="d-flex justify-content-end">
+          {{ $logangs->links('pagination::bootstrap-4') }}
+        </div>
       </div>
     </div>
     

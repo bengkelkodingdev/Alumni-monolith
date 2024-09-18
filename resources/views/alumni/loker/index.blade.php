@@ -3,12 +3,12 @@
 @section('content')
   <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/alumni" >
+        <a class="navbar-brand" href="{{ route('alumni') }}" >
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
         </a>
-        <form action="/loker" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <form action="{{ route('loker.index') }}"  class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search"
                     aria-describedby="btnNavbarSearch"/>
@@ -34,7 +34,7 @@
                     <i class="fas fa-plus"></i> Post Lowongan
                 </button>
                 @if(count($loker) >= 1)
-                    <a href="/manageLoker" class="btn btn-primary">
+                    <a href="{{ route('loker.manage') }}"  class="btn btn-primary">
                         <i class="fas fa-cog"></i> Manage Lowongan
                     </a>
                 @endif

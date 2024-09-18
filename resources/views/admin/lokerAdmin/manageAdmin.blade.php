@@ -3,12 +3,12 @@
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/alumni">
+        <a class="navbar-brand" href="{{ route('admin.index') }}">
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
         </a>
-        <form action="/manageLokerAdmin" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <form action="{{ route('lokeradmin.manage') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="NamaPerusahaan" aria-describedby="btnNavbarSearch"/>
                 <button class="btn" id="btnNavbarSearch" type="submit"><i class="fas fa-search"></i></button>
@@ -22,7 +22,7 @@
     </nav>
  
     <div class="mb-6 ml-5">
-        <a href="/lokeradmin" class="btn btn-primary text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
+        <a href="{{ route('lokeradmin.index') }}" class="btn btn-primary text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
         <i class="fas fa-arrow-left"></i> Back
         </a>
     </div>
@@ -55,7 +55,7 @@
                                 </button>
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                                <form method="POST" action="/lokeradmin/{{$lkr->id}}/delete" onsubmit="return confirm('Delete?')">
+                                <form method="POST" action=""{{ route('lokeradmin.delete', ['id' => $lkr->id]) }}" onsubmit="return confirm('Delete?')">
                                     @csrf
                                     @method('DELETE')
                                     <button value="{{ $lkr->id }}" type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;">
@@ -64,7 +64,7 @@
                                 </form>
                             </td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                                <form method="POST" action="/adminLoker/{{$lkr->id}}/verify" id="verifyForm{{$lkr->id}}">
+                                <form method="POST" action="{{ route('lokeradmin.verify', ['id' => $lkr->id]) }}" id="verifyForm{{$lkr->id}}">
                                     @csrf
                                     @method('POST')
                                     <input type="hidden" name="action" id="action{{$lkr->id}}">
