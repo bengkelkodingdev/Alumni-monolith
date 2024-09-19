@@ -53,7 +53,7 @@
             </li>
         </ul>
         <div class="sidebar-footer">
-            <a href="/profile" class="sidebar-link">
+            <a href="{{ route('admin-profile') }}" class="sidebar-link">
                 <i class="lni lni-user"></i>
                 <span>Profile</span>
             </a>
