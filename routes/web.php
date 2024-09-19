@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\alumniprofileController;
 use App\Http\Controllers\Auth\ForgotPasswordController as AuthForgotPasswordController;
@@ -74,8 +76,8 @@ Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('lo
 Route::get('/detail-logang/{id}', [HomeController::class, 'showLogang'])->name('logang.detail');
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [SesiController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
-    Route::get('/alumni', [SesiController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
+    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/alumni', [AlumniController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
