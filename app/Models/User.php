@@ -50,12 +50,40 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the kuesioners for the user.
      */
-    public function alumni()
+        public function alumni()
     {
-        return $this->belongsTo(alumni::class, 'email', 'email');  
+        return $this->hasOne(alumni::class, 'id_alumni', 'id');
     }
     public function kuesioners()
     {
-        return $this->hasMany(Kuesioner::class);
+        return $this->hasMany(kuesioner::class, 'id_alumni', 'id');
+    }
+    public function academics()
+    {
+        return $this->hasMany(academic::class);
+    }
+    public function jobs()
+    {
+        return $this->hasMany(job::class);
+    }
+    public function internships()
+    {
+        return $this->hasMany(internship::class);
+    }
+    public function organizations()
+    {
+        return $this->hasMany(organization::class);
+    }
+    public function awards()
+    {
+        return $this->hasMany(award::class);
+    }
+    public function courses()
+    {
+        return $this->hasMany(course::class);
+    }
+    public function skills()
+    {
+        return $this->hasMany(skill::class);
     }
 }
