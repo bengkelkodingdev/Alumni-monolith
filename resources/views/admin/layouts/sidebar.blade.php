@@ -16,9 +16,21 @@
                 </a>
             </li>
             <li class="sidebar-item">
+                <a href="{{ route('statistik.index') }}" class="sidebar-link">
+                    <i class="fa-regular fa-chart-bar"></i>
+                    <span>Statistik Data Alumni</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a href="{{ route('kuesionerAdmin.home') }}" class="sidebar-link">
                     <i class="lni lni-library"></i>
                     <span>Tracerstudy Alumni</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('dataAlumni.index') }}" class="sidebar-link">
+                    <i class="lni lni-remove-file"></i>
+                    <span>Data Alumni</span>
                 </a>
             </li>
             <li class="sidebar-item">
