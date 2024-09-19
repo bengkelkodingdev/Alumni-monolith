@@ -39,16 +39,6 @@ class SesiController extends Controller
             return redirect('')->withErrors('Username dan password yang dimasukkan tidak sesuai')->withInput();
         }
     }
-
-    function admin()
-    {
-        return view('admin.dashboard');
-    }
-
-    function alumni()
-    {
-        return view('alumni.dashboard');
-    }
     
     function logout(){
         Auth::logout();
