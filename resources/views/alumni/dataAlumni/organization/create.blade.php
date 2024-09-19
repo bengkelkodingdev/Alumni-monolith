@@ -26,7 +26,7 @@
 
                     <div class="form-group">
                         <div class="row mb-3">
-                            <label class="col-sm-3 col-form-label">Periode<br>(ex : Januari 2000)</label>
+                            <label class="col-sm-3 col-form-label">Periode<br>(ex : 2000)</label>
                             <div class="col-sm-4">
                                 <input type="text" class="form-control @error('periode_masuk_org') is-invalid @enderror" name="periode_masuk_org" value="{{ old('periode_masuk_org') }}" placeholder="Periode Masuk"> 
                             </div>  

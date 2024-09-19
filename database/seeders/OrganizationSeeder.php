@@ -16,8 +16,8 @@ class OrganizationSeeder extends Seeder
         organization::create([
             'id_alumni' => '3',
             'nama_org'=> 'AIESEC',
-            'periode_masuk_org'=> '',
-            'periode_keluar_org'=> '',
+            'periode_masuk_org'=> '2022',
+            'periode_keluar_org'=> '2023',
             'jabatan_org'=> 'Team Leader of Marketing',
             'kota'=> 'Semarang',
             'negara'=> 'Indonesia',
