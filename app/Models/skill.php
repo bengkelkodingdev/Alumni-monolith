@@ -21,6 +21,12 @@ class skill extends Model
         'komunikasi_skill',
         'pengembangan_skill',
         'kepemimpinan_skill',
-        'etoskerja_skill'
+        'etoskerja_skill',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

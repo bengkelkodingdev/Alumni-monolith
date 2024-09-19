@@ -18,6 +18,12 @@ class course extends Model
         'nama_course',
         'institusi_course',
         'tingkat_course',
-        'tahun_course'
+        'tahun_course',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

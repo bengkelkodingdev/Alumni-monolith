@@ -21,6 +21,12 @@ class organization extends Model
         'jabatan_org',
         'kota',
         'negara',
-        'catatan'
+        'catatan',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

@@ -22,6 +22,12 @@ class academic extends Model
         'tahun_lulus',
         'kota',
         'negara',
-        'catatan'
+        'catatan',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }
