@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "organization
 use App\Models\organization;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -28,8 +31,14 @@ class OrganizationController extends Controller
         //get posts
         $organizations = organization::latest()->paginate(5);
 
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $organizations = organization::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.organization.index', compact('organizations'));
+        return view('alumni.dataAlumni.organization.index', compact('organizations'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class OrganizationController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.organization.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        return view('alumni.dataAlumni.organization.create', compact('user'));
     }
 
     /**
@@ -69,7 +81,8 @@ class OrganizationController extends Controller
             'jabatan_org' => $request->jabatan_org,
             'kota' => $request->kota,
             'negara' => $request->negara,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
         //redirect to index
@@ -88,7 +101,7 @@ class OrganizationController extends Controller
         $organization = organization::findOrFail($id);
 
         //render view with post
-        return view('alumni.tracerstudy.organization.edit', compact('organization'));
+        return view('alumni.dataAlumni.organization.edit', compact('organization'));
     }
     
     /**

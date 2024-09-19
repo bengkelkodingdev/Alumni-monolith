@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "course
 use App\Models\course;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -27,9 +30,15 @@ class CourseController extends Controller
     {
         //get posts
         $courses = course::latest()->paginate(5);
-
+        
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $coursecourses =course::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.course.index', compact('courses'));
+        return view('alumni.dataAlumni.course.index', compact('courses'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class CourseController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.course.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        return view('alumni.dataAlumni.course.create', compact('user'));
     }
 
     /**
@@ -63,7 +75,8 @@ class CourseController extends Controller
             'nama_course' => $request->nama_course,
             'institusi_course' => $request->institusi_course,
             'tingkat_course' => $request->tingkat_course,
-            'tahun_course' => $request->tahun_course
+            'tahun_course' => $request->tahun_course,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
         //redirect to index
@@ -82,7 +95,7 @@ class CourseController extends Controller
         $course = course::findOrFail($id);
 
         //render view with post
-        return view('course.edit', compact('course'));
+        return view('alumni.dataAlumni.course.edit', compact('course'));
     }
     // public function edit($id)
     // {

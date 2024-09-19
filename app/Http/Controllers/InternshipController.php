@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "internship
 use App\Models\internship;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -27,9 +30,15 @@ class InternshipController extends Controller
     {
         //get posts
         $internships = internship::latest()->paginate(5);
-
+        
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $internships = internship::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.internship.index', compact('internships'));
+        return view('alumni.dataAlumni.internship.index', compact('internships'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class InternshipController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.internship.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        return view('alumni.dataAlumni.internship.create', compact('user'));
     }
 
     /**
@@ -69,7 +81,8 @@ class InternshipController extends Controller
             'jabatan_intern' => $request->jabatan_intern,
             'kota' => $request->kota,
             'negara' => $request->negara,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
         //redirect to index
@@ -88,7 +101,7 @@ class InternshipController extends Controller
         $internship = internship::findOrFail($id);
 
         //render view with post
-        return view('alumni.tracerstudy.internship.edit', compact('internship'));
+        return view('alumni.dataAlumni.internship.edit', compact('internship'));
     }
     
     /**

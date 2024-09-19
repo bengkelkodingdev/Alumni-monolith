@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "skill
 use App\Models\skill;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -28,8 +31,14 @@ class SkillController extends Controller
         //get posts
         $skills = skill::latest()->paginate(5);
 
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $skills = skill::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.skill.index', compact('skills'));
+        return view('alumni.dataAlumni.skill.index', compact('skills'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class SkillController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.skill.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        return view('alumni.dataAlumni.skill.create', compact('user'));
     }
 
     /**
@@ -69,7 +81,8 @@ class SkillController extends Controller
             'komunikasi_skill' => $request->komunikasi_skill,
             'pengembangan_skill' => $request->pengembangan_skill,
             'kepemimpinan_skill' => $request->kepemimpinan_skill,
-            'etoskerja_skill' => $request->etoskerja_skill
+            'etoskerja_skill' => $request->etoskerja_skill,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
         //redirect to index
@@ -87,8 +100,13 @@ class SkillController extends Controller
         //get post by ID
         $skill = skill::findOrFail($id);
 
+        // Ensure that the skill belongs to the logged-in user
+        if ($skill->id_alumni !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
         //render view with post
-        return view('alumni.tracerstudy.skill.edit', compact('skill'));
+        return view('alumni.dataAlumni.skill.edit', compact('skill'));
     }
     
     /**
