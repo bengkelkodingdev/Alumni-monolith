@@ -8,24 +8,28 @@ use Illuminate\Database\Eloquent\Model;
 class alumni extends Model
 {
     use HasFactory;
-    
-    /**
-     * fillable
-     *
-     * @var array
-     */
+
     protected $fillable = [
-        'nama_alumni', 'jns_kelamin', 'nim', 'no_hp', 'email', 'status', 'profile_picture',
+        'id_alumni',
+        'profile_picture',
+        'nim',
+        'nama_alumni',
+        'jns_kelamin',
+        'tahun_lulus',
+        'email',
+        'no_hp',
+        'status',
     ];
+
+    //Relasi belongsTo ke model User.
     public function user()
     {
-        return $this->hasOne(User::class, 'nama_alumni', 'nama_alumni');
-        return $this->hasOne(User::class, 'email', 'email');
+        return $this->belongsTo(User::class, 'id_alumni', 'id');
     }
+
+    //Relasi belongsTo ke model Kuesioner.
     public function kuesioner()
     {
-        return $this->hasMany(User::class, 'jns_kelamin', 'jns_kelamin');
-        return $this->hasMany(User::class, 'nim', 'nim');
-        return $this->hasMany(User::class, 'no_hp', 'email');
+        return $this->belongsTo(Kuesioner::class, 'id_alumni', 'id_alumni');
     }
 }
