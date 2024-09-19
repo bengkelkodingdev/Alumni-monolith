@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AboutController;
+use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\alumniprofileController;
 use App\Http\Controllers\LogangAdminController;
@@ -40,12 +40,12 @@ Route::middleware(['guest'])->group(function(){
 Route::get('/home', function(){
     return redirect('/admin');
 });
-Route::get('/profile', [AboutController::class, 'profile'])->name('admin-profile');
-    Route::post('/profile',[AboutController::class, 'store'])->name('admin-store');
+Route::get('/profileadmin', [adminprofileController::class, 'profile'])->name('admin-profile');
+    Route::post('/profileadmin',[adminprofileController::class, 'store'])->name('admin-store');
     Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
     Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
     Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
-    Route::post('/change-password-admin', [AboutController::class, 'changePassword'])->name('admin.change-password');
+    Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
 
 
     
@@ -161,8 +161,8 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
-    Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
-    Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
+    Route::get('/profile', [adminprofileController::class, 'profile'])->name('alumni-profile');
+    Route::post('/profile',[adminprofileController::class, 'store'])->name('alumni-store');
 
     //  Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     //     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
