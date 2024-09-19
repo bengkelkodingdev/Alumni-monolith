@@ -39,22 +39,24 @@ Route::middleware(['guest'])->group(function(){
 Route::get('/home', function(){
     return redirect('/admin');
 });
+
+//route profile admin
 Route::get('/profileadmin', [adminprofileController::class, 'profile'])->name('admin-profile');
-    Route::post('/profileadmin',[adminprofileController::class, 'store'])->name('admin-store');
-    Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
-    Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
-    Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
-    Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
+Route::post('/profileadmin',[adminprofileController::class, 'store'])->name('admin-store');
+Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
 
+// route profile alumni
+Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
+Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
+Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
 
-    
-
+//route home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');
 Route::get('/detail-logang/{id}', [HomeController::class, 'showLogang'])->name('logang.detail');
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [SesiController::class, 'admin'])->middleware('userAkses:admin')->name('admin.index');
+    Route::get('/admin', [SesiController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
     Route::get('/alumni', [SesiController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
