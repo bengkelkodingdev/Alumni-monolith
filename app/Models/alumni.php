@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\StatistikController;
 
 class alumni extends Model
 {
@@ -31,5 +32,18 @@ class alumni extends Model
     public function kuesioner()
     {
         return $this->belongsTo(Kuesioner::class, 'id_alumni', 'id_alumni');
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($alumni) {
+            // Panggil fungsi updateAlumniCount setiap kali data alumni diubah
+            app(StatistikController::class)->updateAlumniCount($alumni->tahun_lulus);
+        });
+
+        static::deleted(function ($alumni) {
+            // Panggil fungsi updateAlumniCount untuk menghapus alumni dari statistik
+            app(StatistikController::class)->updateAlumniCount($alumni->tahun_lulus);
+        });
     }
 }
