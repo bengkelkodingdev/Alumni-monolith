@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "academic
 use App\Models\academic;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -27,9 +30,15 @@ class academicController extends Controller
     {
         //get posts
         $academics = academic::latest()->paginate(5);
-
+        
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $academics = academic::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.academic.index', compact('academics'));
+        return view('alumni.dataAlumni.academic.index', compact('academics'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class academicController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.academic.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+
+        return view('alumni.dataAlumni.academic.create', compact('user'));
     }
 
     /**
@@ -50,7 +62,7 @@ class academicController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //validate form
+        // Validate form
         $this->validate($request, [
             'nama_studi'=> 'required',
             'prodi'=> 'required',
@@ -62,7 +74,7 @@ class academicController extends Controller
             'catatan'=> 'required'
         ]);
 
-        //create post
+        // Create academic record with authenticated user ID
         academic::create([
             'nama_studi' => $request->nama_studi,
             'prodi' => $request->prodi,
@@ -71,12 +83,14 @@ class academicController extends Controller
             'tahun_lulus' => $request->tahun_lulus,
             'kota' => $request->kota,
             'negara' => $request->negara,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
-        //redirect to index
+        // Redirect to index
         return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
+
 
     /**
      * edit
@@ -88,9 +102,14 @@ class academicController extends Controller
     {
         //get post by ID
         $academic = academic::findOrFail($id);
+        
+        // Ensure that the skill belongs to the logged-in user
+        if ($academic->id_alumni !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
 
         //render view with post
-        return view('alumni.tracerstudy.academic.edit', compact('academic'));
+        return view('alumni.dataAlumni.academic.edit', compact('academic'));
     }
     
     /**
@@ -114,19 +133,16 @@ class academicController extends Controller
             'catatan'=> 'required'
         ]);
 
-        //get post by ID
+        // Get the academic by ID
         $academic = academic::findOrFail($id);
-            //update post without image
-            $academic->update([
-            'nama_studi' => $request->nama_studi,
-            'prodi' => $request->prodi,
-            'ipk' => $request->ipk,
-            'tahun_masuk' => $request->tahun_masuk,
-            'tahun_lulus' => $request->tahun_lulus,
-            'kota' => $request->kota,
-            'negara' => $request->negara,
-            'catatan' => $request->catatan
-        ]);
+
+        // Ensure that the academic belongs to the logged-in user
+        if ($academic->id_alumni !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Update the academic
+        $academic->update($request->all());
 
         //redirect to index
         return redirect()->route('academic.index')->with(['success' => 'Data Berhasil Diubah!']);
@@ -141,6 +157,11 @@ class academicController extends Controller
     {
         //get post by ID
         $academic = academic::findOrFail($id);
+
+        // Ensure that the skill belongs to the logged-in user
+        if ($academic->id_alumni !== Auth::id()) {
+            abort(403, 'Unauthorized action.');
+        }
 
         //delete post
         $academic->delete();

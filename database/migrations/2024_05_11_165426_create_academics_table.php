@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('academics', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('nama_studi');
             $table->string('prodi');
-            $table->double('ipk');
-            $table->integer('tahun_masuk');
-            $table->integer('tahun_lulus');
+            $table->decimal('ipk', 10, 2)->default(0.00);
+            $table->unsignedInteger('tahun_masuk');
+            $table->unsignedInteger('tahun_lulus');
             $table->string('kota');
             $table->string('negara');
             $table->longText('catatan');
             $table->timestamps();
+
+            $table->foreign('id_alumni')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "award
 use App\Models\award;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -27,9 +30,15 @@ class AwardController extends Controller
     {
         //get posts
         $awards = award::latest()->paginate(5);
-
+        
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $awards = award::where('id_alumni', $userId)->latest()->paginate(5);
+        
         //render view with posts
-        return view('alumni.tracerstudy.award.index', compact('awards'));
+        return view('alumni.dataAlumni.award.index', compact('awards'));
     }
      /**
      * create
@@ -39,7 +48,10 @@ class AwardController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.award.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        return view('alumni.dataAlumni.award.create', compact('user'));
     }
 
     /**
@@ -49,28 +61,31 @@ class AwardController extends Controller
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
-    {
-        //validate form
-        $this->validate($request, [
-            'nama_award'=> 'required',
-            'institusi_award'=> 'required',
-            'tingkat_award'=> 'required',
-            'tahun_award'=> 'required',
-            'deskripsi_award'=> 'required'
-        ]);
+{
+    //validate form
+    $this->validate($request, [
+        'nama_award'=> 'required',
+        'institusi_award'=> 'required',
+        'tingkat_award'=> 'required',
+        'tahun_award'=> 'required',
+        'deskripsi_award'=> 'required',
+        // Pastikan kolom yang diperlukan divalidasi
+        'nama_studi' => 'required'
+    ]);
 
-        //create post
-        award::create([
-            'nama_award' => $request->nama_award,
-            'institusi_award' => $request->institusi_award,
-            'tingkat_award' => $request->tingkat_award,
-            'tahun_award' => $request->tahun_award,
-            'deskripsi_award' => $request->deskripsi_award
-        ]);
+    //create award
+    award::create([
+        'nama_award' => $request->nama_award,
+        'institusi_award' => $request->institusi_award,
+        'tingkat_award' => $request->tingkat_award,
+        'tahun_award' => $request->tahun_award,
+        'deskripsi_award' => $request->deskripsi_award,
+        'id_alumni' => Auth::id() // Set the ID of the logged-in user
+    ]);
+    //redirect to index
+    return redirect()->route('award.index')->with(['success' => 'Data Berhasil Disimpan!']);
+}
 
-        //redirect to index
-        return redirect()->route('award.index')->with(['success' => 'Data Berhasil Disimpan!']);
-    }
 
     /**
      * edit
@@ -84,7 +99,7 @@ class AwardController extends Controller
         $award = award::findOrFail($id);
 
         //render view with post
-        return view('alumni.tracerstudy.award.edit', compact('award'));
+        return view('alumni.dataAlumni.award.edit', compact('award'));
     }
     
     /**

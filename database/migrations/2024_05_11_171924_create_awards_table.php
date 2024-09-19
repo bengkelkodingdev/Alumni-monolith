@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('awards', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('nama_award');
             $table->string('institusi_award');            
             $table->string('tingkat_award');           
-            $table->integer('tahun_award');        
+            $table->unsignedInteger('tahun_award');        
             $table->longText('deskripsi_award');
             $table->timestamps();
+
+            $table->foreign('id_alumni')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Events\UserUpdated;
 
 class kuesioner extends Model
 {
@@ -37,6 +38,11 @@ class kuesioner extends Model
     
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_alumni');
+        return $this->belongsTo(User::class, 'id_alumni', 'id');
+    }
+
+    public function alumni()
+    {
+        return $this->hasOne(alumni::class, 'id_alumni', 'id_alumni');
     }
 }

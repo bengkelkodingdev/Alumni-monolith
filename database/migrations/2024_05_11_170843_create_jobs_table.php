@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('nama_job');
             $table->string('periode_masuk_job');            
             $table->string('periode_keluar_job');
@@ -21,6 +22,8 @@ return new class extends Migration
             $table->string('negara');
             $table->longText('catatan');
             $table->timestamps();
+
+            $table->foreign('id_alumni')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

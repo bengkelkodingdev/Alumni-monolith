@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\alumniprofileController;
 use App\Http\Controllers\Auth\ForgotPasswordController as AuthForgotPasswordController;
@@ -35,7 +33,7 @@ use App\Http\Controllers\GrafikStatistikController;
 */
 
 Route::middleware(['guest'])->group(function(){
-    Route::get('/login', [SesiController::class, 'index'])->name('login');
+    Route::get('/login', [SesiController::class, 'index'])->name('login.index');
     Route::post('/login', [SesiController::class, 'login'])->name('login');
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
     Route::post('/register', [RegisterController::class, 'simpan'])->name('registersimpan');
@@ -49,6 +47,9 @@ Route::middleware(['guest'])->group(function(){
     Route::post('new-password', [AuthForgotPasswordController::class, 'resetPassword'])->name('password.update');
     Route::get('password-changed', [AuthForgotPasswordController::class, 'passwordChanged'])->name('password.changed');
 
+
+    
+
 });
 
 
@@ -57,23 +58,28 @@ Route::get('/home', function(){
     return redirect('/admin');
 });
 
+//route profile admin
+Route::get('/profileadmin', [adminprofileController::class, 'profile'])->name('admin-profile');
+Route::post('/profileadmin',[adminprofileController::class, 'store'])->name('admin-store');
+Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
+
+// route profile alumni
+Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
+Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
+Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
+
+//route home
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/detail-loker/{id}', [HomeController::class, 'showLoker'])->name('loker.detail');
 Route::get('/detail-logang/{id}', [HomeController::class, 'showLogang'])->name('logang.detail');
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/admin', [AdminController::class, 'index']);
-    Route::get('/admin', [AdminController::class, 'admin'])->middleware('userAkses:admin')->name('admin.index');
-    Route::get('/alumni', [AdminController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
+    Route::get('/admin', [SesiController::class, 'admin'])->middleware('userAkses:admin')->name('admin');
+    Route::get('/alumni', [SesiController::class, 'alumni'])->middleware('userAkses:alumni')->name('alumni');
     Route::get('/logout', [SesiController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
-    //route profil alumni
-    Route::get('/profilealumni', [alumniprofileController::class, 'profilealumni'])->name('alumni-profile');
-    Route::post('/profilealumni',[alumniprofileController::class, 'store'])->name('alumni-store');
-    Route::post('/change-password', [alumniprofileController::class, 'changePassword'])->name('alumni.change-password');
-    
     // route Loker
     Route::get('/loker', [LokerController::class, 'index'])->name('loker.index');
     Route::get('/postLoker',[LokerController::class,'create'])->name('loker.create');
@@ -96,23 +102,10 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::delete('/logang/{id}/delete', [LogangController::class,'destroy'])->name('logang.delete');
     Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
 
-    // Route untuk cv
-    Route::get('/cv', function () {
-        // Mengambil data dari semua model yang diperlukan
-        $academics = \App\Models\academic::paginate(5);
-        $jobs = \App\Models\job::paginate(5);
-        $internships = \App\Models\internship::paginate(5);
-        $organizations = \App\Models\organization::paginate(5);
-        $awards = \App\Models\award::paginate(5);   
-        $courses = \App\Models\course::paginate(5);
-        $skills = \App\Models\skill::paginate(5);
-
-        // Mengirim data ke view
-        return view('alumni.tracerstudy.cv.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
-    })->name('cv');
+    // Route untuk cv tiap id_alumni
+    Route::get('/cv-alumni', [\App\Http\Controllers\DataAlumniController::class, 'showCV'])->middleware('auth')->name('cv.index');
 
     // Route untuk kuesioner
-
     Route::get('/tracerstudy/index', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner.index');
     Route::get('/tracerstudy/create', [\App\Http\Controllers\KuesionerController::class, 'create'])->name('kuesioner.create');
     Route::post('/tracerstudy', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
@@ -186,18 +179,15 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
-    // Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
-    // Route::post('/profile',[AboutController::class, 'store'])->name('alumni-store');
+    Route::get('/profile', [adminprofileController::class, 'profile'])->name('alumni-profile');
+    Route::post('/profile',[adminprofileController::class, 'store'])->name('alumni-store');
 
-    Route::get('/profile', [adminprofileController::class, 'profile'])->name('admin-profile');
-    Route::post('/profile',[adminprofileController::class, 'store'])->name('admin-store');
-    Route::post('/change-password-admin', [adminprofileController::class, 'changePassword'])->name('admin.change-password');
-   
     //  Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     //     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
     //     Route::post('/profile', [AboutController::class, 'store'])->name('alumni-store');
     // });  
 
+    //route pengumuman
     Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman.index');
     Route::get('/postPengumuman',[PengumumanController::class,'create'])->name('pengumuman.create');
     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
@@ -219,7 +209,19 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify'])->name('logangadmin.verify');
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 
-    //kuesioner
+    //route statistik data alumni
+    Route::get('/statistik', [\App\Http\Controllers\StatistikController::class, 'index'])->name('statistik.index');
+    Route::get('/statistik/create', [\App\Http\Controllers\StatistikController::class, 'create'])->name('statistik.create');
+    Route::post('/statistik', [\App\Http\Controllers\StatistikController::class, 'store'])->name('statistik.store');
+    Route::get('/statistik/{id}/edit', [\App\Http\Controllers\StatistikController::class, 'edit'])->name('statistik.edit');
+    Route::put('/statistik/{id}', [\App\Http\Controllers\StatistikController::class, 'update'])->name('statistik.update');
+    Route::delete('/statistik/{id}', [\App\Http\Controllers\StatistikController::class, 'destroy'])->name('statistik.destroy');
+
+    //route data alumni bagian admin 
+    Route::get('/data-alumni', [\App\Http\Controllers\DataAlumniAdminController::class, 'index'])->middleware('auth')->name('dataAlumni.index');
+    Route::get('/cv-admin', [\App\Http\Controllers\DataAlumniAdminController::class, 'showCV'])->middleware('auth')->name('dataAlumni.cv');
+
+    //route kuesioner bagian admin
     Route::get('/tracerstudy/home', [\App\Http\Controllers\KuesionerAdminController::class, 'home'])->name('kuesionerAdmin.home');
     Route::get('/tracerstudy', [\App\Http\Controllers\KuesionerAdminController::class, 'index'])->name('kuesionerAdmin.index');
 });

@@ -21,6 +21,12 @@ class job extends Model
         'jabatan_job',   
         'kota',
         'negara',
-        'catatan'
+        'catatan',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

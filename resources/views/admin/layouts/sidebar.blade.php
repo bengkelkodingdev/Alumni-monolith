@@ -5,20 +5,32 @@
                 <i class="lni lni-list"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="/admin">Admin</a>
+                <a href="{{ route('admin') }}">Admin</a>
             </div>
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="/admin" class="sidebar-link">
+                <a href="{{ route('admin') }}" class="sidebar-link">
                     <i class="lni lni-home"></i>
                     <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('statistik.index') }}" class="sidebar-link">
+                    <i class="fa-regular fa-chart-bar"></i>
+                    <span>Statistik Data Alumni</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a href="{{ route('kuesionerAdmin.home') }}" class="sidebar-link">
                     <i class="lni lni-library"></i>
                     <span>Tracerstudy Alumni</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
+                <a href="{{ route('dataAlumni.index') }}" class="sidebar-link">
+                    <i class="lni lni-remove-file"></i>
+                    <span>Data Alumni</span>
                 </a>
             </li>
             <li class="sidebar-item">

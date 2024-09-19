@@ -19,6 +19,12 @@ class award extends Model
         'institusi_award',
         'tingkat_award',
         'tahun_award',
-        'deskripsi_award'
+        'deskripsi_award',
+        'id_alumni'
     ];
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

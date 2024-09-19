@@ -3,12 +3,12 @@
 @section('content')
   <!-- Navbar -->
   <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin">
+    <a class="navbar-brand" href="{{ route('alumni') }}">
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
     </a>
-    <form action="/loker" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="{{ route('alumni-profile') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..." name="search"
                 aria-describedby="btnNavbarSearch"/>

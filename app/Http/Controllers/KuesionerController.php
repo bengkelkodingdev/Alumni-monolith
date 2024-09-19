@@ -31,12 +31,12 @@ class KuesionerController extends Controller
         $user = Auth::user();
 
         // Mengecek apakah pengguna sudah pernah membuat kuesioner
-        $kuesionerExists = Kuesioner::where('id_alumni', $user->id)->exists();
+        $kuesionerExists = kuesioner::where('id_alumni', $user->id)->exists();
 
         if ($kuesionerExists) {
             // Jika kuesioner sudah ada, tampilkan halaman index dengan paginasi
-            $kuesioners = Kuesioner::where('id_alumni', $user->id)->latest()->paginate(5);
-            return view('alumni.tracerstudy.kuesioner.index', compact('kuesioners', 'user'));
+            $kuesioners = kuesioner::where('id_alumni', $user->id)->latest()->paginate(5);
+            return view('alumni.kuesioner.index', compact('kuesioners', 'user'));
         } else {
             // Jika kuesioner belum ada, arahkan ke halaman create
             return redirect()->route('kuesioner.create');
@@ -54,7 +54,7 @@ class KuesionerController extends Controller
          $user = Auth::user();
      
          // Render view dengan data pengguna
-         return view('alumni.tracerstudy.kuesioner.create', compact('user'));
+         return view('alumni.kuesioner.create', compact('user'));
      }
 
     /**
@@ -110,7 +110,7 @@ class KuesionerController extends Controller
 
         // Create new kuesioner record
         $data['id_alumni'] = Auth::id();
-        Kuesioner::create($data);
+        kuesioner::create($data);
 
         // Redirect to index with success message
         return redirect()->route('kuesioner.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -119,14 +119,14 @@ class KuesionerController extends Controller
     // Menampilkan form untuk mengedit kuesioner
     public function edit($id): View
     {
-        $kuesioner = Kuesioner::findOrFail($id);
-        return view('alumni.tracerstudy.kuesioner.edit', compact('kuesioner'));
+        $kuesioner = kuesioner::findOrFail($id);
+        return view('alumni.kuesioner.edit', compact('kuesioner'));
     }
 
     // Menyimpan perubahan setelah diedit
     public function update(Request $request, $id): RedirectResponse
     {
-        $kuesioner = Kuesioner::findOrFail($id);
+        $kuesioner = kuesioner::findOrFail($id);
         $kuesioner->update($request->all());
         return redirect()->route('kuesioner.index', $kuesioner->id)->with('success', 'Data berhasil diperbarui');
     }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import Model "job
 use App\Models\job;
 
+//import Facade "Auth / yang sudah login"
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 
 //return type View
@@ -29,7 +32,7 @@ class jobController extends Controller
         $jobs = job::latest()->paginate(5);
 
         //render view with posts
-        return view('alumni.tracerstudy.job.index', compact('jobs'));
+        return view('alumni.dataAlumni.job.index', compact('jobs'));
     }
      /**
      * create
@@ -39,7 +42,16 @@ class jobController extends Controller
 
     public function create(): View
     {
-        return view('alumni.tracerstudy.job.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+    
+        // Get the ID of the currently authenticated user
+        $userId = Auth::id();
+        
+        // Get skills associated with the logged-in user
+        $jobs =job::where('id_alumni', $userId)->latest()->paginate(5);
+        
+        return view('alumni.dataAlumni.job.create', compact('user'));
     }
 
     /**
@@ -69,7 +81,8 @@ class jobController extends Controller
             'jabatan_job' => $request->jabatan_job,
             'kota' => $request->kota,
             'negara' => $request->negara,
-            'catatan' => $request->catatan
+            'catatan' => $request->catatan,
+            'id_alumni' => Auth::id() // Set the ID of the logged-in user
         ]);
 
         //redirect to index
@@ -88,7 +101,7 @@ class jobController extends Controller
         $job = job::findOrFail($id);
 
         //render view with post
-        return view('alumni.tracerstudy.job.edit', compact('job'));
+        return view('alumni.dataAlumni.job.edit', compact('job'));
     }
     
     /**

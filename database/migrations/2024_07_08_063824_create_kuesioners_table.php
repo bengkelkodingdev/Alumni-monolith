@@ -16,11 +16,11 @@ return new class extends Migration
             $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('nama_alumni');
             $table->string('jns_kelamin');   
-            $table->string('nim');            
-            $table->string('tahun_masuk');       
-            $table->string('tahun_lulus');           
-            $table->string('no_hp');            
-            $table->string('email');  
+            $table->string('nim')->unique();            
+            $table->unsignedInteger('tahun_masuk');       
+            $table->unsignedInteger('tahun_lulus');           
+            $table->string('no_hp')->unique();            
+            $table->string('email')->unique();  
             $table->string('status');
             $table->string('bidang_job')->nullable();
             $table->string('jns_job')->nullable();

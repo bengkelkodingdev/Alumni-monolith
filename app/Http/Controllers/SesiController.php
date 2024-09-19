@@ -40,10 +40,19 @@ class SesiController extends Controller
         }
     }
 
+    function admin()
+    {
+        return view('admin.dashboard');
+    }
+
+    function alumni()
+    {
+        return view('alumni.dashboard');
+    }
+    
     function logout(){
         Auth::logout();
         return redirect('');
-
     }
     
     

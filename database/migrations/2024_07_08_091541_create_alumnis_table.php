@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('alumnis', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('profile_picture')->nullable(); 
+            $table->string('nim')->unique()->nullable();
             $table->string('nama_alumni');
-            $table->string('jns_kelamin');   
-            $table->string('nim');   
-            $table->string('no_hp');            
-            $table->string('email');            
-            $table->string('status');      
+            $table->string('jns_kelamin')->nullable();
+            $table->UnsignedInteger('tahun_lulus')->nullable();              
+            $table->string('email');      
+            $table->string('no_hp')->unique()->nullable();         
+            $table->string('status')->nullable();      
             $table->timestamps();
+
+            $table->foreign('id_alumni')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

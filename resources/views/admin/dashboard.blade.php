@@ -4,7 +4,7 @@
 
 <!-- Navbar -->
 <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin">
+    <a class="navbar-brand" href="{{ route('admin') }}">
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="60">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
@@ -45,7 +45,7 @@
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
                         <h5 class="card-title">Data Alumni</h5>
-                        <a href="#" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ route('dataAlumni.index') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <i class="fas fa-users fa-2x"></i>
                 </div>
