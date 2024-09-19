@@ -14,9 +14,16 @@ class alumniprofileController extends Controller
 {
     public function profilealumni()
     {
-        $user = Auth::user();
-        $alumni = alumni::where('email', $user->email)->first();
-        return view('profilealumni',compact('user'));
+        if (Auth::check()) {
+            // User is authenticated
+            $user = Auth::user();
+            $alumni = alumni::where('email', $user->email)->first();
+            return view('profilealumni', compact('user'));
+        } else {
+            // User is not authenticated, redirect them
+            return redirect()->route('login');
+        }
+        
     }
 
     public function store(Request $request)

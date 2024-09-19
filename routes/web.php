@@ -179,8 +179,8 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
 });
 
 Route::middleware(['auth', 'userAkses:admin'])->group(function () {
-    Route::get('/profile', [adminprofileController::class, 'profile'])->name('alumni-profile');
-    Route::post('/profile',[adminprofileController::class, 'store'])->name('alumni-store');
+    // Route::get('/profile', [adminprofileController::class, 'profile'])->name('alumni-profile');
+    // Route::post('/profile',[adminprofileController::class, 'store'])->name('alumni-store');
 
     //  Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     //     Route::get('/profile', [AboutController::class, 'profile'])->name('alumni-profile');
