@@ -5,12 +5,12 @@
                 <i class="lni lni-list"></i>
             </button>
             <div class="sidebar-logo">
-                <a href="/admin">Admin</a>
+                <a href="{{ route('admin.index') }}">Admin</a>
             </div>
         </div>
         <ul class="sidebar-nav">
             <li class="sidebar-item">
-                <a href="/admin" class="sidebar-link">
+                <a href="{{ route('admin.index') }}" class="sidebar-link">
                     <i class="lni lni-home"></i>
                     <span>Dashboard</span>
                 </a>

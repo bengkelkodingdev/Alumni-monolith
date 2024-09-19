@@ -53,7 +53,7 @@
             </div>
             <div class="form-group">
                 <button name="submit" type="submit" class="btn btn-primary  bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
-                <a href="/register" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <a href="{{ route('register') }}" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Register
                 </a>
             </div>

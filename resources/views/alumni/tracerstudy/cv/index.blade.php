@@ -20,7 +20,7 @@
 
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/admin" >
+        <a class="navbar-brand" href="{{ route('alumni') }}" >
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">

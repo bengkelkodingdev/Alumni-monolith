@@ -3,7 +3,7 @@
 @section('content')
     <!-- Navbar -->
     <nav class="sb-topnav navbar navbar-expand">
-        <a class="navbar-brand" href="/admin">
+        <a class="navbar-brand" href="{{ route('admin.index') }}">
             <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
             <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="60">
             <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
