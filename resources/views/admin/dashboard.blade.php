@@ -25,6 +25,15 @@
 </nav>
 <main class="container-border">
     <h1 class="mb-3">Dashboard Admin</h1>
+    <!-- welcome user -->
+    <div class="container-dashboard">
+        <h1>Welcome,</h1>
+        <div class="type">
+            {{-- mengambil nama dari controller --}}
+                <h1>{{ Auth::user()->nama_alumni }}</h1> 
+        </div>
+        {{-- <p>Siap untuk lulus cepat hari ini?</p> --}}
+    </div>
     <!-- menu admin -->
     <div class="row justify-content-center">
         <!-- Card 1 -->
@@ -109,29 +118,29 @@
         <div class="col-md-4 mb-3">
             <div class="d-flex">
                 <!-- Card Total Alumni -->
-                <div class="card text-white" style="background-color:#8EACCD; width: 50%; margin-right: 20px; height:169px">
-                    <div class="card-header" style="font-weight: bold;">Total Alumni</div>
+                <div class="card text-white" style="background-color:#8EACCD; width: 43%; margin-right: 20px;">
+                    <div class="card-header" style="font-weight: bold;">Alumni 3Th </div>
                     <div class="card-body">
-                        <h5 class="card-title">1500</h5>
-                        <p class="card-text">Active users in the system.</p>
+                        <h5 class="card-title">{{ $totalAlumni3Years }}</h5>
+                        <p class="card-text">Jumlah alumni dalam 3th.</p>
                     </div>
                 </div>
 
                 <!-- Card Alumni -->
-                <div class="card text-white " style="width: 50%; background-color:#78B7D0;">
-                    <div class="card-header" style="font-weight: bold;">Alumni</div>
+                <div class="card text-white " style="width: 57%; background-color:#78B7D0;">
+                    <div class="card-header" style="font-weight: bold;">Alumni Terdeteksi</div>
                     <div class="card-body">
-                        <h5 class="card-title">$25,000</h5>
-                        <p class="card-text">Sales in the current month.</p>
+                        <h5 class="card-title">{{ $detectedAlumni3Years }}</h5>
+                        <p class="card-text">Jumlah alumni yang terdeteksi dalam 3th.</p>
                     </div>
                 </div>
             </div>
             <!-- Card Total Alumni -->
-            <div class="card text-white" style="background-color:#508C9B; width: 100%;  margin-top:20px; height:169px" >
-                <div class="card-header" style="font-weight: bold;">Total Alumni</div>
+            <div class="card text-white" style="background-color:#508C9B; width: 100%;  margin-top:20px; height:158px" >
+                <div class="card-header" style="font-weight: bold;">Jumlah Keseluruhan Alumni</div>
                 <div class="card-body">
-                    <h5 class="card-title">1500</h5>
-                    <p class="card-text">Active users in the system.</p>
+                    <h5 class="card-title">{{ $totalAlumniAllYears }}</h5>
+                    <p class="card-text">Jumlah keseluruhan alumni dari berbagai tahun.</p>
                 </div>
             </div>
         </div>
@@ -174,14 +183,46 @@
         </div>
     </div>
 
-    <h1 class="mt-4 mb-3">Masa Tunggu Lulusan</h1> 
+    <h1 class="mt-4 mb-3">Alumni Terdeteksi</h1> 
     <!-- chart -->
     <div class="row justify-content">
         <div class="col-md-4 mb-3">
-            <div class="card">
+            <div class="card" style="height: 200px;">
                 <div class="card-body">
                     <div class="col-md-12">
-                        <canvas id="userChart" style="width: 100%; height: 200px;"></canvas>
+                        <canvas id="userChart" style="width: 100%; "></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3">
+            <div class="card" style="height: 200px;">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tahun Lulus</th>
+                                    <th scope="col">Total Alumni</th>
+                                    <th scope="col">Alumni Terdeteksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($statistiks as $statistik)
+                                    <tr>
+                                        <td>{{ $statistik->tahun_lulus }}</td>
+                                        <td>{{ $statistik->alumni_total }}</td>
+                                        <td>{{ $statistik->alumni_terlacak }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">
+                                            <div class="alert alert-warning">Data belum tersedia.</div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -192,10 +233,42 @@
     <!-- chart -->
     <div class="row justify-content">
         <div class="col-md-4 mb-3">
-            <div class="card">
+            <div class="card" style="height: 200px;">
                 <div class="card-body">
                     <div class="col-md-12">
-                        <canvas id="userChart" style="width: 100%; height: 200px;"></canvas>
+                        <canvas id="userChart" style="width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 mb-3">
+            <div class="card" style="height: 200px;">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered text-center">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tahun Lulus</th>
+                                    <th scope="col">Total Alumni</th>
+                                    <th scope="col">Alumni Terdeteksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($statistiks as $statistik)
+                                    <tr>
+                                        <td>{{ $statistik->tahun_lulus }}</td>
+                                        <td>{{ $statistik->alumni_total }}</td>
+                                        <td>{{ $statistik->alumni_terlacak }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            <div class="alert alert-warning">Data belum tersedia.</div>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
