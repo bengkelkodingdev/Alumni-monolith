@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\alumniprofileController;
+use App\Http\Controllers\Auth\ForgotPasswordController as AuthForgotPasswordController;
 use App\Http\Controllers\LogangAdminController;
 use App\Http\Controllers\LogangController;
 use App\Http\Controllers\LokerAdminController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\ForgotPasswordController;
 use App\Models\Pengumuman;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -36,10 +38,20 @@ Route::middleware(['guest'])->group(function(){
     Route::get('/login', [SesiController::class, 'index'])->name('login');
     Route::post('/login', [SesiController::class, 'login'])->name('login');
     Route::get('/register', [RegisterController::class, 'register'])->name('register');
-    Route::post('/register', [RegisterController::class, 'simpan']);
+    Route::post('/register', [RegisterController::class, 'simpan'])->name('registersimpan');
     Route::get('/verify-otp', [RegisterController::class, 'showOtpForm'])->name('otp.verify');
     Route::post('/verify-otp', [RegisterController::class, 'verifyOtp'])->name('otp.verify.post');
+    Route::get('forgot-password', [AuthForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+    Route::post('forgot-password', [AuthForgotPasswordController::class, 'sendResetCode'])->name('password.email');
+    Route::get('reset-code', [AuthForgotPasswordController::class, 'showResetCodeForm'])->name('password.reset.code.form');
+    Route::post('reset-code', [AuthForgotPasswordController::class, 'verifyResetCode'])->name('password.reset.code.verify');
+    Route::get('new-password', [AuthForgotPasswordController::class, 'showNewPasswordForm'])->name('password.reset.form');
+    Route::post('new-password', [AuthForgotPasswordController::class, 'resetPassword'])->name('password.update');
+    Route::get('password-changed', [AuthForgotPasswordController::class, 'passwordChanged'])->name('password.changed');
+
 });
+
+
 
 Route::get('/home', function(){
     return redirect('/admin');

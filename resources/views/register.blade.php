@@ -28,7 +28,7 @@
                     <div class="header-text mb-4">
                         <h2>Register</h2>
                     </div>
-        <form action="/register" method="POST">
+        <form action="{{ route('registersimpan') }}" method="POST">
             @csrf
             <div class="input-group mb-3">
                 <input id="nama_alumni" type="nama_alumni" class="form-control form-control-lg bg-light fs-6"

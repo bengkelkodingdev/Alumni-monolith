@@ -40,6 +40,7 @@
             @csrf
             <div class="header-text mb-4">
                 <h2>Verify OTP</h2>
+                <p>Masukkan kode OTP yang telah dikirim ke email Anda.</p>
             </div>
             <div class="input-group mb-3">
                 <input id="otp" type="text" class="form-control form-control-lg bg-light fs-6"
