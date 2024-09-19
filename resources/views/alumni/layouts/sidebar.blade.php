@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li class="sidebar-item">
-                <a href="{{ route('cv') }}" class="sidebar-link">
+                <a href="{{ route('cv.index') }}" class="sidebar-link">
                     <i class="lni lni-remove-file"></i>
                     <span>Data Alumni</span>
                 </a>
