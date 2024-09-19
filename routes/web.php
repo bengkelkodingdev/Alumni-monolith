@@ -84,23 +84,10 @@ Route::middleware(['auth', 'userAkses:alumni'])->group(function () {
     Route::delete('/logang/{id}/delete', [LogangController::class,'destroy'])->name('logang.delete');
     Route::get('/manageLogang', [LogangController::class,'manage'])->name('logang.manage');
 
-    // Route untuk cv
-    Route::get('/cv', function () {
-        // Mengambil data dari semua model yang diperlukan
-        $academics = \App\Models\academic::paginate(5);
-        $jobs = \App\Models\job::paginate(5);
-        $internships = \App\Models\internship::paginate(5);
-        $organizations = \App\Models\organization::paginate(5);
-        $awards = \App\Models\award::paginate(5);   
-        $courses = \App\Models\course::paginate(5);
-        $skills = \App\Models\skill::paginate(5);
-
-        // Mengirim data ke view
-        return view('alumni.tracerstudy.cv.index', compact('academics', 'jobs', 'internships', 'organizations', 'awards', 'courses', 'skills'));
-    })->name('cv');
+    // Route untuk cv tiap id_alumni
+    Route::get('/cv-alumni', [\App\Http\Controllers\DataAlumniController::class, 'showCV'])->middleware('auth')->name('cv.index');
 
     // Route untuk kuesioner
-
     Route::get('/tracerstudy/index', [\App\Http\Controllers\KuesionerController::class, 'index'])->name('kuesioner.index');
     Route::get('/tracerstudy/create', [\App\Http\Controllers\KuesionerController::class, 'create'])->name('kuesioner.create');
     Route::post('/tracerstudy', [\App\Http\Controllers\KuesionerController::class, 'store'])->name('kuesioner.store');
@@ -182,6 +169,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     //     Route::post('/profile', [AboutController::class, 'store'])->name('alumni-store');
     // });  
 
+    //route pengumuman
     Route::get('/pengumuman',[PengumumanController::class, 'index'])->name('pengumuman.index');
     Route::get('/postPengumuman',[PengumumanController::class,'create'])->name('pengumuman.create');
     Route::post('/pengumuman', [PengumumanController::class, 'store'])->name('pengumuman.store');
@@ -203,7 +191,19 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
     Route::post('/adminLogang/{id}/verify', [LogangAdminController::class, 'verify'])->name('logangadmin.verify');
     Route::get('/manageLogangAdmin', [LogangAdminController::class, 'manage'])->name('logangadmin.manage');
 
-    //kuesioner
+    //route statistik data alumni
+    Route::get('/statistik', [\App\Http\Controllers\StatistikController::class, 'index'])->name('statistik.index');
+    Route::get('/statistik/create', [\App\Http\Controllers\StatistikController::class, 'create'])->name('statistik.create');
+    Route::post('/statistik', [\App\Http\Controllers\StatistikController::class, 'store'])->name('statistik.store');
+    Route::get('/statistik/{id}/edit', [\App\Http\Controllers\StatistikController::class, 'edit'])->name('statistik.edit');
+    Route::put('/statistik/{id}', [\App\Http\Controllers\StatistikController::class, 'update'])->name('statistik.update');
+    Route::delete('/statistik/{id}', [\App\Http\Controllers\StatistikController::class, 'destroy'])->name('statistik.destroy');
+
+    //route data alumni bagian admin 
+    Route::get('/data-alumni', [\App\Http\Controllers\DataAlumniAdminController::class, 'index'])->middleware('auth')->name('dataAlumni.index');
+    Route::get('/cv-admin', [\App\Http\Controllers\DataAlumniAdminController::class, 'showCV'])->middleware('auth')->name('dataAlumni.cv');
+
+    //route kuesioner bagian admin
     Route::get('/tracerstudy/home', [\App\Http\Controllers\KuesionerAdminController::class, 'home'])->name('kuesionerAdmin.home');
     Route::get('/tracerstudy', [\App\Http\Controllers\KuesionerAdminController::class, 'index'])->name('kuesionerAdmin.index');
 });
