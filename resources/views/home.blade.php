@@ -92,7 +92,7 @@
                         <div class="d-flex align-items-center mb-3">
                             <img src="{{ $loker->Logo ? asset('/storage/imglogo/' . $loker->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
                             <div class="ms-3">
-                                <button type="button" class="btn btn-link" onclick="showLokerDetail('{{ $loker->id }}')">
+                                <button type="button" style="color: black; text-decoration: none; border: none; background-color: transparent; cursor: pointer;" onclick="showLokerDetail('{{ $loker->id }}')">
                                     <b>{{ $loker->Posisi }}</b>
                                 </button>
                                 <p class="card-text">{{ $loker->NamaPerusahaan }}</p>
@@ -106,7 +106,11 @@
                 </div>
             </div>
             @endforeach
+            <div class="d-flex justify-content-end">
+                {{ $lokers->links('pagination::bootstrap-4') }}
+            </div>
         </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
@@ -136,9 +140,9 @@
                         <div class="d-flex align-items-center mb-3">
                             <img src="{{ $logang->Logo ? asset('/storage/imglogo/' . $logang->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
                             <div class="ms-3">
-                                <button type="button" class="btn btn-link" onclick="showLogangDetail('{{ $logang->id }}')">
+                                <button type="button" style="color: black; text-decoration: none; border: none; background-color: transparent; cursor: pointer;" onclick="showLogangDetail('{{ $logang->id }}')">
                                     <b>{{ $logang->Posisi }}</b>
-                                </button>
+                                </button>                                
                                 <p class="card-text">{{ $logang->NamaPerusahaan }}</p>
                             </div>
                         </div>
@@ -150,7 +154,11 @@
                 </div>
             </div>
             @endforeach
+            <div class="d-flex justify-content-end">
+                {{ $lokers->links('pagination::bootstrap-4') }}
+            </div>
         </div>
+    </div>
 
     <script>
         function showLogangDetail(logangId) {
