@@ -229,51 +229,6 @@
         </div>
     </div>
 
-    <h1 class="mt-4 mb-3">Kesesuiaian Bidang Kerja</h1> 
-    <!-- chart -->
-    <div class="row justify-content">
-        <div class="col-md-4 mb-3">
-            <div class="card" style="height: 200px;">
-                <div class="card-body">
-                    <div class="col-md-12">
-                        <canvas id="userChart" style="width: 100%;"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8 mb-3">
-            <div class="card" style="height: 200px;">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-hover table-bordered text-center">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tahun Lulus</th>
-                                    <th scope="col">Total Alumni</th>
-                                    <th scope="col">Alumni Terdeteksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($statistiks as $statistik)
-                                    <tr>
-                                        <td>{{ $statistik->tahun_lulus }}</td>
-                                        <td>{{ $statistik->alumni_total }}</td>
-                                        <td>{{ $statistik->alumni_terlacak }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">
-                                            <div class="alert alert-warning">Data belum tersedia.</div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </main>
 <footer class="py-4 mt-auto">
     <div class="container-fluid px-4">
