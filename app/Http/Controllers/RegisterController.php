@@ -19,7 +19,7 @@ class RegisterController extends Controller
     {
         // Validasi inputan
         $request->validate([
-            'nama_alumni' => 'required',
+            'nama_pengguna' => 'required',
             'email' => 'required|email|unique:users,email',
             'role'=>'required',
             'password' => 'required|min:6',
@@ -42,7 +42,7 @@ class RegisterController extends Controller
         $status = 'notverified';
 
         $data = [
-            'nama_alumni' => $request->nama_alumni,
+            'nama_pengguna' => $request->nama_pengguna,
             'email' => $request->email,
             'role'=> $request->role,
             'password' =>  Hash::make($request->password),

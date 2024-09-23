@@ -30,7 +30,7 @@
         <h1>Welcome,</h1>
         <div class="type">
             {{-- mengambil nama dari controller --}}
-                <h1>{{ Auth::user()->nama_alumni }}</h1> 
+                <h1>{{ Auth::user()->nama_pengguna }}</h1> 
         </div>
         {{-- <p>Siap untuk lulus cepat hari ini?</p> --}}
     </div>

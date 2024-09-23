@@ -31,8 +31,8 @@
         <form action="{{ route('registersimpan') }}" method="POST">
             @csrf
             <div class="input-group mb-3">
-                <input id="nama_alumni" type="nama_alumni" class="form-control form-control-lg bg-light fs-6"
-                    placeholder="Masukkan Nama" name="nama_alumni" required autofocus>
+                <input id="nama_pengguna" type="nama_pengguna" class="form-control form-control-lg bg-light fs-6"
+                    placeholder="Masukkan Nama" name="nama_pengguna" required autofocus>
             </div>
             <div class="input-group mb-3">
                 <input id="email" type="email" class="form-control form-control-lg bg-light fs-6"

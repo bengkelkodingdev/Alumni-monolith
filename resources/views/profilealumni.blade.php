@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="info-item">
-                            <p class="card-text"><strong>Nama:</strong> <span>{{ Auth::user()->nama_alumni }}</span></p>
+                            <p class="card-text"><strong>Nama:</strong> <span>{{ Auth::user()->nama_pengguna }}</span></p>
                         </div>
                         <div class="info-item">
                             <p class="card-text"><strong>Email:</strong> <span>{{ Auth::user()->email }}</span></p>

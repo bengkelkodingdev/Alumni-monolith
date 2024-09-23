@@ -38,7 +38,7 @@
                                     <div class="row mb-3">
                                         <label for="nama_alumni" class="col-sm-3 col-form-label">Nama Alumni</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control @error('nama_alumni') is-invalid @enderror" name="nama_alumni" value="{{ old('nama_alumni', $user->nama_alumni) }}" id="nama_alumni" readonly>
+                                            <input type="text" class="form-control @error('nama_alumni') is-invalid @enderror" name="nama_alumni" value="{{ old('nama_alumni', $user->nama_pengguna) }}" id="nama_alumni" readonly>
                                         </div>
                                     </div>                                  
                                     @error('nama_alumni')

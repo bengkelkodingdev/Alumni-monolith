@@ -29,7 +29,7 @@ class KuesionerObserver
         alumni::updateOrCreate(
             ['id_alumni' => $user->id],
             [
-                'nama_alumni'    => $user->nama_alumni,
+                'nama_alumni'    => $user->nama_pengguna,
                 'email'          => $user->email,
                 'profile_picture'=> $user->profile_picture,
                 'jns_kelamin'    => optional($kuesioner)->jns_kelamin,

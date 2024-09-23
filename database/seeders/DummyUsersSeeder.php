@@ -15,67 +15,67 @@ class DummyUsersSeeder extends Seeder
     {
         $userData = [
             [
-                'nama_alumni' => 'Dosen Koordinator Alumni S1-Teknik Informatika',
+                'nama_pengguna' => 'Dosen Koordinator Alumni S1-Teknik Informatika',
                 'email' => 'alumni@websti.id',
                 'role' => 'admin',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Gata Anindhita Zalianingrum',
+                'nama_pengguna' => 'Gata Anindhita Zalianingrum',
                 'email' => 'gata@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Mahsa Rahima Yunus',
+                'nama_pengguna' => 'Mahsa Rahima Yunus',
                 'email' => 'mahsa@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Fauzan Febryan Tyowarsa',
+                'nama_pengguna' => 'Fauzan Febryan Tyowarsa',
                 'email' => 'fauzan@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Surinanda',
+                'nama_pengguna' => 'Surinanda',
                 'email' => 'suri@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Elecia Budi Syabila',
+                'nama_pengguna' => 'Elecia Budi Syabila',
                 'email' => 'elecia@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Hastaning Sekar Rani',
+                'nama_pengguna' => 'Hastaning Sekar Rani',
                 'email' => 'rani@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Qotrunnada Nabila',
+                'nama_pengguna' => 'Qotrunnada Nabila',
                 'email' => 'nada@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Kirana Anggana Raras',
+                'nama_pengguna' => 'Kirana Anggana Raras',
                 'email' => 'raras@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Rosa Paramitha',
+                'nama_pengguna' => 'Rosa Paramitha',
                 'email' => 'rosa@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
             ],
             [
-                'nama_alumni' => 'Mutiara Syabilla',
+                'nama_pengguna' => 'Mutiara Syabilla',
                 'email' => 'rara@gmail.com',
                 'role' => 'alumni',
                 'password' =>'bcrypt'('123')
