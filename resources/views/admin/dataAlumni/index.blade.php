@@ -3,12 +3,12 @@
 @section('content')
 <!-- Navbar -->
 <nav class="sb-topnav navbar navbar-expand">
-    <a class="navbar-brand" href="/admin" >
+    <a class="navbar-brand" href="{{ route('admin') }}" >
         <img src="{{ asset('images/logo-sti.png') }}" alt="Logo TI" width="250">
         <img src="{{ asset('images/logo-udinus.png') }}" alt="Logo udinus" width="55">
         <img src="{{ asset('images/logo-unggul.png') }}" alt="Logo udinus" width="40">
     </a>
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+    <form action="{{ route('dataAlumni.index') }}" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
             <input class="form-control" type="text" placeholder="Search here..." aria-label="Search for..."
                 aria-describedby="btnNavbarSearch"/>
@@ -23,30 +23,25 @@
     </ul>
 </nav>
 
-<!-- content -->
 <main class="container">
     <h1>Data Alumni</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nama Alumni</th>
-                <th>NIM</th>
-                <th>Email</th>
-                <th>No HP</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($alumniData as $alumni)
-                <tr>
-                    <td>{{ $alumni->nama_alumni }}</td>
-                    <td>{{ $alumni->nim }}</td>
-                    <td>{{ $alumni->email }}</td>
-                    <td>{{ $alumni->no_hp }}</td>
-                </tr>
+    <p>Berikut adalah informasi data dari masing - masing akun alumni.</p>
+    <hr>
+    <div class="alumni-cards" style="display: flex; flex-wrap: wrap; gap: 15px;">
+        <a href="{{ route('dataAlumni.showCV', $alumni->id_alumni) }}" style="text-decoration: none;">
+        @foreach($alumniData as $alumni)
+            <div class="card text-white shadow-sm h-100" style="border: 1px solid #ddd; border-radius: 12px; background-color: #114D91; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex: 1 1 calc(50% - 30px); color: white; cursor:pointer">
+                <div class="card-content">
+                    <h5 class="card-title" style="margin: 0;">{{ $alumni->nama_alumni }}</h5>
+                    <span class="badge text-dark mt-1" style="background-color: white;">{{ $alumni->email }}</span>
+                </div>
+            </div>
             @endforeach
-        </tbody>
-    </table>
+        </a>
+    </div>
 </main>
+
+
 
 <footer class="py-4 mt-auto">
     <div class="container-fluid px-4">
