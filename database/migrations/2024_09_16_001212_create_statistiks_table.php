@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('statistiks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('tahun_lulus');
+            $table->unsignedInteger('tahun_lulus')->nullable();
             $table->unsignedBigInteger('alumni_total')->default(0);
             $table->unsignedBigInteger('alumni_terlacak')->default(0);
             $table->timestamps();
