@@ -13,7 +13,7 @@
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <!--table-->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="../css/layout-main.css">
+    <link rel="stylesheet" href="{{ asset('css/layout-main.css') }}">
     <!-- Include toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <title>@yield('title')</title>
@@ -28,7 +28,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <!--table-->
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="../js/layout-main.js"></script>
+    <script src="{{ asset('/js/layout-main.js') }}"></script>
     
     <!-- Include jQuery (diperlukan oleh toastr) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -48,7 +48,7 @@
             }
         });
     </script>
-
+    @yield('scripts')
 </body>
 
 </html>

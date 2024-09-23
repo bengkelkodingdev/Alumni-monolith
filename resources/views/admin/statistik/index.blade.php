@@ -50,7 +50,7 @@
                                     <td>{{ $statistik->alumni_terlacak }}</td>
                                     <td class="text-center">
                                         <div class="d-inline-flex gap-2">
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dialogEditStatistik{{ $statistik->id }}">
+                                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#dialogEditStatistik{{ $statistik->id }}">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                             <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" action="{{ route('statistik.destroy', $statistik->id) }}" method="POST">

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css','resources/js/app.js'])
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <title>Home</title>
@@ -138,7 +139,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="{{ $logang->Logo ? asset('/storage/imglogo/' . $logang->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
+                            <img src="{{ $logang->Logo ? asset('storage/imglogo' . $logang->Logo) : asset('images/no-image.png') }}" alt="Company Logo" />
                             <div class="ms-3">
                                 <button type="button" style="color: black; text-decoration: none; border: none; background-color: transparent; cursor: pointer;" onclick="showLogangDetail('{{ $logang->id }}')">
                                     <b>{{ $logang->Posisi }}</b>

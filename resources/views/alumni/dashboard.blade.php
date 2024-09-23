@@ -23,38 +23,90 @@
         </ul>
     </nav>
     <main class="container-border">
-        <div class="container-fluid px-4 mt-3 mb-5">
-            <h2><b>Dashboard Alumni</b></h2>
-        </div>
+        <h1 class="mb-3">Dashboard Admin</h1>
+        <!-- welcome user -->
         <div class="container-dashboard">
             <h1>Welcome,</h1>
             <div class="type">
                 {{-- mengambil nama dari controller --}}
-                  <h1>{{ Auth::user()->nama_alumni }}</h1> 
+                    <h1>{{ Auth::user()->nama_alumni }}</h1> 
             </div>
             {{-- <p>Siap untuk lulus cepat hari ini?</p> --}}
         </div>
-        <div class="row">
-            <div class="col-md-4 mb-5">
-                <a href="{{ route('kuesioner.index') }}" class="menu-box">
-                    <i class="fas fa-search menu-icon"></i>
-                    <h2 class="menu-title">Tracerstudy</h2>
-                    <p class="menu-description">Kelola data perkembangan karir alumni Anda.</p>
-                </a>
+        <!-- menu admin -->
+        <div class="row justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-white shadow-sm h-100" style="background-color: #114D91; border-radius: 12px; min-height: 50px;">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Tracerstudy</h5>
+                            <a href="{{ route('kuesioner.index') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <i class="fas fa-graduation-cap fa-2x"></i>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 mb-5">
-                <a href="{{ route('loker.index') }}" class="menu-box">
-                    <i class="fas fa-chalkboard-teacher menu-icon"></i>
-                    <h2 class="menu-title">Lowongan Kerja</h2>
-                    <p class="menu-description">Temukan pekerjaan yang sesuai dengan keahlian Anda.</p>
-                </a>
+            <!-- Card 2 -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-white shadow-sm h-100" style="background-color: #114D91; border-radius: 12px; min-height: 50px;">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Data Alumni</h5>
+                            <a href="{{ route('cv.index') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <i class="fas fa-users fa-2x"></i>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4 mb-5">
-                <a href="{{ route('logang.index') }}" class="menu-box">
-                    <i class="fas fa-briefcase menu-icon"></i>
-                    <h2 class="menu-title">Lowongan Magang</h2>
-                    <p class="menu-description">Temukan program magang untuk mengembangkan skill Anda.</p>
-                </a>
+            <!-- Card 3 -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-white shadow-sm h-100" style="background-color: #114D91; border-radius: 12px; min-height: 50px;">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Profile</h5>
+                            <a href="{{ route('alumni-profile') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <i class="fas fa-info-circle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-white shadow-sm h-100" style="background-color: #114D91; border-radius: 12px; min-height: 50px;">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Lowongan Kerja</h5>
+                            <a href="{{ route('loker.index') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <i class="fas fa-book fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="col-md-4 mb-3">
+                <div class="card text-white shadow-sm h-100" style="background-color: #114D91; border-radius: 12px; min-height: 50px;">
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Lowongan Magang</h5>
+                            <a href="{{ route('logang.index') }}" class="btn btn-light btn-sm mt-2">See Details <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                        <i class="fas fa-tasks fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- card tgl hari ini -->
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm h-100" style="background-color: #fff; border-radius: 12px; border: 1px solid #ddd; position: relative; overflow: hidden;">
+                    <!-- Hiasan background melingkar -->
+                    <div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; background-color: #114D91; border-radius: 50%; opacity: 0.1;"></div>
+                    <div class="card-body d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title text-dark">Tanggal Hari Ini</h5>
+                            <b><p class="card-text text-dark" id="currentDate"></p></b>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -70,5 +122,19 @@
             </div>
         </div>
     </footer>
+@endsection
 
+@section('scripts')
+<!-- Bootstrap 5 JS & FontAwesome -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Script untuk menampilkan tanggal
+    function updateDate() {
+        var today = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        var dateString = today.toLocaleDateString('id-ID', options);
+        document.getElementById("currentDate").innerHTML = dateString;
+    }
+    updateDate();
+</script>
 @endsection

@@ -221,7 +221,7 @@ Route::middleware(['auth', 'userAkses:admin'])->group(function () {
 
     //route data alumni bagian admin 
     Route::get('/data-alumni', [\App\Http\Controllers\DataAlumniAdminController::class, 'index'])->middleware('auth')->name('dataAlumni.index');
-    Route::get('/cv-admin', [\App\Http\Controllers\DataAlumniAdminController::class, 'showCV'])->middleware('auth')->name('dataAlumni.cv');
+    Route::get('/admin/dataAlumni/{id_alumni}/cv', [\App\Http\Controllers\DataAlumniAdminController::class, 'showCV'])->name('dataAlumni.showCV');
 
     //route kuesioner bagian admin
     Route::get('/tracerstudy/home', [\App\Http\Controllers\KuesionerAdminController::class, 'home'])->name('kuesionerAdmin.home');
