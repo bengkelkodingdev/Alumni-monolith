@@ -139,7 +139,7 @@ class LogangController extends Controller{
 
     // Manage Logang
     public function manage(Request $request){
-        $query = Logang::query();
+        $query = Logang::latest();
 
         if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
