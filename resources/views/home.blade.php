@@ -139,7 +139,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3">
-                            <img src="{{ $logang->Logo ? asset('storage/imglogo' . $logang->Logo) : asset('images/no-image.png') }}" alt="Company Logo" />
+                            <img src="{{ $logang->Logo ? asset('/storage/imglogo/' . $logang->Logo) : asset('/images/no-image.png') }}" alt="Company Logo" />
                             <div class="ms-3">
                                 <button type="button" style="color: black; text-decoration: none; border: none; background-color: transparent; cursor: pointer;" onclick="showLogangDetail('{{ $logang->id }}')">
                                     <b>{{ $logang->Posisi }}</b>
@@ -156,7 +156,7 @@
             </div>
             @endforeach
             <div class="d-flex justify-content-end">
-                {{ $lokers->links('pagination::bootstrap-4') }}
+                {{ $logangs->links('pagination::bootstrap-4') }}
             </div>
         </div>
     </div>
