@@ -49,7 +49,7 @@ class LokerAdminController extends Controller
 
     // Manage Loker Admin
     public function manage(Request $request){
-        $query = Loker::query();
+        $query = Loker::latest();
 
         if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
