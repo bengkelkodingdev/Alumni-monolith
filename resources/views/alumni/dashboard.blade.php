@@ -23,7 +23,7 @@
         </ul>
     </nav>
     <main class="container-border">
-        <h1 class="mb-3">Dashboard Admin</h1>
+        <h1 class="mb-3">Dashboard Alumni</h1>
         <!-- welcome user -->
         <div class="container-dashboard">
             <h1>Welcome,</h1>
