@@ -46,7 +46,7 @@ class LogangAdminController extends Controller
 
     // Manage Logang Admin
     public function manage(Request $request){
-        $query = Logang::query();
+        $query = Logang::latest();
 
         if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
