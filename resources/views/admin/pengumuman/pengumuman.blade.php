@@ -30,49 +30,49 @@
         </button>
     </div>
     <div class="card">
-        <div class="table-container table-logbook">
-            <table class="table table-hover table-bordered text-center">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Judul</th>
-                        <th scope="col">Isi Pengumuman</th>
-                        <th scope="col"colspan="2">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($pengumuman as $p)
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover" id="table-log" style="width: 100%;">
+                    <thead class="table-light text-center">
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $p->judul }}</td>
-                            <td>{{ $p->isi }}</td>
-                            <td style="text-align: center; vertical-align: middle;">
-                                <button type="button" class="btn btn-primary me-2 text-white px-3 py-2 rounded-5"
-                                    style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogEditPengumuman"
-                                    data-id="{{ $p->id }}" data-bs-remote="{{ route('pengumuman.edit', $p->id) }}">
-                                    Edit
-                                </button>
-                            </td>
-                            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
-                                <form action="{{ route('pengumuman.destroy', $p->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger text-white px-3 py-2 rounded-5" style="width: 100px; text-align: center;" onclick="return confirm('Delete?')">Delete</button>
-                                </form>
-                            </td>
+                            <th scope="col">No</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Isi Pengumuman</th>
+                            <th scope="col"colspan="2">Aksi</th>
                         </tr>
-                    @empty
-                        <td colspan="9" class="text-center">
-                            <div class="alert alert-warning">Data belum Tersedia.</div>
-                        </td>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($pengumuman as $p)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td>{{ $p->judul }}</td>
+                                <td>{{ $p->isi }}</td>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <button type="button" class="btn btn-outline-warning btn-sm" data-bs-toggle="modal" data-bs-target="#dialogEditPengumuman"
+                                        data-id="{{ $p->id }}" data-bs-remote="{{ route('pengumuman.edit', $p->id) }}">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <form onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');" action="{{ route('pengumuman.destroy', $p->id) }}" method="POST" style="display:inline;"></form>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"  class="btn btn-outline-danger btn-sm">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <div class="alert alert-light">Data belum tersedia.</div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="d-flex justify-content-end">
-        {{ $pengumuman->links('pagination::bootstrap-4') }}
-    </div>     
 </div>
 
 <!-- Modal for Create Pengumuman -->
@@ -92,7 +92,22 @@
         </div>
     </div>
 </div>
+<footer class="py-4 mt-auto">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Alumni</div>
+            <div>
+                <a href="#" class="text-secondary">Privacy Policy</a>
+                &middot;
+                <a href="#" class="text-secondary">Terms &amp; Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
+@endsection
 
+@section('scripts')
+<!-- ini untuk edit hapus -->
 <script>
     // Add event listeners to dynamically load content into modals
     document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
@@ -112,16 +127,66 @@
     });
 
 </script>
-<footer class="py-4 mt-auto">
-    <div class="container-fluid px-4">
-        <div class="d-flex align-items-center justify-content-between small">
-            <div class="text-muted">Copyright &copy; Alumni</div>
-            <div>
-                <a href="#" class="text-secondary">Privacy Policy</a>
-                &middot;
-                <a href="#" class="text-secondary">Terms &amp; Conditions</a>
-            </div>
-        </div>
-    </div>
-</footer>
+
+<!-- ini untuk datatables -->
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.bootstrap5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script>
+$('#table-log').DataTable({
+    responsive: true,
+    paging: true,
+    searching: true,
+    autoWidth: false,
+    lengthMenu: [[10, 15, 25, 50, 100], [10, 15, 25, 50, 100]], // Menentukan pilihan untuk jumlah entri yang ditampilkan
+    columnDefs: [
+        { width: "10%", targets: 0 },
+        { width: "20%", targets: 1 },
+        { width: "60%", targets: 2 },
+        { width: "10%", targets: 3 },
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            extend: 'copyHtml5',
+            text: 'Salin',
+            className: 'btn btn-primary btn-sm'
+        },
+        {
+            extend: 'excelHtml5',
+            text: 'Ekspor ke Excel',
+            className: 'btn btn-success btn-sm',
+            exportOptions: {
+                columns: ':not(:last-child)' // Mengecualikan kolom terakhir (Aksi)
+            }
+        },
+        {
+            extend: 'print',
+            text: 'Cetak',
+            className: 'btn btn-info btn-sm',
+            exportOptions: {
+                columns: ':not(:last-child)' // Mengecualikan kolom terakhir (Aksi)
+            }
+        }
+    ],
+    language: {
+        lengthMenu: "Tampilkan _MENU_ data per halaman",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _PAGE_ dari _PAGES_ halaman",
+        infoEmpty: "Data tidak tersedia",
+        infoFiltered: "(difilter dari total _MAX_ data)",
+        paginate: {
+            first: "Awal",
+            last: "Akhir",
+            next: "Berikutnya",
+            previous: "Sebelumnya"
+        }
+    }
+});
+</script>
 @endsection
