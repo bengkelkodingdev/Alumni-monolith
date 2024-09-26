@@ -16,25 +16,17 @@ class RegisterController extends Controller
     }
 
     public function simpan(Request $request)
-    {
-        // Validasi inputan
-        $request->validate([
-            'nama_pengguna' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'role'=>'required',
-            'password' => 'required|min:6',
-        ]);
-
-        // Mengecek email validasi
-        if (!filter_var($request->email, FILTER_VALIDATE_EMAIL)) {
-            return back()->with('error', 'Harap masukkan alamat email yang benar!');
-        }
-
-        // Jika email sudah terdaftar
-        $emailExist = User::where('email', $request->email)->first();
-        if ($emailExist) {
-            return back()->with('error', 'Alamat email sudah terdaftar!');
-        }
+{
+    // Validasi inputan dengan pesan custom
+    $request->validate([
+        'nama_pengguna' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'role' => 'required',
+        'password' => 'required|min:7',
+    ], [
+        'email.unique' => 'Alamat email sudah terdaftar, silakan gunakan email lain.',
+        'password.min' => 'Password harus terdiri dari minimal 7 karakter.',
+    ]);
 
         // Proses menyimpan data ke database
         $encpass = Hash::make($request->password);
