@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Loker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use illuminate\Validation\Rule;
 
@@ -54,7 +55,9 @@ class LokerController extends Controller{
 
     // Show Create Form
     public function create() {
-        return view('alumni.loker.create');
+        // Mengambil data pengguna yang sedang login
+        $user = Auth::user();
+        return view('alumni.loker.create', compact('user'));
     }
 
     // Store Loker
@@ -67,6 +70,7 @@ class LokerController extends Controller{
         Storage::disk('public')->put($path,file_get_contents($image));
                 
         Loker::create([
+            'id_alumni' => auth()->user()->id, // Ambil ID pengguna yang sedang login
             'NamaPerusahaan' => $request->NamaPerusahaan,
             'Posisi' => $request->Posisi,
             'Alamat' => $request->Alamat,
@@ -141,15 +145,33 @@ class LokerController extends Controller{
     }
 
     // Manage Loker
-    public function manage(Request $request){
-        $query = Loker::latest();
+    // public function manage(Request $request){
+    //     $query = Loker::latest();
 
+    //     if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+    //         $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+    //     }
+
+    //     $loker = $query->paginate(5);
+    //     return view('alumni.loker.manage', compact('loker'));
+    // }
+    public function manage(Request $request){
+        // Ambil user yang sedang login
+        $user = auth()->user();
+        
+        // Query hanya untuk loker milik user yang sedang login
+        $query = Loker::where('id_alumni', $user->id)->latest();
+
+        // Filter berdasarkan nama perusahaan jika ada input
         if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
             $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
         }
 
+        // Paginasi hasil
         $loker = $query->paginate(5);
+        
+        // Tampilkan ke view
         return view('alumni.loker.manage', compact('loker'));
     }
-    
+
 }

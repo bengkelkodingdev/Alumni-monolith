@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('logangs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_alumni')->nullable();
             $table->string('NamaPerusahaan');
             $table->longText('Posisi');
             $table->longText('Alamat');

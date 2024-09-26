@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Logang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class LogangController extends Controller{
@@ -52,7 +53,8 @@ class LogangController extends Controller{
 
     // Show Create Form
     public function create() {
-        return view('alumni.logang.create');
+        $user = Auth::user();
+        return view('alumni.logang.create', compact('user'));
     }
 
     // Store Logang
@@ -65,6 +67,7 @@ class LogangController extends Controller{
         Storage::disk('public')->put($path,file_get_contents($image));
                   
         Logang::create([
+            'id_alumni' => auth()->user()->id, // Ambil ID pengguna yang sedang login
             'NamaPerusahaan' => $request->NamaPerusahaan,
             'Posisi' => $request->Posisi,
             'Alamat' => $request->Alamat,
@@ -138,14 +141,34 @@ class LogangController extends Controller{
     }
 
     // Manage Logang
-    public function manage(Request $request){
-        $query = Logang::latest();
+    // public function manage(Request $request){
+    //     $query = Logang::latest();
 
-        if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
-            $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
-        }
+    //     if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+    //         $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
+    //     }
 
-        $logang = $query->paginate(5);
-        return view('alumni.logang.manage', compact('logang'));
+    //     $logang = $query->paginate(5);
+    //     return view('alumni.logang.manage', compact('logang'));
+    // }
+    public function manage(Request $request)
+{
+    // Ambil user yang sedang login
+    $user = auth()->user();
+    
+    // Query hanya untuk logang milik user yang sedang login
+    $query = Logang::where('id_alumni', $user->id)->latest();
+
+    // Filter berdasarkan nama perusahaan jika ada input
+    if ($request->has('NamaPerusahaan') && !empty($request->NamaPerusahaan)) {
+        $query->where('NamaPerusahaan', 'LIKE', '%' . $request->NamaPerusahaan . '%');
     }
+
+    // Paginasi hasil
+    $logang = $query->paginate(5);
+    
+    // Tampilkan ke view
+    return view('alumni.logang.manage', compact('logang'));
+}
+
 }

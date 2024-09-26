@@ -14,6 +14,7 @@ class LogangSeeder extends Seeder
     public function run(): void
     {
         Logang::create([
+            'id_alumni' => '2',
             'NamaPerusahaan' => 'Telkom Indonesia',
             'Posisi' => 'Developer',
             'Alamat' => 'Jl. Gemah Raya I, Gemah, Kec. Pedurungan, Kota Semarang, Jawa Tengah 50246',
@@ -30,6 +31,7 @@ Mampu berkomunikasi dengan baik dan aktif dalama bahasa Indonesia maupun bahasa 
         ]);
 
         Logang::create([
+            'id_alumni' => '3',
             'NamaPerusahaan' => 'Djarum',
             'Posisi' => 'Computer User Support',
             'Alamat' => 'Jl. Jend. Ahmad Yani No.26-28, Krajan, Panjunan, Kec. Kota Kudus, Kabupaten Kudus, Jawa Tengah 59317',
@@ -47,6 +49,7 @@ Bersedia di tempatkan di Kudus',
         ]);
 
         Logang::create([
+            'id_alumni' => '4',
             'NamaPerusahaan' => 'OVO',
             'Posisi' => 'IT Mobile',
             'Alamat' => 'Pakuwon Tower, Jl. Raya Casablanca No.Raya Lt. 46, RT.3/RW.14, Menteng Dalam, Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12870',

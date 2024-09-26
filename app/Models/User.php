@@ -87,4 +87,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(skill::class);
     }
+    public function lokers()
+    {
+        return $this->hasMany(Loker::class);
+    }
+    public function logangs()
+    {
+        return $this->hasMany(Logang::class);
+    }
 }

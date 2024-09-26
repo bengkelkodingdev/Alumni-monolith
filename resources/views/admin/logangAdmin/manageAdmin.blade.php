@@ -38,6 +38,7 @@
                         <tr>
                             <th scope="col">Nama Perusahaan</th>
                             <th scope="col">Posisi</th>
+                            <th scope="col">Uploaded by</th>
                             <th scope="col" colspan="3">Aksi</th>
                         </tr>
                     </thead>
@@ -47,6 +48,7 @@
                         <tr>
                             <td>{{ $lgng->NamaPerusahaan }}</td>
                             <td>{{ $lgng->Posisi }}</td>
+                            <td>{{ $lgng->User->nama_pengguna ?? 'Unknown' }}</td>
                             <td class="px-4 py-8 border-t border-b border-gray-300 text-lg centered-column">
                                 <button type="button" class="btn btn-info me-2 text-white px-3 py-2 rounded-5"
                                     style="width: 100px; text-align: center;" data-bs-toggle="modal" data-bs-target="#dialogShowLogangAdmin"

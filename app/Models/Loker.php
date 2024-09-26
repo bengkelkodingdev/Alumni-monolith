@@ -28,4 +28,8 @@ class Loker extends Model
             $query->whereIn('Pengalaman', $filters['Pengalaman']);
         }
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_alumni');
+    }
 }

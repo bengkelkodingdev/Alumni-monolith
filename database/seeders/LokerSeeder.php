@@ -14,6 +14,7 @@ class LokerSeeder extends Seeder
     public function run(): void
     {
         Loker::create([
+            'id_alumni' => '2',
             'NamaPerusahaan' => 'Universitas Dian Nuswantoro',
             'Posisi' => 'Dosen',
             'Alamat' => 'Jl. Imam Bonjol No.207, Pendrikan Kidul, Kec. Semarang Tengah, Kota Semarang, Jawa Tengah 50131',
@@ -31,6 +32,7 @@ Dapat Mengajar Menggunakan Bahasa Inggris',
         ]);
 
         Loker::create([
+            'id_alumni' => '3',
             'NamaPerusahaan' => 'Tokopedia',
             'Posisi' => 'Developer',
             'Alamat' => 'Jl. Gemah Raya I, Gemah, Kec.Pedurungan, Kota Semarang, Jawa Tengah 50246',
@@ -47,6 +49,7 @@ Menguasai berbagai bahasa pemrograman',
         ]);
 
         Loker::create([
+            'id_alumni' => '4',
             'NamaPerusahaan' => 'Shopee',
             'Posisi' => 'UI/UX Developer',
             'Alamat' => 'Pakuwon Tower, Jl. Raya Casablanca No.Raya Lt. 46, RT.3/RW.14, Menteng Dalam, Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12870',
