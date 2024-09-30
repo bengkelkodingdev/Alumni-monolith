@@ -28,7 +28,6 @@
     <p>Berikut adalah informasi data dari masing - masing akun alumni.</p>
     <hr>
     <div class="alumni-cards" style="display: flex; flex-wrap: wrap; gap: 15px;">
-        <a href="{{ route('dataAlumni.showCV', $alumni->id_alumni) }}" style="text-decoration: none;">
         @foreach($alumniData as $alumni)
             <div class="card text-white shadow-sm h-100" style="border: 1px solid #ddd; border-radius: 12px; background-color: #114D91; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); flex: 1 1 calc(50% - 30px); color: white; cursor:pointer">
                 <div class="card-content">
@@ -36,8 +35,7 @@
                     <span class="badge text-dark mt-1" style="background-color: white;">{{ $alumni->email }}</span>
                 </div>
             </div>
-            @endforeach
-        </a>
+        @endforeach
     </div>
 </main>
 
