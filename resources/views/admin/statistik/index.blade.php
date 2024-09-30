@@ -32,7 +32,6 @@
         
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title text-muted">Statistik Alumni</h5>
                 <div class="table-responsive">
                     <table class="table table-hover" id="table-log" style="width: 100%;">
                         <thead class="table-light">
@@ -109,59 +108,56 @@
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
-
-
-
 <script>
-    $(document).ready(function () {
-        $('#table-log').DataTable({
-            responsive: true,
-            paging: true,
-            searching: true,
-            autoWidth: false,
-            lengthMenu: [10, 15, 25, 50, 100], // Menentukan pilihan untuk jumlah entri yang ditampilkan
-            columnDefs: [
-                { width: "30%", targets: 0 },
-                { width: "30%", targets: 1 },
-                { width: "30%", targets: 2 },
-                { width: "10%", targets: 3 },
-            ],
-            dom: 'Bfrtip',
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    text: 'Salin',
-                    className: 'btn btn-primary btn-sm'
-                },
-                {
-                    extend: 'excelHtml5',
-                    text: 'Ekspor ke Excel',
-                    className: 'btn btn-success btn-sm'
-                },
-                {
-                    extend: 'print',
-                    text: 'Cetak',
-                    className: 'btn btn-info btn-sm',
-                    exportOptions: {
-                        columns: ':not(:last-child)' // Mengecualikan kolom terakhir (Aksi)
-                    }
-                }
-            ],
-            language: {
-                search: "Cari:",
-                lengthMenu: "Tampilkan _MENU_ data per halaman",
-                zeroRecords: "Tidak ada data yang ditemukan",
-                info: "Menampilkan _PAGE_ dari _PAGES_ halaman",
-                infoEmpty: "Data tidak tersedia",
-                infoFiltered: "(difilter dari total _MAX_ data)",
-                paginate: {
-                    first: "Awal",
-                    last: "Akhir",
-                    next: "Berikutnya",
-                    previous: "Sebelumnya"
-                }
+$('#table-log').DataTable({
+    responsive: true,
+    paging: true,
+    searching: true,
+    autoWidth: false,
+    lengthMenu: [[10, 15, 25, 50, 100], [10, 15, 25, 50, 100]], // Menentukan pilihan untuk jumlah entri yang ditampilkan
+    columnDefs: [
+        { width: "30%", targets: 0 },
+        { width: "30%", targets: 1 },
+        { width: "30%", targets: 2 },
+        { width: "10%", targets: 3 },
+    ],
+    dom: 'Bfrtip',
+    buttons: [
+        {
+            extend: 'copyHtml5',
+            text: 'Salin',
+            className: 'btn btn-primary btn-sm'
+        },
+        {
+            extend: 'excelHtml5',
+            text: 'Ekspor ke Excel',
+            className: 'btn btn-success btn-sm',
+            exportOptions: {
+                columns: ':not(:last-child)' // Mengecualikan kolom terakhir (Aksi)
             }
-        });
-    });
+        },
+        {
+            extend: 'print',
+            text: 'Cetak',
+            className: 'btn btn-info btn-sm',
+            exportOptions: {
+                columns: ':not(:last-child)' // Mengecualikan kolom terakhir (Aksi)
+            }
+        }
+    ],
+    language: {
+        lengthMenu: "Tampilkan _MENU_ data per halaman",
+        zeroRecords: "Tidak ada data yang ditemukan",
+        info: "Menampilkan _PAGE_ dari _PAGES_ halaman",
+        infoEmpty: "Data tidak tersedia",
+        infoFiltered: "(difilter dari total _MAX_ data)",
+        paginate: {
+            first: "Awal",
+            last: "Akhir",
+            next: "Berikutnya",
+            previous: "Sebelumnya"
+        }
+    }
+});
 </script>
 @endsection
