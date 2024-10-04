@@ -80,7 +80,9 @@ class ForgotPasswordController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|min:7|confirmed',
+        ], [
+            'password.min' => 'Password harus terdiri dari minimal 7 karakter.',
         ]);
     
         $email = Session::get('email');

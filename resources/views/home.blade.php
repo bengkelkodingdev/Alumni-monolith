@@ -76,7 +76,7 @@
                     <a href="#" class="btn btn-primary">Get Started</a>
                 </div>
                 <div class="col-lg-5 d-none d-lg-block">
-                    <img class="hero-image" src="https://img.freepik.com/free-vector/flat-join-us-promo-illustrated_23-2148956435.jpg?t=st=1720414039~exp=1720417639~hmac=5d935f13548c99a24fcb02eba3697099a27485a6b31e53e9f5512b0f25676e0c&w=740" alt="Hero Image">
+                    <img src="{{ asset('images/5378405.jpg') }}" alt="Icon Home" />
                 </div>
             </div>
         </div>
